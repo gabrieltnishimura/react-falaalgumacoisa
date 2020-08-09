@@ -6,18 +6,17 @@ import { RecordingService } from './mic/RecordingService';
 
 function App() {
   const recordingService = new RecordingService();
+  const start = (e: any) => {
+    recordingService.start();
+  }
+  const stop = (e: any) => {
+    recordingService.stop();
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <Microphone />
-        <div>
-          <button onClick={() => {
-            recordingService.start();
-          }}>Start</button>
-          <button onClick={() => {
-            recordingService.stop();
-          }}>Stop</button>
-        </div>
+        <Microphone pressed={start} unpressed={stop} />
       </header>
     </div>
   );
