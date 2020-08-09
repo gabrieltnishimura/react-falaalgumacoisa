@@ -11,11 +11,10 @@ export class RecordingService {
 
     navigator.mediaDevices.getUserMedia({
       audio: true
+    }).then((stream) => {
+      this.recorder = new MediaRecorder(stream);
+      this.recorder.ondataavailable = this.onDataReceived.bind(this);
     })
-      .then((stream) => {
-        this.recorder = new MediaRecorder(stream);
-        this.recorder.ondataavailable = this.onDataReceived.bind(this);
-      })
   }
 
   public start(): void {
@@ -23,6 +22,8 @@ export class RecordingService {
       return;
     }
 
+    console.group('Recording');
+    console.log('Started');
     this.chunks = [];
     this.recorder.start(10);
   }
@@ -34,6 +35,8 @@ export class RecordingService {
 
     this.recorder.stop();
     this.saveAudio();
+    console.log('Ended', this.chunks.length);
+    console.groupEnd();
   }
 
   private onDataReceived(e: BlobEvent) {
@@ -43,6 +46,10 @@ export class RecordingService {
   }
 
   private saveAudio() {
+    if (!this.chunks.length) {
+      return;
+    }
+
     const blob = new Blob(this.chunks, { type: 'audio/*' });
     const audioURL = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
