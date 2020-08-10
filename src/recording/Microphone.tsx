@@ -1,6 +1,6 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { fromEvent, race } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, delay } from 'rxjs/operators';
 import './Microphone.css';
 
 type PressedType = React.MouseEvent<any> | React.TouchEvent<any>;
@@ -10,18 +10,21 @@ interface MicrophoneInput {
 }
 
 function Microphone(props: MicrophoneInput) {
-  const [recording, setRecording] = useState(false);
-  const imageRef: MutableRefObject<any> = useRef(null);
+  const [recording, setRecording] = useState<boolean>(false);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const componentPressed = (e: PressedType) => {
+    setRecording(true);
+    props.pressed(e);
+  }
+
+  const componentUnpressed = (e: PressedType) => {
+    setRecording(false);
+    props.unpressed(e);
+  }
 
   useEffect(() => {
-    const componentPressed = (e: PressedType) => {
-      setRecording(true);
-      props.pressed(e);
-    }
-
-    const componentUnpressed = (e: PressedType) => {
-      setRecording(false);
-      props.unpressed(e);
+    if (!imageRef || !imageRef.current) {
+      return;
     }
 
     const mouseDown = fromEvent<PressedType>(imageRef.current, 'mousedown');
@@ -33,14 +36,17 @@ function Microphone(props: MicrophoneInput) {
     const mouseUp = fromEvent<PressedType>(imageRef.current, 'mouseup');
     const touchEnd = fromEvent<PressedType>(imageRef.current, 'touchend');
     const unpressedSubscription = race(mouseUp, touchEnd)
-      .pipe(debounceTime(1))
+      .pipe(
+        debounceTime(1),
+        delay(200), // what why
+      )
       .subscribe(componentUnpressed);
 
     return () => {
       pressedSubscription.unsubscribe();
       unpressedSubscription.unsubscribe();
     };
-  }, [imageRef, props]);
+  });
 
   const ignoreContextDropdown = (e: React.MouseEvent<any>) => {
     e.preventDefault();
