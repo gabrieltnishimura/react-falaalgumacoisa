@@ -1,5 +1,5 @@
 
-export class RecordingService {
+export class VoiceRecordingService {
   private recorder: MediaRecorder | undefined;
   private chunks: Blob[] = [];
 
@@ -25,18 +25,18 @@ export class RecordingService {
     console.group('Recording');
     console.log('Started');
     this.chunks = [];
-    this.recorder.start(10);
+    this.recorder.start(10); // magic number
   }
 
-  public stop(): void {
+  public stop(): string {
     if (!this.recorder || this.recorder.state === 'inactive') {
-      return;
+      return '';
     }
 
     this.recorder.stop();
-    this.saveAudio();
     console.log('Ended', this.chunks.length);
     console.groupEnd();
+    return this.getAudioUrl();
   }
 
   private onDataReceived(e: BlobEvent) {
@@ -45,19 +45,12 @@ export class RecordingService {
     }
   }
 
-  private saveAudio() {
+  private getAudioUrl(): string {
     if (!this.chunks.length) {
-      return;
+      return '';
     }
 
     const blob = new Blob(this.chunks, { type: 'audio/*' });
-    const audioURL = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    document.body.appendChild(a);
-    a.href = audioURL;
-    a.download = 'asd.webm';
-    a.click();
-    window.URL.revokeObjectURL(audioURL);
-    a.remove();
+    return window.URL.createObjectURL(blob);
   }
 }

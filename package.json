@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-player": "^2.6.0",
     "react-scripts": "3.4.1",
     "rxjs": "^6.6.2",
     "typescript": "^3.7.5"
