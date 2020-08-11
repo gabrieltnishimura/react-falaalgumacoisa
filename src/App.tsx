@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import AudioPlayer from './recording/AudioPlayer';
 import Microphone from './recording/Microphone';
 import { VoiceRecordingService } from './recording/VoiceRecordingService';
+import Header from './shell/Header';
 
 
 function App() {
@@ -16,11 +17,12 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className={styles.app}>
+      <Header></Header>
+      <div className={styles.content}>
         <Microphone pressed={start} unpressed={stop} />
         <AudioPlayer url={url}></AudioPlayer>
-      </header>
+      </div>
     </div>
   );
 }

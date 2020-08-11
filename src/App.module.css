@@ -1,0 +1,13 @@
+.app {
+  text-align: center;
+  min-height: 100vh;
+}
+
+.content {
+  background-color: #709e9a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
