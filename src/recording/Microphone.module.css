@@ -1,10 +1,11 @@
-.microphone-icon {
+.microphoneIcon {
   height: 40vmin;
   pointer-events: none;
   fill: white;
 }
 
-.microphone-icon.recording {
+.recordingMicrophoneIcon {
+  composes: microphoneIcon;
   animation: changeColor 3s infinite;
 }
 
