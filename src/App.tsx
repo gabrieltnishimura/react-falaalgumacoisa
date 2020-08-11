@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
-import AudioPlayer from './recording/AudioPlayer';
-import Microphone from './recording/Microphone';
-import { VoiceRecordingService } from './recording/VoiceRecordingService';
+import BasicDataPage from './basic-data/BasicDataPage';
+import HomePage from "./HomePage";
+import RecordingPage from './recording/RecordingPage';
 import Header from './shell/Header';
 
-
 function App() {
-  const recordingService = new VoiceRecordingService();
-  const [url, setUrl] = useState<string>('');
-  const start = (e: any) => {
-    recordingService.start();
-  }
-  const stop = (e: any) => {
-    setUrl(recordingService.stop());
-  }
-
   return (
-    <div className={styles.app}>
-      <Header></Header>
-      <div className={styles.content}>
-        <Microphone pressed={start} unpressed={stop} />
-        <AudioPlayer url={url}></AudioPlayer>
-      </div>
+    <div className={styles.pageWrapper}>
+      <Router>
+        <Header></Header>
+        <div className={styles.contentWrapper}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/dados-pessoais" element={<BasicDataPage />} />
+            <Route path="/gravar" element={<RecordingPage />} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }

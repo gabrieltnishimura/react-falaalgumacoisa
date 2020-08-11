@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
 function Header() {
@@ -6,13 +7,13 @@ function Header() {
     <header className={styles.header}>
       <li className={styles.list}>
         <ul>
-          <a tabIndex={0}><span>A</span></a>
+          <Link className={styles.link} to="/">Home</Link>
         </ul>
         <ul>
-          <a tabIndex={0}><span>B</span></a>
+          <Link className={styles.link} to="/dados-pessoais">Dados Pessoais</Link>
         </ul>
         <ul>
-          <a tabIndex={0}><span>C</span></a>
+          <Link className={styles.link} to="/gravar">Gravar</Link>
         </ul>
       </li>
     </header>
