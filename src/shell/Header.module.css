@@ -6,3 +6,7 @@
 .list {
   display: flex;
 }
+
+.link {
+  color: #fdc881;
+}

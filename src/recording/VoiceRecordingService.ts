@@ -1,5 +1,5 @@
 
-export class VoiceRecordingService {
+export default class VoiceRecordingService {
   private recorder: MediaRecorder | undefined;
   private chunks: Blob[] = [];
 

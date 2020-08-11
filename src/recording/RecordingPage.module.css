@@ -1,18 +1,12 @@
-.pageWrapper {
-  display: flex;
-  flex-flow: column;
-  height: 100vh;
-
+.app {
   text-align: center;
+  background-color: #709e9a;
 }
 
-.contentWrapper {
+.content {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  background-color: #709e9a;
   font-size: calc(10px + 2vmin);
 }
