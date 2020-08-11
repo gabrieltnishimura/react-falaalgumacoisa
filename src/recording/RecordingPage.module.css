@@ -1,0 +1,12 @@
+.app {
+  text-align: center;
+  background-color: #709e9a;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}

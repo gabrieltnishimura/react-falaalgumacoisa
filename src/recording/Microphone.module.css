@@ -1,0 +1,28 @@
+.microphoneIcon {
+  height: 40vmin;
+  pointer-events: none;
+  fill: white;
+}
+
+.recordingMicrophoneIcon {
+  composes: microphoneIcon;
+  animation: changeColor 3s infinite;
+}
+
+@keyframes changeColor {
+  0% {
+    fill: white;
+  }
+  25% {
+    fill: #c75b5b;
+  }
+  50% {
+    fill: #5551bb;
+  }
+  75% {
+    fill: #86bb51;
+  }
+  100% {
+    fill: white;
+  }
+}
