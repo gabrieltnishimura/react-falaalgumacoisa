@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
 import BasicDataPage from './basic-data/BasicDataPage';
-import HomePage from "./HomePage";
+import HomePage from './HomePage';
 import RecordingPage from './recording/RecordingPage';
 import Header from './shell/Header';
+import SuccessPage from './SuccessPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/dados-pessoais" element={<BasicDataPage />} />
             <Route path="/gravar" element={<RecordingPage />} />
+            <Route path="/sucesso" element={<SuccessPage />} />
           </Routes>
         </div>
       </Router>
