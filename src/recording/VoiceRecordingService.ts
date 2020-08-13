@@ -28,15 +28,15 @@ export default class VoiceRecordingService {
     this.recorder.start(10); // magic number
   }
 
-  public stop(): string {
+  public stop(): Blob | null {
     if (!this.recorder || this.recorder.state === 'inactive') {
-      return '';
+      return null;
     }
 
     this.recorder.stop();
     console.log('Ended', this.chunks.length);
     console.groupEnd();
-    return this.getAudioUrl();
+    return this.getAudio();
   }
 
   private onDataReceived(e: BlobEvent) {
@@ -45,12 +45,11 @@ export default class VoiceRecordingService {
     }
   }
 
-  private getAudioUrl(): string {
+  private getAudio(): Blob | null {
     if (!this.chunks.length) {
-      return '';
+      return null;
     }
 
-    const blob = new Blob(this.chunks, { type: 'audio/*' });
-    return window.URL.createObjectURL(blob);
+    return new Blob(this.chunks, { type: 'audio/*' });
   }
 }
