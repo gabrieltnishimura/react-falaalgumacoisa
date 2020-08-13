@@ -2,7 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import styles from './AudioPlayer.module.css';
 
-function AudioPlayer(props: { data: Blob }) {
+function AudioPlayer(props: { data: Blob | null }) {
   const url = window.URL.createObjectURL(props.data)
   return (
     <ReactPlayer className={styles.player}

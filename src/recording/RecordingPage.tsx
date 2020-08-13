@@ -11,7 +11,7 @@ import wordSuggestionStream from './WordSuggestionStream';
 
 function RecordingPage() {
   const recordingService = new VoiceRecordingService();
-  const [blob, setBlob] = useState<Blob>('');
+  const [blob, setBlob] = useState<Blob | null>(null);
   const [word, setWord] = useState<string>('');
   const [recorded, setRecorded] = useState<boolean>(false);
 
@@ -42,7 +42,7 @@ function RecordingPage() {
       <WordSuggestion word={word}></WordSuggestion>
       <Microphone pressed={start} unpressed={stop} />
       {button}
-      <AudioPlayer url={url}></AudioPlayer>
+      {recorded ? <AudioPlayer data={blob}></AudioPlayer> : null}
     </div>
   );
 }
