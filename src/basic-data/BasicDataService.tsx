@@ -1,4 +1,4 @@
-import { BasicDataModel } from "./BasicDataModel";
+import { BasicDataModel } from './BasicDataModel';
 
 export default class BasicDataService {
   public save(data: BasicDataModel): void {
