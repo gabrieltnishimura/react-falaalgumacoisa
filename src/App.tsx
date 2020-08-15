@@ -4,6 +4,7 @@ import styles from './App.module.css';
 import BasicDataPage from './basic-data/BasicDataPage';
 import HomePage from './HomePage';
 import RecordingPage from './recording/RecordingPage';
+import CanI from './shared/CanI';
 import Header from './shell/Header';
 import SuccessPage from './SuccessPage';
 
@@ -15,8 +16,9 @@ function App() {
         <div className={styles.contentWrapper}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/dados-pessoais" element={<BasicDataPage />} />
-            <Route path="/gravar" element={<RecordingPage />} />
+            <Route path="/dados-pessoais" element={<CanI><BasicDataPage /></CanI>} />
+            <Route path="/gravar" element={
+              <CanI><RecordingPage /></CanI>} />
             <Route path="/sucesso" element={<SuccessPage />} />
           </Routes>
         </div>
