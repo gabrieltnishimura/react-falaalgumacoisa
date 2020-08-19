@@ -9,8 +9,16 @@ try {
   console.error('Could not load firebase config');
 }
 
+console.log(process.env);
+
 const config = {
-  firebaseConfig
+  firebaseConfig,
+  baseUrl: process.env.REACT_APP_BACKEND_BASE_URL,
+  endpoints: {
+    sendRecording: process.env.REACT_APP_SEND_RECORDING_URL || 'NOT_SET',
+    suggestions: process.env.REACT_APP_SUGGESTIONS_URL || 'NOT_SET',
+    blacklist: process.env.REACT_APP_SUGGESTIONS_BLACKLIST_URL || 'NOT_SET',
+  },
 };
 
 export default config;

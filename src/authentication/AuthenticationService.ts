@@ -18,6 +18,7 @@ const authenticationService = {
             if (!firebaseUser) {
               observer.error('Unauthenticated user');
             } else {
+              console.log('user', firebaseUser);
               user = new UserModel(firebaseUser)
               observer.next(user);
             }
@@ -31,17 +32,25 @@ const authenticationService = {
     );
   },
   login: (type: 'facebook' | 'google'): Observable<UserModel> => {
+    console.log('user', user)
     if (!!user) {
       return of(user);
     }
 
-    const authProvider: firebase.auth.AuthProvider = type === 'facebook' ?
-      new firebase.auth.FacebookAuthProvider() :
-      new firebase.auth.GoogleAuthProvider();
-    auth.languageCode = 'pt';
-    return from(auth.signInWithPopup(authProvider))
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+
+    provider.addScope('email');
+    console.log('addedc scopes');
+    provider.addScope('https://www.googleapis.com/auth/user.gender.read');
+    console.log('addedc scopes');
+    provider.addScope('https://www.googleapis.com/auth/user.birthday.read');
+    console.log(provider);
+    app.auth().languageCode = 'pt';
+    return from(app.auth().signInWithPopup(provider))
       .pipe(
         map(credentials => {
+          console.log(credentials);
           return new UserModel(credentials?.user);
         }),
         tap(data => {
