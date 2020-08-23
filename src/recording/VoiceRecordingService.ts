@@ -1,22 +1,14 @@
-
+const OpusRecorder = require('opus-recorder');
 export default class VoiceRecordingService {
-  private recorder: MediaRecorder | undefined;
-  private chunks: Blob[] = [];
+  private recorder: any;
+  private callback: Function | undefined;
 
   constructor() {
-    if (!navigator || !navigator.mediaDevices) {
-      console.error('Navigator not supported');
-      return;
-    }
-
-    navigator.mediaDevices.getUserMedia({
-      audio: true
-    }).then((stream) => {
-      this.recorder = new MediaRecorder(stream, {
-        mimeType: 'audio/webm',
-      });
-      this.recorder.ondataavailable = this.onDataReceived.bind(this);
-    })
+    this.recorder = new OpusRecorder({
+      encoderPath: '/waveWorker.min.js'
+    });
+    this.recorder.onstreamerror = this.onStreamError.bind(this);
+    this.recorder.ondataavailable = this.onDataReceived.bind(this);
   }
 
   public start(): void {
@@ -26,32 +18,36 @@ export default class VoiceRecordingService {
 
     console.group('Recording');
     console.log('Started');
-    this.chunks = [];
-    this.recorder.start(10); // magic number
+    this.recorder.start().catch((error: any) => {
+      console.log('Error encountered');
+    });
   }
 
-  public stop(): Blob | null {
+  public stop() {
+    console.log(this.recorder.state, this.recorder)
     if (!this.recorder || this.recorder.state === 'inactive') {
       return null;
     }
 
     this.recorder.stop();
-    console.log('Ended', this.chunks.length);
+    console.log('Ended');
     console.groupEnd();
-    return this.getAudio();
   }
 
-  private onDataReceived(e: BlobEvent) {
-    if (this.chunks && this.chunks.length >= 0 && e.data && e.data.size > 0) {
-      this.chunks.push(e.data);
-    }
+  public onDataCallback(callback: Function) {
+    this.callback = callback;
   }
 
-  private getAudio(): Blob | null {
-    if (!this.chunks.length) {
-      return null;
+  private onDataReceived(data: any) {
+    const blob = new Blob([data], { type: 'audio/wav' });
+    if (this.callback) {
+      this.callback(blob);
     }
+    // var fileName = new Date().toISOString() + ".wav";
+    // var url = URL.createObjectURL( dataBlob );
+  }
 
-    return new Blob(this.chunks, { type: 'audio/*' });
+  private onStreamError(error: any) {
+    console.error('Error encountered: ' + error.message);
   }
 }

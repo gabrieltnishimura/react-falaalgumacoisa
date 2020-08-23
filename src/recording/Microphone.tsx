@@ -10,18 +10,18 @@ interface MicrophoneInput {
 function Microphone(props: MicrophoneInput) {
   const recordingService = new VoiceRecordingService();
 
+  const onData = (data: any) => {
+    props.finished(data);
+  }
+  recordingService.onDataCallback(onData);
+
   const start = (e: any) => {
     recordingService.start();
     props.started();
   }
 
   const stop = (e: any) => {
-    const data = recordingService.stop();
-    if (!data) {
-      return;
-    }
-
-    props.finished(data);
+    recordingService.stop();
   }
 
   return (<LongPressButton pressed={start} unpressed={stop} ></LongPressButton>)

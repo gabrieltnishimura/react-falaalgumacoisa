@@ -31,7 +31,9 @@ export default class RecordingIntegrationService {
     const formData = new FormData();
     formData.set('file', blob);
     formData.set('word', data.word);
+    formData.set('type', blob.type);
     formData.set('noiseLevel', data.word);
+    formData.set('speaker.initials', 'GN');
     return formData;
   }
 }
