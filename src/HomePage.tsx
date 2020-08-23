@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import authenticationService from './authentication/AuthenticationService';
 function HomePage() {
-
-  useEffect(() => {
-    const subs = authenticationService.login('google').subscribe(user => {
-      console.log(user.name);
-    });
-    return () => subs.unsubscribe();
-  }, []);
+  const authenticate = () => {
+    authenticationService.login('google');
+  };
 
   return (
     <div>
       Welcome
+      <button onClick={authenticate}>Login</button>
     </div>
   );
 }

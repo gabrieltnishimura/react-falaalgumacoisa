@@ -1,25 +1,35 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { from, Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import config from '../config';
 import UserModel from './UserModel';
 
 const app = firebase.initializeApp(config.firebaseConfig);
 const auth = app.auth();
-let user: UserModel;
+let _user: UserModel;
 
 const authenticationService = {
-  getLatestState: (): Observable<UserModel> => {
+  login: (type: 'facebook' | 'google'): void => {
+    const provider = type === 'google' ?
+      new firebase.auth.GoogleAuthProvider() :
+      new firebase.auth.FacebookAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    auth.languageCode = 'pt';
+    auth.signInWithRedirect(provider);
+  },
+  getLatestState: (): Observable<UserModel | null> => {
     return new Observable(
       observer => {
         try {
           auth.onAuthStateChanged((firebaseUser) => {
             if (!firebaseUser) {
-              observer.error('Unauthenticated user');
+              console.error('Unauthenticated user')
+              observer.next(null);
             } else {
-              user = new UserModel(firebaseUser)
-              observer.next(user);
+              _user = new UserModel(firebaseUser);
+              observer.next(_user);
             }
             observer.complete();
           });
@@ -30,22 +40,20 @@ const authenticationService = {
       }
     );
   },
-  login: (type: 'facebook' | 'google'): Observable<UserModel> => {
-    if (!!user) {
-      return of(user);
-    }
-
-    const authProvider: firebase.auth.AuthProvider = type === 'facebook' ?
-      new firebase.auth.FacebookAuthProvider() :
-      new firebase.auth.GoogleAuthProvider();
-    auth.languageCode = 'pt';
-    return from(auth.signInWithPopup(authProvider))
+  getAuthRedirect: (): Observable<UserModel | null> => {
+    return from(auth.getRedirectResult())
       .pipe(
-        map(credentials => {
-          return new UserModel(credentials?.user);
+        map(result => {
+          return result?.user && new UserModel(result?.user);
         }),
         tap(data => {
-          user = data;
+          if (data) {
+            _user = data;
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching auth redirect', error);
+          return of(null);
         }),
       );
   },
@@ -53,10 +61,10 @@ const authenticationService = {
     return from(auth.signOut());
   },
   isLogged: (): boolean => {
-    return !!user;
+    return !!_user;
   },
   getUser: (): UserModel => {
-    return user;
+    return _user;
   },
 };
 

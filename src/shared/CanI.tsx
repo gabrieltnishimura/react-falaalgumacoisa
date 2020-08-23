@@ -2,24 +2,26 @@ import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import authenticationService from '../authentication/AuthenticationService';
-import UserModel from '../authentication/UserModel';
 
 function CanI(props: { children: any }) {
-  const [user, setUser] = useState<UserModel | null>(null);
-  const navigate = useNavigate();
+  const [logged, setLogged] = useState(false);
+  const navigate = useNavigate()
+
 
   useEffect(() => {
-    const subs = authenticationService.getLatestState()
-      .subscribe((firebaseUser) => {
-        setUser(firebaseUser);
-      }, (error) => {
-        console.log('error', error)
+    const redirectStream = authenticationService.getAuthRedirect().toPromise();
+    const stateStream = authenticationService.getLatestState().toPromise();
+    Promise.all([redirectStream, stateStream]).then(([redirect, state]) => {
+      console.log(redirect, state);
+      if (!!redirect?.name || !!state?.name) {
+        setLogged(true);
+      } else {
         navigate('/', { replace: true });
-      });
-    return () => subs.unsubscribe();
-  }, [navigate])
+      }
+    });
+  }, [setLogged, navigate]);
 
-  return user ?
+  return logged ?
     props.children : <Loader type="BallTriangle" color="#00BFFF" height={80} width={80} />;
 }
 

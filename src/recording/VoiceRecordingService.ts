@@ -12,7 +12,9 @@ export default class VoiceRecordingService {
     navigator.mediaDevices.getUserMedia({
       audio: true
     }).then((stream) => {
-      this.recorder = new MediaRecorder(stream);
+      this.recorder = new MediaRecorder(stream, {
+        mimeType: 'audio/webm',
+      });
       this.recorder.ondataavailable = this.onDataReceived.bind(this);
     })
   }

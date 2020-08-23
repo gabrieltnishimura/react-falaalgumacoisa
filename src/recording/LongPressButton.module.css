@@ -1,11 +1,11 @@
-.microphoneIcon {
+.longPressButtonIcon {
   height: 40vmin;
   pointer-events: none;
   fill: white;
 }
 
-.recordingMicrophoneIcon {
-  composes: microphoneIcon;
+.recordingLongPressButtonIcon {
+  composes: longPressButtonIcon;
   animation: changeColor 3s infinite;
 }
 
