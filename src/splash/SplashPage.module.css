@@ -1,0 +1,38 @@
+@value citron, defaultWhite from "../colors.css";
+@value logoWidth: 8rem;
+
+.logoWrapper {
+  height: logoWidth;
+}
+
+.logo {
+  height: logoWidth;
+  width: logoWidth;
+}
+
+.title {
+  color: citron;
+  margin-bottom: 0.5rem;
+}
+
+.title h1 {
+  color: citron;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.subtitle {
+  color: defaultWhite;
+  letter-spacing: -0.32pt;
+}
+
+.bottomCover {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 19rem;
+  width: 100%;
+
+  background-image: url(/cover.png);
+  background-size: cover;
+}

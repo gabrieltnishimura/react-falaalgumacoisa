@@ -5,17 +5,17 @@ import BasicDataPage from './basic-data/BasicDataPage';
 import HomePage from './HomePage';
 import RecordingPage from './recording/RecordingPage';
 import CanI from './shared/CanI';
-import Header from './shell/Header';
+import SplashPage from './splash/SplashPage';
 import SuccessPage from './SuccessPage';
 
 function App() {
   return (
     <div className={styles.pageWrapper}>
       <Router>
-        <Header></Header>
         <div className={styles.contentWrapper}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<SplashPage />} />
+            <Route path="/login" element={<HomePage />} />
             <Route path="/dados-pessoais" element={<CanI><BasicDataPage /></CanI>} />
             <Route path="/gravar" element={
               <CanI><RecordingPage /></CanI>} />

@@ -1,7 +1,10 @@
+@value cobalt from "./colors.css";
+
 .pageWrapper {
   display: flex;
   flex-flow: column;
   height: 100vh;
+  background-color: cobalt;
 
   text-align: center;
 }
@@ -12,7 +15,4 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  background-color: #709e9a;
-  font-size: calc(10px + 2vmin);
 }
