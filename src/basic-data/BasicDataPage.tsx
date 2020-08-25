@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BasicDataService from './BasicDataService';
 import { useInput } from './useInput';
 
@@ -7,11 +8,15 @@ function BasicDataPage(props: any) {
   const { value: sex, bind: bindSex } = useInput<'M' | 'F'>('M');
   const { value: age, bind: bindAge } = useInput<number>(0);
   const { value: origin, bind: bindOrigin } = useInput('');
+  const navigate = useNavigate();
 
   const handleSubmit = (evt: any) => {
-    const service = new BasicDataService()
-    service.save({ initials, sex, age, origin });
     evt.preventDefault();
+
+    const service = new BasicDataService()
+    service.save({ initials, sex, age, origin }).then(() => {
+      navigate('/gravar', { replace: true });
+    });
   }
 
   /**

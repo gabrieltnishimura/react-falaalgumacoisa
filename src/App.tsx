@@ -14,7 +14,7 @@ function App() {
       <Router>
         <div className={styles.contentWrapper}>
           <Routes>
-            <Route path="/" element={<SplashPage />} />
+            <Route path="/" element={<CanI onSuccessRoute='dados-pessoais'><SplashPage /></CanI>} />
             <Route path="/login" element={<HomePage />} />
             <Route path="/dados-pessoais" element={<CanI><BasicDataPage /></CanI>} />
             <Route path="/gravar" element={

@@ -1,29 +1,51 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import authenticationService from '../authentication/AuthenticationService';
+import FacebookLoginButton from './FacebookLoginButton';
+import GoogleLoginButton from './GoogleLoginButton';
 import styles from './SplashPage.module.css';
 
 function SplashPage() {
-  const navigate = useNavigate();
-  const navigationTimeout = 4000;
+  const [loaded, setLoaded] = useState(false);
+  const navigationTimeout = 1000;
 
   useEffect(() => {
     setTimeout(() => {
-      navigate('/login', { replace: true });
+      setLoaded(true);
     }, navigationTimeout);
   });
 
+  const fbClick = () => {
+    if (!loaded) {
+      return;
+    }
+    authenticationService.login('facebook');
+  }
+
+  const googleClick = () => {
+    if (!loaded) {
+      return;
+    }
+    authenticationService.login('google');
+  }
+
   return (
-    <div>
-      <div className={styles.logoWrapper}>
-        <img src={'logo.png'} className={styles.logo} alt='Logo fala alguma coisa'></img>
+    <div className={loaded ? styles.postAnimation : styles.preAnimation}>
+      <div className={`${styles.header} ${styles.baseHeader}`}>
+        <div className={styles.title}>
+          <div className={styles.logoWrapper}>
+            <img src={'logo.png'} className={styles.logo} alt='Logo fala alguma coisa'></img>
+          </div>
+          <h1>fala alguma coisa</h1>
+        </div>
+        <div className={styles.subtitle}>
+          <span >O seu português à ciência em 15 minutos</span>
+        </div>
       </div>
-      <div className={styles.title}>
-        <h1>fala alguma coisa</h1>
+      <div className={styles.buttons}>
+        <FacebookLoginButton click={fbClick}></FacebookLoginButton>
+        <GoogleLoginButton click={googleClick}></GoogleLoginButton>
       </div>
-      <div>
-        <span className={styles.subtitle}>O seu português à ciência em 15 minutos</span>
-      </div>
-      <div className={styles.bottomCover}></div>
+      <div className={`${styles.cover} ${styles.animatedCover}`}></div>
     </div>
   );
 }

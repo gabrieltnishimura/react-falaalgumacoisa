@@ -1,7 +1,8 @@
 import { BasicDataModel } from './BasicDataModel';
 
 export default class BasicDataService {
-  public save(data: BasicDataModel): void {
+  public async save(data: BasicDataModel): Promise<void> {
     console.log('Saving', data);
+    return Promise.resolve()
   }
 }
