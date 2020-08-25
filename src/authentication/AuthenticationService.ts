@@ -20,6 +20,10 @@ const authenticationService = {
     auth.signInWithRedirect(provider);
   },
   getLatestState: (): Observable<UserModel | null> => {
+    if (!!_user) {
+      return of(_user);
+    }
+
     return new Observable(
       observer => {
         try {
@@ -41,6 +45,10 @@ const authenticationService = {
     );
   },
   getAuthRedirect: (): Observable<UserModel | null> => {
+    if (!!_user) {
+      return of(_user);
+    }
+
     return from(auth.getRedirectResult())
       .pipe(
         map(result => {
