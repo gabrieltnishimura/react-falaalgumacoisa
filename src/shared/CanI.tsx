@@ -5,7 +5,8 @@ import authenticationService from '../authentication/AuthenticationService';
 
 function CanI(props: { children: any, onSuccessRoute?: string }) {
   const [logged, setLogged] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const onSuccessRoute = props?.onSuccessRoute;
 
 
   useEffect(() => {
@@ -14,20 +15,20 @@ function CanI(props: { children: any, onSuccessRoute?: string }) {
     Promise.all([redirectStream, stateStream]).then(([redirect, state]) => {
       console.log(redirect, state);
       if (!!redirect?.name || !!state?.name) {
-        if (props.onSuccessRoute) {
-          navigate(props.onSuccessRoute, { replace: true });
+        if (onSuccessRoute) {
+          navigate(onSuccessRoute, { replace: true });
           return;
         }
         setLogged(true);
       } else {
-        if (props.onSuccessRoute) {
+        if (onSuccessRoute) {
           setLogged(true);
           return;
         }
         navigate('/', { replace: true });
       }
     });
-  }, [setLogged, navigate]);
+  }, [setLogged, navigate, onSuccessRoute]);
 
   return logged ?
     props.children : <Loader type="BallTriangle" color="#00BFFF" height={80} width={80} />;

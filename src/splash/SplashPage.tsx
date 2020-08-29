@@ -3,16 +3,19 @@ import authenticationService from '../authentication/AuthenticationService';
 import FacebookLoginButton from './FacebookLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
 import styles from './SplashPage.module.css';
-
+import useProgressiveImage from './useProgressiveImage';
 function SplashPage() {
   const [loaded, setLoaded] = useState(false);
+  const imageLoaded = useProgressiveImage('/cover.png')
   const navigationTimeout = 1000;
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoaded(true);
-    }, navigationTimeout);
-  });
+    if (imageLoaded) {
+      setTimeout(() => {
+        setLoaded(true);
+      }, navigationTimeout);
+    }
+  }, [imageLoaded]);
 
   const fbClick = () => {
     if (!loaded) {
@@ -45,7 +48,9 @@ function SplashPage() {
         <FacebookLoginButton click={fbClick}></FacebookLoginButton>
         <GoogleLoginButton click={googleClick}></GoogleLoginButton>
       </div>
-      <div className={`${styles.cover} ${styles.animatedCover}`}></div>
+      {imageLoaded ?
+        <div className={`${styles.cover} ${styles.animatedCover}`}
+          style={{ backgroundImage: `url(${imageLoaded})` }}></div> : null}
     </div>
   );
 }
