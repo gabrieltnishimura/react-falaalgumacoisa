@@ -4,7 +4,9 @@ exports[`renders microphone button 1`] = `
 <div>
   <div>
     <div>
-      <span>
+      <span
+        class="disable"
+      >
         Pressione o microfone para falar
       </span>
     </div>
