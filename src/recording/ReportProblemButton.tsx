@@ -1,4 +1,5 @@
 import React from 'react';
+import contextStyles from './DisableContextMenu.module.css';
 import WordSuggestionService from './WordSuggestionService';
 
 function ReportProblemButton(props: { word: string }) {
@@ -10,7 +11,7 @@ function ReportProblemButton(props: { word: string }) {
   }
 
   return (
-    <button onClick={click}>
+    <button onClick={click} className={contextStyles.disable}>
       Reportar problema
     </button>
   );
