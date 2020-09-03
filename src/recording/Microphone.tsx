@@ -7,16 +7,16 @@ interface MicrophoneInput {
   finished: (e: Blob) => void;
 }
 
+const recordingService = new VoiceRecordingService();
 function Microphone(props: MicrophoneInput) {
-  const recordingService = new VoiceRecordingService();
-
   const start = (e: any) => {
     recordingService.start();
     props.started();
   }
 
   const stop = (e: any) => {
-    const data = recordingService.stop();
+    recordingService.stop();
+    const data = recordingService.getData()
     if (!data) {
       return;
     }
