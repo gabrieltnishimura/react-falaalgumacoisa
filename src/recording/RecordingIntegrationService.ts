@@ -29,7 +29,7 @@ export default class RecordingIntegrationService {
 
   private parseFormData(data: RecordingMetadata, blob: Blob): FormData {
     const formData = new FormData();
-    formData.set('file', blob);
+    formData.set('file', blob, 'file.webm');
     formData.set('word', data.word);
     formData.set('noiseLevel', data.word);
     return formData;
