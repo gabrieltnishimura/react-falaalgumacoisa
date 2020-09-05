@@ -1,0 +1,11 @@
+.select {
+  display: flex;
+}
+
+.select > label {
+  display: flex;
+}
+
+.select > div {
+  margin-top: 0px;
+}
