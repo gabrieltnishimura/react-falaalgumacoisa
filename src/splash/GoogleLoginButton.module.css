@@ -1,4 +1,4 @@
-@value grey, defaultWhite from "../colors.css";
+@value basicGrey, defaultWhite from "../colors.css";
 
 .button {
   display: flex;
@@ -10,7 +10,7 @@
   border-style: solid;
   border-color: defaultWhite;
   background-color: defaultWhite;
-  color: grey;
+  color: basicGrey;
   font-size: 0.9rem;
 }
 

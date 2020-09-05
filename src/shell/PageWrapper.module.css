@@ -1,0 +1,19 @@
+@value cobalt, defaultWhite from "../colors.css";
+
+.pageWrapper {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+
+  text-align: center;
+  padding-left: 1.125rem;
+  padding-right: 1.125rem;
+}
+
+.cobaltBackground {
+  background-color: cobalt;
+}
+
+.whiteBackground {
+  background-color: defaultWhite;
+}
