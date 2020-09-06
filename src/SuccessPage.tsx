@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function SuccessPage() {
   const navigate = useNavigate();
   const click = () => {
-    navigate('/gravar', { replace: true });
+    navigate('/gravar');
   }
 
   return (
