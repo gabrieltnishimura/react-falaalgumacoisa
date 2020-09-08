@@ -10,6 +10,7 @@ import theme from '../shell/theme';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import styles from './BasicDataPage.module.css';
 import BasicDataService from './BasicDataService';
+import CollapsibleInfo from './CollapsibleInfo';
 import HeaderFormStep from './HeaderFormStep';
 import { useInput } from './useInput';
 
@@ -33,6 +34,7 @@ function CompleteRegistrationPage(props: any) {
   const { value: region, bind: bindRegion } = useInput('');
   const { value: dialect, bind: bindDialect } = useInput('');
   const [termsAndConditions, setTermsAndConditions] = useState(false);
+  const validForm: boolean = Boolean(region && dialect && termsAndConditions);
   const navigate = useNavigate();
   const classes = useStyles();
 
@@ -67,11 +69,11 @@ function CompleteRegistrationPage(props: any) {
             >
               {/* @todo bff this */}
               <option aria-label="None" value="" />
-              <option value={'N'}>Norte</option>
-              <option value={'NE'}>Nordeste</option>
-              <option value={'CO'}>Centro-Oeste</option>
-              <option value={'SD'}>Sudeste</option>
-              <option value={'S'}>Sul</option>
+              <option value={'norte'}>Norte</option>
+              <option value={'nordeste'}>Nordeste</option>
+              <option value={'centro-oeste'}>Centro-Oeste</option>
+              <option value={'sudeste'}>Sudeste</option>
+              <option value={'sul'}>Sul</option>
             </Select>
           </FormControl>
           <FormControl fullWidth>
@@ -93,7 +95,7 @@ function CompleteRegistrationPage(props: any) {
               <option value={'carioca'}>Carioca</option>
             </Select>
           </FormControl>
-
+          <CollapsibleInfo title="Por que isso é importante?" content="É importante sabermos seu sotaque para que possamos estudar todas as nuances da língua portuguesa falada em nosso país." hide="Ocultar"></CollapsibleInfo>
           <FormControlLabel
             control={
               <Checkbox
@@ -106,7 +108,7 @@ function CompleteRegistrationPage(props: any) {
             label="Concordo com os termos e permito a utilização da minha voz e dos meus dados para fins científicos."
           />
           <div className={styles.ctaButtonWrapper}>
-            <button className={styles.ctaButton} type="submit">Continuar</button>
+            <button className={`${styles.ctaButton} ${validForm ? "" : styles.disabled}`} type="submit" disabled={!validForm}>Continuar</button>
           </div>
         </form>
       </WhitePageWrapper>

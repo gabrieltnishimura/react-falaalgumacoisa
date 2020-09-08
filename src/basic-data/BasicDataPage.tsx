@@ -30,9 +30,9 @@ function BasicDataPage(props: any) {
   const { value: initials, bind: bindFirstName } = useInput('');
   const { value: sex, bind: bindSex } = useInput<'M' | 'F' | 'O' | null>(null);
   const { value: age, bind: bindAgeInterval } = useInput<number>(0);
+  const validForm: boolean = Boolean(initials && sex && age);
   const navigate = useNavigate();
   const classes = useStyles();
-
 
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
@@ -42,6 +42,7 @@ function BasicDataPage(props: any) {
       navigate('/dados-pessoais/passo-2');
     });
   }
+
   return (
     <ThemeProvider theme={theme}>
       <WhitePageWrapper>
@@ -49,7 +50,7 @@ function BasicDataPage(props: any) {
         <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
           <TextField fullWidth label="Primeiro Nome" {...bindFirstName} />
           <FormControl fullWidth>
-            <InputLabel htmlFor="age-interval-selector">Age</InputLabel>
+            <InputLabel htmlFor="age-interval-selector">Faixa etária</InputLabel>
             <Select
               fullWidth
               native
@@ -61,13 +62,13 @@ function BasicDataPage(props: any) {
             >
               {/* @todo bff this */}
               <option aria-label="None" value="" />
-              <option value={1}>até 25</option>
-              <option value={2}>26-35</option>
-              <option value={3}>36-45</option>
-              <option value={4}>46-55</option>
-              <option value={5}>56-65</option>
-              <option value={6}>66-75</option>
-              <option value={7}>mais que 75</option>
+              <option value={'25-'}>até 25</option>
+              <option value={'26-35'}>26-35</option>
+              <option value={'36-45'}>36-45</option>
+              <option value={'46-55'}>46-55</option>
+              <option value={'56-65'}>56-65</option>
+              <option value={'66-75'}>66-75</option>
+              <option value={'75+'}>mais que 75</option>
             </Select>
           </FormControl>
           <FormControl fullWidth component="fieldset">
@@ -79,7 +80,7 @@ function BasicDataPage(props: any) {
             </RadioGroup>
           </FormControl>
           <div className={styles.ctaButtonWrapper}>
-            <button className={styles.ctaButton} type="submit">Continuar</button>
+            <button className={`${styles.ctaButton} ${validForm ? "" : styles.disabled}`} type="submit" disabled={!validForm}>Continuar</button>
           </div>
         </form>
       </WhitePageWrapper>

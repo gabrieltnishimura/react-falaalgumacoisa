@@ -8,3 +8,6 @@
 @value defaultWhite: rgb(255, 255, 255);
 @value basicGrey: rgb(75, 75, 75);
 @value darkerGrey: rgb(33, 33, 33);
+@value disabledGrey: rgb(172, 172, 172);
+@value disabledGreyText: rgb(87, 87, 87);
+@value collapsibleGrey: rgb(130, 130, 130);

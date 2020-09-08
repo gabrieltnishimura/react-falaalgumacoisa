@@ -1,4 +1,4 @@
-@value defaultWhite, cobalt from "../colors.css";
+@value defaultWhite, cobalt, disabledGrey, disabledGreyText from "../colors.css";
 
 .fullHeight {
   height: 100%;
@@ -27,4 +27,14 @@
   background-color: cobalt;
   font-size: 1.125rem;
   letter-spacing: -0.36px;
+
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.disabled {
+  background-color: disabledGrey;
+  color: disabledGreyText;
 }
