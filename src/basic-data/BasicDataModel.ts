@@ -1,5 +1,5 @@
 export interface BasicDataModel {
-  initials?: string;
+  firstName?: string;
   sex?: 'F' | 'M' | 'O' | null;
   age?: number;
   origin?: string;

@@ -1,7 +1,18 @@
+import { post } from '../apis/api';
+import config from '../config';
 import { BasicDataModel } from './BasicDataModel';
 
 let userData: BasicDataModel = {};
 export default class BasicDataService {
+  public async update(data: BasicDataModel): Promise<void> {
+    userData = {
+      ...userData,
+      ...data
+    };
+    console.log('Updating', userData);
+    return Promise.resolve()
+  }
+
   public async save(data: BasicDataModel): Promise<void> {
     userData = {
       ...userData,
@@ -9,15 +20,8 @@ export default class BasicDataService {
     };
 
     console.log('Saving', userData);
-    return Promise.resolve()
-  }
 
-  public async update(data: BasicDataModel): Promise<void> {
-    console.log('Updating', data);
-    userData = {
-      ...userData,
-      ...data
-    };
-    return Promise.resolve()
+    const url = config.endpoints.basicData;
+    return post<void>(url, { ...userData }).toPromise();
   }
 }

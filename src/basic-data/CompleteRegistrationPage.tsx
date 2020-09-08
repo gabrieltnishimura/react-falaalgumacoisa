@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function CompleteRegistrationPage(props: any) {
+function CompleteRegistrationPage() {
   const { value: region, bind: bindRegion } = useInput('');
   const { value: dialect, bind: bindDialect } = useInput('');
   const [termsAndConditions, setTermsAndConditions] = useState(false);

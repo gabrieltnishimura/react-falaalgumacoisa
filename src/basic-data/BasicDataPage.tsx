@@ -26,11 +26,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function BasicDataPage(props: any) {
-  const { value: initials, bind: bindFirstName } = useInput('');
+function BasicDataPage() {
+  const { value: firstName, bind: bindFirstName } = useInput('');
   const { value: sex, bind: bindSex } = useInput<'M' | 'F' | 'O' | null>(null);
   const { value: age, bind: bindAgeInterval } = useInput<number>(0);
-  const validForm: boolean = Boolean(initials && sex && age);
+  const validForm: boolean = Boolean(firstName && sex && age);
   const navigate = useNavigate();
   const classes = useStyles();
 
@@ -38,7 +38,7 @@ function BasicDataPage(props: any) {
     evt.preventDefault();
 
     const service = new BasicDataService()
-    service.save({ initials, sex, age, origin }).then(() => {
+    service.update({ firstName, sex, age, origin }).then(() => {
       navigate('/dados-pessoais/passo-2');
     });
   }
