@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './HeaderFormStep.module.css';
 
-function HeaderFormStep(props: { title: string, step: string }) {
+function HeaderFormStep(props: { title: string, step?: string }) {
   return (
     <header className={styles.wrapper}>
       <div className={styles.title}>

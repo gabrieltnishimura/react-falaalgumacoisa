@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import HeaderFormStep from '../basic-data/HeaderFormStep';
+import WhitePageWrapper from '../shell/WhitePageWrapper';
 import AudioPlayer from './AudioPlayer';
 import Microphone from './Microphone';
 import RecordingIntegrationService from './RecordingIntegrationService';
@@ -54,14 +56,18 @@ function RecordingPage() {
   }, []);
 
   return (
-    <div className={styles.content}>
-      <WordSuggestion word={word}></WordSuggestion>
-      <Microphone started={recordingFn} finished={recordedFn} />
-      {recorded ?
-        <SendRecordingButton pressed={sendRecordingFn}></SendRecordingButton> :
-        <ReportProblemButton word={word} ></ReportProblemButton>}
-      {recorded ? <AudioPlayer data={blob}></AudioPlayer> : null}
-    </div>
+    <WhitePageWrapper>
+      <HeaderFormStep title="Ótimo! Agora faça a sua apresentação"></HeaderFormStep>
+      <div className={styles.content}>
+        <img className={styles.recordingLogo} src={"logo.png"} alt="Microfone sinalizando gravação"></img>
+        <WordSuggestion word={word}></WordSuggestion>
+        <Microphone started={recordingFn} finished={recordedFn} />
+        {recorded ?
+          <SendRecordingButton pressed={sendRecordingFn}></SendRecordingButton> :
+          <ReportProblemButton word={word} ></ReportProblemButton>}
+        {recorded ? <AudioPlayer data={blob}></AudioPlayer> : null}
+      </div>
+    </WhitePageWrapper>
   );
 }
 

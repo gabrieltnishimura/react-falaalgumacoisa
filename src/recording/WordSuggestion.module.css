@@ -1,0 +1,9 @@
+@value recordingTextGrey from "../colors.css";
+
+.word {
+  font-size: 3rem;
+  line-height: 3.125rem;
+  letter-spacing: -0.96px;
+  font-weight: 300;
+  color: recordingTextGrey;
+}
