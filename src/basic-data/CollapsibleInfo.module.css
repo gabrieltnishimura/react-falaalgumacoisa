@@ -1,0 +1,34 @@
+@value cozyOrange, collapsibleGrey from "../colors.css";
+
+.wrapper {
+  display: flex;
+  padding-bottom: 2.25rem;
+}
+
+.openWrapper {
+  display: inline-block;
+  padding-bottom: 2.25rem;
+}
+
+.link {
+  color: cozyOrange;
+  font-size: 1rem;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid cozyOrange;
+}
+
+.content {
+  color: collapsibleGrey;
+  font-size: 1rem;
+  letter-spacing: -0.32px;
+  line-height: 1.25rem;
+}
+
+.linkSpacing {
+  margin-left: 4px;
+}

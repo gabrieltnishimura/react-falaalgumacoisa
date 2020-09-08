@@ -4,6 +4,13 @@
 @value defaultAnimationDuration: all 1s ease-in-out;
 @value delayedAnimationDuration: all 2s ease-in-out;
 
+.contentWrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .baseAnimation {
   -webkit-transition: defaultAnimationDuration;
   -moz-transition: defaultAnimationDuration;
@@ -42,6 +49,7 @@
   -moz-transition-delay: 1s;
   -o-transition-delay: 1s;
   -ms-transition-delay: 1s;
+  transition-delay: 1s;
   animation-delay: 1s;
 }
 

@@ -1,0 +1,21 @@
+@value cobalt, defaultWhite, darkerGrey from "../colors.css";
+
+.pageWrapper {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+
+  /* text-align: center; */
+  padding-left: 1.125rem;
+  padding-right: 1.125rem;
+}
+
+.cobaltBackground {
+  background-color: cobalt;
+  color: defaultWhite;
+}
+
+.whiteBackground {
+  background-color: defaultWhite;
+  color: darkerGrey;
+}
