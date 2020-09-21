@@ -8,3 +8,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@font-face {
+  font-family: "Coolvetica";
+  src: url("/public/fonts/coolvetica-crammed-rg.ttf");
+}

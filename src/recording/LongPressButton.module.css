@@ -1,3 +1,5 @@
+@value canaryMustard, defaultWhite from "../colors.css";
+
 .longPressButtonIcon {
   height: 40vmin;
   pointer-events: none;
@@ -7,6 +9,41 @@
 .recordingLongPressButtonIcon {
   composes: longPressButtonIcon;
   animation: changeColor 3s infinite;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  bottom: 100px;
+  left: calc(50% - 50px);
+  background-color: defaultWhite;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+.outerCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border: 4px solid canaryMustard;
+}
+
+.innerCircle {
+  height: 68px;
+  width: 68px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  background-color: canaryMustard;
 }
 
 @keyframes changeColor {

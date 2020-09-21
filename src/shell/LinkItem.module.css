@@ -1,0 +1,25 @@
+@value cobalt, cozyOrange from "../colors.css";
+
+.wrapper {
+  display: flex;
+}
+
+.link {
+  font-size: 1rem;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  padding-bottom: 3px;
+}
+
+.orangeLink {
+  color: cozyOrange;
+  border-bottom: 1px solid cozyOrange;
+}
+
+.cobaltLink {
+  color: cobalt;
+  border-bottom: 1px solid cobalt;
+}

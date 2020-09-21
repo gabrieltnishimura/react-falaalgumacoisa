@@ -1,0 +1,14 @@
+@value recordingTextGrey from "../colors.css";
+
+.logo {
+  font-family: "Coolvetica";
+  letter-spacing: 1.1px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 40px;
+  margin: 0;
+}
+
+.grey {
+  color: recordingTextGrey;
+}

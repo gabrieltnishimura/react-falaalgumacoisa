@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LongPressButton from './LongPressButton';
 import VoiceRecordingService from './VoiceRecordingService';
 
@@ -9,6 +9,10 @@ interface MicrophoneInput {
 
 const recordingService = new VoiceRecordingService();
 function Microphone(props: MicrophoneInput) {
+  useEffect(() => {
+    recordingService.setupRecording();
+  }, []);
+
   const start = (e: any) => {
     recordingService.start();
     props.started();
