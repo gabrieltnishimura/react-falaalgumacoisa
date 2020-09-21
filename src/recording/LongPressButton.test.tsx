@@ -7,9 +7,7 @@ test('renders microphone button', () => {
   const stop = jest.fn();
   const element = render(<LongPressButton pressed={start} unpressed={stop} />);
 
-  const { getByText, container } = element;
-  const linkElement = getByText(/Pressione o microfone para falar/i);
-
-  expect(linkElement).not.toBeUndefined();
+  const { container } = element;
+  expect(container.firstChild).toHaveClass('container')
   expect(container).toMatchSnapshot()
 });

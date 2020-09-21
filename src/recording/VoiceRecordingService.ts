@@ -4,10 +4,11 @@ export default class VoiceRecordingService {
   private recording: boolean = false;
   private chunks: Blob[] = [];
 
-  constructor() {
+  public setupRecording(): Promise<void> {
+    console.log('Starting recorder')
     if (!navigator || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       console.error('Navigator not supported');
-      return;
+      return Promise.reject();
     }
     const constraints = {
       audio: true
@@ -22,7 +23,7 @@ export default class VoiceRecordingService {
       console.log('The following error occured: ' + err);
     }
 
-    navigator.mediaDevices.getUserMedia(constraints).then(onSuccess.bind(this), onError.bind(this));
+    return navigator.mediaDevices.getUserMedia(constraints).then(onSuccess.bind(this), onError.bind(this));
   }
 
   public start(): void {

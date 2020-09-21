@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import HeaderFormStep from '../basic-data/HeaderFormStep';
+import AppLogo from '../shell/AppLogo';
+import LinkItem from '../shell/LinkItem';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import AudioPlayer from './AudioPlayer';
 import Microphone from './Microphone';
 import RecordingIntegrationService from './RecordingIntegrationService';
 import styles from './RecordingPage.module.css';
-import ReportProblemButton from './ReportProblemButton';
 import SendRecordingButton from './SendRecordingButton';
 import WordSuggestion from './WordSuggestion';
-import WordSuggestionService from './WordSuggestionService';
-import wordSuggestionStream from './WordSuggestionStream';
-
 function RecordingPage() {
   const service = new RecordingIntegrationService();
   const [blob, setBlob] = useState<Blob | null>(null);
-  const [word, setWord] = useState<string>('');
+  const [word, setWord] = useState<string>('Meu grande objetivo é me tornar um escalador profissional  reconhecido nacionalmente');
   const [recorded, setRecorded] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -29,6 +26,10 @@ function RecordingPage() {
     }
     setRecorded(true);
   };
+
+  const skipPhrase = () => {
+    console.log('nExt phrase');
+  }
 
   const sendRecordingFn = () => {
     if (!blob) {
@@ -48,24 +49,32 @@ function RecordingPage() {
   }
 
   useEffect(() => {
-    const stream = wordSuggestionStream.getWord().subscribe(setWord);
-    new WordSuggestionService().nextWord().toPromise(); // fire and forget
-    return () => {
-      stream.unsubscribe();
-    };
+    // const stream = wordSuggestionStream.getWord().subscribe(setWord);
+    // new WordSuggestionService().nextWord().toPromise(); // fire and forget
+    // return () => {
+    //   stream.unsubscribe();
+    // };
   }, []);
 
   return (
     <WhitePageWrapper>
-      <HeaderFormStep title="Ótimo! Agora faça a sua apresentação"></HeaderFormStep>
+      <div className={styles.header}>
+        <div className={styles.logo}>
+          <img className={styles.recordingLogo} src={"logo_light.png"} alt="Microfone sinalizando gravação"></img>
+          <AppLogo color="recordingTextGrey"></AppLogo>
+        </div>
+        <div className={styles.infoButton}><span>i</span></div>
+      </div>
       <div className={styles.content}>
-        <img className={styles.recordingLogo} src={"logo.png"} alt="Microfone sinalizando gravação"></img>
         <WordSuggestion word={word}></WordSuggestion>
-        <Microphone started={recordingFn} finished={recordedFn} />
         {recorded ?
           <SendRecordingButton pressed={sendRecordingFn}></SendRecordingButton> :
-          <ReportProblemButton word={word} ></ReportProblemButton>}
+          <LinkItem title="Pular frase" onclick={skipPhrase} color="cobalt"></LinkItem>}
         {recorded ? <AudioPlayer data={blob}></AudioPlayer> : null}
+        <Microphone started={recordingFn} finished={recordedFn} />
+        <div className={styles.backgroundWrapper} >
+          <img className={styles.background} src={"square-cover.jpg"} alt="Background"></img>
+        </div>
       </div>
     </WhitePageWrapper>
   );

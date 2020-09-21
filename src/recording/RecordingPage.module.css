@@ -1,12 +1,51 @@
-.app {
-  text-align: center;
-  background-color: #709e9a;
+@value infoGrey from "../colors.css";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.6875rem;
+  padding-bottom: 3.75rem;
 }
 
-.content {
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.infoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 31px;
+  width: 31px;
+  border: 2px solid infoGrey;
+  border-radius: 50%;
+}
+
+.infoButton > span {
+  font-size: 24px;
+  letter-spacing: -0.03px;
 }
 
 .recordingLogo {
   height: 2.5rem;
   width: 2.5rem;
+  padding-right: 10px;
+}
+
+.content {
+  height: 100%;
+}
+.backgroundWrapper {
+  width: 100%;
+  height: 150px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
 }
