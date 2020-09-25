@@ -9,9 +9,11 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@sentry/react": "^5.21.1",
+    "audio-recorder-polyfill": "^0.3.7",
     "axios": "^0.19.2",
     "firebase": "^7.18.0",
     "history": "^5.0.0",
+    "intersection-observer": "^0.11.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-loader-spinner": "^3.1.14",

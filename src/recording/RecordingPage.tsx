@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AppLogo from '../shell/AppLogo';
+import TextBox from '../shared/TextBox';
 import LinkItem from '../shell/LinkItem';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import AudioPlayer from './AudioPlayer';
 import Microphone from './Microphone';
+import RecordingHeader from './RecordingHeader';
 import RecordingIntegrationService from './RecordingIntegrationService';
 import styles from './RecordingPage.module.css';
 import SendRecordingButton from './SendRecordingButton';
 import WordSuggestion from './WordSuggestion';
+
 function RecordingPage() {
   const service = new RecordingIntegrationService();
   const [blob, setBlob] = useState<Blob | null>(null);
   const [word, setWord] = useState<string>('Meu grande objetivo é me tornar um escalador profissional  reconhecido nacionalmente');
   const [recorded, setRecorded] = useState<boolean>(false);
+  const [step, setStep] = useState<string>('1');
+  const [totalSteps, setTotalSteps] = useState<string>('2');
   const navigate = useNavigate();
 
   const recordingFn = () => {
@@ -56,27 +60,30 @@ function RecordingPage() {
     // };
   }, []);
 
+  const teste = {
+    backgroundImage: `url('${'square-cover.jpg'}')`
+  }
+
   return (
-    <WhitePageWrapper>
-      <div className={styles.header}>
-        <div className={styles.logo}>
-          <img className={styles.recordingLogo} src={"logo_light.png"} alt="Microfone sinalizando gravação"></img>
-          <AppLogo color="recordingTextGrey"></AppLogo>
+    <React.Fragment>
+      <RecordingHeader></RecordingHeader>
+      <WhitePageWrapper>
+        <div className={styles.content}>
+          <WordSuggestion word={word} step={step} totalSteps={totalSteps}></WordSuggestion>
+          {recorded ?
+            <SendRecordingButton pressed={sendRecordingFn}></SendRecordingButton> :
+            <LinkItem title="Pular frase" onclick={skipPhrase} color="cobalt"></LinkItem>}
+          {recorded ? <AudioPlayer data={blob}></AudioPlayer> : null}
+          <TextBox text="Aperte o botão abaixo para iniciar a gravação"></TextBox>
         </div>
-        <div className={styles.infoButton}><span>i</span></div>
-      </div>
-      <div className={styles.content}>
-        <WordSuggestion word={word}></WordSuggestion>
-        {recorded ?
-          <SendRecordingButton pressed={sendRecordingFn}></SendRecordingButton> :
-          <LinkItem title="Pular frase" onclick={skipPhrase} color="cobalt"></LinkItem>}
-        {recorded ? <AudioPlayer data={blob}></AudioPlayer> : null}
-        <Microphone started={recordingFn} finished={recordedFn} />
-        <div className={styles.backgroundWrapper} >
-          <img className={styles.background} src={"square-cover.jpg"} alt="Background"></img>
+      </WhitePageWrapper>
+      <div className={styles.footer} style={teste}>
+        <div className={styles.microphone}>
+          <Microphone started={recordingFn} finished={recordedFn} />
         </div>
       </div>
-    </WhitePageWrapper>
+    </React.Fragment>
+
   );
 }
 
