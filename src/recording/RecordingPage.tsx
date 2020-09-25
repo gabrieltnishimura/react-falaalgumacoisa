@@ -11,24 +11,30 @@ import styles from './RecordingPage.module.css';
 import SendRecordingButton from './SendRecordingButton';
 import WordSuggestion from './WordSuggestion';
 
+enum RecordingState {
+  NOT_RECORDED,
+  RECORDING,
+  RECORDED,
+}
+
 function RecordingPage() {
   const service = new RecordingIntegrationService();
   const [blob, setBlob] = useState<Blob | null>(null);
   const [word, setWord] = useState<string>('Meu grande objetivo é me tornar um escalador profissional  reconhecido nacionalmente');
-  const [recorded, setRecorded] = useState<boolean>(false);
+  const [recorded, setRecorded] = useState<RecordingState>(RecordingState.RECORDING);
   const [step, setStep] = useState<string>('1');
   const [totalSteps, setTotalSteps] = useState<string>('2');
   const navigate = useNavigate();
 
   const recordingFn = () => {
-    setRecorded(false);
+    setRecorded(RecordingState.RECORDING);
   };
 
   const recordedFn = (data: Blob) => {
     if (data) {
       setBlob(data);
     }
-    setRecorded(true);
+    setRecorded(RecordingState.RECORDED);
   };
 
   const skipPhrase = () => {
@@ -60,30 +66,54 @@ function RecordingPage() {
     // };
   }, []);
 
-  const teste = {
+  const dynamicBackground = {
     backgroundImage: `url('${'square-cover.jpg'}')`
   }
 
+  const toastyText = recorded === RecordingState.NOT_RECORDED ?
+    'Aperte o botão abaixo para iniciar a gravação' :
+    recorded === RecordingState.RECORDING ?
+      'Solte o botão para finalizar a gravação' :
+      'Confira a sua gravação e, se a frase foi corretamente captada, confirme o envio';
+
+  const action = recorded === RecordingState.NOT_RECORDED || recorded === RecordingState.RECORDING ?
+    <>
+      <div className={styles.skipPhrase}>
+        <LinkItem title="Pular frase" onclick={skipPhrase} color="cobalt"></LinkItem>
+      </div>
+      <div className={styles.toasty}>
+        <TextBox text={toastyText}></TextBox>
+      </div>
+    </> :
+    <>
+      <TextBox text={toastyText}></TextBox>
+      <AudioPlayer data={blob}></AudioPlayer>
+      <SendRecordingButton pressed={sendRecordingFn}></SendRecordingButton>
+      {/* <ScrapRecordingButton pressed={scrapRecordingFn}></SendRecordingButton> */}
+    </>;
+
   return (
-    <React.Fragment>
+    <div className={styles.dimmed}>
       <RecordingHeader></RecordingHeader>
       <WhitePageWrapper>
         <div className={styles.content}>
-          <WordSuggestion word={word} step={step} totalSteps={totalSteps}></WordSuggestion>
-          {recorded ?
-            <SendRecordingButton pressed={sendRecordingFn}></SendRecordingButton> :
-            <LinkItem title="Pular frase" onclick={skipPhrase} color="cobalt"></LinkItem>}
-          {recorded ? <AudioPlayer data={blob}></AudioPlayer> : null}
-          <TextBox text="Aperte o botão abaixo para iniciar a gravação"></TextBox>
+          <div className={styles.suggestion}>
+            <WordSuggestion
+              word={word}
+              step={step}
+              totalSteps={totalSteps}
+              highlight={true}
+            ></WordSuggestion>
+          </div>
+          {action}
         </div>
       </WhitePageWrapper>
-      <div className={styles.footer} style={teste}>
+      <div className={styles.footer} style={dynamicBackground}>
         <div className={styles.microphone}>
           <Microphone started={recordingFn} finished={recordedFn} />
         </div>
       </div>
-    </React.Fragment>
-
+    </div>
   );
 }
 

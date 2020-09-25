@@ -1,11 +1,15 @@
 @value headerSize from "../sizes.css";
-
+@value overlayDepth, highlightDepth from "../sizes.css";
 :root {
   --page-footer-size: 17.5rem;
 }
 
 .content {
   height: calc(100vh - var(--page-footer-size) - headerSize);
+}
+
+.suggestion {
+  z-index: 3;
 }
 
 .footer {
@@ -18,4 +22,30 @@
 .microphone {
   display: flex;
   justify-content: center;
+  z-index: highlightDepth;
+}
+
+.skipPhrase {
+  margin-bottom: 11.8rem;
+}
+
+.toasty {
+  position: relative;
+  z-index: highlightDepth;
+}
+
+.dimmed {
+  position: relative;
+}
+
+.dimmed:after {
+  content: " ";
+  z-index: overlayDepth;
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.5);
 }

@@ -5,7 +5,8 @@
 }
 
 .link {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  font-weight: 500;
   letter-spacing: -0.032rem;
   cursor: pointer;
   background: none;

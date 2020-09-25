@@ -9,6 +9,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  font-family: "Inter" !important;
+}
+
 @font-face {
   font-family: "Coolvetica";
   src: url("/public/fonts/coolvetica-crammed-rg.ttf");

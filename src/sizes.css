@@ -4,3 +4,6 @@
 @value headerPaddingTop: 2.7rem;
 @value headerPaddingBottom: 6rem;
 @value headerInnerSize: 4rem;
+
+@value overlayDepth: 1;
+@value highlightDepth: 2;
