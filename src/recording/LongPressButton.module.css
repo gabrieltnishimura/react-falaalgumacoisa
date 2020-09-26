@@ -9,6 +9,12 @@
   width: 11rem;
   height: 11rem;
   border-radius: 50%;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .outerCircle {
