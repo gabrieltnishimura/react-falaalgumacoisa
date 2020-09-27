@@ -16,6 +16,11 @@
   height: 7.5rem;
 }
 
+.button > img {
+  width: 6.5rem;
+  height: 7.5rem;
+}
+
 .success {
   background-color: successGreen;
 }

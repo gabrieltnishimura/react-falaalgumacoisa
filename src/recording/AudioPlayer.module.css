@@ -32,6 +32,7 @@
 .progress {
   height: 100%;
   width: 50%;
+  transition: width 0.1s linear;
   background-color: rgb(8, 190, 225);
 }
 
@@ -41,4 +42,8 @@
   color: rgb(38, 38, 38);
   position: absolute;
   bottom: 1.2rem;
+}
+
+.hide {
+  display: none;
 }

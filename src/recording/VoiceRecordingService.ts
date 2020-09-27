@@ -56,25 +56,21 @@ export default class VoiceRecordingService {
 
       this.chunks = [];
       // Remove the old listeners.
-      this.recorder.removeEventListener('start', () => { });
-      this.recorder.removeEventListener('dataavailable', () => { });
+      this.recorder.removeEventListener('start', this.recorderListeners.start);
+      this.recorder.removeEventListener('dataavailable', this.recorderListeners.dataavailable);
+      // Populate new listeners
+      this.recorderListeners.start = (e: Event) => res();
+      this.recorderListeners.dataavailable = (e: BlobEvent) => {
+        this.chunks.push(e.data);
+      };
       // Add the new listeners.
-      this.recorder.addEventListener('start', (e: Event) => res());
-      this.recorder.addEventListener(
-        'dataavailable',
-        (e: BlobEvent) => {
-          this.chunks.push(e.data);
-        }
-      );
+      this.recorder.addEventListener('start', this.recorderListeners.start);
+      this.recorder.addEventListener('dataavailable', this.recorderListeners.dataavailable);
 
       console.group('Recording');
       console.log('Started');
-      // Finally, start it up.
-      // We want to be able to record up to 60s of audio in a single blob.
-      // Without this argument to start(), Chrome will call dataavailable
-      // very frequently.
       this.recording = true;
-      this.recorder.start(20000);
+      this.recorder.start(20000); // magic number
     });
   }
 
@@ -85,8 +81,8 @@ export default class VoiceRecordingService {
     }
 
     return new Promise((res: Function, rej: Function) => {
-      this.recorder.removeEventListener('stop', () => { });
-      this.recorder.addEventListener('stop', (e: Event) => {
+      this.recorder.removeEventListener('stop', this.recorderListeners.stop);
+      this.recorderListeners.stop = (e: Event) => {
         this.recording = false;
         console.log('Ended', this.chunks.length);
         console.groupEnd();
@@ -95,7 +91,8 @@ export default class VoiceRecordingService {
           url: URL.createObjectURL(blob),
           blob: blob,
         });
-      });
+      };
+      this.recorder.addEventListener('stop', this.recorderListeners.stop);
       this.recorder.stop();
     });
   }
