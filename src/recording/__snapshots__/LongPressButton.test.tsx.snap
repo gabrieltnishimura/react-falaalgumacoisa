@@ -3,6 +3,9 @@
 exports[`renders microphone button 1`] = `
 <div>
   <div
+    class=""
+  />
+  <div
     class="container"
   >
     <div

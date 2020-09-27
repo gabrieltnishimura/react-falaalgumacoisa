@@ -15,6 +15,12 @@ enum RecordingState {
   RECORDED,
 }
 
+const recordingStyle = {
+  [RecordingState.NOT_RECORDED]: styles.notRecorded,
+  [RecordingState.RECORDING]: styles.recording,
+  [RecordingState.RECORDED]: styles.recorded,
+}
+
 const wordHighlightMap = {
   [RecordingState.NOT_RECORDED]: WordSuggestionStyling.LIGHT,
   [RecordingState.RECORDING]: WordSuggestionStyling.NORMAL,
@@ -100,7 +106,7 @@ function RecordingStep(props: {
     <div className={overlay}>
       <RecordingHeader></RecordingHeader>
       <WhitePageWrapper>
-        <div className={styles.content}>
+        <div className={`${styles.content} ${recordingStyle[state]}`}>
           <div className={styles.suggestion}>
             <WordSuggestion
               word={props.word}
@@ -112,7 +118,7 @@ function RecordingStep(props: {
           {action}
         </div>
       </WhitePageWrapper>
-      <div className={styles.footer} style={dynamicBackground}>
+      <div className={`${styles.footer} ${recordingStyle[state]}`} style={dynamicBackground}>
         <div className={`${styles.microphone} ${hide}`}>
           <Microphone started={recordingFn} finished={recordedFn} />
         </div>

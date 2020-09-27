@@ -2,11 +2,16 @@
 @value overlayDepth, highlightDepth from "../sizes.css";
 :root {
   --page-footer-size: 17.5rem;
+  --page-footer-size-sm: 4.3rem;
 }
 
 .content {
   height: calc(100vh - var(--page-footer-size) - headerSize);
   position: relative;
+}
+
+.content.recorded {
+  height: calc(100vh - var(--page-footer-size-sm) - headerSize);
 }
 
 .suggestion {
@@ -15,10 +20,15 @@
 
 .footer {
   background-position-y: 5.5rem;
-  /* background-position-y: 13.2rem; */
   background-repeat: no-repeat;
   background-size: contain;
   height: var(--page-footer-size);
+}
+
+.footer.recorded {
+  background-position-y: 0px;
+  height: var(--page-footer-size-sm);
+  background-size: cover;
 }
 
 .microphone {
@@ -64,6 +74,9 @@
 }
 
 .actionButtons {
+  position: absolute;
+  bottom: 2.4rem;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;

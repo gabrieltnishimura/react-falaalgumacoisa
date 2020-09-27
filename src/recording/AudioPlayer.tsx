@@ -1,31 +1,54 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { getAudioFormat } from '../shared/utils';
+import { getAudioFormat, timeToDuration } from '../shared/utils';
 import styles from './AudioPlayer.module.css';
 
 function AudioPlayer(props: { data: Blob | null }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [time, setTime] = useState('0:00');
+  const [percent, setPercent] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
   const url = (props.data && window.URL.createObjectURL(props.data)) || '';
 
   useEffect(() => {
     if (!audioRef || !audioRef.current) {
       return;
     }
+    let timer: NodeJS.Timeout;
+    let duration = 0;
+
+    const advance = (duration: any, element: any) => {
+      const increment = 10 / duration;
+      setPercent(Math.min(increment * element.currentTime * 10, 100));
+      setTime(timeToDuration(element.currentTime));
+      startTimer(duration, audioRef.current);
+    }
+
+    const startTimer = (duration: any, element: any) => {
+      if (percent < 100) {
+        timer = setTimeout(() => {
+          advance(duration, element);
+        }, 100);
+      } else {
+        clearTimeout(timer);
+      }
+    }
+
+    audioRef.current.addEventListener("durationchange", (event: any) => {
+      duration = event.target.duration
+    }, false);
 
     audioRef.current.addEventListener("playing", (_event: any) => {
-      if (!_event || !_event.target || _event.target.duration === undefined) {
+      if (!_event || !_event.target) {
         return;
       }
 
-      const duration = _event.target.duration;
-      console.log('Supposed duration in seconds:', duration)
       advance(duration, audioRef.current);
     });
+
     audioRef.current.addEventListener("pause", (_event) => {
-      // clearTimeout(timer);
+      clearTimeout(timer);
     });
-  }, [])
+  }, [percent]);
 
   const toggleIsPlaying = () => {
     if (!audioRef || !audioRef.current) {
@@ -43,34 +66,30 @@ function AudioPlayer(props: { data: Blob | null }) {
     setIsPlaying(nextIsPlaying);
   };
 
-  const advance = (duration: any, element: any) => {
-    if (!progressRef || !progressRef.current) {
-      return;
-    }
-
-    const increment = 10 / duration;
-    const percent = Math.min(increment * element.currentTime * 10, 100);
-    progressRef.current.style.width = percent + '%'
+  const percentStyle = {
+    width: percent + '%',
   }
-
-  const time = '0:00';
 
   return (
     <div className={styles.player}>
       <div className={styles.progressWrapper}>
         <div className={styles.bar}>
-          <div className={styles.progress} ref={progressRef}></div>
+          <div className={styles.progress} style={percentStyle}></div>
         </div>
       </div>
       <div className={styles.timeProgress}>
         <span>{time}</span>
       </div>
       <div onClick={toggleIsPlaying} className={styles.button}>
-        <img
-          src="play.svg"
-          alt="triangle with all three sides equal"
+        {isPlaying ? <img
+          src="pause.svg"
+          alt="pause button"
           height="30"
-          width="30" />
+          width="30" /> : <img
+            src="play.svg"
+            alt="play button"
+            height="30"
+            width="30" />}
       </div>
       <audio className={styles.hide} preload="auto" ref={audioRef} onEnded={toggleIsPlaying} >
         <source src={url} type={getAudioFormat()} />

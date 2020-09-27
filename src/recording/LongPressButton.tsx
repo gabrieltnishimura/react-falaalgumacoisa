@@ -55,26 +55,32 @@ function LongPressButton(props: LongPressButtonInput) {
   }
 
   return (
-    <div
-      onContextMenu={ignoreContextDropdown}
-      className={styles.container}>
+    <>
       <div
-        ref={imageRef}
-        className={styles.outerCircle}
         onContextMenu={ignoreContextDropdown}
-      >
+        className={`${recording ? styles.animatedCircle : ''}`}>
+      </div>
+      <div
+        onContextMenu={ignoreContextDropdown}
+        className={styles.container}>
+
         <div
-          className={styles.innerCircle}
+          ref={imageRef}
+          className={styles.outerCircle}
           onContextMenu={ignoreContextDropdown}
         >
           <div
-            className={styles.innerMostCircle}
+            className={styles.innerCircle}
             onContextMenu={ignoreContextDropdown}
           >
+            <div
+              className={styles.innerMostCircle}
+              onContextMenu={ignoreContextDropdown}
+            ></div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

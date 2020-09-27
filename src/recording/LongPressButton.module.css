@@ -1,6 +1,7 @@
 @value canaryMustard, defaultWhite from "../colors.css";
 
 .container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,4 +37,53 @@
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   background-color: canaryMustard;
+}
+
+.animatedCircle {
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(249, 87, 56);
+  width: 11rem;
+  height: 11rem;
+  border-radius: 50%;
+
+  -webkit-animation: breathing 3s ease-in-out infinite normal;
+  animation: breathing 3s ease-in-out infinite normal;
+}
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+    transform: scale(2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
 }
