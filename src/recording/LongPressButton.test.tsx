@@ -8,6 +8,5 @@ test('renders microphone button', () => {
   const element = render(<LongPressButton pressed={start} unpressed={stop} />);
 
   const { container } = element;
-  expect(container.firstChild).toHaveClass('container')
   expect(container).toMatchSnapshot()
 });
