@@ -7,12 +7,26 @@ import * as serviceWorker from './serviceWorker';
 
 Sentry.init({ dsn: "https://88ecbb9d767c4289b32bc7b4548b88e7@o433447.ingest.sentry.io/5388631" });
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// Start the app when DOM is ready.
+document.addEventListener('DOMContentLoaded', async () => {
+  const deferredPolyfills = [
+    typeof window.MediaRecorder === 'undefined'
+      ? require('audio-recorder-polyfill')
+      : Promise.resolve(),
+  ];
+
+  const [AudioRecorder] = await Promise.all(deferredPolyfills);
+  if (AudioRecorder) {
+    window.MediaRecorder = AudioRecorder;
+  }
+
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

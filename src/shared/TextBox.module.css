@@ -1,0 +1,17 @@
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  height: 5rem;
+  background-color: rgb(247, 247, 247);
+  border: 1px solid rgb(151, 151, 151);
+  border-radius: 1px;
+}
+
+.text {
+  font-size: 1.6rem;
+  letter-spacing: -0.032rem;
+  color: rgb(117, 117, 117);
+}

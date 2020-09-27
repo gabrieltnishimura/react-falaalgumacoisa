@@ -6,7 +6,7 @@ function ReportProblemButton(props: { word: string }) {
   const service = new WordSuggestionService();
   const click = (e: React.MouseEvent<any>) => {
     service.blacklist(props.word, 'reason').subscribe(() => {
-      service.nextWord().toPromise();
+      console.log('what')
     }); // when to cleanup?
   }
 

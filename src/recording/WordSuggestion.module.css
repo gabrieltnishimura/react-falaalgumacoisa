@@ -1,17 +1,54 @@
-@value recordingTextGrey from "../colors.css";
+@value cobalt, recordingTextGrey from "../colors.css";
+@value highlightDepth from "../sizes.css";
 
 .wrapper {
-  box-shadow: 0px 0px 11px 2px rgba(222, 222, 222, 0.5);
-  border-radius: 5px;
-  padding: 32px 18px 46px 18px;
-  margin-bottom: 14px;
+  position: relative;
+  box-shadow: 0px 0px 1.1rem 0.2rem rgba(222, 222, 222, 0.5);
+  border-radius: 0.5rem;
+  padding: 3.2rem 1.8rem 4.6rem 1.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.step {
+  position: absolute;
+  top: -14px;
+  right: 14px;
+
+  text-align: center;
+  display: flex;
+  background-color: rgb(244, 211, 94);
+}
+
+.stepText {
+  padding: 3px 16px 3px 16px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.36px;
+  color: cobalt;
 }
 
 .word {
   word-break: break-word;
-  font-size: 2.5rem;
-  line-height: 2.625rem;
+  font-size: 4rem;
+  line-height: 4.2rem;
   letter-spacing: -0.05px;
   font-weight: 500;
+}
+
+.lightWord {
+  composes: word;
   color: recordingTextGrey;
+}
+
+.normalWord {
+  composes: word;
+  position: relative;
+  z-index: highlightDepth;
+  color: rgb(24, 24, 24);
+}
+
+.darkWord {
+  composes: word;
+  font-weight: 700;
+  color: rgb(24, 24, 24);
 }

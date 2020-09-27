@@ -1,0 +1,30 @@
+@value successGreen, defaultWhite from "../colors.css";
+
+.button {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+
+  box-shadow: 0px 0px 0.5rem 0.2rem rgba(129, 129, 129, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button > svg {
+  width: 6.5rem;
+  height: 7.5rem;
+}
+
+.button > img {
+  width: 6.5rem;
+  height: 7.5rem;
+}
+
+.success {
+  background-color: successGreen;
+}
+
+.default {
+  background-color: defaultWhite;
+}

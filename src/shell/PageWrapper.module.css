@@ -1,13 +1,11 @@
 @value cobalt, defaultWhite, darkerGrey from "../colors.css";
+@value sidePadding from "../sizes.css";
 
 .pageWrapper {
   display: flex;
   flex-flow: column;
-  height: 100vh;
-
-  /* text-align: center; */
-  padding-left: 1.125rem;
-  padding-right: 1.125rem;
+  padding-left: sidePadding;
+  padding-right: sidePadding;
 }
 
 .cobaltBackground {

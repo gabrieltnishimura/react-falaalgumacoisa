@@ -1,5 +1,5 @@
 html {
-  font-size: 16px;
+  font-size: 10px;
 }
 
 body {
@@ -7,6 +7,10 @@ body {
   font-family: "Inter";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: "Inter" !important;
 }
 
 @font-face {

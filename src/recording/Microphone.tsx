@@ -13,19 +13,17 @@ function Microphone(props: MicrophoneInput) {
     recordingService.setupRecording();
   }, []);
 
-  const start = (e: any) => {
-    recordingService.start();
+  const start = async (e: any) => {
+    await recordingService.start();
     props.started();
   }
 
-  const stop = (e: any) => {
-    recordingService.stop();
-    const data = recordingService.getData()
+  const stop = async (e: any) => {
+    const data = await recordingService.stop();
     if (!data) {
       return;
     }
-
-    props.finished(data);
+    props.finished(data.blob);
   }
 
   return (<LongPressButton pressed={start} unpressed={stop} ></LongPressButton>)

@@ -1,42 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AppLogo from '../shell/AppLogo';
-import LinkItem from '../shell/LinkItem';
-import WhitePageWrapper from '../shell/WhitePageWrapper';
-import AudioPlayer from './AudioPlayer';
-import Microphone from './Microphone';
 import RecordingIntegrationService from './RecordingIntegrationService';
-import styles from './RecordingPage.module.css';
-import SendRecordingButton from './SendRecordingButton';
-import WordSuggestion from './WordSuggestion';
+import RecordingStep from './RecordingStep';
+import WordSuggestionService from './WordSuggestionService';
+
+const integrationService = new RecordingIntegrationService();
+const wordSuggestionService = new WordSuggestionService();
+
 function RecordingPage() {
-  const service = new RecordingIntegrationService();
-  const [blob, setBlob] = useState<Blob | null>(null);
   const [word, setWord] = useState<string>('Meu grande objetivo é me tornar um escalador profissional  reconhecido nacionalmente');
-  const [recorded, setRecorded] = useState<boolean>(false);
+  const [step, setStep] = useState<number>(0);
+  const [totalSteps, setTotalSteps] = useState<number>(0);
   const navigate = useNavigate();
-
-  const recordingFn = () => {
-    setRecorded(false);
-  };
-
-  const recordedFn = (data: Blob) => {
-    if (data) {
-      setBlob(data);
-    }
-    setRecorded(true);
-  };
 
   const skipPhrase = () => {
     console.log('nExt phrase');
   }
 
-  const sendRecordingFn = () => {
+  const sendRecordingFn = (blob: Blob) => {
     if (!blob) {
       return;
     }
 
-    service.send({
+    integrationService.send({
       word,
       sampleRate: 16000,
       noiseLevel: '1',
@@ -49,34 +35,28 @@ function RecordingPage() {
   }
 
   useEffect(() => {
-    // const stream = wordSuggestionStream.getWord().subscribe(setWord);
-    // new WordSuggestionService().nextWord().toPromise(); // fire and forget
-    // return () => {
-    //   stream.unsubscribe();
-    // };
+    const stream = wordSuggestionService.getGroup('test').subscribe((data) => {
+      if (!data || !data.stepsCap || !data.total || !data.groups || !data.groups.length) {
+        return;
+      }
+
+      setStep(data.currentStep);
+      setTotalSteps(data.stepsCap);
+      setWord(data.groups[data.currentStep].text)
+    });
+    return () => {
+      stream.unsubscribe();
+    };
   }, []);
 
   return (
-    <WhitePageWrapper>
-      <div className={styles.header}>
-        <div className={styles.logo}>
-          <img className={styles.recordingLogo} src={"logo_light.png"} alt="Microfone sinalizando gravação"></img>
-          <AppLogo color="recordingTextGrey"></AppLogo>
-        </div>
-        <div className={styles.infoButton}><span>i</span></div>
-      </div>
-      <div className={styles.content}>
-        <WordSuggestion word={word}></WordSuggestion>
-        {recorded ?
-          <SendRecordingButton pressed={sendRecordingFn}></SendRecordingButton> :
-          <LinkItem title="Pular frase" onclick={skipPhrase} color="cobalt"></LinkItem>}
-        {recorded ? <AudioPlayer data={blob}></AudioPlayer> : null}
-        <Microphone started={recordingFn} finished={recordedFn} />
-        <div className={styles.backgroundWrapper} >
-          <img className={styles.background} src={"square-cover.jpg"} alt="Background"></img>
-        </div>
-      </div>
-    </WhitePageWrapper>
+    <RecordingStep
+      word={word}
+      step={(step + 1)}
+      totalSteps={totalSteps}
+      skip={skipPhrase}
+      finished={sendRecordingFn}
+    ></RecordingStep>
   );
 }
 
