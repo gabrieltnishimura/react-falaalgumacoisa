@@ -1,0 +1,90 @@
+@value deepBlue, graphiteGray, descriptionGray, borderGray from "../colors.css";
+@value sidePadding from "../sizes.css";
+.banner {
+    height: 9rem;
+    width: 100%;
+    margin-bottom: 3.9rem;
+}
+
+.description {
+    line-height: 2.8rem;
+    font-size: 2.4rem;
+    color: descriptionGray;
+    letter-spacing: -.048rem;
+    font-weight: 400;
+}
+
+.descriptionWrapper {
+    margin-left: sidePadding;
+    margin-right: sidePadding;
+}
+
+.existingUser {
+    margin-left: sidePadding;
+    margin-right: sidePadding;
+    margin-bottom: 3.5rem;
+    font-size: 1.8rem;
+    color: deepBlue;
+    letter-spacing: -.036rem;
+    font-weight: 400;
+}
+
+.logoText {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+    margin-top: 1.1rem;
+    margin-bottom: .5rem;
+    color: descriptionGray;
+    font-weight: 700;
+}
+
+.logoWrapper {
+    display: flex;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.7rem sidePadding 3.6rem;
+}
+
+.startRecordingImg {
+    height: 5rem;
+    width: 4.2rem;
+    fill: deepBlue;
+}
+
+.startRecordingText {
+    padding-left: 1.6rem;
+    line-height: 4.2rem;
+    font-size: 2.4rem;
+    color: deepBlue;
+    letter-spacing: -.048rem;
+    font-weight: 400;
+}
+
+.startRecordingWrapper {
+    display: flex;
+    padding-left: sidePadding;
+    align-items: center;
+    height: 11.2rem;
+    border-bottom: 1px solid borderGray;
+    border-top: 1px solid borderGray;
+    margin-bottom: 1.9rem;
+}
+
+.title {
+    margin: 0;
+    line-height: 4.2rem;
+    font-size: 4rem;
+    color: graphiteGray;
+    letter-spacing: -.08rem;
+    font-weight: 700;
+}
+
+.titleWrapper {
+    margin-bottom: 3.4rem;
+    padding-left: sidePadding;
+    padding-right: sidePadding;
+}
