@@ -1,59 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import RecordingIntegrationService from './RecordingIntegrationService';
+import RecordingStateModel from './models/RecordingStateModel';
+import RecordingStateService from './RecordingStateService';
 import RecordingStep from './RecordingStep';
-import WordSuggestionService from './WordSuggestionService';
 
-const integrationService = new RecordingIntegrationService();
-const wordSuggestionService = new WordSuggestionService();
+const stateService = new RecordingStateService();
 
 function RecordingPage() {
-  const [word, setWord] = useState<{ id: string, text: string }>({ id: '', text: '' });
-  const [step, setStep] = useState<number>(0);
-  const [totalSteps, setTotalSteps] = useState<number>(0);
+  const [recordingState, setRecordingState] = useState<RecordingStateModel | null>(null)
+  const [skip, setSkip] = useState<number>(0);
+  const [next, setNext] = useState<number>(0);
   const navigate = useNavigate();
 
   const skipPhrase = async () => {
-    await wordSuggestionService.blacklist(word.id, '').toPromise();
-  }
-
-  const confirmRecordingFn = (blob: Blob) => {
-    if (!blob) {
+    if (!recordingState) {
       return;
     }
 
-    integrationService.send({
-      word: word.id,
-      sampleRate: 16000,
-      noiseLevel: '1',
-      additionalMetadata: {
-        userAgent: navigator.userAgent,
-      },
-    }, blob).subscribe(() => {
-      navigate('/sucesso', { replace: true });
-    });
+    await stateService.skipStep(recordingState);
+    setSkip(skip + 1);
+  }
+
+  const confirmRecordingFn = async (blob: Blob) => {
+    try {
+      await confirmationFlow(blob);
+    } catch (err) {
+      console.error('Unable to confirm recording', err);
+    }
+  }
+
+  const confirmationFlow = async (blob: Blob) => {
+    if (!blob || !recordingState) {
+      return;
+    }
+
+    const result = await stateService.confirmStep(recordingState, blob);
+    if (result.modal) {
+      console.log('ADD MODAL LOGIC HERE');
+    } else if (result.hasNext) {
+      setNext(next + 1); // refreshes useEffect forcibly
+    } else {
+      navigate('/sucesso');
+    }
   }
 
   useEffect(() => {
-    const stream = wordSuggestionService.getGroup('test').subscribe((data) => {
-      if (!data || !data.stepsCap || !data.total || !data.groups || !data.groups.length) {
-        return;
-      }
+    const fetchState = async () => {
+      const step = await stateService.getNextStep('ciencia');
+      setRecordingState(step);
+    }
+    fetchState();
+  }, [skip, next]);
 
-      setStep(data.currentStep);
-      setTotalSteps(data.stepsCap);
-      setWord(data.groups[data.currentStep])
-    });
-    return () => {
-      stream.unsubscribe();
-    };
-  }, []);
-
+  if (!recordingState || !recordingState.phrase) {
+    return null;
+  }
   return (
     <RecordingStep
-      word={word.text}
-      step={(step + 1)}
-      totalSteps={totalSteps}
+      word={recordingState.phrase.text}
+      step={recordingState.step}
+      totalSteps={recordingState.totalSteps}
       skip={skipPhrase}
       finished={confirmRecordingFn}
     ></RecordingStep>
