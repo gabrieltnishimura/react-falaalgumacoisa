@@ -14,3 +14,9 @@
 @value recordingTextGrey: rgb(148, 148, 148);
 @value infoGrey: rgb(44, 44, 44);
 @value successGreen: rgb(102, 212, 97);
+/* use this */
+
+@value graphiteGray: rgb(33, 33, 33);
+@value deepBlue: rgb(13, 59, 102);
+@value descriptionGray: rgb(148, 148, 148);
+@value borderGray: rgb(218, 218, 218);

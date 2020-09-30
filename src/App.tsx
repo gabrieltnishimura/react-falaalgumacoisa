@@ -4,18 +4,20 @@ import BasicDataPage from './basic-data/BasicDataPage';
 import CompleteRegistrationPage from './basic-data/CompleteRegistrationPage';
 import RecordingPage from './recording/RecordingPage';
 import CanI from './shared/CanI';
-import SplashPage from './splash/SplashPage';
 import SuccessPage from './SuccessPage';
+import HomePage from './home/HomePage';
+import LoginPage from './LoginPage';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<CanI onSuccessRoute='fala'><SplashPage /></CanI>} />
+        <Route path="/" element={<CanI onSuccessRoute='fala'><HomePage /></CanI>} />
         <Route path="/dados-pessoais/passo-1" element={<CanI><BasicDataPage /></CanI>} />
         <Route path="/dados-pessoais/passo-2" element={<CanI><CompleteRegistrationPage /></CanI>} />
-        <Route path="/fala" element={<CanI><RecordingPage /></CanI>} />
+        <Route path="/fala" element={<RecordingPage />} />
         <Route path="/sucesso" element={<CanI><SuccessPage /></CanI>} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );
