@@ -1,7 +1,5 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { from, Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 import config from '../config';
 import UserModel from './UserModel';
 
@@ -19,61 +17,20 @@ const authenticationService = {
     auth.languageCode = 'pt';
     auth.signInWithRedirect(provider);
   },
-  getLatestState: (): Observable<UserModel | null> => {
-    if (!!_user) {
-      return of(_user);
-    }
-
-    return new Observable(
-      observer => {
-        try {
-          auth.onAuthStateChanged((firebaseUser) => {
-            if (!firebaseUser) {
-              console.error('Unauthenticated user')
-              observer.next(null);
-            } else {
-              _user = new UserModel(firebaseUser);
-              observer.next(_user);
-            }
-            observer.complete();
-          });
-        } catch (err) {
-          observer.error(err);
-          observer.complete();
-        }
-      }
-    );
+  anonymousLogin: () => {
+    console.log('logging in anonymously');
+    auth.signInAnonymously()
   },
-  getAuthRedirect: (): Observable<UserModel | null> => {
-    if (!!_user) {
-      return of(_user);
-    }
-
-    return from(auth.getRedirectResult())
-      .pipe(
-        map(result => {
-          return result?.user && new UserModel(result?.user);
-        }),
-        tap(data => {
-          if (data) {
-            _user = data;
-          }
-        }),
-        catchError(error => {
-          console.error('Error fetching auth redirect', error);
-          return of(null);
-        }),
-      );
-  },
-  logout: (): Observable<void> => {
-    return from(auth.signOut());
-  },
-  isLogged: (): boolean => {
-    return !!_user;
+  logout: auth.signOut,
+  setUser: (user: firebase.User) => {
+    _user = new UserModel(user);
   },
   getUser: (): UserModel => {
     return _user;
-  },
+  }
 };
 
-export default authenticationService;
+export {
+  authenticationService,
+  auth,
+};
