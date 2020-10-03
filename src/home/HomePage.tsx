@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './HomePage.module.css';
 import LinkItem from '../shell/LinkItem';
 import { useNavigate } from 'react-router-dom'
-
 function HomePage() {
   const navigate = useNavigate();
   const redirectLoginFn = () => {
@@ -29,7 +28,7 @@ function HomePage() {
         <h1 className={styles.title}>Comece já a sua jornada na ciência!</h1>
       </div>
       <div className={styles.startRecordingWrapper} onClick={redirectRecordingFn}>
-        <img className={styles.startRecordingImg} src="/mic.svg"></img>
+        <img className={styles.startRecordingImg} src="/mic.svg" alt='mic'></img>
         <span className={styles.startRecordingText}>Iniciar gravação de voz</span>
       </div>
       <div className={styles.existingUser}>

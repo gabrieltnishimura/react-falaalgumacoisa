@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<CanI onSuccessRoute='fala'><HomePage /></CanI>} />
         <Route path="/dados-pessoais/passo-1" element={<CanI><BasicDataPage /></CanI>} />
         <Route path="/dados-pessoais/passo-2" element={<CanI><CompleteRegistrationPage /></CanI>} />
-        <Route path="/fala" element={<RecordingPage />} />
+        <Route path="/fala" element={<CanI><RecordingPage /></CanI>} />
         <Route path="/sucesso" element={<CanI><SuccessPage /></CanI>} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

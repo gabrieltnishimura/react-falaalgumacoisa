@@ -13,7 +13,10 @@ function CanI(props: { children: any, onSuccessRoute?: string }) {
     const redirectStream = authenticationService.getAuthRedirect().toPromise();
     const stateStream = authenticationService.getLatestState().toPromise();
     Promise.all([redirectStream, stateStream]).then(([redirect, state]) => {
-      if (!!redirect?.name || !!state?.name) {
+      //console.log(redirect, state);
+      // console.log(state);
+      //console.log(redirect);
+      if (!!redirect?.uid || !!state?.uid) {
         if (onSuccessRoute) {
           navigate(onSuccessRoute, { replace: true });
           return;

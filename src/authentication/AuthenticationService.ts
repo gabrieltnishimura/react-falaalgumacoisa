@@ -19,6 +19,10 @@ const authenticationService = {
     auth.languageCode = 'pt';
     auth.signInWithRedirect(provider);
   },
+  anonymousLogin: () => {
+    auth.signInAnonymously()
+  },
+
   getLatestState: (): Observable<UserModel | null> => {
     if (!!_user) {
       return of(_user);
