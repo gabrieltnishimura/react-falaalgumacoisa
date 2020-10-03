@@ -1,5 +1,5 @@
 import React from 'react';
-import authenticationService from './authentication/AuthenticationService';
+import { authenticationService } from './authentication/AuthenticationService';
 function LoginPage() {
   const authenticate = () => {
     authenticationService.login('google');

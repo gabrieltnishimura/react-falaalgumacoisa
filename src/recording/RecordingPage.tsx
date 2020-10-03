@@ -15,7 +15,6 @@ function RecordingPage() {
 
   const skipPhrase = async () => {
     await wordSuggestionService.blacklist(word.id, '').toPromise();
-
   }
 
   const confirmRecordingFn = (blob: Blob) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import authenticationService from '../authentication/AuthenticationService';
+import { authenticationService } from '../authentication/AuthenticationService';
 import CobaltPageWrapper from '../shell/CobaltPageWrapper';
 import FacebookLoginButton from './FacebookLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
