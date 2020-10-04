@@ -1,0 +1,5 @@
+{
+  "/recording/group/:id": "/group/:id",
+  "/recording/send": "/send",
+  "/recording/skip": "/skip"
+}
