@@ -1,0 +1,27 @@
+@value defaultWhite, cobalt, disabledGrey, disabledGreyText from "../colors.css";
+
+.button {
+  width: 100%;
+  height: 7rem;
+  font-size: 1.8rem;
+  letter-spacing: -0.036rem;
+  font-weight: 500;
+  border: 0;
+  padding: 0;
+}
+
+.primary {
+  color: defaultWhite;
+  background-color: cobalt;
+}
+
+.secondary {
+  color: cobalt;
+  background-color: defaultWhite;
+  border: solid 1px cobalt;
+}
+
+.disabled {
+  background-color: disabledGrey;
+  color: disabledGreyText;
+}

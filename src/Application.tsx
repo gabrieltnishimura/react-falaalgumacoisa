@@ -8,6 +8,7 @@ import DashboardPage from './dashboard/DashboardPage';
 import LeaderboardPage from './dashboard/LeaderboardPage';
 import HomePage from './home/HomePage';
 import LoginPage from './LoginPage';
+import ModalTestPage from './ModalTestPage';
 import RecordingPage from './recording/RecordingPage';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <UnauthenticatedRoute path="/" component={<HomePage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/login" component={<LoginPage />} isAuth={isAuth}></UnauthenticatedRoute>
+        <UnauthenticatedRoute path="/modal-test" component={<ModalTestPage />} isAuth={isAuth}></UnauthenticatedRoute>
         <ProtectedRoute path="/dashboard" component={<DashboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/ranking" component={<LeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <AutoAuthenticationRoute path="/fala" component={<RecordingPage />} isAuth={isAuth}></AutoAuthenticationRoute>

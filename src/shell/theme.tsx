@@ -3,6 +3,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   typography: {
     fontFamily: ['Inter'].join(','),
+    htmlFontSize: 10,
+    fontSize: 15.75, // (18/16)*14rem,
   },
   palette: {
     primary: {

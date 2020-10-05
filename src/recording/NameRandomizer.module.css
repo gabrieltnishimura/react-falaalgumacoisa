@@ -1,0 +1,16 @@
+.wrapper {
+  height: 5.6rem;
+  display: flex;
+  align-items: center;
+  border: solid 1px rgb(218, 218, 218);
+  padding: 0 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+  letter-spacing: -0.04rem;
+  color: rgb(62, 62, 62);
+}
