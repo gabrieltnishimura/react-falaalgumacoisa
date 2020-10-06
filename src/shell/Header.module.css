@@ -1,11 +1,16 @@
+@value defaultWhite, graphiteGray, borderGray, descriptionGray, deepBlue from "../colors.css";
+@value sidePadding, headerPaddingTop, headerPaddingBottom, headerInnerSize from "../sizes.css";
 .header {
-  height: 6.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: headerPaddingTop sidePadding headerPaddingBottom sidePadding;
 }
 
-.list {
+.logoWrapper {
   display: flex;
 }
 
-.link {
-  color: #fdc881;
+.logoWrapper>img {
+  padding-right: 1rem;
 }

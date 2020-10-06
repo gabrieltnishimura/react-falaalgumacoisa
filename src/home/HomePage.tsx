@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './HomePage.module.css';
 import LinkItem from '../shell/LinkItem';
 import { useNavigate } from 'react-router-dom'
+import Header from '../shell/Header';
 function HomePage() {
   const navigate = useNavigate();
   const redirectLoginFn = () => {
@@ -12,15 +13,7 @@ function HomePage() {
   }
   return (
     <div>
-      <div className={styles.header}>
-        <div className={styles.logoWrapper}>
-          <img src="/logo_light.png" alt='Logo fala alguma coisa'></img>
-          <span className={styles.logoText} > fala alguma coisa</span>
-        </div>
-        <div>
-          <LinkItem title="Entrar" onclick={redirectLoginFn} color="cobalt" ></LinkItem>
-        </div>
-      </div>
+      <Header link={{ title: 'Entrar', onClick: redirectLoginFn }} />
       <div>
         <img className={styles.banner} src="/square-cover.jpg" alt='Banner'></img>
       </div>

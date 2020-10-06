@@ -17,6 +17,9 @@ const authenticationService = {
     auth.languageCode = 'pt';
     auth.signInWithRedirect(provider);
   },
+  loginWithUsername: (username: string, password: string) => {
+    console.log('trying to login with: ', username, password);
+  },
   anonymousLogin: () => {
     console.log('logging in anonymously');
     auth.signInAnonymously()

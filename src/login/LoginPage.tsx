@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import TextField from '@material-ui/core/TextField';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { authenticationService } from '../authentication/AuthenticationService';
+import { useInput } from '../basic-data/useInput';
+import Header from '../shell/Header';
+import LinkItem from '../shell/LinkItem';
+import WhitePageWrapper from '../shell/WhitePageWrapper';
 import FacebookLoginButton from '../splash/FacebookLoginButton';
 import GoogleLoginButton from '../splash/GoogleLoginButton';
-import WhitePageWrapper from '../shell/WhitePageWrapper';
 import styles from './LoginPage.module.css';
-import { useNavigate } from 'react-router-dom'
-import { useInput } from '../basic-data/useInput';
-import TextField from '@material-ui/core/TextField';
-import LinkItem from '../shell/LinkItem';
+
+
 function LoginPage() {
   const navigate = useNavigate();
-  const { value: userName, bind: bindUserName } = useInput('');
+  const { value: username, bind: bindUsername } = useInput('');
   const { value: password, bind: bindPassword } = useInput('');
 
   const redirectNewUserFn = () => {
@@ -18,35 +21,32 @@ function LoginPage() {
   }
 
   const fbClick = () => {
-
     authenticationService.login('facebook');
   }
 
   const googleClick = () => {
-
     authenticationService.login('google');
   }
 
-  const enterFn = () => {
-    navigate('/login')
+  const loginWithUsernameFn = () => {
+    authenticationService.loginWithUsername(username, password);
   }
+
   return (
     <div>
-      <div className={styles.header}>
-        HEADER
-      </div>
+      <Header />
       <WhitePageWrapper>
         <div className={styles.enterTextWrapper}>
           <h1 className={styles.enterText}>Entrar</h1>
         </div>
         <div className={styles.username}>
-          <TextField fullWidth label="Usuário" {...bindUserName} />
+          <TextField fullWidth label="Usuário" {...bindUsername} />
         </div>
         <div className={styles.password}>
           <TextField fullWidth label="Senha" {...bindPassword} />
         </div>
         <div className={styles.continueButtonWrapper}>
-          <div className={styles.continueButton} onClick={enterFn}>
+          <div className={styles.continueButton} onClick={loginWithUsernameFn}>
             <span className={styles.continueButtonText}>Continuar</span>
           </div>
         </div>
@@ -54,7 +54,7 @@ function LoginPage() {
           <hr className={styles.separator} />
         </div>
         <div className={styles.newUser}>
-          <LinkItem title="Quer me cadastrar" onclick={redirectNewUserFn} color="cobalt" ></LinkItem>
+          <LinkItem title="Quero me cadastrar" onclick={redirectNewUserFn} color="cobalt" ></LinkItem>
         </div>
         <div className={styles.accessViaWrapper}>
           <span className={styles.accessVia}>Ou acesse via</span>
