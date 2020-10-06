@@ -10,7 +10,9 @@ function LinkItem(props: {
 
   return (
     <div className={styles.wrapper}>
-      <button onClick={props.onclick}
+      <button
+        onClick={props.onclick}
+        type="button"
         className={`${styles.link} ${classS}`}
       >{props.title}</button>
     </div>

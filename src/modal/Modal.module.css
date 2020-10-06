@@ -1,0 +1,106 @@
+@value headerSize, sidePadding, modalOverlayDepth, modalWindowDepth from "../sizes.css";
+@value someOtherGray, graphiteGray, defaultWhite, comemorativeYellow, cozyOrange from "../colors.css";
+
+:root {
+  --modal-side-spacing: 2.6rem;
+  --modal-inner-padding: 1.6rem;
+  --modal-with-header-size: 5.8rem;
+  --modal-without-header-size: 2.5rem;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: modalOverlayDepth;
+  height: 100%;
+  width: calc(100% - 2 * var(--modal-side-spacing));
+  padding: 0 var(--modal-side-spacing);
+
+  background: rgba(55, 55, 55, 0.85);
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.content {
+  height: calc(100% - 2 * headerSize);
+  position: relative;
+  z-index: modalWindowDepth;
+
+  padding: var(--modal-with-header-size) var(--modal-inner-padding) var(--modal-inner-padding);
+  background-color: defaultWhite;
+}
+
+.noContent {
+  height: calc(100% - 5 * headerSize);
+}
+
+.noHeader {
+  padding: var(--modal-without-header-size) var(--modal-inner-padding) var(--modal-inner-padding);
+}
+
+.header {
+  position: absolute;
+  top: -5rem;
+  left: calc(50% - var(--modal-with-header-size));
+  height: 10rem;
+  width: 10rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background-color: comemorativeYellow;
+}
+
+.header > img {
+  height: 6rem;
+  width: 6rem;
+}
+
+.scoreChange {
+  display: flex;
+  justify-content: center;
+}
+
+.scoreTitle {
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: -0.064rem;
+  color: cozyOrange;
+}
+
+.titleWrapper {
+  padding-bottom: 2.4rem;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 600;
+  letter-spacing: -0.056rem;
+  color: someOtherGray;
+  margin: 0 0 3.2rem 0;
+}
+
+.subtitle {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.04rem;
+  color: graphiteGray;
+}
+
+.actions {
+  width: calc(100% - 2 * var(--modal-inner-padding));
+  position: absolute;
+  bottom: var(--modal-inner-padding);
+}
+
+.actions > * {
+  margin-top: 1.1rem;
+}
