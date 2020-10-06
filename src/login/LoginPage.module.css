@@ -1,0 +1,78 @@
+@value defaultWhite, graphiteGray, borderGray, descriptionGray, deepBlue from "../colors.css";
+@value sidePadding, headerPaddingTop, headerPaddingBottom, headerInnerSize from "../sizes.css";
+.accessVia {
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+  letter-spacing: -.036rem;
+  color: descriptionGray;
+  font-weight: 300;
+}
+
+.accessViaWrapper {
+  margin-bottom: 1.9rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3.8rem sidePadding 3.7rem;
+}
+
+.enterText {
+  font-size: 4rem;
+  line-height: 4.2rem;
+  letter-spacing: -.08rem;
+  color: graphiteGray;
+  font-weight: 700;
+}
+
+.enterTextWrapper {
+  height: 4.2rem;
+  margin-bottom: 6.2rem;
+}
+
+.FacebookButtonWrapper {
+  margin-bottom: 1.3rem;
+}
+
+.continueButton {
+  align-items: center;
+  display: flex;
+  background-color: deepBlue;
+  height: 7rem;
+}
+
+.continueButtonText {
+  margin-left: 14.8rem;
+  font-size: 1.8rem;
+  color: defaultWhite;
+  letter-spacing: -.036rem;
+  font-weight: 400;
+}
+
+.continueButtonWrapper {
+  margin-bottom: 3.23rem;
+  height: 70;
+  align-items: center;
+}
+
+.newUser {
+  margin-bottom: 3.5rem;
+  font-size: 1.8rem;
+  color: deepBlue;
+  letter-spacing: -.036rem;
+  font-weight: 400;
+}
+
+.password {
+  margin-bottom: 5.45rem;
+}
+
+.separator {
+  height: 1px;
+  border-width: 0;
+  color: borderGray;
+  background-color: borderGray;
+  margin-bottom: 1.9rem;
+}

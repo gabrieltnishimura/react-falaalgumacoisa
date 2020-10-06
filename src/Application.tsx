@@ -7,8 +7,8 @@ import { UserContext } from './authentication/UserProvider';
 import DashboardPage from './dashboard/DashboardPage';
 import LeaderboardPage from './dashboard/LeaderboardPage';
 import HomePage from './home/HomePage';
-import LoginPage from './LoginPage';
 import ModalTestPage from './ModalTestPage';
+import LoginPage from './login/LoginPage';
 import RecordingPage from './recording/RecordingPage';
 
 function App() {
