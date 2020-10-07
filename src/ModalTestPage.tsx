@@ -1,7 +1,7 @@
 import React from 'react';
-import FirstRecordingModalContent from './modal/FirstRecordingModalContent';
 import { ModalContext, ModalContextInterface } from './modal/ModalContext';
-
+import ModalFactory from './modal/ModalFactory';
+import { AvailableModalTypes, ModalFirstRecordingCompletedInput, ModalFirstThemeCompletedInput, ModalInputTypes, ModalSkipRecordingInput } from './modal/ModalTypes';
 function ModalTestPage() {
   let { handleModal, setPrimaryButtonState } = (React.useContext(ModalContext) as ModalContextInterface);
 
@@ -30,58 +30,38 @@ function ModalTestPage() {
   }
 
   const openModal = () => {
-    handleModal({
-      title: 'Parabéns pela sua primeira gravação!',
-      subtitle: 'Gostaria de se identificar?',
-      content: <FirstRecordingModalContent onChange={onChangeFormData} />,
-      icon: {
-        src: 'icons/champagne.png',
-        alt: 'champagne cheers'
-      },
-      scoreChange: '+ 100pts',
-      buttons: {
-        primary: {
-          title: 'Continuar',
-          onClick: confirmButtonFn,
-        },
-      }
-    }, false);
+    const modalType = ModalInputTypes.FIRST_THEME_COMPLETED;
+    const input: ModalFirstRecordingCompletedInput = {
+      discriminator: modalType,
+      points: '+ 100pts',
+      onFormChange: onChangeFormData,
+      onButtonClick: confirmButtonFn,
+    }
+    const content = new ModalFactory().createModalContent(modalType, input);
+    handleModal(content);
   }
 
   const openModal2 = () => {
-    handleModal({
-      title: 'Você concluiu o primeiro módulo!',
-      scoreChange: '+ 300pts',
-      icon: {
-        src: 'icons/champagne.png',
-        alt: 'champagne cheers'
-      },
-      buttons: {
-        primary: {
-          title: 'Avançar',
-          onClick: confirmButtonFn,
-        },
-      }
-    }, false);
+    const modalType = AvailableModalTypes.FIRST_THEME_COMPLETED;
+    const input: ModalFirstThemeCompletedInput = {
+      discriminator: modalType,
+      points: '+ 100pts',
+      onButtonClick: confirmButtonFn,
+    }
+    const content = new ModalFactory().createModalContent(modalType, input);
+    handleModal(content);
     setPrimaryButtonState(true);
   }
 
   const openModal3 = () => {
-    handleModal({
-      title: 'Pular frase',
-      subtitle: 'Gostaria de colocar o porquê decidiu pular essa frase? Estamos trabalhando para melhorar a qualidade do conteúdo da nossa aplicação.',
-      content: <></>,
-      buttons: {
-        primary: {
-          title: 'Avançar',
-          onClick: confirmButtonFn,
-        },
-        secondary: {
-          title: 'Voltar',
-          onClick: confirmButtonFn,
-        },
-      },
-    }, false);
+    const modalType = AvailableModalTypes.SKIP_RECORDING;
+    const input: ModalSkipRecordingInput = {
+      discriminator: modalType,
+      confirmSkip: confirmButtonFn,
+      goBack: confirmButtonFn,
+    }
+    const content = new ModalFactory().createModalContent(modalType, input);
+    handleModal(content);
     setPrimaryButtonState(true);
   }
 
