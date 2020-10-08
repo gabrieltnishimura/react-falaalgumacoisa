@@ -1,14 +1,7 @@
+import RecordingConfirmation from './models/RecordingConfirmation';
 import RecordingStateModel from './models/RecordingStateModel';
 import RecordingIntegrationService from './RecordingIntegrationService';
 import WordSuggestionService from './WordSuggestionService';
-
-declare interface RecordingConfirmation {
-  modal?: {
-    points: string;
-    type: 'FIRST_RECORDING_COMPLETED' | 'FIRST_THEME_COMPLETED',
-  };
-  hasNext: boolean;
-}
 
 export default class RecordingStateService {
   integrationService: RecordingIntegrationService;

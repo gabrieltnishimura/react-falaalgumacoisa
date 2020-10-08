@@ -1,54 +1,71 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import RectangularButton from '../shared/RectangularButton';
 import styles from './Modal.module.css';
-import { ModalContext, ModalContextInterface } from "./ModalContext";
 
-const modalRoot = document.querySelector("#modal-root") as HTMLElement;
+export interface ModalInput {
+  title: string,
+  subtitle?: string,
+  headerIcon?: {
+    src: string,
+    alt: string,
+  },
+  scoreChange?: string,
+  primaryButton: {
+    title: string,
+    enabled: boolean,
+    onClick: () => void,
+  },
+  secondaryButton?: {
+    title: string,
+    disabled: boolean,
+    onClick: () => void,
+  },
+  children?: any,
+};
 
-const Modal: React.FC<{}> = () => {
-  let { modalRef, showModal, modalContent, primaryButtonState } = (React.useContext(ModalContext) as ModalContextInterface);
-  const header = modalContent?.icon;
-  const hasContent = !!modalContent?.content;
-
-  if (showModal && modalContent) {
-    return ReactDOM.createPortal(
-      <div
-        className={styles.overlay}
-      >
-        <div ref={modalRef} className={styles.modal}>
-          <div className={`${styles.content} ${header ? '' : styles.noHeader} ${hasContent ? '' : styles.noContent}`}>
-            {header ? <div className={styles.header}>
-              <img src={header.src} alt={header.alt} />
+const Modal: React.FC<ModalInput> = ({
+  title,
+  subtitle,
+  headerIcon,
+  scoreChange,
+  primaryButton,
+  secondaryButton,
+  children,
+}) => {
+  return (
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
+        <div className={`${styles.content} ${headerIcon ? '' : styles.noHeader} ${!!children ? '' : styles.noContent}`}>
+          {headerIcon ? <div className={styles.header}>
+            <img src={headerIcon.src} alt={headerIcon.alt} />
+          </div> : null}
+          <div>
+            {scoreChange ? <div className={styles.scoreChange}>
+              <span className={styles.scoreTitle}>{scoreChange}</span>
             </div> : null}
-            <div>
-              {modalContent.scoreChange ? <div className={styles.scoreChange}>
-                <span className={styles.scoreTitle}>{modalContent.scoreChange}</span>
-              </div> : null}
-              <div className={styles.titleWrapper}>
-                <h1 className={styles.title}>{modalContent.title}</h1>
-                {modalContent.subtitle ? <span className={styles.subtitle}>{modalContent.subtitle}</span> : null}
-              </div>
-              {modalContent.content}
+            <div className={styles.titleWrapper}>
+              <h1 className={styles.title}>{title}</h1>
+              {subtitle ? <span className={styles.subtitle}>{subtitle}</span> : null}
             </div>
-            <div className={styles.actions}>
-              {modalContent.buttons.primary ? <RectangularButton
-                title={modalContent.buttons.primary.title}
-                onClick={modalContent.buttons.primary.onClick}
-                primary
-                disabled={!primaryButtonState}
-              ></RectangularButton> : null}
-              {modalContent.buttons.secondary ? <RectangularButton
-                title={modalContent.buttons.secondary.title}
-                onClick={modalContent.buttons.secondary.onClick}
-              ></RectangularButton> : null}
-            </div>
+            {children}
+          </div>
+          <div className={styles.actions}>
+            {primaryButton ? <RectangularButton
+              title={primaryButton.title}
+              onClick={primaryButton.onClick}
+              primary
+              disabled={!primaryButton.enabled}
+            ></RectangularButton> : null}
+            {secondaryButton ? <RectangularButton
+              title={secondaryButton.title}
+              onClick={secondaryButton.onClick}
+              disabled={secondaryButton.disabled}
+            ></RectangularButton> : null}
           </div>
         </div>
-      </div>,
-      modalRoot
-    );
-  } else return null;
+      </div>
+    </div>
+  );
 };
 
 export default Modal;
