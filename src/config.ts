@@ -19,6 +19,7 @@ const config = {
     sendRecording: process.env.REACT_APP_SEND_RECORDING_URL || 'NOT_SET',
     skipRecording: process.env.REACT_APP_SKIP_RECORDING_URL || 'NOT_SET',
     assignName: process.env.REACT_APP_ASSIGN_NAME || 'NOT_SET',
+    dashboard: process.env.REACT_APP_DASHBOARD || 'NOT_SET',
     basicData: process.env.REACT_APP_BASIC_DATA_URL || 'NOT_SET',
   },
 };

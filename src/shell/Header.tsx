@@ -1,8 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import AppLogo from './AppLogo';
 import styles from './Header.module.css';
 import LinkItem from './LinkItem';
-import AppLogo from './AppLogo';
-import { useNavigate } from 'react-router-dom'
 
 function Header(props: {
   link?: {
@@ -11,6 +11,7 @@ function Header(props: {
   },
   icon?: {
     src: string,
+    alt: string,
     onClick: () => void,
   },
   logoColor?: 'black' | 'white',
@@ -36,7 +37,11 @@ function Header(props: {
           <LinkItem title={props.link.title} onclick={props.link.onClick} color="cobalt" ></LinkItem> :
           null}
         {props.icon ?
-          <img src={props.icon.src} alt='icone' onClick={props.icon.onClick}></img> :
+          <img
+            className={styles.icon}
+            src={props.icon.src}
+            alt={props.icon.alt}
+            onClick={props.icon.onClick}></img> :
           null}
       </div>
     </header>

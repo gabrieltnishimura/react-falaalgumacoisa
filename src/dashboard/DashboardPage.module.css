@@ -1,0 +1,171 @@
+@value defaultWhite from "../colors.css";
+
+.background {
+  background-size: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url("/flower-cover.png");
+  z-index: -1;
+}
+
+.card {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -3rem;
+  right: -1.3rem;
+  width: 6rem;
+}
+
+.badge > span {
+  position: absolute;
+  top: 6px;
+  right: 26px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.04rem;
+  color: defaultWhite;
+}
+
+.titleWrapper {
+  width: 80%;
+  margin-top: 4.5rem;
+  margin-bottom: 2.2rem;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.056rem;
+}
+
+.progressWrapper {
+  width: 100%;
+  height: 0.9rem;
+  margin-bottom: 3.5rem;
+}
+
+.bar {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(235, 235, 235);
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+  background-color: rgb(238, 150, 74);
+}
+
+.subtitleWrapper {
+  margin-bottom: 2.5rem;
+}
+
+.subtitle {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2rem;
+  letter-spacing: -0.04rem;
+}
+
+.actions {
+  width: 100%;
+  display: grid;
+  grid-column-gap: 1rem;
+  row-gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.action {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.banner {
+  height: 13rem;
+  position: relative;
+}
+
+.banner > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.info {
+  position: absolute;
+  left: 0.5rem;
+  top: 1rem;
+}
+
+.info > img {
+  display: block;
+  height: 3.9rem;
+  width: 3.9rem;
+}
+
+.info > span {
+  font-size: 2.8rem;
+  font-weight: 600;
+  letter-spacing: -0.056rem;
+}
+
+.footer {
+  height: 3.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.footer > span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.028rem;
+}
+
+.footer > img {
+  position: absolute;
+  left: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.registerBannerText {
+  color: rgb(244, 211, 94);
+}
+
+.registerFooterBackground {
+  background-color: rgb(244, 211, 94);
+}
+
+.registerFooterText {
+  color: rgb(37, 37, 37);
+}
+
+.recordingFooterBackground {
+  background-color: rgb(8, 190, 225);
+}
+
+.recordingFooterText {
+  color: defaultWhite;
+}
+
+.extraBannerText {
+  color: rgb(102, 212, 97);
+}
+
+.extraFooterBackground {
+  background-color: rgb(102, 212, 97);
+}
+
+.extraFooterText {
+  color: rgb(37, 37, 37);
+}

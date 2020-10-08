@@ -1,5 +1,6 @@
 @value defaultWhite, graphiteGray, borderGray, descriptionGray, deepBlue from "../colors.css";
 @value sidePadding, headerPaddingTop, headerPaddingBottom, headerInnerSize from "../sizes.css";
+
 .header {
   display: flex;
   align-items: center;
@@ -9,8 +10,14 @@
 
 .logoWrapper {
   display: flex;
+  align-items: center;
 }
 
-.logoWrapper>img {
+.logoWrapper > img {
   padding-right: 1rem;
+}
+
+.icon {
+  height: 3.5rem;
+  width: 3.5rem;
 }
