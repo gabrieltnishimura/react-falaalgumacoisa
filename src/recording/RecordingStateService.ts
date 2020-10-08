@@ -45,7 +45,11 @@ export default class RecordingStateService {
     }, state.groupId, data);
   }
 
-  public async skipStep(state: RecordingStateModel): Promise<void> {
-    return await this.integrationService.skipPhrase(state.phrase, state.groupId, 'foo reason');
+  public async skipStep(state: RecordingStateModel, reason: string): Promise<void> {
+    return await this.integrationService.skipPhrase(state.phrase, state.groupId, reason);
+  }
+
+  public async assignName(name: string): Promise<void> {
+    return await this.integrationService.assignName(name);
   }
 }

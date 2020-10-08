@@ -8,7 +8,6 @@ import DashboardPage from './dashboard/DashboardPage';
 import LeaderboardPage from './dashboard/LeaderboardPage';
 import HomePage from './home/HomePage';
 import LoginPage from './login/LoginPage';
-import ModalTestPage from './ModalTestPage';
 import RecordingPage from './recording/RecordingPage';
 
 function App() {

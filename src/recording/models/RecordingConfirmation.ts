@@ -1,12 +1,8 @@
-export enum RecordingConfirmationModalTypes {
-  FIRST_RECORDING = 'FIRST_RECORDING',
-  FIRST_THEME = 'FIRST_THEME',
-}
-
+import { RecordingModalTypes } from './RecordingModalTypes';
 export default class RecordingConfirmation {
   modal?: {
-    type: RecordingConfirmationModalTypes,
-    content: any;
+    type: RecordingModalTypes,
+    score: number;
   };
   hasNext: boolean;
 
@@ -14,15 +10,9 @@ export default class RecordingConfirmation {
     if (data.modal) {
       this.modal = {
         type: data.modal.type,
-        content: data.modal.content,
+        score: parseInt(data.modal.score, 10),
       };
     }
     this.hasNext = Boolean(data.hasNext);
-
-    // move to backend
-    this.modal = {
-      type: RecordingConfirmationModalTypes.FIRST_RECORDING,
-      content: {}
-    };
   }
 }
