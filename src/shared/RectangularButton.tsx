@@ -5,6 +5,7 @@ function RectangularButton(props: {
   title: string,
   primary?: boolean,
   disabled?: boolean,
+  submit?: boolean,
   onClick: () => void,
 }) {
   const relevance = props.primary ? styles.primary : styles.secondary;
@@ -13,7 +14,7 @@ function RectangularButton(props: {
   return (
     <button
       className={`${styles.button} ${relevance} ${disabled}`}
-      type="button"
+      type={props.submit ? 'submit' : 'button'}
       onClick={props.onClick}
       disabled={props.disabled}
     >

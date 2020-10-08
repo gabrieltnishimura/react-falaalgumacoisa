@@ -1,30 +1,11 @@
 @value facebookBlue, defaultWhite from "../colors.css";
+
 .button {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  height: 4rem;
-  font-weight: 700;
-  border-radius: 3px;
-  border-style: solid;
   border-color: facebookBlue;
   background-color: facebookBlue;
   color: defaultWhite;
-  font-size: 1.44rem;
 }
 
-.button>div {
-  display: flex;
-  align-items: center;
-}
-
-.iconWrapper {
-  display: flex;
-  padding-right: 1.6rem;
-}
-
-.facebookIcon {
+.icon {
   fill: defaultWhite;
-  height: 2rem;
-  width: 2rem;
 }
