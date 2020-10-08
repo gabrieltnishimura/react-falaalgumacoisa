@@ -36,13 +36,14 @@ export default class RecordingStateService {
   }
 
   public async confirmStep(state: RecordingStateModel, data: Blob): Promise<RecordingConfirmation> {
-    return await this.integrationService.sendRecording({
-      phraseId: state.phrase.id,
-      sampleRate: 16000,
-      additionalMetadata: {
-        userAgent: navigator.userAgent,
-      },
-    }, state.groupId, data);
+    // return await this.integrationService.sendRecording({
+    //   phraseId: state.phrase.id,
+    //   sampleRate: 16000,
+    //   additionalMetadata: {
+    //     userAgent: navigator.userAgent,
+    //   },
+    // }, state.groupId, data);
+    return new RecordingConfirmation({});
   }
 
   public async skipStep(state: RecordingStateModel): Promise<void> {

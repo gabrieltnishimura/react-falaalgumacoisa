@@ -1,11 +1,7 @@
-export enum RecordingConfirmationModalTypes {
-  FIRST_RECORDING = 'FIRST_RECORDING',
-  FIRST_THEME = 'FIRST_THEME',
-}
-
+import { RecordingModalTypes } from './RecordingModalTypes';
 export default class RecordingConfirmation {
   modal?: {
-    type: RecordingConfirmationModalTypes,
+    type: RecordingModalTypes,
     content: any;
   };
   hasNext: boolean;
@@ -21,7 +17,7 @@ export default class RecordingConfirmation {
 
     // move to backend
     this.modal = {
-      type: RecordingConfirmationModalTypes.FIRST_RECORDING,
+      type: RecordingModalTypes.FIRST_RECORDING,
       content: {}
     };
   }
