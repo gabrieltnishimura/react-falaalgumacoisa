@@ -26,13 +26,31 @@ function FirstRecordingModalContent(props: { onChange: (data: any) => void }) {
   const [randomName, setRandomName] = useState('');
   const classes = useStyles();
 
+
   useEffect(() => {
-    props.onChange({
+    const validate = (data: any): boolean => {
+      if (data.namingChoice === 'NAME') {
+        return !!data.firstName;
+      } else if (data.namingChoice === 'RANDOM_NICKNAME') {
+        return !!data.randomName;
+      } else if (data.namingChoice === 'ANON') {
+        return true;
+      }
+
+      return false;
+    }
+
+    const data = {
       firstName,
       namingChoice,
       randomName,
-    });
-  }, [props, firstName, namingChoice, randomName]);
+    };
+
+    if (validate(data)) {
+      props.onChange(data);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstName, namingChoice, randomName]);
 
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
