@@ -19,16 +19,22 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+export type FirstRecordingModalNamingOptions = 'NAME' | 'RANDOM_NICKNAME' | 'ANON' | null;
+export interface FirstRecordingModalOutput {
+  namingChoice: FirstRecordingModalNamingOptions;
+  firstName?: string;
+  randomName?: string;
+}
 
-function FirstRecordingModalContent(props: { onChange: (data: any) => void }) {
-  const { value: namingChoice, bind: bindNamingOptions } = useInput<'NAME' | 'RANDOM_NICKNAME' | 'ANON' | null>(null);
+function FirstRecordingModalContent(props: { onChange: (data: FirstRecordingModalOutput) => void }) {
+  const { value: namingChoice, bind: bindNamingOptions } = useInput<FirstRecordingModalNamingOptions>(null);
   const { value: firstName, bind: bindFirstName } = useInput('');
   const [randomName, setRandomName] = useState('');
   const classes = useStyles();
 
 
   useEffect(() => {
-    const validate = (data: any): boolean => {
+    const validate = (data: FirstRecordingModalOutput): boolean => {
       if (data.namingChoice === 'NAME') {
         return !!data.firstName;
       } else if (data.namingChoice === 'RANDOM_NICKNAME') {

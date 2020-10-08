@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CircleButtonWrapper from '../shared/CircleButtonWrapper';
 import TextBox from '../shared/TextBox';
 import Header from '../shell/Header';
@@ -28,8 +28,8 @@ const wordHighlightMap = {
 }
 
 const toastyTextMap = {
-  [RecordingState.NOT_RECORDED]: 'Aperte o botão abaixo para iniciar a gravação',
-  [RecordingState.RECORDING]: 'Solte o botão para finalizar a gravação',
+  [RecordingState.NOT_RECORDED]: 'Segure o botão abaixo para iniciar a gravação',
+  [RecordingState.RECORDING]: 'Leia a frase acima em voz alta e solte o botão',
   [RecordingState.RECORDED]: 'Confira a sua gravação e, se a frase foi corretamente captada, confirme o envio',
 }
 
@@ -42,6 +42,11 @@ function RecordingStep(props: {
 }) {
   const [blob, setBlob] = useState<Blob | null>(null);
   const [state, setState] = useState<RecordingState>(RecordingState.NOT_RECORDED);
+
+  useEffect(() => {
+    // reset state if word change
+    setState(RecordingState.NOT_RECORDED);
+  }, [props.step, props.word]);
 
   const recordingFn = () => {
     setState(RecordingState.RECORDING);
