@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import CircleButtonWrapper from '../shared/CircleButtonWrapper';
 import TextBox from '../shared/TextBox';
+import Header from '../shell/Header';
 import LinkItem from '../shell/LinkItem';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import AudioPlayer from './AudioPlayer';
 import Microphone from './Microphone';
-import RecordingHeader from './RecordingHeader';
 import styles from './RecordingStep.module.css';
 import WordSuggestion, { WordSuggestionStyling } from './WordSuggestion';
 
@@ -104,7 +104,7 @@ function RecordingStep(props: {
 
   return (
     <div className={overlay}>
-      <RecordingHeader></RecordingHeader>
+      <Header preventRedirect></Header>
       <WhitePageWrapper>
         <div className={`${styles.content} ${recordingStyle[state]}`}>
           <div className={styles.suggestion}>
