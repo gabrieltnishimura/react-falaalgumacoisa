@@ -44,7 +44,7 @@ function SplashPage() {
             <h1>fala alguma coisa</h1>
           </div>
           <div className={styles.subtitle}>
-            <span >O seu português à ciência em 15 minutos</span>
+            <span>O seu português à ciência em 15 minutos</span>
           </div>
         </div>
         <div className={styles.buttons}>
