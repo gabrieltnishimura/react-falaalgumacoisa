@@ -1,9 +1,10 @@
 import { createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authenticationService } from '../authentication/AuthenticationService';
 import { useInput } from '../basic-data/useInput';
+import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import RectangularButton from '../shared/RectangularButton';
 import Header from '../shell/Header';
 import LinkItem from '../shell/LinkItem';
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function LoginPage() {
   const navigate = useNavigate();
+  const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const classes = useStyles();
   const { value: username, bind: bindUsername } = useInput('');
   const { value: password, bind: bindPassword } = useInput('');
@@ -48,6 +50,10 @@ function LoginPage() {
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
   }
+
+  useEffect(() => {
+    setLoading(false);
+  });
 
   return (
     <ThemeProvider theme={theme}>
