@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import FirstRecordingModalContent, { FirstRecordingModalOutput } from '../modal/FirstRecordingModalContent';
 import Modal from '../modal/Modal';
 import SkipRecordingModalContent, { SkipRecordingOutput } from '../modal/SkipRecordingModalContent';
+import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import { RecordingModalTypes } from './models/RecordingModalTypes';
 import RecordingStateModel from './models/RecordingStateModel';
 import RecordingStateService from './RecordingStateService';
@@ -12,6 +13,7 @@ const stateService = new RecordingStateService();
 
 function RecordingPage() {
   const navigate = useNavigate();
+  const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const [recordingState, setRecordingState] = useState<RecordingStateModel | null>(null)
   const [skip, setSkip] = useState<number>(0);
   const [next, setNext] = useState<number>(0);
@@ -73,12 +75,14 @@ function RecordingPage() {
   }
 
   useEffect(() => {
+    setLoading(true);
     const fetchState = async () => {
       const step = await stateService.getNextStep('ciencia');
       setRecordingState(step);
+      setLoading(false);
     }
     fetchState();
-  }, [skip, next]);
+  }, [skip, next, setLoading]);
 
   if (!recordingState || !recordingState.phrase) {
     return null;

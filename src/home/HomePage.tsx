@@ -1,16 +1,24 @@
-import React from 'react';
-import styles from './HomePage.module.css';
-import LinkItem from '../shell/LinkItem';
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import Header from '../shell/Header';
+import LinkItem from '../shell/LinkItem';
+import styles from './HomePage.module.css';
 function HomePage() {
   const navigate = useNavigate();
+  const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
+
   const redirectLoginFn = () => {
     navigate('/login')
   }
   const redirectRecordingFn = () => {
     navigate('/fala')
   }
+
+  useEffect(() => {
+    setLoading(false); // each page has to implement its own stop loading logic
+  });
+
   return (
     <div>
       <Header link={{ title: 'Entrar', onClick: redirectLoginFn }} />

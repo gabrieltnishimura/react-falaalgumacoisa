@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import CardPageWrapper from '../shell/CardPageWrapper';
 import Header from '../shell/Header';
 import DashboardActionModel from './DashboardActionModel';
@@ -10,14 +11,16 @@ const dashboardService = new DashboardService();
 
 function DashboardPage() {
   const [data, setData] = useState<DashboardModel | null>(null)
+  const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
 
   useEffect(() => {
     const getDashboard = async () => {
       const response = await dashboardService.getDashboard();
       setData(response);
+      setLoading(false);
     }
     getDashboard();
-  }, []);
+  }, [setLoading]);
 
   const percentStyle = {
     width: 50 + '%',
