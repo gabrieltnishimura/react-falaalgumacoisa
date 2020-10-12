@@ -1,45 +1,62 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
+import useProgressiveImage from '../shared/useProgressiveImage';
 import Header from '../shell/Header';
-import LinkItem from '../shell/LinkItem';
+import HomeContent from './HomeContent';
 import styles from './HomePage.module.css';
+import SplashContent from './SplashContent';
+
+let once = false;
+
 function HomePage() {
-  const navigate = useNavigate();
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
+  const navigate = useNavigate();
+  const [animate, setAnimate] = useState(false);
+  const [skipAnimations, setSkipAnimations] = useState(false);
+  const imageLoaded = useProgressiveImage('/splash-cover.png')
+  const navigationTimeout = 800;
+
+  useEffect(() => {
+    if (imageLoaded) {
+      setLoading(false); // each page has to implement its own stop loading logic
+      if (once) {
+        setSkipAnimations(true);
+        return;
+      }
+      setTimeout(() => {
+        setAnimate(true);
+        once = true;
+      }, navigationTimeout);
+    }
+  }, [imageLoaded, setLoading]);
+
 
   const redirectLoginFn = () => {
     navigate('/login')
   }
-  const redirectRecordingFn = () => {
-    navigate('/fala')
-  }
-
-  useEffect(() => {
-    setLoading(false); // each page has to implement its own stop loading logic
-  });
 
   return (
-    <div>
-      <Header link={{ title: 'Entrar', onClick: redirectLoginFn }} />
-      <div>
-        <img className={styles.banner} src="/square-cover.jpg" alt='Banner'></img>
+    <div className={`${skipAnimations ? styles.skip : animate ? styles.animation : ''}`}>
+      <div className={styles.banner}>
+        <div className={styles.header}>
+          <Header link={{ title: 'Entrar', onClick: redirectLoginFn }} />
+        </div>
+        {imageLoaded ?
+          <img className={styles.bannerImage} src={imageLoaded} alt='Banner'></img> :
+          null}
       </div>
-      <div className={styles.titleWrapper}>
-        <h1 className={styles.title}>Comece já a sua jornada na ciência!</h1>
+      <div className={styles.carossel}>
+        <div className={styles.splash}>
+          <div className={styles.logo}>
+            <SplashContent />
+          </div>
+        </div>
       </div>
-      <div className={styles.startRecordingWrapper} onClick={redirectRecordingFn}>
-        <img className={styles.startRecordingImg} src="/mic.svg" alt='mic'></img>
-        <span className={styles.startRecordingText}>Iniciar gravação de voz</span>
+      <div className={styles.content}>
+        <HomeContent />
       </div>
-      <div className={styles.existingUser}>
-        <LinkItem title="Já sou cadastrado" onclick={redirectLoginFn} color="cobalt" ></LinkItem>
-      </div>
-      <div className={styles.descriptionWrapper}>
-        <span className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In diam mauris, convallis eu pharetra nec, facilisis id massa. Sed vel libero sed dolor iaculis dignissim. Aenean mollis, est ac malesuada facilisis, est dui bibendum elit, non ornare orci velit sed tortor. Nullam vitae ultricies augue. Donec pellentesque mauris sed felis tristique lacinia. </span>
-      </div>
-
-    </div >
+    </div>
   );
 }
 

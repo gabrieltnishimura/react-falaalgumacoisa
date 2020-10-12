@@ -1,70 +1,88 @@
-@value deepBlue, graphiteGray, descriptionGray, borderGray from "../colors.css";
-@value sidePadding from "../sizes.css";
+@value cobalt, defaultWhite from "../colors.css";
+@value headerSize from "../sizes.css";
+
+@value bannerHeight: 20rem;
+@value firstStepTimestamp: 0.8s;
+@value secondStepDuration: 0.3s;
+@value leftSecondAnimation: left secondStepDuration ease-out;
+
 .banner {
-  height: 9rem;
+  height: bannerHeight;
+}
+
+.bannerImage {
+  height: bannerHeight;
   width: 100%;
-  margin-bottom: 3.9rem;
+  object-fit: cover;
 }
 
-.description {
-  line-height: 2.8rem;
-  font-size: 2.4rem;
-  color: descriptionGray;
-  letter-spacing: -.048rem;
-  font-weight: 400;
+.carossel {
+  height: calc(100vh - bannerHeight);
 }
 
-.descriptionWrapper {
-  margin-left: sidePadding;
-  margin-right: sidePadding;
+.header {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: defaultWhite;
+  width: 100%;
 }
 
-.existingUser {
-  margin-left: sidePadding;
-  margin-right: sidePadding;
-  margin-bottom: 3.5rem;
-  font-size: 1.8rem;
-  color: deepBlue;
-  letter-spacing: -.036rem;
-  font-weight: 400;
+.animation .header {
+  left: 0;
+  transition: leftSecondAnimation;
+  transition-delay: firstStepTimestamp;
 }
 
-.startRecordingImg {
-  height: 5rem;
-  width: 4.2rem;
-  fill: deepBlue;
+.splash {
+  background-color: cobalt;
+  position: absolute;
+  top: bannerHeight;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - bannerHeight);
 }
 
-.startRecordingText {
-  padding-left: 1.6rem;
-  line-height: 4.2rem;
-  font-size: 2.4rem;
-  color: deepBlue;
-  letter-spacing: -.048rem;
-  font-weight: 400;
+.animation .splash {
+  left: -100%;
+  transition: leftSecondAnimation;
+  transition-delay: firstStepTimestamp;
 }
 
-.startRecordingWrapper {
+.logo {
+  height: 67%;
   display: flex;
-  padding-left: sidePadding;
+  justify-content: center;
   align-items: center;
-  height: 11.2rem;
-  border-bottom: 1px solid borderGray;
-  border-top: 1px solid borderGray;
-  margin-bottom: 1.9rem;
 }
 
-.title {
-  margin: 0;
-  line-height: 4.2rem;
-  font-size: 4rem;
-  color: graphiteGray;
-  letter-spacing: -.08rem;
-  font-weight: 700;
+.animation .logo {
+  opacity: 0;
+  transition: opacity firstStepTimestamp ease-out;
 }
 
-.titleWrapper {
-  margin-bottom: 3.4rem;
-  padding-left: sidePadding;
-  padding-right: sidePadding;
+.content {
+  position: absolute;
+  top: bannerHeight;
+  left: 100%;
+  width: 100%;
+  height: calc(100vh - bannerHeight);
+}
+
+.animation .content {
+  left: 0;
+  transition: leftSecondAnimation;
+  transition-delay: firstStepTimestamp;
+}
+
+.skip .header {
+  left: 0;
+}
+
+.skip .splash {
+  left: -100%;
+}
+
+.skip .content {
+  left: 0;
 }

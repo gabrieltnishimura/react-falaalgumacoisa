@@ -1,0 +1,26 @@
+@value defaultWhite from "../colors.css";
+
+.horizontallyCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  composes: horizontallyCenter;
+}
+
+.logoWrapper {
+  composes: horizontallyCenter;
+  margin-bottom: 0.8rem;
+}
+
+.logo {
+  width: 7rem;
+  height: 7rem;
+}
+
+.subtitle {
+  font-size: 1.6rem;
+  letter-spacing: -0.032rem;
+  color: defaultWhite;
+}

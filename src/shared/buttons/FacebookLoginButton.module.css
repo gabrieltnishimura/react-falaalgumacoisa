@@ -1,4 +1,4 @@
-@value facebookBlue, defaultWhite from "../colors.css";
+@value facebookBlue, defaultWhite from "../../colors.css";
 
 .button {
   border-color: facebookBlue;

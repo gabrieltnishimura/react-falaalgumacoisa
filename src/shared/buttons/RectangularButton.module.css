@@ -1,4 +1,4 @@
-@value defaultWhite, cobalt, disabledGrey, disabledGreyText from "../colors.css";
+@value defaultWhite, cobalt, disabledGrey, disabledGreyText from "../../colors.css";
 
 .button {
   width: 100%;

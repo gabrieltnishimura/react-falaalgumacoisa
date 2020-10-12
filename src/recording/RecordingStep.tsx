@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CircleButtonWrapper from '../shared/CircleButtonWrapper';
+import CircleButtonWrapper from '../shared/buttons/CircleButtonWrapper';
 import TextBox from '../shared/TextBox';
 import Header from '../shell/Header';
 import LinkItem from '../shell/LinkItem';
