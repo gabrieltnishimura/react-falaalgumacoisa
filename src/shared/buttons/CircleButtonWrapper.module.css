@@ -1,4 +1,4 @@
-@value successGreen, defaultWhite from "../colors.css";
+@value successGreen, defaultWhite from "../../colors.css";
 
 .button {
   width: 10rem;

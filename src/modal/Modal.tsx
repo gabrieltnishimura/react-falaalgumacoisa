@@ -1,5 +1,5 @@
 import React from "react";
-import RectangularButton from '../shared/RectangularButton';
+import RectangularButton from '../shared/buttons/RectangularButton';
 import styles from './Modal.module.css';
 
 export interface ModalInput {

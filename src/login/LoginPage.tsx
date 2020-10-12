@@ -4,14 +4,14 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authenticationService } from '../authentication/AuthenticationService';
 import { useInput } from '../basic-data/useInput';
+import FacebookLoginButton from '../shared/buttons/FacebookLoginButton';
+import GoogleLoginButton from '../shared/buttons/GoogleLoginButton';
+import RectangularButton from '../shared/buttons/RectangularButton';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
-import RectangularButton from '../shared/RectangularButton';
 import Header from '../shell/Header';
 import LinkItem from '../shell/LinkItem';
 import theme from '../shell/theme';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
-import FacebookLoginButton from '../splash/FacebookLoginButton';
-import GoogleLoginButton from '../splash/GoogleLoginButton';
 import styles from './LoginPage.module.css';
 
 const useStyles = makeStyles((theme: Theme) =>

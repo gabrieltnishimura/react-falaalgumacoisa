@@ -1,4 +1,4 @@
-@value basicGrey, defaultWhite, googleBorder from "../colors.css";
+@value basicGrey, defaultWhite, googleBorder from "../../colors.css";
 
 .button {
   display: flex;
