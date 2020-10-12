@@ -72,7 +72,7 @@ function RecordingStep(props: {
   }
 
   const dynamicBackground = {
-    backgroundImage: `url('${'square-cover.jpg'}')`
+    backgroundImage: `url('${'splash-cover.png'}')`
   }
 
   const overlay = state === RecordingState.NOT_RECORDED || state === RecordingState.RECORDED ?

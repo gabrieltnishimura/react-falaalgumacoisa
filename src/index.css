@@ -3,6 +3,24 @@ html {
   color: rgb(33, 33, 33);
 }
 
+@media (max-height: 736px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media (max-height: 640px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (max-height: 568px) {
+  html {
+    font-size: 7px;
+  }
+}
+
 body {
   margin: 0;
   font-family: "Inter";
