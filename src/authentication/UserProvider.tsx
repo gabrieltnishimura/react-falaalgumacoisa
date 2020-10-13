@@ -1,18 +1,20 @@
 import React, { Component, createContext } from "react";
 import { auth, authenticationService } from './AuthenticationService';
+import UserModel from "./UserModel";
 
-export const UserContext = createContext({ user: undefined });
+export const UserContext = createContext<{ user: UserModel | undefined }>({ user: undefined });
 class UserProvider extends Component {
   state = {
     user: undefined
   };
+
   componentDidMount = () => {
     auth.onAuthStateChanged(userAuth => {
-      console.log('state changed', userAuth);
-      if (userAuth) {
-        authenticationService.setUser(userAuth);
+      const user = userAuth && new UserModel(userAuth);
+      if (user) {
+        authenticationService.setUser(user);
       }
-      this.setState({ user: userAuth });
+      this.setState({ user });
     });
   };
 

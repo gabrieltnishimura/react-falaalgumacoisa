@@ -9,10 +9,11 @@ import LeaderboardPage from './dashboard/LeaderboardPage';
 import HomePage from './home/HomePage';
 import LoginPage from './login/LoginPage';
 import RecordingPage from './recording/RecordingPage';
+import RegistrationPage from './registration/RegistrationPage';
 
 function App() {
   const authenticationState = useContext(UserContext);
-  const isAuth = authenticationState.user;
+  const isAuth = !!authenticationState.user;
   console.log('Rerendering app with', authenticationState.user);
 
   return (
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <UnauthenticatedRoute path="/" component={<HomePage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/login" component={<LoginPage />} isAuth={isAuth}></UnauthenticatedRoute>
+        <UnauthenticatedRoute path="/cadastro" component={<RegistrationPage />} isAuth={isAuth}></UnauthenticatedRoute>
         <ProtectedRoute path="/dashboard" component={<DashboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/ranking" component={<LeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <AutoAuthenticationRoute path="/fala/:theme" component={<RecordingPage />} isAuth={isAuth}></AutoAuthenticationRoute>

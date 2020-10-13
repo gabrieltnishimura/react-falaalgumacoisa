@@ -1,7 +1,7 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import { createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import React, { useEffect } from 'react';
-import { useInput } from '../basic-data/useInput';
+import { useInput } from '../shared/useInput';
 import theme from '../shell/theme';
 import styles from './SkipRecordingModalContent.module.css';
 
