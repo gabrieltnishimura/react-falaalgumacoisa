@@ -16,6 +16,7 @@ const config = {
   baseUrl: process.env.REACT_APP_BACKEND_BASE_URL,
   endpoints: {
     phraseGroup: process.env.REACT_APP_PHRASE_GROUP || 'NOT_SET',
+    randomPhraseGroup: process.env.REACT_APP_PHRASE_RANDOM_THEME || 'NOT_SET',
     sendRecording: process.env.REACT_APP_SEND_RECORDING_URL || 'NOT_SET',
     skipRecording: process.env.REACT_APP_SKIP_RECORDING_URL || 'NOT_SET',
     assignName: process.env.REACT_APP_ASSIGN_NAME || 'NOT_SET',

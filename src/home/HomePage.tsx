@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as wordSuggestionService from '../recording/WordSuggestionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import useProgressiveImage from '../shared/useProgressiveImage';
 import Header from '../shell/Header';
 import HomeContent from './HomeContent';
 import styles from './HomePage.module.css';
 import SplashContent from './SplashContent';
-
 let once = false;
 
 function HomePage() {
@@ -16,9 +16,11 @@ function HomePage() {
   const [skipAnimations, setSkipAnimations] = useState(false);
   const imageLoaded = useProgressiveImage('/splash-cover.png')
   const navigationTimeout = 800;
+  const [randomizedTheme, setRandomizedTheme] = useState<string>('');
 
   useEffect(() => {
-    if (imageLoaded) {
+    // wait for image and theme to load
+    if (imageLoaded && randomizedTheme) {
       setLoading(false); // each page has to implement its own stop loading logic
       if (once) {
         setSkipAnimations(true);
@@ -29,8 +31,19 @@ function HomePage() {
         once = true;
       }, navigationTimeout);
     }
-  }, [imageLoaded, setLoading]);
+  }, [imageLoaded, randomizedTheme, setLoading]);
 
+  useEffect(() => {
+    const getRandomGroup = async () => {
+      const theme = await wordSuggestionService.getRandomGroup();
+      setRandomizedTheme(theme.title);
+    };
+    getRandomGroup();
+  }, []);
+
+  const redirectRecordingFn = () => {
+    navigate(`/fala/${randomizedTheme}`);
+  }
 
   const redirectLoginFn = () => {
     navigate('/login')
@@ -54,7 +67,7 @@ function HomePage() {
         </div>
       </div>
       <div className={styles.content}>
-        <HomeContent />
+        <HomeContent redirectRecordingFn={redirectRecordingFn} />
       </div>
     </div>
   );
