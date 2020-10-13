@@ -1,10 +1,9 @@
 import RecordingConfirmation from './models/RecordingConfirmation';
 import RecordingStateModel from './models/RecordingStateModel';
 import RecordingIntegrationService from './RecordingIntegrationService';
-import WordSuggestionService from './WordSuggestionService';
+import * as wordSuggestionService from './WordSuggestionService';
 
 const integrationService = new RecordingIntegrationService();
-const wordSuggestionService = new WordSuggestionService();
 
 const getNextStep = async (groupId: string): Promise<RecordingStateModel> => {
   const group = await wordSuggestionService.getGroup(groupId);

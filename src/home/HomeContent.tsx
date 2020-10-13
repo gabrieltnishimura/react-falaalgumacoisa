@@ -1,20 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styles from './HomeContent.module.css';
 
-function HomeContent() {
-  const navigate = useNavigate();
-
-  const redirectRecordingFn = () => {
-    navigate('/fala')
-  }
-
+function HomeContent(props: { redirectRecordingFn: () => void }) {
   return (
     <>
       <div className={styles.titleWrapper}>
         <h1 className={styles.title}>Comece já a sua jornada na ciência!</h1>
       </div>
-      <div className={styles.startRecordingWrapper} onClick={redirectRecordingFn}>
+      <div className={styles.startRecordingWrapper} onClick={props.redirectRecordingFn}>
         <img className={styles.startRecordingImg} src="/mic.svg" alt='mic'></img>
         <span className={styles.startRecordingText}>Iniciar gravação de voz</span>
       </div>

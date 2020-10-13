@@ -15,7 +15,7 @@ function FirstThemeModal(props: FirstThemeModalInput) {
       title="Você concluiu o primeiro módulo!"
       scoreChange="+ 300pts"
       headerIcon={{
-        src: 'icons/champagne.png',
+        src: '/icons/champagne.png',
         alt: 'champagne cheers'
       }}
       primaryButton={{

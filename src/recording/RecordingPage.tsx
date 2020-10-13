@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import FirstRecordingModal from '../modal/FirstRecordingModal';
 import FirstThemeModal from '../modal/FirstThemeModal';
 import SkipRecordingModal from '../modal/SkipRecordingModal';
@@ -11,6 +11,8 @@ import RecordingStep from './RecordingStep';
 
 function RecordingPage() {
   const navigate = useNavigate();
+  const { theme } = useParams();
+
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const [recordingState, setRecordingState] = useState<RecordingStateModel | null>(null)
   const [next, setNext] = useState<number>(0);
@@ -20,12 +22,12 @@ function RecordingPage() {
   useEffect(() => {
     setLoading(true);
     const fetchState = async () => {
-      const step = await stateService.getNextStep('ciencia');
+      const step = await stateService.getNextStep(theme);
       setRecordingState(step);
       setLoading(false);
     }
     fetchState();
-  }, [next, setLoading]);
+  }, [next, setLoading, theme]);
 
   const confirmRecordingFn = async (blob: Blob) => {
     if (!blob || !recordingState) {
