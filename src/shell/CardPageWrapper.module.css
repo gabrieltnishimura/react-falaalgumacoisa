@@ -1,6 +1,6 @@
 @value cobalt, defaultWhite, darkerGrey from "../colors.css";
 
 .roundedCorners {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 1.2rem;
+  border-top-right-radius: 1.2rem;
 }

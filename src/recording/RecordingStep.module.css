@@ -1,17 +1,18 @@
 @value headerSize from "../sizes.css";
 @value overlayDepth, highlightDepth from "../sizes.css";
+
 :root {
   --page-footer-size: 17.5rem;
   --page-footer-size-sm: 4.3rem;
 }
 
 .content {
-  height: calc(100vh - var(--page-footer-size) - headerSize);
+  min-height: calc(100vh - var(--page-footer-size) - headerSize);
   position: relative;
 }
 
 .content.recorded {
-  height: calc(100vh - var(--page-footer-size-sm) - headerSize);
+  min-height: calc(100vh - var(--page-footer-size-sm) - headerSize);
 }
 
 .suggestion {
@@ -21,7 +22,7 @@
 .footer {
   background-position-y: 5.5rem;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   height: var(--page-footer-size);
 }
 
