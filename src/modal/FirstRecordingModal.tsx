@@ -38,7 +38,7 @@ function FirstRecordingModal(props: FirstRecordingModalInput) {
         enabled: !!namingData,
         onClick: chooseNamingFn,
       }}>
-      <FirstRecordingModalContent onChange={setNamingData} />
+      <FirstRecordingModalContent onChange={setNamingData} allowAnon />
     </Modal>
   );
 }

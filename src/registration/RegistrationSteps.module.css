@@ -1,0 +1,43 @@
+@value descriptionGray from "../colors.css";
+@value sidePadding from "../sizes.css";
+@value headerPaddingTop: 2.5rem;
+
+.title {
+  margin: 0;
+  margin-bottom: 2.1rem;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 4.2rem;
+  letter-spacing: -0.08rem;
+}
+
+.subtitle {
+  margin: 0;
+  margin-bottom: 2.3rem;
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 2.8rem;
+  letter-spacing: -0.048rem;
+  color: descriptionGray;
+}
+
+.formLabel {
+  margin-bottom: 2.4rem;
+}
+
+.label {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 4.2rem;
+  letter-spacing: -0.036rem;
+}
+
+.actions {
+  width: calc(100% - 2 * sidePadding);
+  position: absolute;
+  bottom: sidePadding;
+}
+
+.actions > * {
+  margin-top: 1.1rem;
+}

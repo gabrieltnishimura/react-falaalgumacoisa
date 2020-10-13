@@ -25,8 +25,8 @@ const authenticationService = {
     auth.signInAnonymously()
   },
   logout: auth.signOut,
-  setUser: (user: firebase.User) => {
-    _user = new UserModel(user);
+  setUser: (user: UserModel) => {
+    _user = user;
   },
   getUser: (): UserModel => {
     return _user;
