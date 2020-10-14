@@ -1,6 +1,5 @@
 @value descriptionGray from "../colors.css";
-@value sidePadding from "../sizes.css";
-@value headerPaddingTop: 2.5rem;
+@value sidePadding, headerSize, doubleButtonHeight, buttonSpacing from "../sizes.css";
 
 .title {
   margin: 0;
@@ -32,12 +31,10 @@
   letter-spacing: -0.036rem;
 }
 
-.actions {
-  width: calc(100% - 2 * sidePadding);
-  position: absolute;
-  bottom: sidePadding;
+.content {
+  min-height: calc(100vh - headerSize - doubleButtonHeight);
 }
 
-.actions > * {
-  margin-top: 1.1rem;
+.actions > button {
+  margin-bottom: buttonSpacing;
 }
