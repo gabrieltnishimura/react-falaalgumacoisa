@@ -82,9 +82,9 @@ function AudioPlayer(props: { data: Blob | null }) {
       </div>
       <div onClick={toggleIsPlaying} className={styles.button}>
         {isPlaying ? <img
-          src="/pause.svg"
+          src="/icons/pause.svg"
           alt="pause button" /> : <img
-            src="/play.svg"
+            src="/icons/play.svg"
             alt="play button" />}
       </div>
       <audio className={styles.hide} preload="auto" ref={audioRef} onEnded={toggleIsPlaying} >

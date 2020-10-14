@@ -3,7 +3,7 @@ import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderCo
 import CardPageWrapper from '../shell/CardPageWrapper';
 import Header from '../shell/Header';
 import DashboardActionModel from './DashboardActionModel';
-import DashboardModel from './DashboardModel';
+import DashboardModel, { DashboardActionTypes } from './DashboardModel';
 import styles from './DashboardPage.module.css';
 import DashboardService from './DashboardService';
 
@@ -27,25 +27,25 @@ function DashboardPage() {
   }
 
   const bannerTextStyle = (action: DashboardActionModel): string => {
-    return action.type === 'REGISTER' ?
+    return action.type === DashboardActionTypes.REGISTER ?
       styles.registerBannerText :
-      action.type === 'RECORDING' ?
+      action.type === DashboardActionTypes.RECORDING ?
         '' :
         styles.extraBannerText;
   }
 
   const footerBackground = (action: DashboardActionModel): string => {
-    return action.type === 'REGISTER' ?
+    return action.type === DashboardActionTypes.REGISTER ?
       styles.registerFooterBackground :
-      action.type === 'RECORDING' ?
+      action.type === DashboardActionTypes.RECORDING ?
         styles.recordingFooterBackground :
         styles.extraFooterBackground;
   }
 
   const footerTextStyle = (action: DashboardActionModel): string => {
-    return action.type === 'REGISTER' ?
+    return action.type === DashboardActionTypes.REGISTER ?
       styles.registerFooterText :
-      action.type === 'RECORDING' ?
+      action.type === DashboardActionTypes.RECORDING ?
         styles.recordingFooterText :
         styles.extraFooterText;
   }
@@ -58,12 +58,12 @@ function DashboardPage() {
     <div>
       <div className={styles.background}></div>
       <Header logoColor="black"
-        icon={{ src: '/profile.svg', alt: 'profile picture', onClick: () => { } }} ></Header>
+        icon={{ src: '/icons/profile.svg', alt: 'profile picture', onClick: () => { } }} ></Header>
       <CardPageWrapper>
         <div className={styles.card}>
           <section>
             <div className={styles.badge}>
-              <img src="/medal.svg" alt="level badge"></img>
+              <img src="/icons/medal.svg" alt="level badge"></img>
               <span>1</span>
             </div>
             <div className={styles.titleWrapper}>
@@ -76,7 +76,7 @@ function DashboardPage() {
             </div>
             <div className={styles.subtitleWrapper}>
               <span className={styles.subtitle}>Aumente sua pontuação e continue contribuindo para a ciência brasileira</span>
-              <img src="" alt="bandeira do brasil"></img>
+              <img src="/icons/brasil.png" alt="bandeira do brasil"></img>
             </div>
           </section>
           <section className={styles.actions}>
