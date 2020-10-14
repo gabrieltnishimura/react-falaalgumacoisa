@@ -8,7 +8,7 @@ function HomeContent(props: { redirectRecordingFn: () => void }) {
         <h1 className={styles.title}>Comece já a sua jornada na ciência!</h1>
       </div>
       <div className={styles.startRecordingWrapper} onClick={props.redirectRecordingFn}>
-        <img className={styles.startRecordingImg} src="/mic.svg" alt='mic'></img>
+        <img className={styles.startRecordingImg} src="/icons/mic.svg" alt='mic'></img>
         <span className={styles.startRecordingText}>Iniciar gravação de voz</span>
       </div>
       <div className={styles.descriptionWrapper}>

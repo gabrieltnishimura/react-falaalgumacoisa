@@ -99,10 +99,10 @@ function RecordingStep(props: {
       </div>
       <div className={styles.actionButtons}>
         <CircleButtonWrapper click={scrapRecordingFn}>
-          <img src="/trash.svg" alt="trashcan"></img>
+          <img src="/icons/trash.svg" alt="trashcan"></img>
         </CircleButtonWrapper>
         <CircleButtonWrapper click={confirmFn} success>
-          <svg fill="#ffffff" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg>
+          <img src="/icons/check.svg" alt="check"></img>
         </CircleButtonWrapper>
       </div>
     </>;

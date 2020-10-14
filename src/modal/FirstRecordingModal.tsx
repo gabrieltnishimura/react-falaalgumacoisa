@@ -30,7 +30,7 @@ function FirstRecordingModal(props: FirstRecordingModalInput) {
       subtitle="Gostaria de se identificar?"
       scoreChange="+ 100pts"
       headerIcon={{
-        src: '/icons/champagne.png',
+        src: '/icons/party.svg',
         alt: 'champagne cheers'
       }}
       primaryButton={{

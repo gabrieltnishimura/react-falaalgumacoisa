@@ -1,5 +1,11 @@
 import DashboardActionModel from './DashboardActionModel';
 
+export enum DashboardActionTypes {
+  REGISTER = 'REGISTER',
+  RECORDING = 'RECORDING',
+  EXTRA = 'EXTRA',
+}
+
 export default class DashboardModel {
   user: {
     name: string,
@@ -17,6 +23,11 @@ export default class DashboardModel {
       total: data?.score?.total,
     };
     this.actions = data?.actions?.map((action: any): DashboardActionModel => {
+      const bannerImg = action.type === DashboardActionTypes.REGISTER ?
+        '/icons/pencil.png' : action.type === DashboardActionTypes.EXTRA ? '/icons/people.svg' : action.banner?.src;
+      const bannerAlt = action.type === DashboardActionTypes.REGISTER ?
+        'lapis' : action.type === DashboardActionTypes.EXTRA ? 'pessoas' : action.banner?.alt;
+
       return {
         id: action.id,
         type: action.type,
@@ -28,8 +39,8 @@ export default class DashboardModel {
         },
         banner: action.banner ? {
           title: action.banner.title,
-          src: action.banner.src,
-          alt: action.banner.alt,
+          src: bannerImg,
+          alt: bannerAlt,
         } : undefined,
       }
     }) || [];

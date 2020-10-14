@@ -11,14 +11,9 @@
   justify-content: center;
 }
 
-.button > svg {
-  width: 6.5rem;
-  height: 7.5rem;
-}
-
 .button > img {
-  width: 6.5rem;
-  height: 7.5rem;
+  width: 5rem;
+  height: 5.5rem;
 }
 
 .success {

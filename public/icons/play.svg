@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="31px" viewBox="0 0 26 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Triangle</title>
+    <g id="Board" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Journey_6.0" transform="translate(-339.000000, -517.000000)" fill="#FFFFFF" stroke="#1C1C1C" stroke-width="3">
+            <g id="Group-8" transform="translate(20.000000, 486.000000)">
+                <g id="Group-2" transform="translate(299.000000, 16.000000)">
+                    <path d="M33,20.9154759 L45.3507144,41.5 L20.6492856,41.5 L33,20.9154759 Z" id="Triangle" transform="translate(33.000000, 30.500000) rotate(90.000000) translate(-33.000000, -30.500000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

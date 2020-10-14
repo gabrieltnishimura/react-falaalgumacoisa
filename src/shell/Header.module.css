@@ -21,3 +21,10 @@
   height: 3.5rem;
   width: 3.5rem;
 }
+
+.iconWrapper {
+  background-color: defaultWhite;
+  border-radius: 50%;
+  height: 3.5rem;
+  width: 3.5rem;
+}

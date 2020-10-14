@@ -37,11 +37,13 @@ function Header(props: {
           <LinkItem title={props.link.title} onclick={props.link.onClick} color="cobalt" ></LinkItem> :
           null}
         {props.icon ?
-          <img
-            className={styles.icon}
-            src={props.icon.src}
-            alt={props.icon.alt}
-            onClick={props.icon.onClick}></img> :
+          <div className={styles.iconWrapper}>
+            <img
+              className={styles.icon}
+              src={props.icon.src}
+              alt={props.icon.alt}
+              onClick={props.icon.onClick}></img>
+          </div> :
           null}
       </div>
     </header>
