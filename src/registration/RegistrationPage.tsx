@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../authentication/UserProvider';
+import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import BasicDataStep from './BasicDataStep';
 import NicknameRegistrationStep from './NicknameRegistrationStep';
 import { RegistrationDataModel } from './RegistrationDataModel';
@@ -16,12 +17,15 @@ export enum RegistrationSteps {
 function RegistrationPage() {
   const navigation = useNavigate();
   const authenticationState = useContext(UserContext);
+  const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null); // fix any
   const [step, setStep] = useState<RegistrationSteps>(RegistrationSteps.NICKNAME);
 
   useEffect(() => {
     const sendData = async (data: RegistrationDataModel) => {
-      await sendRegistrationData(data);
+      setLoading(true);
+      await sendRegistrationData(data); // needs toasty
+      navigation('/dashboard');
     }
 
     const fromSocialMedia = !!authenticationState.user?.email; // defines whether came from social media
@@ -40,7 +44,7 @@ function RegistrationPage() {
     if (step === RegistrationSteps.NICKNAME && registrationData?.name) {
       setStep(RegistrationSteps.BASIC);
     }
-  }, [step, registrationData, authenticationState]);
+  }, [step, registrationData, authenticationState, setLoading, navigation]);
 
   const completeNick = (data: any) => {
     setRegistrationData({
