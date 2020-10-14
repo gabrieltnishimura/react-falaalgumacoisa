@@ -22,19 +22,20 @@ const getNextStep = async (groupId: string): Promise<RecordingStateModel> => {
     groupId: group.title,
     id: phrase.id,
     text: phrase.text,
-    step: (found + 1),
+    currentStep: (found + 1),
     totalSteps: group.stepsCap,
   });
 }
 
 const confirmStep = async (state: RecordingStateModel, data: Blob): Promise<RecordingConfirmation> => {
   return await integrationService.sendRecording({
+    groupId: state.groupId,
     phraseId: state.phrase.id,
     sampleRate: 16000,
     additionalMetadata: {
       userAgent: navigator.userAgent,
-    },
-  }, state.groupId, data);
+    }
+  }, data);
 }
 
 const skipStep = async (state: RecordingStateModel, reason: string): Promise<void> => {

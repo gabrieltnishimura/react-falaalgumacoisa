@@ -6,6 +6,7 @@ import RecordingConfirmation from './models/RecordingConfirmation';
 import RecordingTextModel from './models/RecordingTextModel';
 
 interface RecordingMetadata {
+  groupId: string;
   phraseId: string;
   sampleRate: number;
   additionalMetadata?: {
@@ -14,9 +15,9 @@ interface RecordingMetadata {
 }
 
 export default class RecordingIntegrationService {
-  public sendRecording(recordingMetadata: RecordingMetadata, groupId: string, blob: Blob): Promise<RecordingConfirmation> {
+  public sendRecording(recordingMetadata: RecordingMetadata, blob: Blob): Promise<RecordingConfirmation> {
     const formData = this.parseFormData(recordingMetadata, blob);
-    const url = `${config.endpoints.sendRecording}/${groupId}`;
+    const url = config.endpoints.sendRecording;
     return post<string>(url, formData)
       .pipe(
         map((data: any) => new RecordingConfirmation(data)),
@@ -28,8 +29,8 @@ export default class RecordingIntegrationService {
     groupId: string,
     reason: string,
   ): Promise<void> {
-    const url = `${config.endpoints.skipRecording}/${groupId}`;
-    return post<void>(url, { phraseId: phrase.id, reason }).toPromise();
+    const url = config.endpoints.skipRecording;
+    return post<void>(url, { themeId: groupId, phraseId: phrase.id, reason }).toPromise();
   }
 
   public assignName(name: string): Promise<void> {
@@ -41,6 +42,7 @@ export default class RecordingIntegrationService {
     const formData = new FormData();
     const filename = getAudioFormat().indexOf('wav') ? 'file.webm' : 'file.wav';
     formData.set('file', blob, filename);
+    formData.set('themeId', data.groupId);
     formData.set('phraseId', data.phraseId);
     formData.set('sampleRate', data.sampleRate?.toString());
     if (data.additionalMetadata?.userAgent) {

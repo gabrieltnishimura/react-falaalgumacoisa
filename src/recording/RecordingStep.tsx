@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import CircleButtonWrapper from '../shared/buttons/CircleButtonWrapper';
 import TextBox from '../shared/TextBox';
 import Header from '../shell/Header';
-import LinkItem from '../shell/LinkItem';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import AudioPlayer from './AudioPlayer';
 import Microphone from './Microphone';
+import RecordingStateModel from './models/RecordingStateModel';
 import styles from './RecordingStep.module.css';
 import WordSuggestion, { WordSuggestionStyling } from './WordSuggestion';
 
@@ -34,29 +34,27 @@ const toastyTextMap = {
 }
 
 function RecordingStep(props: {
-  step: number,
-  totalSteps: number,
-  word: string,
+  data: RecordingStateModel,
   skip: () => void,
   finished: (data: Blob) => void,
 }) {
   const [blob, setBlob] = useState<Blob | null>(null);
-  const [state, setState] = useState<RecordingState>(RecordingState.NOT_RECORDED);
+  const [recordingState, setRecordingState] = useState<RecordingState>(RecordingState.NOT_RECORDED);
 
   useEffect(() => {
-    // reset state if word change
-    setState(RecordingState.NOT_RECORDED);
-  }, [props.step, props.word]);
+    // reset recordingState if word change
+    setRecordingState(RecordingState.NOT_RECORDED);
+  }, [props.data.currentStep, props.data.phrase.text]);
 
   const recordingFn = () => {
-    setState(RecordingState.RECORDING);
+    setRecordingState(RecordingState.RECORDING);
   };
 
   const recordedFn = (data: Blob) => {
     if (data) {
       setBlob(data);
     }
-    setState(RecordingState.RECORDED);
+    setRecordingState(RecordingState.RECORDED);
   };
 
   const confirmFn = () => {
@@ -67,7 +65,7 @@ function RecordingStep(props: {
   }
 
   const scrapRecordingFn = () => {
-    setState(RecordingState.NOT_RECORDED);
+    setRecordingState(RecordingState.NOT_RECORDED);
     setBlob(null);
   }
 
@@ -75,24 +73,21 @@ function RecordingStep(props: {
     backgroundImage: `url('${'/splash-cover.png'}')`
   }
 
-  const overlay = state === RecordingState.NOT_RECORDED || state === RecordingState.RECORDED ?
+  const overlay = recordingState === RecordingState.NOT_RECORDED || recordingState === RecordingState.RECORDED ?
     styles.notDimmed : styles.dimmed;
 
-  const hide = state === RecordingState.RECORDED ?
+  const hide = recordingState === RecordingState.RECORDED ?
     styles.hide : '';
 
-  const action = state === RecordingState.NOT_RECORDED || state === RecordingState.RECORDING ?
+  const action = recordingState === RecordingState.NOT_RECORDED || recordingState === RecordingState.RECORDING ?
     <>
-      <div className={styles.skipPhrase}>
-        <LinkItem title="Pular frase" onclick={props.skip} color="cobalt"></LinkItem>
-      </div>
       <div className={styles.toasty}>
-        <TextBox text={toastyTextMap[state]}></TextBox>
+        <TextBox text={toastyTextMap[recordingState]}></TextBox>
       </div>
     </> :
     <>
       <div className={styles.recordedToasty}>
-        <TextBox text={toastyTextMap[state]}></TextBox>
+        <TextBox text={toastyTextMap[recordingState]}></TextBox>
       </div>
       <div className={styles.player}>
         <AudioPlayer data={blob}></AudioPlayer>
@@ -111,19 +106,18 @@ function RecordingStep(props: {
     <div className={overlay}>
       <Header preventRedirect></Header>
       <WhitePageWrapper>
-        <div className={`${styles.content} ${recordingStyle[state]}`}>
+        <div className={`${styles.content} ${recordingStyle[recordingState]}`}>
           <div className={styles.suggestion}>
             <WordSuggestion
-              word={props.word}
-              step={props.step}
-              totalSteps={props.totalSteps}
-              highlight={wordHighlightMap[state]}
+              state={props.data}
+              skip={props.skip}
+              highlight={wordHighlightMap[recordingState]}
             ></WordSuggestion>
           </div>
           {action}
         </div>
       </WhitePageWrapper>
-      <div className={`${styles.footer} ${recordingStyle[state]}`} style={dynamicBackground}>
+      <div className={`${styles.footer} ${recordingStyle[recordingState]}`} style={dynamicBackground}>
         <div className={`${styles.microphone} ${hide}`}>
           <Microphone started={recordingFn} finished={recordedFn} />
         </div>

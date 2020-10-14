@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import FirstRecordingModal from '../modal/FirstRecordingModal';
 import FirstThemeModal from '../modal/FirstThemeModal';
-import SkipRecordingModal from '../modal/SkipRecordingModal';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import { RecordingModalTypes } from './models/RecordingModalTypes';
 import RecordingStateModel from './models/RecordingStateModel';
@@ -47,15 +46,8 @@ function RecordingPage() {
     }
   }
 
-  const skipPhrase = async () => {
-    setModalToShow(RecordingModalTypes.SKIP_RECORDING);
-  }
-
-  const onSkipPhraseModalClose = (skipped: boolean) => {
-    setModalToShow(null);
-    if (skipped) {
-      setNext(next + 1);
-    }
+  const skipPhraseFn = () => {
+    setNext(next + 1);
   }
 
   const onFirstRecordingModalClose = () => {
@@ -73,19 +65,16 @@ function RecordingPage() {
     return null;
   }
 
-  const modal =
-    showModal === RecordingModalTypes.FIRST_RECORDING ? <FirstRecordingModal onClose={onFirstRecordingModalClose} /> :
-      showModal === RecordingModalTypes.FIRST_THEME ? <FirstThemeModal onClose={closeThemeModalFn} /> :
-        showModal === RecordingModalTypes.SKIP_RECORDING ? <SkipRecordingModal recordingState={recordingState}
-          onClose={onSkipPhraseModalClose} /> : null;
+  const modal = showModal === RecordingModalTypes.FIRST_RECORDING ?
+    <FirstRecordingModal onClose={onFirstRecordingModalClose} /> :
+    showModal === RecordingModalTypes.FIRST_THEME ?
+      <FirstThemeModal onClose={closeThemeModalFn} /> : null;
 
   return (
     <>
       <RecordingStep
-        word={recordingState.phrase.text}
-        step={recordingState.step}
-        totalSteps={recordingState.totalSteps}
-        skip={skipPhrase}
+        data={recordingState}
+        skip={skipPhraseFn}
         finished={confirmRecordingFn}
       ></RecordingStep>
       {modal}

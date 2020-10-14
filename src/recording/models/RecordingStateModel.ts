@@ -3,7 +3,7 @@ import RecordingTextModel from './RecordingTextModel';
 export default class RecordingStateModel {
   groupId: string;
   phrase: RecordingTextModel;
-  step: number;
+  currentStep: number;
   totalSteps: number;
 
   constructor(data: any) {
@@ -12,7 +12,7 @@ export default class RecordingStateModel {
       id: data.id,
       text: data.text,
     };
-    this.step = data.step;
+    this.currentStep = data.currentStep;
     this.totalSteps = data.totalSteps;
   }
 }
