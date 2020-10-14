@@ -1,7 +1,9 @@
 export interface RegistrationDataModel {
   name?: string;
-  sex?: 'F' | 'M' | 'O';
+  gender?: 'F' | 'M' | 'O';
   age?: string;
   region?: string;
   dialect?: string;
+  username?: string;
+  password?: string;
 }

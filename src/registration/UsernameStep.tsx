@@ -6,6 +6,7 @@ import { useInput } from '../shared/useInput';
 import Header from '../shell/Header';
 import theme from '../shell/theme';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
+import { RegistrationDataModel } from './RegistrationDataModel';
 import styles from './RegistrationSteps.module.css';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function BasicDataStep(props: { onComplete: (data: any) => void, onBack: () => void }) {
+function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => void, onBack: () => void }) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const { value: username, bind: bindUsername } = useInput('');
   const { value: password, bind: bindPassword } = useInput('');

@@ -4,9 +4,10 @@ import RectangularButton from '../shared/buttons/RectangularButton';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import Header from '../shell/Header';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
+import { RegistrationDataModel } from './RegistrationDataModel';
 import styles from './RegistrationSteps.module.css';
 
-function NicknameRegistrationStep(props: { onComplete: (data: any) => void, onBack: () => void }) {
+function NicknameRegistrationStep(props: { onComplete: (data: RegistrationDataModel) => void, onBack: () => void }) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const [valid, setValid] = useState(false);
   const [name, setName] = useState('');

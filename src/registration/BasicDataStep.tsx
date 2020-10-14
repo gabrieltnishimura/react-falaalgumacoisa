@@ -7,6 +7,7 @@ import Header from '../shell/Header';
 import theme from '../shell/theme';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import { DialectSelectorModel, getRegionDropdown } from './RegionSelectorService';
+import { RegistrationDataModel } from './RegistrationDataModel';
 import styles from './RegistrationSteps.module.css';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,10 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function BasicDataStep(props: { onComplete: (data: any) => void, onBack: () => void }) {
+function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => void, onBack: () => void }) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const { value: sex, bind: bindSex } = useInput<'M' | 'F' | 'O' | ''>('');
-  const { value: age, bind: bindAgeInterval } = useInput<number>(0);
+  const { value: gender, bind: bindGender } = useInput<'M' | 'F' | 'O' | undefined>(undefined);
+  const { value: age, bind: bindAgeInterval } = useInput<string>('');
   const { value: region, bind: bindRegion } = useInput<string>('');
   const { value: dialect, bind: bindDialect } = useInput<string>('');
   const [dialectsList, setDialectsList] = useState<DialectSelectorModel[]>([]);
@@ -42,12 +43,12 @@ function BasicDataStep(props: { onComplete: (data: any) => void, onBack: () => v
       }
     }
 
-    setValid(Boolean(sex && age && region && dialect));
-  }, [sex, age, region, dialect])
+    setValid(Boolean(gender && age && region && dialect));
+  }, [gender, age, region, dialect])
 
   const handleSubmit = (evt?: any) => {
     evt.preventDefault();
-    props.onComplete({ sex, age, region, dialect });
+    props.onComplete({ gender, age, region, dialect });
   }
 
   return (<ThemeProvider theme={theme}>
@@ -62,7 +63,7 @@ function BasicDataStep(props: { onComplete: (data: any) => void, onBack: () => v
       <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
         <FormControl fullWidth>
           <InputLabel htmlFor="gender-selector">Gênero</InputLabel>
-          <Select fullWidth native {...bindSex} inputProps={{ name: 'gender', id: 'gender-selector', }}>
+          <Select fullWidth native {...bindGender} inputProps={{ name: 'gender', id: 'gender-selector', }}>
             <option aria-label="None" value="" />
             <option value="F">Feminino</option>
             <option value="M">Masculino</option>
