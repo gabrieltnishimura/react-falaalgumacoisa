@@ -34,14 +34,16 @@ function NicknameRegistrationStep(props: { onComplete: (data: RegistrationDataMo
   return (<>
     <Header></Header>
     <WhitePageWrapper>
-      <div>
-        <h1 className={styles.title}>Cadastro</h1>
-        <h2 className={styles.subtitle}>Com poucos dados você estará pronto para contribuir com a ciência brasileira e desfrutar de todas as funcionalidades desse aplicativo</h2>
+      <div className={styles.content}>
+        <div>
+          <h1 className={styles.title}>Cadastro</h1>
+          <h2 className={styles.subtitle}>Com poucos dados você estará pronto para contribuir com a ciência brasileira e desfrutar de todas as funcionalidades desse aplicativo</h2>
+        </div>
+        <div className={styles.formLabel}>
+          <span className={styles.label}>Identificação</span>
+        </div>
+        <FirstRecordingModalContent onChange={onChangeNameFn}></FirstRecordingModalContent>
       </div>
-      <div className={styles.formLabel}>
-        <span className={styles.label}>Identificação</span>
-      </div>
-      <FirstRecordingModalContent onChange={onChangeNameFn}></FirstRecordingModalContent>
       <div className={styles.actions}>
         <RectangularButton
           title="Continuar"

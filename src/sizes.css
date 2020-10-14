@@ -3,6 +3,12 @@
 @value headerPaddingTop: 2.5rem;
 @value headerPaddingBottom: 3.2rem;
 @value headerInnerSize: 4rem;
+/* 70px button + 18px bottomPadding  */
+@value singleButtonHeight: 8.8rem;
+/* 11px spacing + 2* (70px button) + 18px bottomPadding  */
+@value doubleButtonHeight: 16.9rem;
+@value buttonSpacing: 1.1rem;
+
 @value overlayDepth: 1;
 @value highlightDepth: 2;
 @value modalOverlayDepth: 3;

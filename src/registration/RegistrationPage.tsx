@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../authentication/UserProvider';
 import BasicDataStep from './BasicDataStep';
 import NicknameRegistrationStep from './NicknameRegistrationStep';
@@ -13,6 +14,7 @@ export enum RegistrationSteps {
 }
 
 function RegistrationPage() {
+  const navigation = useNavigate();
   const authenticationState = useContext(UserContext);
   const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null); // fix any
   const [step, setStep] = useState<RegistrationSteps>(RegistrationSteps.NICKNAME);
@@ -38,7 +40,7 @@ function RegistrationPage() {
     if (step === RegistrationSteps.NICKNAME && registrationData?.name) {
       setStep(RegistrationSteps.BASIC);
     }
-  }, [registrationData, authenticationState]);
+  }, [step, registrationData, authenticationState]);
 
   const completeNick = (data: any) => {
     setRegistrationData({
@@ -65,16 +67,24 @@ function RegistrationPage() {
     })
   }
 
-  const back = () => {
-    console.log('should go back');
+  const rollbackNick = () => {
+    navigation('/login');
+  }
+
+  const rollbackBasic = () => {
+    setStep(RegistrationSteps.NICKNAME);
+  }
+
+  const rollbackUser = () => {
+    setStep(RegistrationSteps.BASIC);
   }
 
   if (step === RegistrationSteps.NICKNAME) {
-    return <NicknameRegistrationStep onComplete={completeNick} onBack={back} />;
+    return <NicknameRegistrationStep onComplete={completeNick} onBack={rollbackNick} />;
   } else if (step === RegistrationSteps.BASIC) {
-    return <BasicDataStep onComplete={completeBasic} onBack={back} />;
+    return <BasicDataStep onComplete={completeBasic} onBack={rollbackBasic} />;
   } else if (step === RegistrationSteps.USERNAME) {
-    return <UsernameStep onComplete={completeUser} onBack={back} />;
+    return <UsernameStep onComplete={completeUser} onBack={rollbackUser} />;
   }
   return null;
 }

@@ -32,7 +32,7 @@ function LoginPage() {
   const { value: password, bind: bindPassword } = useInput('');
 
   const redirectNewUserFn = () => {
-    navigate('/login')
+    navigate('/cadastro')
   }
 
   const fbClick = () => {
