@@ -1,4 +1,4 @@
-@value canaryMustard, defaultWhite from "../colors.css";
+@value canaryMustard, defaultWhite from "../../colors.css";
 
 .container {
   position: relative;
@@ -40,9 +40,8 @@
 }
 
 .animatedCircle {
-  z-index: 1;
   position: absolute;
-  background-color: rgba(249, 87, 56);
+  background-color: rgba(249, 87, 56, 0.5);
   width: 11rem;
   height: 11rem;
   border-radius: 50%;

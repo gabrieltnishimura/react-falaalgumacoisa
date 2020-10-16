@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as wordSuggestionService from '../recording/WordSuggestionService';
+import * as wordSuggestionService from '../recording/suggestions/WordSuggestionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import useProgressiveImage from '../shared/useProgressiveImage';
 import Header from '../shell/Header';

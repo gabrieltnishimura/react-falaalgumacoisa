@@ -1,53 +1,78 @@
-@value headerSize from "../sizes.css";
-@value overlayDepth, highlightDepth from "../sizes.css";
-
-:root {
-  --page-footer-size: 17.5rem;
-  --page-footer-size-sm: 4.3rem;
-}
+@value headerSize, sidePadding, overlayDepth, underHighlightDepth, highlightDepth from "../sizes.css";
+@value firstToastyDelay, firstButtonDelay, firstBackgroundDelay from "../recording-constants.css";
+/* 50 (toasty) + 19 (toasty spacing) + 55 (half button) + 120 (background image) */
+@value pageFooterSize: 24.4rem;
+/* 49 (spacing) + 50 (toasty) + 23 (toasty spacing) + 92 (audio) + 36 (audio spacing) + 100 (buttons) + 24 (buttons spacing) */
+@value pageFooterSizeRecorded: 39rem;
+@value initialBackgroundHeight: 12rem;
+@value finalBackgroundHeight: 4.3rem;
 
 .content {
-  min-height: calc(100vh - var(--page-footer-size) - headerSize);
-  position: relative;
-}
-
-.content.recorded {
-  min-height: calc(100vh - var(--page-footer-size-sm) - headerSize);
-}
-
-.suggestion {
-  z-index: 3;
-}
-
-.footer {
-  background-position-y: 5.5rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: var(--page-footer-size);
-}
-
-.footer.recorded {
-  background-position-y: 0px;
-  height: var(--page-footer-size-sm);
-  background-size: cover;
+  min-height: calc(100vh - pageFooterSize - headerSize);
 }
 
 .microphone {
+  position: relative;
   display: flex;
   justify-content: center;
-  z-index: highlightDepth;
+  z-index: underHighlightDepth;
 }
 
-.skipPhrase {
-  margin-bottom: 11.8rem;
+.background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: initialBackgroundHeight;
+  width: 100%;
+  object-fit: cover;
+
+  opacity: 0;
+  animation: appearFromBottom 500ms forwards;
+  animation-delay: firstBackgroundDelay;
+  transition: height 300ms ease-in;
+  transition-delay: firstToastyDelay;
+}
+
+.footer {
+  height: pageFooterSize;
 }
 
 .toasty {
-  position: absolute;
-  bottom: 1.8rem;
-  width: 100%;
+  position: relative;
   z-index: highlightDepth;
+  padding: 0 sidePadding;
 }
+
+/* RECORDED: 0 - instantly remove mic and shrink background */
+
+.recorded .background {
+  height: finalBackgroundHeight;
+  transition: height 200ms ease-in;
+}
+
+/* RECORDED: 1 - expand content */
+.recorded .content {
+  min-height: calc(100vh - pageFooterSizeRecorded - headerSize);
+  transition: min-height 200ms ease-in;
+  transition-delay: 100ms; /* prevents flick of leaving mic */
+}
+
+.recorded .footer {
+  height: pageFooterSizeRecorded;
+}
+
+@keyframes appearFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+/* OVERLAY */
 
 .dimmed {
   position: relative;
@@ -63,22 +88,4 @@
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.5);
-}
-
-.hide {
-  display: none;
-}
-
-.player {
-  margin-top: 2.1rem;
-  margin-bottom: 4.3rem;
-}
-
-.actionButtons {
-  position: absolute;
-  bottom: 2.4rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }

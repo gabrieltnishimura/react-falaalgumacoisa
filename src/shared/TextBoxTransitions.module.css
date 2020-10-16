@@ -1,0 +1,27 @@
+.animations {
+  transition: opacity 300ms, transform 300ms;
+}
+
+.enter {
+  composes: animations;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.enterActive {
+  composes: animations;
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.exit {
+  composes: animations;
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.exitActive {
+  composes: animations;
+  opacity: 0;
+  transform: translateY(100%);
+}

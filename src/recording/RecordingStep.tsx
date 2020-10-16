@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import CircleButtonWrapper from '../shared/buttons/CircleButtonWrapper';
-import TextBox from '../shared/TextBox';
 import Header from '../shell/Header';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
-import AudioPlayer from './AudioPlayer';
-import Microphone from './Microphone';
+import AnimatedRecordedContent from './animations/AnimatedRecordedContent';
+import AnimatedTextBox from './animations/AnimatedTextBox';
+import AnimatedMicrophone from './audio/AnimatedMicrophone';
 import RecordingStateModel from './models/RecordingStateModel';
 import styles from './RecordingStep.module.css';
-import WordSuggestion, { WordSuggestionStyling } from './WordSuggestion';
+import WordSuggestion, { WordSuggestionStyling } from './suggestions/WordSuggestion';
 
 enum RecordingState {
   NOT_RECORDED,
@@ -69,60 +68,48 @@ function RecordingStep(props: {
     setBlob(null);
   }
 
-  const dynamicBackground = {
-    backgroundImage: `url('${'/splash-cover.png'}')`
-  }
-
   const overlay = recordingState === RecordingState.NOT_RECORDED || recordingState === RecordingState.RECORDED ?
     styles.notDimmed : styles.dimmed;
-
-  const hide = recordingState === RecordingState.RECORDED ?
-    styles.hide : '';
-
-  const action = recordingState === RecordingState.NOT_RECORDED || recordingState === RecordingState.RECORDING ?
-    <>
-      <div className={styles.toasty}>
-        <TextBox text={toastyTextMap[recordingState]}></TextBox>
-      </div>
-    </> :
-    <>
-      <div className={styles.recordedToasty}>
-        <TextBox text={toastyTextMap[recordingState]}></TextBox>
-      </div>
-      <div className={styles.player}>
-        <AudioPlayer data={blob}></AudioPlayer>
-      </div>
-      <div className={styles.actionButtons}>
-        <CircleButtonWrapper click={scrapRecordingFn}>
-          <img src="/icons/trash.svg" alt="trashcan"></img>
-        </CircleButtonWrapper>
-        <CircleButtonWrapper click={confirmFn} success>
-          <img src="/icons/check.svg" alt="check"></img>
-        </CircleButtonWrapper>
-      </div>
-    </>;
+  // const overlay = styles.dimmed;
 
   return (
     <div className={overlay}>
       <Header preventRedirect></Header>
-      <WhitePageWrapper>
-        <div className={`${styles.content} ${recordingStyle[recordingState]}`}>
-          <div className={styles.suggestion}>
-            <WordSuggestion
-              state={props.data}
-              skip={props.skip}
-              highlight={wordHighlightMap[recordingState]}
-            ></WordSuggestion>
-          </div>
-          {action}
+      <div className={`${recordingStyle[recordingState]}`}>
+        <div className={styles.content}>
+          <WhitePageWrapper>
+            <div className={styles.suggestion}>
+              <WordSuggestion
+                state={props.data}
+                skip={props.skip}
+                hideSkip={recordingState !== RecordingState.RECORDED}
+                highlight={wordHighlightMap[recordingState]}
+              ></WordSuggestion>
+            </div>
+          </WhitePageWrapper>
         </div>
-      </WhitePageWrapper>
-      <div className={`${styles.footer} ${recordingStyle[recordingState]}`} style={dynamicBackground}>
-        <div className={`${styles.microphone} ${hide}`}>
-          <Microphone started={recordingFn} finished={recordedFn} />
+        <div className={styles.footer} >
+          <div className={styles.toasty}>
+            <AnimatedTextBox text={toastyTextMap[recordingState]}
+              mount={recordingState !== RecordingState.RECORDED} />
+          </div>
+          <div className={styles.microphone}>
+            <AnimatedMicrophone started={recordingFn} finished={recordedFn}
+              mount={recordingState !== RecordingState.RECORDED} />
+          </div>
+          <WhitePageWrapper>
+            <AnimatedRecordedContent
+              mount={recordingState === RecordingState.RECORDED}
+              text={toastyTextMap[recordingState]}
+              blob={blob}
+              confirm={confirmFn}
+              trash={scrapRecordingFn}
+            />
+          </WhitePageWrapper>
+          <img className={styles.background} src="/splash-cover.png" alt="cover" />
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

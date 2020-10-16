@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { getAudioFormat, timeToDuration } from '../shared/utils';
+import { getAudioFormat, timeToDuration } from '../../shared/utils';
 import styles from './AudioPlayer.module.css';
 
 function AudioPlayer(props: { data: Blob | null }) {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import SkipRecordingModal from '../modal/SkipRecordingModal';
-import LinkItem from '../shell/LinkItem';
+import SkipRecordingModal from '../../modal/SkipRecordingModal';
+import LinkItem from '../../shell/LinkItem';
+import RecordingStateModel from '../models/RecordingStateModel';
 import contextStyles from './DisableContextMenu.module.css';
-import RecordingStateModel from './models/RecordingStateModel';
 import styles from './WordSuggestion.module.css';
 
 export enum WordSuggestionStyling {
@@ -14,6 +14,7 @@ export enum WordSuggestionStyling {
 function WordSuggestion(props: {
   state: RecordingStateModel,
   highlight: WordSuggestionStyling,
+  hideSkip: boolean,
   skip: () => void,
 }) {
   const [showSkipModal, setShowSkipModal] = useState(false);
@@ -33,6 +34,9 @@ function WordSuggestion(props: {
     styles.darkWord : props.highlight === WordSuggestionStyling.NORMAL ?
       styles.normalWord : styles.lightWord;
 
+  const fontSize = props.state.phrase.text.length > 80 ?
+    '3.6rem' : '4rem';
+
   return (
     <>
       <div>
@@ -42,13 +46,13 @@ function WordSuggestion(props: {
               {props.state.currentStep}/{props.state.totalSteps}
             </span>
           </div>
-          <span className={`${contextStyles.disable} ${wordStyling}`}>
+          <span className={`${contextStyles.disable} ${wordStyling}`} style={{ fontSize }}>
             {props.state.phrase.text}
           </span>
         </div>
-        <div className={styles.skipPhrase}>
+        {props.hideSkip ? <div className={styles.skipPhrase}>
           <LinkItem title="Pular frase" onclick={showSkipModalFn} color="cobalt"></LinkItem>
-        </div>
+        </div> : null}
       </div>
       {showSkipModal ?
         <SkipRecordingModal recordingState={props.state} onClose={onSkipPhraseModalClose} /> : null}

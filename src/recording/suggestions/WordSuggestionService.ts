@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
-import { get } from '../apis/api';
-import config from '../config';
-import { RecordingGroupModel } from './models/RecordingGroupModel';
+import { get } from '../../apis/api';
+import config from '../../config';
+import { RecordingGroupModel } from '../models/RecordingGroupModel';
 
 const getGroup = async (
   groupId: string,

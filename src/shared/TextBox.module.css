@@ -1,4 +1,9 @@
+@value highlightDepth from "../sizes.css";
+@value firstToastyDelay from "../recording-constants.css";
+
 .box {
+  z-index: highlightDepth;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,4 +19,8 @@
   font-size: 1.6rem;
   letter-spacing: -0.032rem;
   color: rgb(117, 117, 117);
+}
+
+.hide {
+  display: none;
 }

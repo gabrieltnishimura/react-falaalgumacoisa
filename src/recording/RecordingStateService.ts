@@ -1,7 +1,7 @@
 import RecordingConfirmation from './models/RecordingConfirmation';
 import RecordingStateModel from './models/RecordingStateModel';
 import RecordingIntegrationService from './RecordingIntegrationService';
-import * as wordSuggestionService from './WordSuggestionService';
+import * as wordSuggestionService from './suggestions/WordSuggestionService';
 
 const integrationService = new RecordingIntegrationService();
 
