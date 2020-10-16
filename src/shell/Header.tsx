@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ConfirmExitModal from '../modal/ConfirmExitModal';
 import AppLogo from './AppLogo';
 import styles from './Header.module.css';
 import LinkItem from './LinkItem';
@@ -18,10 +19,18 @@ function Header(props: {
   preventRedirect?: boolean,
 }) {
   const navigate = useNavigate();
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const redirectHome = () => {
     if (props.preventRedirect) {
-      console.log("Prevented redirect");
+      setShowConfirmModal(true);
     } else {
+      navigate('/');
+    }
+  }
+
+  const closeModalFn = (confirmedExit: boolean) => {
+    setShowConfirmModal(false);
+    if (confirmedExit) {
       navigate('/');
     }
   }
@@ -46,6 +55,7 @@ function Header(props: {
           </div> :
           null}
       </div>
+      {showConfirmModal ? <ConfirmExitModal onClose={closeModalFn} /> : null}
     </header>
   );
 }
