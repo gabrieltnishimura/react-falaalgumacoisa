@@ -12,7 +12,7 @@ function HomePage() {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const navigate = useNavigate();
   const [animate, setAnimate] = useState(false);
-  const imageLoaded = useProgressiveImage('/splash-cover.png')
+  const imageLoaded = useProgressiveImage('/splash-cover.jpg')
   const [randomizedTheme, setRandomizedTheme] = useState<string>('');
 
   useEffect(() => {

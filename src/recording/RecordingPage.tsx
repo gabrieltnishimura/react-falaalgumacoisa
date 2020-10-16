@@ -37,7 +37,7 @@ function RecordingPage() {
       }
     }
     fetchState();
-  }, [setLoading, theme]);
+  }, [setLoading, theme, navigate]);
 
   // loads once per recordingGroup in-memory change
   useEffect(() => {
