@@ -1,4 +1,4 @@
-import { getAudioFormat } from '../shared/utils';
+import { getAudioFormat } from '../../shared/utils';
 export interface AudioInfo {
   url: string;
   blob: Blob;

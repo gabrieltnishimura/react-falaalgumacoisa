@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import LinkItem from '../shell/LinkItem';
+import LinkItem from '../../shell/LinkItem';
 import styles from './NameRandomizer.module.css';
 import NameRandomizerService from './NameRandomizerService';
 

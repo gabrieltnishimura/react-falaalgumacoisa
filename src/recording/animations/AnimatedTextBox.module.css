@@ -1,0 +1,19 @@
+@value firstToastyDelay from "../../recording-constants.css";
+
+.initial {
+  padding-bottom: 1.9rem;
+  opacity: 0;
+  animation: appearFromTop 500ms forwards;
+  animation-delay: firstToastyDelay;
+}
+
+@keyframes appearFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import LongPressButton from './LongPressButton';
 import VoiceRecordingService from './VoiceRecordingService';
 
-interface MicrophoneInput {
+export interface MicrophoneInput {
   started: () => void;
   finished: (e: Blob) => void;
 }

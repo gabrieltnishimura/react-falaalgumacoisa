@@ -10,7 +10,8 @@
 @value buttonSpacing: 1.1rem;
 
 @value overlayDepth: 1;
-@value highlightDepth: 2;
-@value modalOverlayDepth: 3;
-@value modalWindowDepth: 4;
-@value loaderDepth: 5;
+@value underHighlightDepth: 2;
+@value highlightDepth: 3;
+@value modalOverlayDepth: 4;
+@value modalWindowDepth: 5;
+@value loaderDepth: 6;

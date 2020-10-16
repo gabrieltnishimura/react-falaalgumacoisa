@@ -1,10 +1,10 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from '@material-ui/core';
 import { createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
-import NameRandomizer from '../recording/NameRandomizer';
 import { useInput } from '../shared/useInput';
 import theme from '../shell/theme';
 import styles from './FirstRecordingModalContent.module.css';
+import NameRandomizer from './randomizer/NameRandomizer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -1,5 +1,5 @@
-@value cobalt, recordingTextGrey from "../colors.css";
-@value highlightDepth from "../sizes.css";
+@value cobalt, recordingTextGrey from "../../colors.css";
+@value highlightDepth from "../../sizes.css";
 
 .wrapper {
   position: relative;
