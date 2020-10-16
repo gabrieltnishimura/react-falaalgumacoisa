@@ -14,11 +14,11 @@ const getGroup = async (
   ).toPromise();
 }
 
-const getRandomGroup = async (): Promise<RecordingGroupModel> => {
+const getRandomGroup = async (): Promise<string> => {
   const url = config.endpoints.randomPhraseGroup;
   return await get<any>(url).pipe(
-    map((data): RecordingGroupModel => { // move this to backend
-      return new RecordingGroupModel(data);
+    map((data): string => { // move this to backend
+      return data?.title;
     }),
   ).toPromise();
 }

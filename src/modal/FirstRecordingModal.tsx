@@ -15,12 +15,13 @@ function FirstRecordingModal(props: FirstRecordingModalInput) {
   const chooseNamingFn = async () => {
     const name = namingData.firstName || namingData.randomName;
     if (!name) {
-      console.log('Anon user');
+      props.onClose();
       return;
     }
 
     setLoading(true);
     await assignName(name);
+    setLoading(false);
     props.onClose();
   }
 

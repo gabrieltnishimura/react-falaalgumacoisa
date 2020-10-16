@@ -3,46 +3,87 @@ import { useNavigate, useParams } from 'react-router-dom';
 import FirstRecordingModal from '../modal/FirstRecordingModal';
 import FirstThemeModal from '../modal/FirstThemeModal';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
+import { RecordingGroupItemModel, RecordingGroupModel } from './models/RecordingGroupModel';
 import { RecordingModalTypes } from './models/RecordingModalTypes';
 import RecordingStateModel from './models/RecordingStateModel';
 import * as stateService from './RecordingStateService';
 import RecordingStep from './RecordingStep';
+import * as wordSuggestionService from './suggestions/WordSuggestionService';
 
 function RecordingPage() {
   const navigate = useNavigate();
   const { theme } = useParams();
 
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const [recordingState, setRecordingState] = useState<RecordingStateModel | null>(null)
+  const [recordingState, setRecordingState] = useState<RecordingStateModel | null>(null);
+  const [recordingGroup, setRecordingGroup] = useState<RecordingGroupModel | null>(null);
+
   const [next, setNext] = useState<number>(0);
-  // modals
   const [showModal, setModalToShow] = useState<RecordingModalTypes | null>(null);
 
+  // only loads once per flow
   useEffect(() => {
     setLoading(true);
     const fetchState = async () => {
-      const step = await stateService.getNextStep(theme);
-      setRecordingState(step);
-      setLoading(false);
+      try {
+        const group = await wordSuggestionService.getGroup(theme);
+        setRecordingGroup(group);
+        const step = stateService.findNextStep(group);
+        setRecordingState(step);
+        setLoading(false);
+      } catch (err) {
+        navigate('/dashboard');
+        // @todo send toasty that error occured
+      }
     }
     fetchState();
-  }, [next, setLoading, theme]);
+  }, [setLoading, theme]);
 
-  const confirmRecordingFn = async (blob: Blob) => {
-    if (!blob || !recordingState) {
+  // loads once per recordingGroup in-memory change
+  useEffect(() => {
+    if (!recordingGroup) {
       return;
     }
 
-    setLoading(true);
-    const result = await stateService.confirmStep(recordingState, blob);
-    const type = result.modal?.type;
-    if (type) {
-      setLoading(false);
-      setModalToShow(type);
-    } else if (result.hasNext) {
-      setNext(next + 1); // refreshes useEffect forcibly
+    const step = stateService.findNextStep(recordingGroup);
+    setRecordingState(step);
+  }, [recordingGroup])
+
+  const confirmRecordingFn = async (blob: Blob) => {
+    if (!blob || !recordingState || !recordingGroup) {
+      return;
+    }
+
+    if (recordingState.currentStep === recordingState.totalSteps) {
+      setLoading(true);
+      const result = await stateService.confirmStep(recordingState, blob); // add queue
+      const type = result.modal?.type;
+      if (type) {
+        setLoading(false);
+        setModalToShow(type);
+      } else if (result.hasNext) {
+        setNext(next + 1); // refreshes useEffect forcibly
+      } else {
+        navigate('/dashboard');
+      }
     } else {
-      navigate('/dashboard');
+      const phrases = (recordingGroup.phrases as RecordingGroupItemModel[]).map((phrase, index): RecordingGroupItemModel => {
+        if (phrase.id === recordingState?.phrase.id) {
+          phrase.spoken = true;
+
+          const modalEvent = recordingGroup.modalEvents.find(event => event.eventIndex === (index + 1));
+          if (modalEvent) {
+            setModalToShow(modalEvent.type);
+          }
+        }
+        return phrase;
+      });
+
+      stateService.confirmStep(recordingState, blob); // add queue
+      setRecordingGroup({
+        ...recordingGroup,
+        phrases,
+      });
     }
   }
 
@@ -52,7 +93,6 @@ function RecordingPage() {
 
   const onFirstRecordingModalClose = () => {
     setModalToShow(null);
-    setNext(next + 1); // refreshes useEffect forcibly
   }
 
   const closeThemeModalFn = () => {
