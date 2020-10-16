@@ -1,12 +1,11 @@
 import RecordingConfirmation from './models/RecordingConfirmation';
+import { RecordingGroupModel } from './models/RecordingGroupModel';
 import RecordingStateModel from './models/RecordingStateModel';
 import RecordingIntegrationService from './RecordingIntegrationService';
-import * as wordSuggestionService from './suggestions/WordSuggestionService';
 
 const integrationService = new RecordingIntegrationService();
 
-const getNextStep = async (groupId: string): Promise<RecordingStateModel> => {
-  const group = await wordSuggestionService.getGroup(groupId);
+const findNextStep = (group: RecordingGroupModel) => {
   let found = -1;
   const phrase = group.phrases.find((phrase, index) => {
     found = index;
@@ -47,7 +46,7 @@ const assignName = async (name: string): Promise<void> => {
 }
 
 export {
-  getNextStep,
+  findNextStep,
   confirmStep,
   skipStep,
   assignName,

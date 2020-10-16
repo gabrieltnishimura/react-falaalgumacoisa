@@ -26,7 +26,7 @@ function HomePage() {
   useEffect(() => {
     const getRandomGroup = async () => {
       const theme = await wordSuggestionService.getRandomGroup();
-      setRandomizedTheme(theme.title);
+      setRandomizedTheme(theme);
     };
     getRandomGroup();
   }, []);
