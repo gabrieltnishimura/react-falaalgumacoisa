@@ -2,9 +2,10 @@
 @value headerSize from "../sizes.css";
 
 @value bannerHeight: 20rem;
-@value firstStepTimestamp: 0.8s;
+@value firstStepDelay: 1.1s;
+@value firstStepDuration: 0.8s;
 @value secondStepDuration: 0.3s;
-@value leftSecondAnimation: left secondStepDuration ease-out;
+@value secondStepDelay: 1.7s;
 
 .banner {
   height: bannerHeight;
@@ -18,20 +19,18 @@
 
 .carossel {
   height: calc(100vh - bannerHeight);
+  background-color: cobalt;
 }
 
-.header {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: defaultWhite;
-  width: 100%;
-}
+.logo {
+  height: 67%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.animation .header {
-  left: 0;
-  transition: leftSecondAnimation;
-  transition-delay: firstStepTimestamp;
+  opacity: 1;
+  animation: dissapear firstStepDuration forwards;
+  animation-delay: firstStepDelay;
 }
 
 .splash {
@@ -41,48 +40,61 @@
   left: 0;
   width: 100%;
   height: calc(100vh - bannerHeight);
+
+  animation: disappearToLeft secondStepDuration forwards;
+  animation-delay: secondStepDelay;
 }
 
-.animation .splash {
-  left: -100%;
-  transition: leftSecondAnimation;
-  transition-delay: firstStepTimestamp;
-}
+.header {
+  position: absolute;
+  top: 0;
+  background-color: defaultWhite;
+  width: 100%;
 
-.logo {
-  height: 67%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.animation .logo {
   opacity: 0;
-  transition: opacity firstStepTimestamp ease-out;
+  animation: appearFromRight secondStepDuration forwards;
+  animation-delay: secondStepDelay;
 }
 
 .content {
   position: absolute;
   top: bannerHeight;
-  left: 100%;
+  background-color: defaultWhite;
+  opacity: 0;
   width: 100%;
   height: calc(100vh - bannerHeight);
+
+  animation: appearFromRight secondStepDuration forwards;
+  animation-delay: secondStepDelay;
 }
 
-.animation .content {
-  left: 0;
-  transition: leftSecondAnimation;
-  transition-delay: firstStepTimestamp;
+@keyframes appearFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }
 
-.skip .header {
-  left: 0;
+@keyframes dissapear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-.skip .splash {
-  left: -100%;
-}
-
-.skip .content {
-  left: 0;
+@keyframes disappearToLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
 }
