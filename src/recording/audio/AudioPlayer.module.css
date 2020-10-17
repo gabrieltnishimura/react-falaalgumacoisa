@@ -37,8 +37,12 @@
 .progress {
   height: 100%;
   width: 0%;
-  transition: width 0.1s linear;
+  transition: width 1000ms linear;
   background-color: rgb(8, 190, 225);
+}
+
+.progressReset {
+  transition: none;
 }
 
 .timeProgress {
