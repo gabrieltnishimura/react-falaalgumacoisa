@@ -35,6 +35,7 @@
 
 .footer {
   height: pageFooterSize;
+  position: relative;
 }
 
 .toasty {
