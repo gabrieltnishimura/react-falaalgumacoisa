@@ -1,0 +1,83 @@
+@value defaultWhite from "../colors.css";
+
+@value menuWidth: 4.1rem;
+@value leftOverlayPadding: 2.6rem;
+@value rightOverlayPadding: 2.1rem;
+@value topOverlayPadding: 3.5rem;
+@value bottomOverlayPadding: 4.2rem;
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: menuWidth;
+  height: calc(100% - topOverlayPadding - bottomOverlayPadding);
+  width: calc(100% - menuWidth - leftOverlayPadding - rightOverlayPadding);
+  padding: topOverlayPadding rightOverlayPadding bottomOverlayPadding leftOverlayPadding;
+  background-color: defaultWhite;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.8rem;
+}
+
+.closeIcon {
+  height: 1.9rem;
+  width: 1.9rem;
+}
+
+.content {
+  height: calc(100vh - topOverlayPadding - 2.4rem - 2.8rem - bottomOverlayPadding - 4.2rem - 1.3rem);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: -0.036rem;
+  text-decoration: none;
+  color: rgb(50, 50, 50);
+  margin-bottom: 2.2rem;
+}
+
+.delete {
+  color: rgb(249, 87, 56);
+}
+
+.centeredContent {
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.unregisteredImage {
+  padding-bottom: 4rem;
+}
+
+.unregisteredMessageWrapper {
+  width: 75%;
+  text-align: center;
+  padding-bottom: 4rem;
+}
+
+.unregisteredMessage {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.04rem;
+  color: rgb(174, 165, 165);
+}
+
+.registrationButton {
+  width: 100%;
+  padding-bottom: 1.7rem;
+}
