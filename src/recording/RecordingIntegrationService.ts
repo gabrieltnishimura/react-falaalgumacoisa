@@ -33,11 +33,6 @@ export default class RecordingIntegrationService {
     return post<void>(url, { themeId: groupId, phraseId: phrase.id, reason }).toPromise();
   }
 
-  public assignName(name: string): Promise<void> {
-    const url = config.endpoints.assignName;
-    return post<void>(url, { name }).toPromise();
-  }
-
   private parseFormData(data: RecordingMetadata, blob: Blob): FormData {
     const formData = new FormData();
     const filename = getAudioFormat().indexOf('wav') ? 'file.webm' : 'file.wav';

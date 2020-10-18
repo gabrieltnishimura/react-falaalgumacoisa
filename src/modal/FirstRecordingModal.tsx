@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { assignName } from "../recording/RecordingStateService";
 import { LoaderContext, LoaderContextInterface } from "../shared/loader/LoaderContext";
-import FirstRecordingModalContent, { FirstRecordingModalOutput } from './FirstRecordingModalContent';
+import FirstRecordingModalContent from './FirstRecordingModalContent';
 import Modal from './Modal';
 
 interface FirstRecordingModalInput {
@@ -10,19 +10,32 @@ interface FirstRecordingModalInput {
 
 function FirstRecordingModal(props: FirstRecordingModalInput) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const [namingData, setNamingData] = useState<FirstRecordingModalOutput>({ namingChoice: null });
+  const [namingData, setNamingData] = useState('');
+  const [anon, setAnon] = useState(false);
 
   const chooseNamingFn = async () => {
-    const name = namingData.firstName || namingData.randomName;
-    if (!name) {
+    if (anon || !namingData) {
       props.onClose();
       return;
     }
 
     setLoading(true);
-    await assignName(name);
+    await assignName(namingData);
     setLoading(false);
     props.onClose();
+  }
+
+  const validFn = (name: string) => {
+    setAnon(false);
+    setNamingData(name);
+  }
+
+  const invalidFn = () => {
+    setNamingData('');
+  }
+
+  const anonFn = () => {
+    setAnon(true);
   }
 
   return (
@@ -36,10 +49,13 @@ function FirstRecordingModal(props: FirstRecordingModalInput) {
       }}
       primaryButton={{
         title: 'Continuar',
-        enabled: !!namingData,
+        enabled: (!!namingData || anon),
         onClick: chooseNamingFn,
       }}>
-      <FirstRecordingModalContent onChange={setNamingData} allowAnon />
+      <FirstRecordingModalContent
+        onValid={validFn}
+        onInvalid={invalidFn}
+        onAnon={anonFn} />
     </Modal>
   );
 }
