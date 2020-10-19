@@ -1,3 +1,4 @@
+import * as registrationIntegrationService from '../registration/RegistrationIntegrationService';
 import RecordingConfirmation from './models/RecordingConfirmation';
 import { RecordingGroupModel } from './models/RecordingGroupModel';
 import RecordingStateModel from './models/RecordingStateModel';
@@ -42,7 +43,7 @@ const skipStep = async (state: RecordingStateModel, reason: string): Promise<voi
 }
 
 const assignName = async (name: string): Promise<void> => {
-  return await integrationService.assignName(name);
+  return await registrationIntegrationService.assignName(name);
 }
 
 export {

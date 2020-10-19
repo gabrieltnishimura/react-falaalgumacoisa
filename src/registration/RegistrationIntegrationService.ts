@@ -7,6 +7,18 @@ const sendRegistrationData = (data: RegistrationDataModel) => {
   return post<void>(url, data).toPromise();
 }
 
+const assignName = (name: string): Promise<void> => {
+  const url = config.endpoints.assignName;
+  return post<void>(url, { name }).toPromise();
+}
+
+const validateNickname = (nickname: string): Promise<void> => {
+  const url = config.endpoints.validateNickname;
+  return post<void>(url, { nickname }).toPromise();
+}
+
 export {
   sendRegistrationData,
+  assignName,
+  validateNickname,
 };

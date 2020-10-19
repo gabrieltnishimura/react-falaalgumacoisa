@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import FirstRecordingModalContent, { FirstRecordingModalOutput } from '../modal/FirstRecordingModalContent';
+import FirstRecordingModalContent from '../modal/FirstRecordingModalContent';
 import RectangularButton from '../shared/buttons/RectangularButton';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import Header from '../shell/Header';
@@ -16,15 +16,15 @@ function NicknameRegistrationStep(props: { onComplete: (data: RegistrationDataMo
     setLoading(false);
   });
 
-  const onChangeNameFn = (data: FirstRecordingModalOutput) => {
-    const chosenName =
-      (data.namingChoice === 'NAME' && data.firstName) ||
-      (data.namingChoice === 'RANDOM_NICKNAME' && data.randomName);
-
+  const onChangeNameFn = (chosenName: string) => {
     setValid(Boolean(chosenName));
     if (chosenName) {
       setName(chosenName);
     }
+  }
+
+  const onInvalidFn = () => {
+    setValid(false);
   }
 
   const handleSubmit = () => {
@@ -42,7 +42,9 @@ function NicknameRegistrationStep(props: { onComplete: (data: RegistrationDataMo
         <div className={styles.formLabel}>
           <span className={styles.label}>Identificação</span>
         </div>
-        <FirstRecordingModalContent onChange={onChangeNameFn}></FirstRecordingModalContent>
+        <FirstRecordingModalContent
+          onValid={onChangeNameFn}
+          onInvalid={onInvalidFn}></FirstRecordingModalContent>
       </div>
       <div className={styles.actions}>
         <RectangularButton
