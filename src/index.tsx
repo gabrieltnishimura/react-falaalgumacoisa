@@ -5,7 +5,10 @@ import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-Sentry.init({ dsn: "https://88ecbb9d767c4289b32bc7b4548b88e7@o433447.ingest.sentry.io/5388631" });
+Sentry.init({
+  dsn: "https://88ecbb9d767c4289b32bc7b4548b88e7@o433447.ingest.sentry.io/5388631",
+  release: "falaalgumacoisa@" + process.env.npm_package_version,
+});
 
 // Start the app when DOM is ready.
 document.addEventListener('DOMContentLoaded', async () => {

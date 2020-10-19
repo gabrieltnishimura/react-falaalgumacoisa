@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { authenticationService } from '../authentication/AuthenticationService';
 import { UserContext } from '../authentication/UserProvider';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import BasicDataStep from './BasicDataStep';
@@ -63,7 +64,8 @@ function RegistrationPage() {
     })
   }
 
-  const completeUser = (data: any) => {
+  const completeUser = async (data: any) => {
+    await authenticationService.createUserWithEmailAndPassword(data.username, data.password);
     setRegistrationData({
       ...registrationData,
       username: data.username,

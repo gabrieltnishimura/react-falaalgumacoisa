@@ -51,7 +51,7 @@ function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => voi
           <span className={styles.label}>Dados da conta</span>
         </div>
         <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
-          <TextField fullWidth label="Usuário" name="username" {...bindUsername} />
+          <TextField fullWidth label="Email" name="username" {...bindUsername} />
           <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword} />
           <TextField type="password" fullWidth label="Confirmar senha" name="confirm-password" {...bindConfirmPassword} />
         </form>
