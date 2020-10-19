@@ -17,8 +17,14 @@ const validateNickname = (nickname: string): Promise<void> => {
   return post<void>(url, { nickname }).toPromise();
 }
 
+const deleteUser = (reason: string): Promise<void> => {
+  const url = config.endpoints.deleteUser;
+  return post<void>(url, { reason }).toPromise();
+}
+
 export {
   sendRegistrationData,
   assignName,
   validateNickname,
+  deleteUser,
 };

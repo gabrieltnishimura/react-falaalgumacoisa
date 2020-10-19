@@ -22,6 +22,7 @@ const config = {
     assignName: process.env.REACT_APP_ASSIGN_NAME_URL || 'NOT_SET',
     registration: process.env.REACT_APP_REGISTRATION_URL || 'NOT_SET',
     validateNickname: process.env.REACT_APP_VALIDATE_NICKNAME_URL || 'NOT_SET',
+    deleteUser: process.env.REACT_APP_DELETE_USER_URL || 'NOT_SET',
     dashboard: process.env.REACT_APP_DASHBOARD_URL || 'NOT_SET',
   },
 };
