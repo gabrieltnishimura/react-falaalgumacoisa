@@ -1,15 +1,24 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { authenticationService } from '../authentication/AuthenticationService';
 import { UserContext } from '../authentication/UserProvider';
 import RectangularButton from '../shared/buttons/RectangularButton';
+import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import AppLogo from '../shell/AppLogo';
 import LinkItem from '../shell/LinkItem';
 import styles from './DashboardMenu.module.css';
 
 function DashboardMenu(props: { close: () => void }) {
+  const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const navigate = useNavigate();
   const authenticationState = useContext(UserContext);
   const isAuthenticated = Boolean(authenticationState.user);
+
+  const logout = async () => {
+    setLoading(true);
+    await authenticationService.logout();
+    navigate('/');
+  }
 
   const content = isAuthenticated ? <nav className={styles.navigation}>
     <ul className={`${styles.list} ${styles.content}`}>
@@ -21,7 +30,7 @@ function DashboardMenu(props: { close: () => void }) {
       <li><a href="about.asp" className={styles.link}>Conheça mais sobre nós</a></li>
     </ul>
     <ul className={styles.list}>
-      <li><a href="default.asp" className={styles.link}>Sair da conta</a></li>
+      <li><button className={styles.link} onClick={logout}>Sair da conta</button></li>
       <li><a href="about.asp" className={`${styles.link} ${styles.delete}`}>Excluir conta</a></li>
     </ul>
   </nav> : <div className={styles.centeredContent}>

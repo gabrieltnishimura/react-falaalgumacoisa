@@ -18,13 +18,19 @@ const authenticationService = {
     auth.signInWithRedirect(provider);
   },
   loginWithUsername: (username: string, password: string) => {
-    console.log('trying to login with: ', username, password);
+    return auth.signInWithEmailAndPassword(username, password);
+  },
+  createUserWithEmailAndPassword: (username: string, password: string) => {
+    return auth.createUserWithEmailAndPassword(username, password);
   },
   anonymousLogin: () => {
     console.log('logging in anonymously');
-    auth.signInAnonymously()
+    return auth.signInAnonymously()
   },
-  logout: auth.signOut,
+  logout: () => {
+    console.log('logging off');
+    return auth.signOut();
+  },
   setUser: (user: UserModel) => {
     _user = user;
   },
