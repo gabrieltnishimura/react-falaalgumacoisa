@@ -20,6 +20,11 @@ function DashboardMenu(props: { close: () => void }) {
     navigate('/');
   }
 
+  const deleteUser = async () => {
+    setLoading(true);
+    navigate('/excluir');
+  }
+
   const content = isAuthenticated ? <nav className={styles.navigation}>
     <ul className={`${styles.list} ${styles.content}`}>
       <li><a href="default.asp" className={styles.link}>Placar dos líderes</a></li>
@@ -31,7 +36,7 @@ function DashboardMenu(props: { close: () => void }) {
     </ul>
     <ul className={styles.list}>
       <li><button className={styles.link} onClick={logout}>Sair da conta</button></li>
-      <li><a href="about.asp" className={`${styles.link} ${styles.delete}`}>Excluir conta</a></li>
+      <li><button className={`${styles.link} ${styles.delete}`} onClick={deleteUser}>Excluir conta</button></li>
     </ul>
   </nav> : <div className={styles.centeredContent}>
       <div className={styles.unregisteredImage}>

@@ -31,6 +31,9 @@ const authenticationService = {
     console.log('logging off');
     return auth.signOut();
   },
+  delete: () => {
+    return auth.currentUser?.delete();
+  },
   setUser: (user: UserModel) => {
     _user = user;
   },

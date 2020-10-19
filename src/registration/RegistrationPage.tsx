@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authenticationService } from '../authentication/AuthenticationService';
 import { UserContext } from '../authentication/UserProvider';
@@ -21,56 +21,66 @@ function RegistrationPage() {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null); // fix any
   const [step, setStep] = useState<RegistrationSteps>(RegistrationSteps.NICKNAME);
+  const [usernameStepError, setUsernameStepError] = useState({ username: '', password: '' });
 
-  useEffect(() => {
-    const sendData = async (data: RegistrationDataModel) => {
-      setLoading(true);
-      await sendRegistrationData(data); // needs toasty
-      navigation('/dashboard');
-    }
-
-    const fromSocialMedia = !!authenticationState.user?.email; // defines whether came from social media
-
-    if (fromSocialMedia) {
-      if (step === RegistrationSteps.BASIC && registrationData?.age) {
-        sendData(registrationData);
-      }
-    } else {
-      if (step === RegistrationSteps.BASIC && registrationData?.age) {
-        setStep(RegistrationSteps.USERNAME);
-      } else if (step === RegistrationSteps.USERNAME && registrationData?.username) {
-        sendData(registrationData);
-      }
-    }
-    if (step === RegistrationSteps.NICKNAME && registrationData?.name) {
-      setStep(RegistrationSteps.BASIC);
-    }
-  }, [step, registrationData, authenticationState, setLoading, navigation]);
+  const sendData = async (data: RegistrationDataModel) => {
+    setLoading(true);
+    await sendRegistrationData(data); // needs toasty
+    navigation('/dashboard');
+  }
 
   const completeNick = (data: any) => {
     setRegistrationData({
       ...registrationData,
       name: data.name,
-    })
+    });
+    setStep(RegistrationSteps.BASIC);
   }
 
   const completeBasic = (data: any) => {
-    setRegistrationData({
+    const newRegistrationData = {
       ...registrationData,
       gender: data.gender,
       age: data.age,
       region: data.region,
       dialect: data.dialect,
-    })
+    };
+    setRegistrationData(newRegistrationData);
+
+    if (!!authenticationState?.user?.email) { // defines whether came from social media
+      sendData(newRegistrationData);
+    } else {
+      setStep(RegistrationSteps.USERNAME);
+    }
   }
 
   const completeUser = async (data: any) => {
-    await authenticationService.createUserWithEmailAndPassword(data.username, data.password);
-    setRegistrationData({
+    setLoading(true);
+    await firebaseRegistration(data.username, data.password);
+    const newRegistrationData = {
       ...registrationData,
       username: data.username,
       password: data.password,
-    })
+    };
+    setRegistrationData(newRegistrationData);
+    sendData(newRegistrationData);
+  }
+
+  const firebaseRegistration = async (username: string, password: string) => {
+    try {
+      await authenticationService.createUserWithEmailAndPassword(username, password);
+    } catch (err) {
+      console.error(err);
+      if (err.code === 'auth/email-already-in-use') {
+        setLoading(false);
+        setUsernameStepError({
+          username: 'Email em uso',
+          password: '',
+        });
+      } else {
+        navigation('/error');
+      }
+    }
   }
 
   const rollbackNick = () => {
@@ -90,7 +100,7 @@ function RegistrationPage() {
   } else if (step === RegistrationSteps.BASIC) {
     return <BasicDataStep onComplete={completeBasic} onBack={rollbackBasic} />;
   } else if (step === RegistrationSteps.USERNAME) {
-    return <UsernameStep onComplete={completeUser} onBack={rollbackUser} />;
+    return <UsernameStep onComplete={completeUser} onBack={rollbackUser} showError={usernameStepError} />;
   }
   return null;
 }

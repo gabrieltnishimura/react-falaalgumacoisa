@@ -19,7 +19,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => void, onBack: () => void }) {
+function BasicDataStep(props: {
+  onComplete: (data: RegistrationDataModel) => void,
+  onBack: () => void,
+  showError: { username: string, password: string },
+}) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const { value: username, bind: bindUsername } = useInput('');
   const { value: password, bind: bindPassword } = useInput('');
@@ -29,7 +33,8 @@ function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => voi
 
   useEffect(() => {
     setLoading(false);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setValid(Boolean(username && password && confirmPassword && password === confirmPassword));
@@ -51,7 +56,8 @@ function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => voi
           <span className={styles.label}>Dados da conta</span>
         </div>
         <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
-          <TextField fullWidth label="Email" name="username" {...bindUsername} />
+          <TextField fullWidth label="Email" name="username" {...bindUsername}
+            error={!!props.showError.username} helperText={props.showError.username} />
           <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword} />
           <TextField type="password" fullWidth label="Confirmar senha" name="confirm-password" {...bindConfirmPassword} />
         </form>

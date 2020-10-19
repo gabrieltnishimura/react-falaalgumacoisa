@@ -6,6 +6,7 @@ import UnauthenticatedRoute from './authentication/UnauthenticatedRoute';
 import { UserContext } from './authentication/UserProvider';
 import DashboardPage from './dashboard/DashboardPage';
 import LeaderboardPage from './dashboard/LeaderboardPage';
+import DeleteUserPage from './delete-user/DeleteUserPage';
 import ErrorPage from './error/ErrorPage';
 import HomePage from './home/HomePage';
 import LoginPage from './login/LoginPage';
@@ -26,6 +27,7 @@ function App() {
         <AutoAuthenticationRoute path="/cadastro" component={<RegistrationPage />} isAuth={isAuth}></AutoAuthenticationRoute>
         <ProtectedRoute path="/dashboard" component={<DashboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/ranking" component={<LeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
+        <ProtectedRoute path="/excluir" component={<DeleteUserPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <AutoAuthenticationRoute path="/fala/:theme" component={<RecordingPage />} isAuth={isAuth}></AutoAuthenticationRoute>
       </Routes>
     </Router>
