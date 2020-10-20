@@ -22,7 +22,7 @@ function WordSuggestion(props: {
   const [showMaxSkipsModal, setShowMaxSkipsModal] = useState(false);
 
   const showSkipModalFn = () => {
-    if (props.state.currentStep == props.state.totalSteps) {
+    if (props.state.currentStep === props.state.totalSteps) {
       setShowMaxSkipsModal(true);
     } else {
       setShowSkipModal(true);
