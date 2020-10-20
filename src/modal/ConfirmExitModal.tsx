@@ -1,20 +1,22 @@
 import React from "react";
+import AttentionIcon from "../shared/icons/AttentionIcon";
 import Modal from './Modal';
 
 function ConfirmExitModal(props: { onClose: (confirm: boolean) => void }) {
   return (
     <Modal
-      title="Deseja sair?"
-      subtitle="Seu progresso foi salvo até o momento."
+      title="Você realmente deseja voltar para o início?"
+      subtitle="Você poderá retomar nesse passo quando quiser"
+      headerIcon={<AttentionIcon></AttentionIcon>}
       primaryButton={{
-        title: 'Sair',
+        title: 'Não',
         enabled: true,
-        onClick: () => props.onClose(true),
+        onClick: () => props.onClose(false),
       }}
       secondaryButton={{
-        title: 'Voltar',
+        title: 'Sim',
         disabled: false,
-        onClick: () => props.onClose(false),
+        onClick: () => props.onClose(true),
       }}>
     </Modal>
   );

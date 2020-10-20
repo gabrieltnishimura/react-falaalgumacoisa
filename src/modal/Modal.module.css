@@ -1,12 +1,10 @@
 @value headerSize, sidePadding, modalOverlayDepth, modalWindowDepth from "../sizes.css";
 @value someOtherGray, graphiteGray, defaultWhite, comemorativeYellow, cozyOrange from "../colors.css";
 
-:root {
-  --modal-side-spacing: 2.6rem;
-  --modal-inner-padding: 1.6rem;
-  --modal-with-header-size: 5.8rem;
-  --modal-without-header-size: 2.5rem;
-}
+@value modalSideSpacing: 2.6rem;
+@value modalInnerPadding: 1.6rem;
+@value modalWithHeaderSize: 5.8rem;
+@value modalWithoutHeaderSize: 2.5rem;
 
 .overlay {
   position: fixed;
@@ -14,8 +12,8 @@
   top: 0;
   z-index: modalOverlayDepth;
   height: 100%;
-  width: calc(100% - 2 * var(--modal-side-spacing));
-  padding: 0 var(--modal-side-spacing);
+  width: calc(100% - 2 * modalSideSpacing);
+  padding: 0 modalSideSpacing;
 
   background: rgba(55, 55, 55, 0.85);
 }
@@ -27,27 +25,35 @@
   height: 100%;
 }
 
+.modalContainer {
+  position: relative;
+}
+
 .content {
-  height: calc(100% - 2 * headerSize);
   position: relative;
   z-index: modalWindowDepth;
-
-  padding: var(--modal-with-header-size) var(--modal-inner-padding) var(--modal-inner-padding);
-  background-color: defaultWhite;
+  min-height: calc(100vh - 4 * headerSize);
 }
 
 .noContent {
-  height: calc(100% - 5 * headerSize);
+  min-height: unset;
+}
+
+.body {
+  background-color: defaultWhite;
+  padding: modalWithHeaderSize modalInnerPadding modalInnerPadding;
+  opacity: 0;
+  animation: appearFromBottom 300ms forwards;
 }
 
 .noHeader {
-  padding: var(--modal-without-header-size) var(--modal-inner-padding) var(--modal-inner-padding);
+  padding: modalWithoutHeaderSize modalInnerPadding modalInnerPadding;
 }
 
 .header {
   position: absolute;
   top: -5rem;
-  left: calc(50% - var(--modal-with-header-size));
+  left: calc(50% - modalWithHeaderSize);
   height: 10rem;
   width: 10rem;
 
@@ -57,6 +63,9 @@
 
   border-radius: 50%;
   background-color: comemorativeYellow;
+
+  opacity: 0;
+  animation: appearFromTop 300ms forwards;
 }
 
 .header > img {
@@ -95,12 +104,28 @@
   color: graphiteGray;
 }
 
-.actions {
-  width: calc(100% - 2 * var(--modal-inner-padding));
-  position: absolute;
-  bottom: var(--modal-inner-padding);
-}
-
 .actions > * {
   margin-top: 1.1rem;
+}
+
+@keyframes appearFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes appearFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }

@@ -22,6 +22,7 @@ function SkipRecordingModal(props: SkipRecordingInput) {
 
     setLoading(true);
     await skipStep(props.recordingState, skipReason.reason);
+    setLoading(false);
     props.onClose(true);
   }
 

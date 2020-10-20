@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MaxSkipsModal from '../../modal/MaxSkipsModal';
 import SkipRecordingModal from '../../modal/SkipRecordingModal';
 import LinkItem from '../../shell/LinkItem';
 import RecordingStateModel from '../models/RecordingStateModel';
@@ -18,9 +19,14 @@ function WordSuggestion(props: {
   skip: () => void,
 }) {
   const [showSkipModal, setShowSkipModal] = useState(false);
+  const [showMaxSkipsModal, setShowMaxSkipsModal] = useState(false);
 
   const showSkipModalFn = () => {
-    setShowSkipModal(true);
+    if (props.state.currentStep == props.state.totalSteps) {
+      setShowMaxSkipsModal(true);
+    } else {
+      setShowSkipModal(true);
+    }
   }
 
   const onSkipPhraseModalClose = (skipped: boolean) => {
@@ -56,6 +62,8 @@ function WordSuggestion(props: {
       </div>
       {showSkipModal ?
         <SkipRecordingModal recordingState={props.state} onClose={onSkipPhraseModalClose} /> : null}
+      {showMaxSkipsModal ?
+        <MaxSkipsModal onClose={() => setShowMaxSkipsModal(false)} /> : null}
     </>
   );
 }
