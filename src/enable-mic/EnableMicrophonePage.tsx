@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactComponent as MicrophoneIcon } from '../assets/icons/mic.svg';
+import * as recordingService from '../recording/audio/VoiceRecordingService';
 import RectangularButton from '../shared/buttons/RectangularButton';
 import BigCircleIconWrapper from '../shared/icons/BigCircleIconWrapper';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
@@ -10,14 +11,29 @@ import styles from './EnableMicrophonePage.module.css';
 
 function EnableMicrophonePage() {
   const navigate = useNavigate();
+  const location: any = useLocation();
+  const theme: string = location?.state?.theme;
+
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
 
   useEffect(() => {
     setLoading(false);
+
+    if (!theme) {
+      console.log('Invalid direct navigation');
+      navigate('/');
+    }
   });
 
   const triggerMicrophonePrompt = () => {
-    navigate(-1);
+    recordingService.setupRecording().then(
+      (ok) => {
+        navigate(`/fale/${theme}`);
+      },
+      (nok) => {
+        navigate('/erro-mic-desabilitado');
+      },
+    );
   }
 
   return (

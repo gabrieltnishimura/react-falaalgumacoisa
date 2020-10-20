@@ -7,13 +7,13 @@ import { LoaderProvider } from './shared/loader/LoaderContext';
 
 function App() {
   return (
-    <Sentry.ErrorBoundary fallback={<ErrorPage />}>
-      <UserProvider>
-        <LoaderProvider>
+    <UserProvider>
+      <LoaderProvider>
+        <Sentry.ErrorBoundary fallback={<ErrorPage />}>
           <Application />
-        </LoaderProvider>
-      </UserProvider>
-    </Sentry.ErrorBoundary>
+        </Sentry.ErrorBoundary>
+      </LoaderProvider>
+    </UserProvider>
   );
 }
 

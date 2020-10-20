@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { map } from 'rxjs/operators';
 import { authenticationService } from '../authentication/AuthenticationService';
 
 const initialization = (config: AxiosRequestConfig): AxiosInstance => {
@@ -11,14 +10,13 @@ const initialization = (config: AxiosRequestConfig): AxiosInstance => {
         return Promise.resolve(config);
       }
 
-      return user.getToken().pipe(
-        map(token => {
+      return user.getToken()
+        .then((token => {
           if (token) {
             config.headers['Authorization'] = 'Bearer ' + token;
           }
           return config;
-        }),
-      ).toPromise();
+        }));
     },
     error => {
       Promise.reject(error)

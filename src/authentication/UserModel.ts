@@ -1,5 +1,4 @@
 import * as firebase from 'firebase/app';
-import { from, Observable, of } from 'rxjs';
 
 export default class UserModel {
   public name: string = '';
@@ -24,11 +23,11 @@ export default class UserModel {
     return this;
   }
 
-  public getToken(): Observable<string> {
+  public getToken(): Promise<string> {
     if (!this.user) {
-      return of();
+      return Promise.resolve('');
     }
 
-    return from(this.user.getIdToken());
+    return this.user.getIdToken();
   }
 }
