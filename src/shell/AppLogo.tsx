@@ -12,7 +12,7 @@ function AppLogo(props: { black?: boolean, yellow?: boolean, splash?: boolean })
   const splash = props.splash ? styles.splash : '';
 
   return (
-    <h1 className={`${styles.logo} ${color} ${splash}`}>fala alguma coisa</h1>
+    <h1 className={`${styles.logo} ${color} ${splash}`}>fale alguma coisa</h1>
   );
 }
 
