@@ -27,8 +27,32 @@ const isEmail = (text: string): boolean => {
   return re.test(String(text).toLowerCase());
 }
 
+
+const checkMicPermissions = (ok: () => void, nok: () => void) => {
+  const permissionsApi = navigator?.permissions?.query;
+  if (!permissionsApi) {
+    nok();
+    return;
+  }
+
+  navigator?.permissions?.query({ name: 'microphone' })
+    .then((permission) => {
+      if (!permission) {
+        nok();
+      }
+
+      console.log('Mic permission:', permission.state); // granted, denied, prompt
+      if (permission.state === 'granted') {
+        ok();
+      } else {
+        nok();
+      }
+    });
+}
+
 export {
   getAudioFormat,
   timeToDuration,
   isEmail,
+  checkMicPermissions,
 };

@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import RectangularButton from '../shared/buttons/RectangularButton';
 import AttentionIcon from '../shared/icons/AttentionIcon';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
-import Header from '../shell/Header';
+import ErrorHeader from '../shell/ErrorHeader';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import styles from './ErrorPage.module.css';
 
 function ErrorPage() {
-  const navigate = useNavigate();
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
 
   useEffect(() => {
@@ -16,12 +14,12 @@ function ErrorPage() {
   });
 
   const back = () => {
-    navigate(-1);
+    window.location.href = "/";
   }
 
   return (
     <>
-      <Header />
+      <ErrorHeader />
       <WhitePageWrapper>
         <div className={styles.content}>
           <AttentionIcon></AttentionIcon>

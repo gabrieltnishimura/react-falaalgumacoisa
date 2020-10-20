@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as wordSuggestionService from '../recording/suggestions/WordSuggestionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import useProgressiveImage from '../shared/useProgressiveImage';
+import { checkMicPermissions } from '../shared/utils';
 import Header from '../shell/Header';
 import HomeContent from './HomeContent';
 import styles from './HomePage.module.css';
@@ -32,7 +33,15 @@ function HomePage() {
   }, []);
 
   const redirectRecordingFn = () => {
-    navigate(`/fale/${randomizedTheme}`);
+    const grantedFn = () => {
+      navigate(`/fale/${randomizedTheme}`);
+    }
+
+    const notGrantedFn = () => {
+      navigate(`/habilitar-microfone`, { state: { theme: randomizedTheme } });
+    }
+
+    checkMicPermissions(grantedFn, notGrantedFn);
   }
 
   const redirectLoginFn = () => {

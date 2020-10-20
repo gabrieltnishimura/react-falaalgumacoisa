@@ -1,4 +1,3 @@
-import { map } from 'rxjs/operators';
 import { post } from '../apis/api';
 import config from '../config';
 import { getAudioFormat } from '../shared/utils';
@@ -15,13 +14,11 @@ interface RecordingMetadata {
 }
 
 export default class RecordingIntegrationService {
-  public sendRecording(recordingMetadata: RecordingMetadata, blob: Blob): Promise<RecordingConfirmation> {
+  public async sendRecording(recordingMetadata: RecordingMetadata, blob: Blob): Promise<RecordingConfirmation> {
     const formData = this.parseFormData(recordingMetadata, blob);
     const url = config.endpoints.sendRecording;
-    return post<string>(url, formData)
-      .pipe(
-        map((data: any) => new RecordingConfirmation(data)),
-      ).toPromise();
+    const response = await post<string>(url, formData).toPromise();
+    return new RecordingConfirmation(response);
   }
 
   public skipPhrase(

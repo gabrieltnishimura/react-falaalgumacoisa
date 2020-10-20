@@ -27,14 +27,14 @@ function LongPressButton(props: LongPressButtonInput) {
       return;
     }
 
-    const mouseDown = fromEvent<PressedType>(imageRef.current, 'mousedown');
-    const touchStart = fromEvent<PressedType>(imageRef.current, 'touchstart');
+    const mouseDown = fromEvent<PressedType>(imageRef.current, 'mousedown', { passive: true });
+    const touchStart = fromEvent<PressedType>(imageRef.current, 'touchstart', { passive: true });
     const pressedSubscription = race(mouseDown, touchStart)
       .pipe(debounceTime(1))
       .subscribe(componentPressed);
 
-    const mouseUp = fromEvent<PressedType>(imageRef.current, 'mouseup');
-    const touchEnd = fromEvent<PressedType>(imageRef.current, 'touchend');
+    const mouseUp = fromEvent<PressedType>(imageRef.current, 'mouseup', { passive: true });
+    const touchEnd = fromEvent<PressedType>(imageRef.current, 'touchend', { passive: true });
     const unpressedSubscription = race(mouseUp, touchEnd)
       .pipe(
         debounceTime(1),
