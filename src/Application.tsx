@@ -28,7 +28,7 @@ function App() {
         <ProtectedRoute path="/dashboard" component={<DashboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/ranking" component={<LeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/excluir" component={<DeleteUserPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
-        <AutoAuthenticationRoute path="/fala/:theme" component={<RecordingPage />} isAuth={isAuth}></AutoAuthenticationRoute>
+        <AutoAuthenticationRoute path="/fale/:theme" component={<RecordingPage />} isAuth={isAuth}></AutoAuthenticationRoute>
       </Routes>
     </Router>
   );

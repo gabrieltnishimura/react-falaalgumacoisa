@@ -9,7 +9,7 @@ function SplashContent() {
     <div className={styles.content}>
       <div>
         <div className={styles.horizontallyCenter}>
-          <img src={'logo.png'} className={styles.logo} alt='Logo fala alguma coisa'></img>
+          <img src={'logo.png'} className={styles.logo} alt='Logo'></img>
         </div>
         <div className={styles.logoWrapper}>
           <AppLogo yellow splash></AppLogo>

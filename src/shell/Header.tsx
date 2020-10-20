@@ -37,7 +37,7 @@ function Header(props: {
   return (
     <header className={styles.header}>
       <div className={styles.logoWrapper} onClick={redirectHome}>
-        <img src="/logo_light.png" alt='Logo fala alguma coisa'></img>
+        <img src="/logo_light.png" alt='Logo'></img>
         <AppLogo black={props.logoColor === 'black'}></AppLogo>
       </div>
       <div>

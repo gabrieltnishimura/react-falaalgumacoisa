@@ -32,7 +32,7 @@ function HomePage() {
   }, []);
 
   const redirectRecordingFn = () => {
-    navigate(`/fala/${randomizedTheme}`);
+    navigate(`/fale/${randomizedTheme}`);
   }
 
   const redirectLoginFn = () => {
