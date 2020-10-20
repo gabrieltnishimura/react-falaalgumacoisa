@@ -11,8 +11,7 @@ function Header(props: {
     onClick: () => void,
   },
   icon?: {
-    src: string,
-    alt: string,
+    component: any,
     onClick: () => void,
   },
   logoColor?: 'black' | 'white',
@@ -46,12 +45,8 @@ function Header(props: {
           <LinkItem title={props.link.title} onclick={props.link.onClick} color="cobalt" ></LinkItem> :
           null}
         {props.icon ?
-          <div className={styles.iconWrapper}>
-            <img
-              className={styles.icon}
-              src={props.icon.src}
-              alt={props.icon.alt}
-              onClick={props.icon.onClick}></img>
+          <div className={styles.iconWrapper} onClick={props.icon.onClick}>
+            {props.icon.component}
           </div> :
           null}
       </div>

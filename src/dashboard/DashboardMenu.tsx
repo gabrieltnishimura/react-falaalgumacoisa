@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ReactComponent as CloseIcon } from '../assets/icons/close.svg';
+import { ReactComponent as SadIcon } from '../assets/icons/sad.svg';
 import { authenticationService } from '../authentication/AuthenticationService';
 import { UserContext } from '../authentication/UserProvider';
 import RectangularButton from '../shared/buttons/RectangularButton';
@@ -40,7 +42,7 @@ function DashboardMenu(props: { close: () => void }) {
     </ul>
   </nav> : <div className={styles.centeredContent}>
       <div className={styles.unregisteredImage}>
-        <img src="/icons/sad.svg" alt="crying face" />
+        <SadIcon />
       </div>
       <div className={styles.unregisteredMessageWrapper}>
         <span className={styles.unregisteredMessage}>Você ainda não está cadastrado</span>
@@ -57,7 +59,7 @@ function DashboardMenu(props: { close: () => void }) {
     <div className={styles.overlay}>
       <div className={styles.header}>
         <AppLogo black />
-        <img className={styles.closeIcon} onClick={props.close} src="/icons/close.svg" alt="close" />
+        <CloseIcon className={styles.closeIcon} onClick={props.close} />
       </div>
       {content}
     </div>

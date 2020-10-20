@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ReactComponent as ProfileIcon } from '../assets/icons/profile.svg';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import CardPageWrapper from '../shell/CardPageWrapper';
 import Header from '../shell/Header';
@@ -64,7 +65,7 @@ function DashboardPage() {
     <div>
       <div className={styles.background}></div>
       <Header logoColor="black"
-        icon={{ src: '/icons/profile.svg', alt: 'profile picture', onClick: toggleMenu }} ></Header>
+        icon={{ component: <ProfileIcon />, onClick: toggleMenu }} ></Header>
       <CardPageWrapper>
         <div className={styles.card}>
           <section>

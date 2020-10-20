@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { ReactComponent as PauseIcon } from '../../assets/icons/pause.svg';
+import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
 import { getAudioFormat, timeToDuration } from '../../shared/utils';
 import styles from './AudioPlayer.module.css';
 
@@ -81,11 +83,7 @@ function AudioPlayer(props: { data: Blob | null }) {
         <span>{time}</span>
       </div>
       <div onClick={toggleIsPlaying} className={styles.button}>
-        {isPlaying ? <img
-          src="/icons/pause.svg"
-          alt="pause button" /> : <img
-            src="/icons/play.svg"
-            alt="play button" />}
+        {isPlaying ? <PauseIcon /> : <PlayIcon />}
       </div>
       <audio className={styles.hide} preload="auto" ref={audioRef} onEnded={toggleIsPlaying} >
         <source src={url} type={getAudioFormat()} />

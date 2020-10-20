@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import { CSSTransition } from "react-transition-group";
+import { ReactComponent as CheckIcon } from '../../assets/icons/check.svg';
+import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
 import CircleButtonWrapper from '../../shared/buttons/CircleButtonWrapper';
 import TextBox from '../../shared/TextBox';
 import AudioPlayer from '../audio/AudioPlayer';
 import transitions from './AnimatedRecordedContentTransitions.module.css';
-
 function AnimatedRecordedContent(props: {
   mount: boolean,
   text: string,
@@ -34,12 +35,12 @@ function AnimatedRecordedContent(props: {
           <div className={transitions.actionButtons}>
             <div>
               <CircleButtonWrapper click={props.trash}>
-                <img src="/icons/trash.svg" alt="trashcan"></img>
+                <TrashIcon />
               </CircleButtonWrapper>
             </div>
             <div>
               <CircleButtonWrapper click={props.confirm} success>
-                <img src="/icons/check.svg" alt="check"></img>
+                <CheckIcon />
               </CircleButtonWrapper>
             </div>
           </div>
