@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as PauseIcon } from '../../assets/icons/pause.svg';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
-import { getAudioFormat, timeToDuration } from '../../shared/utils';
+import { getAudioFormat } from '../../shared/utils';
 import styles from './AudioPlayer.module.css';
+import { fromEvent } from "rxjs";
+import { debounceTime } from "rxjs/operators";
 
 function AudioPlayer(props: { data: Blob | null }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [time, setTime] = useState('0:00');
+  const [time, setTime] = useState(0);
   const [percent, setPercent] = useState(0);
+  const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const url = (props.data && window.URL.createObjectURL(props.data)) || '';
 
@@ -15,42 +18,25 @@ function AudioPlayer(props: { data: Blob | null }) {
     if (!audioRef || !audioRef.current) {
       return;
     }
-    let timer: NodeJS.Timeout;
-    let duration = 0;
 
-    const advance = (duration: any, element: any) => {
-      const increment = 10 / duration;
-      setPercent(Math.min(increment * element.currentTime * 10, 100));
-      setTime(timeToDuration(element.currentTime));
-      startTimer(duration, audioRef.current);
-    }
-
-    const startTimer = (duration: any, element: any) => {
-      if (percent < 100) {
-        timer = setTimeout(() => {
-          advance(duration, element);
-        }, 100);
-      } else {
-        clearTimeout(timer);
-      }
-    }
+    const audioProgressStream = fromEvent(audioRef.current, 'timeupdate')
+      .pipe(debounceTime(100))
+      .subscribe((_event: any) => {
+        if (time !== Math.round(_event.target.currentTime)){
+          setTime(Math.round(_event.target.currentTime))
+          setPercent(Math.round((Math.round(_event.target.currentTime)/duration) * 100));
+        }
+    });
 
     audioRef.current.addEventListener("durationchange", (event: any) => {
-      duration = event.target.duration
+      setDuration(Math.round(event.target.duration))
     }, false);
 
-    audioRef.current.addEventListener("playing", (_event: any) => {
-      if (!_event || !_event.target) {
-        return;
-      }
-
-      advance(duration, audioRef.current);
+    audioRef.current.addEventListener("ended", (_event) => {
+      setIsPlaying(false)
     });
-
-    audioRef.current.addEventListener("pause", (_event) => {
-      clearTimeout(timer);
-    });
-  }, [percent]);
+    return () => audioProgressStream.unsubscribe();
+  })
 
   const toggleIsPlaying = () => {
     if (!audioRef || !audioRef.current) {
@@ -63,7 +49,6 @@ function AudioPlayer(props: { data: Blob | null }) {
       audio.play();
     } else {
       audio.pause();
-      audio.currentTime = 0;
     }
     setIsPlaying(nextIsPlaying);
   };
@@ -76,11 +61,11 @@ function AudioPlayer(props: { data: Blob | null }) {
     <div className={styles.player}>
       <div className={styles.progressWrapper}>
         <div className={styles.bar}>
-          <div className={styles.progress} style={percentStyle}></div>
+          <div className={`${styles.progress} ${time === 0 ? styles.progressReset : ''}`} style={percentStyle}></div>
         </div>
       </div>
       <div className={styles.timeProgress}>
-        <span>{time}</span>
+        <span>{new Date(time * 1000).toISOString().substr(14, 5)}</span>
       </div>
       <div onClick={toggleIsPlaying} className={styles.button}>
         {isPlaying ? <PauseIcon /> : <PlayIcon />}
