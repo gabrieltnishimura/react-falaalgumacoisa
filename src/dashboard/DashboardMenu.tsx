@@ -22,15 +22,25 @@ function DashboardMenu(props: { close: () => void }) {
     navigate('/');
   }
 
-  const deleteUser = async () => {
+  const deleteUser = () => {
     setLoading(true);
     navigate('/excluir');
   }
 
+  const leaderboard = () => {
+    setLoading(true);
+    navigate('/placar-dos-lideres');
+  }
+
+  const friendsLeaderboard = () => {
+    setLoading(true);
+    navigate('/placar-dos-amigos');
+  }
+
   const content = isAuthenticated ? <nav className={styles.navigation}>
     <ul className={`${styles.list} ${styles.content}`}>
-      <li><a href="default.asp" className={styles.link}>Placar dos líderes</a></li>
-      <li><a href="news.asp" className={styles.link}>Placar dos amigos</a></li>
+      <li><button className={styles.link} onClick={leaderboard}>Placar dos líderes</button></li>
+      <li><button className={styles.link} onClick={friendsLeaderboard}>Placar dos amigos</button></li>
       <li><a href="contact.asp" className={styles.link}>Alterar meus dados cadastrais</a></li>
       <li><a href="about.asp" className={styles.link}>Indique um amigo</a></li>
       <li><a href="about.asp" className={styles.link}>Faça uma sugestão</a></li>
@@ -40,7 +50,8 @@ function DashboardMenu(props: { close: () => void }) {
       <li><button className={styles.link} onClick={logout}>Sair da conta</button></li>
       <li><button className={`${styles.link} ${styles.delete}`} onClick={deleteUser}>Excluir conta</button></li>
     </ul>
-  </nav> : <div className={styles.centeredContent}>
+  </nav> :
+    <div className={styles.centeredContent}>
       <div className={styles.unregisteredImage}>
         <SadIcon />
       </div>

@@ -1,6 +1,11 @@
 @value cobalt, defaultWhite, darkerGrey from "../colors.css";
+@value headerSize from "../sizes.css";
 
 .roundedCorners {
   border-top-left-radius: 1.2rem;
   border-top-right-radius: 1.2rem;
+}
+
+.useAllHeight {
+  min-height: calc(100vh - headerSize);
 }

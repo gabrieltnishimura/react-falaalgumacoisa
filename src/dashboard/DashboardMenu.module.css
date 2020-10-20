@@ -1,3 +1,4 @@
+@value overlayDepth from "../sizes.css";
 @value defaultWhite from "../colors.css";
 
 @value menuWidth: 4.1rem;
@@ -8,6 +9,7 @@
 
 .overlay {
   position: absolute;
+  z-index: overlayDepth;
   top: 0;
   left: menuWidth;
   height: calc(100% - topOverlayPadding - bottomOverlayPadding);

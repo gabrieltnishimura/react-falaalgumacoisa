@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ReactComponent as ProfileIcon } from '../assets/icons/profile.svg';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import CardPageWrapper from '../shell/CardPageWrapper';
-import Header from '../shell/Header';
+import DashboardHeader from '../shell/DashboardHeader';
 import DashboardActionModel from './DashboardActionModel';
-import DashboardMenu from './DashboardMenu';
 import DashboardModel, { DashboardActionTypes } from './DashboardModel';
 import styles from './DashboardPage.module.css';
 import DashboardService from './DashboardService';
@@ -13,7 +11,6 @@ const dashboardService = new DashboardService();
 
 function DashboardPage() {
   const [data, setData] = useState<DashboardModel | null>(null);
-  const [showMenu, setShowMenu] = useState(false);
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
 
   useEffect(() => {
@@ -27,10 +24,6 @@ function DashboardPage() {
 
   const percentStyle = {
     width: 50 + '%',
-  }
-
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
   }
 
   const bannerTextStyle = (action: DashboardActionModel): string => {
@@ -64,8 +57,7 @@ function DashboardPage() {
   return (
     <div>
       <div className={styles.background}></div>
-      <Header logoColor="black"
-        icon={{ component: <ProfileIcon />, onClick: toggleMenu }} ></Header>
+      <DashboardHeader />
       <CardPageWrapper>
         <div className={styles.card}>
           <section>
@@ -109,7 +101,6 @@ function DashboardPage() {
           </section>
         </div>
       </CardPageWrapper>
-      {showMenu ? <DashboardMenu close={toggleMenu} /> : null}
     </div>
   );
 }

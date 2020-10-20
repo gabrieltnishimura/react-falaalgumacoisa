@@ -31,6 +31,9 @@ const authenticationService = {
     console.log('logging off');
     return auth.signOut();
   },
+  getRedirect: () => {
+    return auth.getRedirectResult();
+  },
   delete: () => {
     return auth.currentUser?.delete();
   },
