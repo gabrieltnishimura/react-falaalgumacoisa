@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactComponent as BaloonsIcon } from '../assets/icons/baloons.svg';
 import Modal from './Modal';
 
 interface FirstThemeModalInput {
@@ -14,10 +15,7 @@ function FirstThemeModal(props: FirstThemeModalInput) {
     <Modal
       title="Você concluiu o primeiro módulo!"
       scoreChange="+ 300pts"
-      headerIcon={{
-        src: '/icons/baloons.svg',
-        alt: 'baloons'
-      }}
+      headerIcon={<BaloonsIcon />}
       primaryButton={{
         title: 'Avançar',
         enabled: true,
