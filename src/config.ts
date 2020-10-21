@@ -23,7 +23,10 @@ const config = {
     registration: process.env.REACT_APP_REGISTRATION_URL || 'NOT_SET',
     validateNickname: process.env.REACT_APP_VALIDATE_NICKNAME_URL || 'NOT_SET',
     deleteUser: process.env.REACT_APP_DELETE_USER_URL || 'NOT_SET',
+    userMetadata: process.env.REACT_APP_USER_METADATA_URL || 'NOT_SET',
     dashboard: process.env.REACT_APP_DASHBOARD_URL || 'NOT_SET',
+    globalLeaderboard: process.env.REACT_APP_GLOBAL_LEADERBOARD_URL || 'NOT_SET',
+    friendsLeaderboard: process.env.REACT_APP_FRIENDS_LEADERBOARD_URL || 'NOT_SET',
   },
 };
 

@@ -1,0 +1,79 @@
+@value defaultWhite from "../colors.css";
+
+@value someBlack: rgb(47, 47, 47);
+@value someGray: rgb(95, 95, 95);
+@value someOtherGray: rgb(240, 240, 240);
+@value separatorColor: rgb(213, 213, 213);
+@value blueIsh: rgb(8, 190, 225);
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.rank {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.036rem;
+  color: someBlack;
+}
+
+.circle {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  display: flex;
+  background-color: someOtherGray;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2.2rem;
+  margin-right: 0.9rem;
+}
+
+.myCircle {
+  background-color: blueIsh;
+}
+
+.myCircle > span {
+  color: defaultWhite;
+}
+
+.initials {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.04rem;
+  color: someBlack;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.04rem;
+  color: someGray;
+}
+
+.mySelf {
+  font-weight: 600;
+  color: someBlack;
+}
+
+.score {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.04rem;
+  color: someBlack;
+}
+
+.separator {
+  height: 0.1rem;
+  border-width: 0;
+  color: separatorColor;
+  background-color: separatorColor;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

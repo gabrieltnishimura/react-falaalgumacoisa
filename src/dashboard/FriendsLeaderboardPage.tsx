@@ -9,23 +9,23 @@ import DashboardHeader from '../shell/DashboardHeader';
 import LinkItem from '../shell/LinkItem';
 import styles from './DashboardPage.module.css';
 
-function LeaderboardPage() {
+function FriendsLeaderboardPage() {
   const navigate = useNavigate();
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const [leaderboard, setLeaderboard] = useState<UserListModel | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await leaderboardService.getGlobalLeaderboard();
+      const data = await leaderboardService.getFriendsLeaderboard();
       setLeaderboard(data);
       setLoading(false);
     };
     fetchData();
   }, [setLoading]);
 
-  const friendsRedirectFn = () => {
+  const globalRedirectFn = () => {
     setLoading(true);
-    navigate('/placar-dos-amigos');
+    navigate('/placar-dos-lideres');
   }
 
   return (
@@ -36,10 +36,10 @@ function LeaderboardPage() {
         <div className={styles.card}>
           <section>
             <div className={styles.titleWrapper}>
-              <h1 className={styles.title}>Placar dos líderes</h1>
+              <h1 className={styles.title}>Placar dos amigos</h1>
             </div>
             <div className={styles.titleLink}>
-              <LinkItem title="Mostrar somente amigos" onclick={friendsRedirectFn} color="citron" />
+              <LinkItem title="Mostrar placar dos líderes" onclick={globalRedirectFn} color="citron" />
             </div>
             <hr className={styles.separator} />
           </section>
@@ -52,4 +52,4 @@ function LeaderboardPage() {
   );
 }
 
-export default LeaderboardPage;
+export default FriendsLeaderboardPage;

@@ -1,4 +1,4 @@
-import { post } from '../apis/api';
+import { get, post } from '../apis/api';
 import config from '../config';
 import { RegistrationDataModel } from './RegistrationDataModel';
 
@@ -22,9 +22,15 @@ const deleteUser = (reason: string): Promise<void> => {
   return post<void>(url, { reason }).toPromise();
 }
 
+const getUserMetadata = (): Promise<void> => {
+  const url = config.endpoints.userMetadata;
+  return get<any>(url).toPromise();
+}
+
 export {
   sendRegistrationData,
   assignName,
   validateNickname,
   deleteUser,
+  getUserMetadata,
 };

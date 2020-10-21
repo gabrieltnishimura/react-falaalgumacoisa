@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authenticationService } from '../authentication/AuthenticationService';
+import * as registrationIntegrationService from '../registration/RegistrationIntegrationService';
 import FacebookLoginButton from '../shared/buttons/FacebookLoginButton';
 import GoogleLoginButton from '../shared/buttons/GoogleLoginButton';
 import RectangularButton from '../shared/buttons/RectangularButton';
@@ -80,7 +81,21 @@ function LoginPage() {
   }, [username, password]);
 
   useEffect(() => {
-    setLoading(false);
+    const redirectFromSocialMedia = async () => {
+      const user = await authenticationService.getRedirect();
+      if (user?.user) { // not redirected
+        try { // check if has registration within site if has, dashboard
+          await registrationIntegrationService.getUserMetadata();
+          navigate('/dashboard');
+        } catch (err) { // if not, registration
+          navigate('/cadastro');
+        }
+      } else {
+        setLoading(false);
+      }
+    }
+
+    redirectFromSocialMedia();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
