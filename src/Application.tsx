@@ -7,6 +7,7 @@ import { UserContext } from './authentication/UserProvider';
 import DashboardPage from './dashboard/DashboardPage';
 import FriendsLeaderboardPage from './dashboard/FriendsLeaderboardPage';
 import LeaderboardPage from './dashboard/LeaderboardPage';
+import SearchFriendsPage from './dashboard/SearchFriendsPage';
 import DeleteUserPage from './delete-user/DeleteUserPage';
 import DisabledMicrophonePage from './enable-mic/DisabledMicrophonePage';
 import EnableMicrophonePage from './enable-mic/EnableMicrophonePage';
@@ -15,7 +16,6 @@ import HomePage from './home/HomePage';
 import LoginPage from './login/LoginPage';
 import RecordingPage from './recording/RecordingPage';
 import RegistrationPage from './registration/RegistrationPage';
-
 
 function App() {
   const authenticationState = useContext(UserContext);
@@ -34,6 +34,7 @@ function App() {
         <ProtectedRoute path="/dashboard" component={<DashboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/placar-dos-lideres" component={<LeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/placar-dos-amigos" component={<FriendsLeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
+        <ProtectedRoute path="/buscar-amigos" component={<SearchFriendsPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/excluir" component={<DeleteUserPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <AutoAuthenticationRoute path="/fale/:theme" component={<RecordingPage />} isAuth={isAuth}></AutoAuthenticationRoute>
       </Routes>

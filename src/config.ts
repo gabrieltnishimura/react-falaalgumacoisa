@@ -27,6 +27,8 @@ const config = {
     dashboard: process.env.REACT_APP_DASHBOARD_URL || 'NOT_SET',
     globalLeaderboard: process.env.REACT_APP_GLOBAL_LEADERBOARD_URL || 'NOT_SET',
     friendsLeaderboard: process.env.REACT_APP_FRIENDS_LEADERBOARD_URL || 'NOT_SET',
+    searchFriends: process.env.REACT_APP_SEARCH_FRIENDS_URL || 'NOT_SET',
+    friendsActions: process.env.REACT_APP_FRIENDS_ACTIONS_URL || 'NOT_SET',
   },
 };
 

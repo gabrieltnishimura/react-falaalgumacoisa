@@ -2,7 +2,7 @@ import UserListItemModel from './UserListItemModel';
 
 export default class UserListModel {
   ranking: UserListItemModel[];
-  user: UserListItemModel;
+  user?: UserListItemModel;
 
   constructor(data: any) {
     this.ranking = data?.ranking
