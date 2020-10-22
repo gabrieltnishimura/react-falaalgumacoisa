@@ -29,7 +29,7 @@ export interface FirstRecordingModalInnerOutput {
   randomName?: string;
 }
 
-enum FieldValidationState {
+export enum FieldValidationState {
   NON_TOUCHED = 'NON_TOUCHED',
   VALID = 'VALID',
   LOADING = 'LOADING',

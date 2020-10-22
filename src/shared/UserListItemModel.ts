@@ -1,4 +1,5 @@
 export default class UserListItemModel {
+  id: string;
   nickname: {
     full: string,
     short: string,
@@ -11,6 +12,7 @@ export default class UserListItemModel {
   };
 
   constructor(data: any) {
+    this.id = data.id;
     this.nickname = data.nickname && {
       full: data.nickname.full.substr(0, 19),
       short: data.nickname.short,

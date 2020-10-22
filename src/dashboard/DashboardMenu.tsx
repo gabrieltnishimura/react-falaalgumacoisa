@@ -20,25 +20,36 @@ function DashboardMenu(props: { close: () => void }) {
     setLoading(true);
     await authenticationService.logout();
     navigate('/');
+    props.close();
   }
 
   const deleteUser = () => {
     setLoading(true);
     navigate('/excluir');
+    props.close();
   }
 
   const leaderboard = () => {
     setLoading(true);
     navigate('/placar-dos-lideres');
+    props.close();
   }
 
   const friendsLeaderboard = () => {
     setLoading(true);
     navigate('/placar-dos-amigos');
+    props.close();
+  }
+
+  const friends = () => {
+    setLoading(true);
+    navigate('/buscar-amigos');
+    props.close();
   }
 
   const content = isAuthenticated ? <nav className={styles.navigation}>
     <ul className={`${styles.list} ${styles.content}`}>
+      <li><button className={styles.link} onClick={friends}>Buscar amigos</button></li>
       <li><button className={styles.link} onClick={leaderboard}>Placar dos líderes</button></li>
       <li><button className={styles.link} onClick={friendsLeaderboard}>Placar dos amigos</button></li>
       <li><a href="contact.asp" className={styles.link}>Alterar meus dados cadastrais</a></li>
