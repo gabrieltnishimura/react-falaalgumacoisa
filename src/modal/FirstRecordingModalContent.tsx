@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/cor
 import { throttle } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as TextSpinnerIcon } from '../assets/icons/text_spinner.svg';
+import * as registrationIntegrationService from '../registration/RegistrationIntegrationService';
 import { validateNickname } from '../registration/RegistrationIntegrationService';
 import { useInput } from '../shared/useInput';
 import theme from '../shell/theme';
@@ -48,6 +49,40 @@ function FirstRecordingModalContent(props: {
   const [randomName, setRandomName] = useState('');
   const classes = useStyles();
 
+  useEffect(() => {
+    const getMetadata = async () => {
+      try {
+        const metadata = await registrationIntegrationService.getUserMetadata();
+        bindNamingOptions.onChange({ target: { value: 'NAME' } });
+        bindFirstName.onChange({ target: { value: metadata.nickname } });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    getMetadata();
+  }, []);
+
+  useEffect(() => {
+    if (namingChoice === 'NAME' && fieldValidationState === FieldValidationState.VALID && !!firstName && firstName.length > 3) {
+      props.onValid(firstName);
+      return;
+    } else if (namingChoice === 'RANDOM_NICKNAME' && !!randomName) {
+      props.onValid(randomName);
+      return;
+    } else if (props.onAnon && namingChoice === 'ANON') {
+      props.onAnon();
+      return;
+    }
+
+    props.onInvalid();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    fieldValidationState,
+    namingChoice,
+    randomName,
+    firstName,
+  ]);
+
   const validateCallback = async (newName: string) => {
     if (!newName) {
       return;
@@ -75,28 +110,6 @@ function FirstRecordingModalContent(props: {
   useEffect(() => {
     throttled.current(firstName);
   }, [firstName]);
-
-  useEffect(() => {
-    if (namingChoice === 'NAME' && fieldValidationState === FieldValidationState.VALID && !!firstName && firstName.length > 3) {
-      props.onValid(firstName);
-      return;
-    } else if (namingChoice === 'RANDOM_NICKNAME' && !!randomName) {
-      props.onValid(randomName);
-      return;
-    } else if (props.onAnon && namingChoice === 'ANON') {
-      props.onAnon();
-      return;
-    }
-
-    props.onInvalid();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    fieldValidationState,
-    namingChoice,
-    randomName,
-    firstName,
-  ]);
-
 
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
