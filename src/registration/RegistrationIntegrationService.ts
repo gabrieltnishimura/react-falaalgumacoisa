@@ -22,7 +22,7 @@ const deleteUser = (reason: string): Promise<void> => {
   return post<void>(url, { reason }).toPromise();
 }
 
-const getUserMetadata = (): Promise<void> => {
+const getUserMetadata = (): Promise<{ nickname: string }> => {
   const url = config.endpoints.userMetadata;
   return get<any>(url).toPromise();
 }
