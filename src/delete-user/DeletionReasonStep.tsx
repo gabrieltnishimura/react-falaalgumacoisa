@@ -36,7 +36,7 @@ function DeletionReasonStep(props: { onComplete: (reason: string) => void, onBac
   }
 
   return (<>
-    <Header></Header>
+    <Header insteadNavigateToDashboard></Header>
     <WhitePageWrapper>
       <div className={styles.content}>
         <div>

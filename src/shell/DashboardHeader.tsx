@@ -13,6 +13,7 @@ function DashboardHeader() {
   return (
     <>
       <Header logoColor="black"
+        insteadNavigateToDashboard
         icon={{ component: <ProfileIcon />, onClick: toggleMenu }} ></Header>
       {showMenu ? <DashboardMenu close={toggleMenu} /> : null}
     </>

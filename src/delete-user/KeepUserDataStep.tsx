@@ -36,7 +36,7 @@ function KeepUserDataStep(props: { onComplete: (keep: boolean) => void, onBack: 
   }
 
   return (<>
-    <Header></Header>
+    <Header insteadNavigateToDashboard></Header>
     <WhitePageWrapper>
       <div className={styles.content}>
         <div>

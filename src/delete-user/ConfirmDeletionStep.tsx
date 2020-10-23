@@ -40,7 +40,7 @@ function ConfirmDeletionStep(props: { onComplete: () => void, onBack: () => void
   }
 
   return (<>
-    <Header></Header>
+    <Header insteadNavigateToDashboard></Header>
     <WhitePageWrapper>
       <div className={styles.content}>
         <div>

@@ -17,6 +17,7 @@ function Header(props: {
   },
   logoColor?: 'black' | 'white',
   preventRedirect?: boolean,
+  insteadNavigateToDashboard?: boolean,
 }) {
   const authenticationState = useContext(UserContext);
   const navigate = useNavigate();
