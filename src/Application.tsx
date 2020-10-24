@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AutoAuthenticationRoute from './authentication/AutoAuthenticationRoute';
 import ProtectedRoute from './authentication/ProtectedRoute';
 import UnauthenticatedRoute from './authentication/UnauthenticatedRoute';
@@ -12,6 +12,7 @@ import DeleteUserPage from './delete-user/DeleteUserPage';
 import DisabledMicrophonePage from './enable-mic/DisabledMicrophonePage';
 import EnableMicrophonePage from './enable-mic/EnableMicrophonePage';
 import ErrorPage from './error/ErrorPage';
+import NotFoundPage from './error/NotFoundPage';
 import HomePage from './home/HomePage';
 import LoginPage from './login/LoginPage';
 import RecordingPage from './recording/RecordingPage';
@@ -37,6 +38,7 @@ function App() {
         <ProtectedRoute path="/buscar-amigos" component={<SearchFriendsPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/excluir" component={<DeleteUserPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <AutoAuthenticationRoute path="/fale/:theme" component={<RecordingPage />} isAuth={isAuth}></AutoAuthenticationRoute>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );
