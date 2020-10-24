@@ -42,7 +42,6 @@ function UserList(props: {
       }
       )}
     </>
-
   );
 }
 

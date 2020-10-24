@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as leaderboardService from '../apis/LeaderboardService';
+import FriendsUserList from '../shared/FriendsUserList';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
-import UserList from '../shared/UserList';
 import UserListModel from '../shared/UserListModel';
 import CardPageWrapper from '../shell/CardPageWrapper';
 import DashboardHeader from '../shell/DashboardHeader';
@@ -44,7 +44,7 @@ function FriendsLeaderboardPage() {
             <hr className={styles.separator} />
           </section>
           <section>
-            {leaderboard ? <UserList list={leaderboard} /> : null}
+            {leaderboard ? <FriendsUserList list={leaderboard} /> : null}
           </section>
         </div>
       </CardPageWrapper>

@@ -1,0 +1,29 @@
+.centeredContent {
+  margin-top: 7.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.image {
+  padding-bottom: 4rem;
+}
+
+.emptyListMessage {
+  width: 75%;
+  text-align: center;
+  padding-bottom: 4rem;
+}
+
+.emptyListMessage > span {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.04rem;
+  color: rgb(174, 165, 165);
+}
+
+.searchFriendsButton {
+  width: 90%;
+}
