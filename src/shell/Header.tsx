@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../authentication/UserProvider';
 import ConfirmExitModal from '../modal/ConfirmExitModal';
 import AppLogo from './AppLogo';
 import styles from './Header.module.css';
@@ -17,19 +18,29 @@ function Header(props: {
   logoColor?: 'black' | 'white',
   preventRedirect?: boolean,
 }) {
+  const authenticationState = useContext(UserContext);
   const navigate = useNavigate();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const redirectHome = () => {
     if (props.preventRedirect) {
       setShowConfirmModal(true);
     } else {
-      navigate('/');
+      goHome();
     }
   }
 
   const closeModalFn = (confirmedExit: boolean) => {
     setShowConfirmModal(false);
     if (confirmedExit) {
+      goHome();
+    }
+  }
+
+  const goHome = () => {
+    const user = authenticationState.user;
+    if (user && !user.isAnonymous) {
+      navigate('/dashboard');
+    } else {
       navigate('/');
     }
   }

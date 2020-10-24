@@ -60,7 +60,7 @@ function FirstRecordingModalContent(props: {
       }
     }
     getMetadata();
-  }, []);
+  }, [bindNamingOptions, bindFirstName]);
 
   useEffect(() => {
     if (namingChoice === 'NAME' && fieldValidationState === FieldValidationState.VALID && !!firstName && firstName.length > 3) {

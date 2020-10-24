@@ -1,6 +1,6 @@
 export default interface DashboardActionModel {
   id: string;
-  type: 'REGISTER' | 'RECORDING' | 'EXTRA';
+  type: 'REGISTER' | 'RECORDING' | 'EXTRA' | 'RECOMMENDATION';
   points: number;
   isRecording: boolean;
   background: {
