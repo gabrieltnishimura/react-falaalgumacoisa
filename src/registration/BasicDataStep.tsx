@@ -75,13 +75,13 @@ function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => voi
             <InputLabel htmlFor="age-interval-selector">Faixa etária</InputLabel>
             <Select fullWidth native {...bindAgeInterval} inputProps={{ name: 'age', id: 'age-interval-selector', }}>
               <option aria-label="None" value="" />
-              <option value={'25-'}>até 25</option>
-              <option value={'26-35'}>26-35</option>
-              <option value={'36-45'}>36-45</option>
-              <option value={'46-55'}>46-55</option>
-              <option value={'56-65'}>56-65</option>
-              <option value={'66-75'}>66-75</option>
-              <option value={'75+'}>mais que 75</option>
+              <option value={'25-'}>Até 25 anos</option>
+              <option value={'26-35'}>Entre 26 e 35 anos</option>
+              <option value={'36-45'}>Entre 36 e 45 anos</option>
+              <option value={'46-55'}>Entre 46 e 55 anos</option>
+              <option value={'56-65'}>Entre 56 e 65 anos</option>
+              <option value={'66-75'}>Entre 66 e 75 anos</option>
+              <option value={'75+'}>Mais que 75 anos</option>
             </Select>
           </FormControl>
           <FormControl fullWidth>
