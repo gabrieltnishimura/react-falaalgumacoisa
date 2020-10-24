@@ -13,7 +13,11 @@ function HomeContent(props: { redirectRecordingFn: () => void }) {
         <span className={styles.startRecordingText}>Iniciar gravação de voz</span>
       </div>
       <div className={styles.descriptionWrapper}>
-        <span className={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In diam mauris, convallis eu pharetra nec, facilisis id massa. Sed vel libero sed dolor iaculis dignissim. Aenean mollis, est ac malesuada facilisis, est dui bibendum elit, non ornare orci velit sed tortor. Nullam vitae ultricies augue. Donec pellentesque mauris sed felis tristique lacinia. </span>
+        <span className={styles.description}>
+          O Fale Alguma Coisa é uma iniciativa colaborativa para criação de uma base de vozes em português brasileiro. Essa base será anônima e open-source para pesquisa e uso pessoal.<br /><br />
+          Contribuia para ciência doando a sua voz e utilizando o aplicativo. Compita com outros contribuidores e até adicione amigos.<br /><br />
+          O cadastro é opcional, mas pode nos ajudar a categorizar melhor a sua voz.
+        </span>
       </div>
     </>
   );

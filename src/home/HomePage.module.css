@@ -2,10 +2,11 @@
 @value headerSize from "../sizes.css";
 
 @value bannerHeight: 20rem;
-@value firstStepDelay: 1.1s;
+@value firstStepDelay: 1.9s;
 @value firstStepDuration: 0.8s;
 @value secondStepDuration: 0.3s;
-@value secondStepDelay: 1.7s;
+@value secondStepDelay: 2.4s;
+@value comeFromLeftDelay: 2s;
 
 .banner {
   height: bannerHeight;
@@ -53,7 +54,7 @@
 
   opacity: 0;
   animation: appearFromRight secondStepDuration forwards;
-  animation-delay: secondStepDelay;
+  animation-delay: comeFromLeftDelay;
 }
 
 .content {
@@ -62,10 +63,10 @@
   background-color: defaultWhite;
   opacity: 0;
   width: 100%;
-  height: calc(100vh - bannerHeight);
+  min-height: calc(100vh - bannerHeight);
 
   animation: appearFromRight secondStepDuration forwards;
-  animation-delay: secondStepDelay;
+  animation-delay: comeFromLeftDelay;
 }
 
 @keyframes appearFromRight {
