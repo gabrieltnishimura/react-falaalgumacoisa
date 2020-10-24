@@ -29,6 +29,18 @@ function DashboardMenu(props: { close: () => void }) {
     props.close();
   }
 
+  const dashboard = () => {
+    setLoading(true);
+    navigate('/dashboard');
+    props.close();
+  }
+
+  const notifications = () => {
+    setLoading(true);
+    navigate('/notificacoes');
+    props.close();
+  }
+
   const leaderboard = () => {
     setLoading(true);
     navigate('/placar-dos-lideres');
@@ -47,14 +59,22 @@ function DashboardMenu(props: { close: () => void }) {
     props.close();
   }
 
+  const recommendFriends = () => {
+    setLoading(true);
+    navigate('/indique-um-amigo');
+    props.close();
+  }
+
   const content = isAuthenticated ? <nav className={styles.navigation}>
     <ul className={`${styles.list} ${styles.content}`}>
+      <li><button className={styles.link} onClick={dashboard}>Dashboard</button></li>
+      <li><button className={styles.link} onClick={notifications}>Notificações</button></li>
       <li><button className={styles.link} onClick={friends}>Buscar amigos</button></li>
       <li><button className={styles.link} onClick={leaderboard}>Placar dos líderes</button></li>
       <li><button className={styles.link} onClick={friendsLeaderboard}>Placar dos amigos</button></li>
       <li><a href="contact.asp" className={styles.link}>Alterar meus dados cadastrais</a></li>
-      <li><a href="about.asp" className={styles.link}>Indique um amigo</a></li>
-      <li><a href="about.asp" className={styles.link}>Faça uma sugestão</a></li>
+      <li><button className={styles.link} onClick={recommendFriends}>Indique um amigo</button></li>
+      <li><a href="about.asp" className={styles.link}>Fazer uma sugestão</a></li>
       <li><a href="about.asp" className={styles.link}>Conheça mais sobre nós</a></li>
     </ul>
     <ul className={styles.list}>

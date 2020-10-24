@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import CardPageWrapper from '../shell/CardPageWrapper';
 import DashboardHeader from '../shell/DashboardHeader';
@@ -10,6 +11,7 @@ import DashboardService from './DashboardService';
 const dashboardService = new DashboardService();
 
 function DashboardPage() {
+  const navigate = useNavigate();
   const [data, setData] = useState<DashboardModel | null>(null);
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
 
@@ -24,6 +26,23 @@ function DashboardPage() {
 
   const percentStyle = {
     width: 50 + '%',
+  }
+
+  const clickAction = (action: DashboardActionModel) => {
+    if (action.type === 'RECORDING') {
+      const [, theme] = (action.id || '').split('_');
+      if (theme) {
+        navigate(`/fale/${theme}`);
+      } else {
+        console.error('Invalid action', action);
+      }
+    } else if (action.type === 'REGISTER') {
+      navigate('/cadastro');
+    } else if (action.id === 'RECOMMENDATION') {
+      navigate('/indique-um-amigo');
+    } else {
+      console.log('fallback unknown', action);
+    }
   }
 
   const bannerTextStyle = (action: DashboardActionModel): string => {
@@ -80,7 +99,7 @@ function DashboardPage() {
           </section>
           <section className={styles.actions}>
             {data?.actions.map((action) =>
-              <div className={styles.action} key={action.id}>
+              <div className={styles.action} key={action.id} onClick={() => clickAction(action)}>
                 <div className={styles.banner}>
                   <img src={action.background.src} alt={action.background.alt} />
                   {action.banner ?
