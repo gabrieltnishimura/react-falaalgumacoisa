@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RecordingStateModel from "../recording/models/RecordingStateModel";
-import { skipStep } from "../recording/RecordingStateService";
+import { skipPhrase } from "../recording/RecordingIntegrationService";
 import { LoaderContext, LoaderContextInterface } from "../shared/loader/LoaderContext";
 import Modal from './Modal';
 import SkipRecordingModalContent, { SkipRecordingOutput } from './SkipRecordingModalContent';
@@ -12,7 +12,7 @@ interface SkipRecordingInput {
 
 function SkipRecordingModal(props: SkipRecordingInput) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const [skipReason, setSkipReason] = useState<SkipRecordingOutput>({ reason: '' });
+  const [skipReason, setSkipReason] = useState<SkipRecordingOutput>({ reason: '', customReason: '' });
 
   const confirmSkipPhraseFn = async () => {
     if (!skipReason?.reason) {
@@ -21,7 +21,12 @@ function SkipRecordingModal(props: SkipRecordingInput) {
     }
 
     setLoading(true);
-    await skipStep(props.recordingState, skipReason.reason);
+    await skipPhrase(
+      props.recordingState.phrase,
+      props.recordingState.groupId,
+      skipReason.reason,
+      skipReason.customReason,
+    );
     setLoading(false);
     props.onClose(true);
   }
