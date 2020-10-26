@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { deleteUser } from '../registration/RegistrationIntegrationService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import ConfirmDeletionStep from './ConfirmDeletionStep';
-import { DeletionDataModel } from './DeletionDataModel';
 import DeletionReasonStep from './DeletionReasonStep';
 import GoodbyeStep from './GoodbyeStep';
 import KeepUserDataStep from './KeepUserDataStep';
@@ -19,7 +18,7 @@ export enum DeletionSteps {
 function DeleteUserPage() {
   const navigation = useNavigate();
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const [registrationData, setRegistrationData] = useState<DeletionDataModel | null>(null); // fix any
+  const [keepUserData, setKeepUserData] = useState<boolean>(true);
   const [step, setStep] = useState<DeletionSteps>(DeletionSteps.CONFIRM_DELETION);
 
   const completeConfirmation = () => {
@@ -30,10 +29,8 @@ function DeleteUserPage() {
     navigation('/');
   }
 
-  const keepUserDataCompletion = (keepUserData: boolean) => {
-    setRegistrationData({
-      keepUserData,
-    });
+  const keepUserDataCompletion = (keepOrNot: boolean) => {
+    setKeepUserData(keepOrNot);
     setStep(DeletionSteps.DELETION_REASON);
   }
 
@@ -41,17 +38,11 @@ function DeleteUserPage() {
     setStep(DeletionSteps.CONFIRM_DELETION);
   }
 
-  const confirmDeletionReason = async (reason: string) => {
-    const newRegistrationData = {
-      ...registrationData,
-      reason,
-    };
-
+  const confirmDeletionReason = async (newReason: string) => {
     setLoading(true);
     try {
-      await deleteUser(reason);
+      await deleteUser(keepUserData, newReason);
       setLoading(false);
-      setRegistrationData(newRegistrationData);
       setStep(DeletionSteps.GOODBYE);
     } catch (err) {
       console.error(err);

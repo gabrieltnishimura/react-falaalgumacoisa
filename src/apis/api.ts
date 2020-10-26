@@ -53,5 +53,5 @@ export {
   post,
   put,
   patch,
-  deleteR as delete,
+  deleteR,
 };
