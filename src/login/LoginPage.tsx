@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authenticationService } from '../authentication/AuthenticationService';
 import * as registrationIntegrationService from '../registration/RegistrationIntegrationService';
-import FacebookLoginButton from '../shared/buttons/FacebookLoginButton';
-import GoogleLoginButton from '../shared/buttons/GoogleLoginButton';
 import RectangularButton from '../shared/buttons/RectangularButton';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import { useInput } from '../shared/useInput';
@@ -26,6 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
+
 function LoginPage() {
   const navigate = useNavigate();
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
@@ -44,8 +44,8 @@ function LoginPage() {
     authenticationService.login('facebook');
   }
 
-  const googleClick = () => {
-    authenticationService.login('google');
+  const googleClick = async () => {
+    await authenticationService.login('google');
   }
 
   const loginWithUsernameFn = async () => {
@@ -81,23 +81,36 @@ function LoginPage() {
   }, [username, password]);
 
   useEffect(() => {
+    authenticationService.start();
     const redirectFromSocialMedia = async () => {
-      const user = await authenticationService.getRedirect();
-      if (user?.user) { // not redirected
-        try { // check if has registration within site if has, dashboard
-          await registrationIntegrationService.getUserMetadata();
-          navigate('/dashboard');
-        } catch (err) { // if not, registration
-          navigate('/cadastro');
+      try {
+        const user = await authenticationService.getRedirect();
+        const response = await authenticationService.linkUser(user);
+        console.log('i may have linked', response);
+        if (user.user) {
+          navigateWhenRedirected();
         }
-      } else {
-        setLoading(false);
+        console.log('credential', user.credential);
+      } catch (err) {
+        console.error(err);
+        if (err.code === 'auth/web-storage-unsupported') {
+          navigate('/error');
+        }
       }
     }
-
+    setLoading(false);
     redirectFromSocialMedia();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const navigateWhenRedirected = async () => {
+    try { // check if has registration within site if has, dashboard
+      await registrationIntegrationService.getUserMetadata();
+      navigate('/dashboard');
+    } catch (err) { // if not, registration
+      navigate('/cadastro');
+    }
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -109,12 +122,14 @@ function LoginPage() {
         <form noValidate onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
           <div className={styles.username}>
             <TextField fullWidth label="Email" name="email"
+              autoComplete="username"
               type="email" {...bindUsername} onBlur={validateEmailFn}
               error={!!userErrorMessage} helperText={userErrorMessage}
             />
           </div>
           <div className={styles.password}>
             <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword}
+              autoComplete="current-password"
               error={!!passwordErrorMessage} helperText={passwordErrorMessage} />
           </div>
           <div className={styles.continueButtonWrapper}>
@@ -131,12 +146,7 @@ function LoginPage() {
         <div className={styles.accessViaWrapper}>
           <span className={styles.accessVia}>Ou acesse via</span>
         </div>
-        <div className={styles.FacebookButtonWrapper}>
-          <FacebookLoginButton click={fbClick}></FacebookLoginButton>
-        </div>
-        <div>
-          <GoogleLoginButton click={googleClick}></GoogleLoginButton>
-        </div>
+        <div id="firebaseui-auth-container"></div>
       </WhitePageWrapper>
     </ThemeProvider>
   );

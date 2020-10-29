@@ -6,7 +6,7 @@ export default class UserModel {
   public email: string = '';
   public isAnonymous: boolean = false;
   public uid: string = '';
-  private user: firebase.User | null = null;
+  public user: firebase.User | null = null;
 
 
   constructor(user: firebase.User | null) {

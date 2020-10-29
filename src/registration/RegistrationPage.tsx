@@ -68,7 +68,9 @@ function RegistrationPage() {
 
   const firebaseRegistration = async (username: string, password: string) => {
     try {
-      await authenticationService.createUserWithEmailAndPassword(username, password);
+      const credential = await authenticationService.createUserWithEmailAndPassword(username, password);
+      const response = await authenticationService.linkUser(credential);
+      console.log('linked', response);
     } catch (err) {
       console.error(err);
       if (err.code === 'auth/email-already-in-use') {
