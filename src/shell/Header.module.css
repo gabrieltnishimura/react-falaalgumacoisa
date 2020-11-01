@@ -1,4 +1,4 @@
-@value defaultWhite, graphiteGray, borderGray, descriptionGray, deepBlue from "../colors.css";
+@value defaultWhite from "../colors.css";
 @value sidePadding, headerPaddingTop, headerPaddingBottom, headerInnerSize from "../sizes.css";
 
 .header {
@@ -14,6 +14,8 @@
 }
 
 .logoWrapper > img {
+  height: 4rem;
+  width: 4rem;
   padding-right: 1rem;
 }
 
@@ -25,6 +27,14 @@
 .iconWrapper {
   background-color: defaultWhite;
   border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.iconWrapper > svg {
   height: 3.5rem;
   width: 3.5rem;
 }

@@ -1,5 +1,7 @@
-@value deepBlue, graphiteGray, descriptionGray, borderGray from "../colors.css";
+@value deepBlue, darkestGray, descriptionGray, lighterGray from "../colors.css";
 @value sidePadding from "../sizes.css";
+
+@value commonSpacing: 3.4rem;
 
 .description {
   line-height: 2.8rem;
@@ -12,6 +14,7 @@
 .descriptionWrapper {
   margin-left: sidePadding;
   margin-right: sidePadding;
+  margin: 0 sidePadding commonSpacing sidePadding;
 }
 
 .existingUser {
@@ -44,23 +47,22 @@
   padding-left: sidePadding;
   align-items: center;
   height: 11.2rem;
-  border-bottom: 1px solid borderGray;
-  border-top: 1px solid borderGray;
-  margin-bottom: 1.9rem;
+  border-bottom: 1px solid lighterGray;
+  border-top: 1px solid lighterGray;
+  margin: commonSpacing 0 commonSpacing 0;
 }
 
 .title {
   margin: 0;
   line-height: 4.2rem;
   font-size: 4rem;
-  color: graphiteGray;
+  color: darkestGray;
   letter-spacing: -0.08rem;
   font-weight: 700;
 }
 
 .titleWrapper {
   margin-top: 3.9rem;
-  margin-bottom: 3.4rem;
   padding-left: sidePadding;
   padding-right: sidePadding;
 }

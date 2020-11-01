@@ -1,4 +1,4 @@
-@value defaultWhite, cozyOrange, borderGray from "../../colors.css";
+@value defaultWhite, cozyOrange, lighterGray from "../../colors.css";
 
 .wrapper {
   height: 18rem;
@@ -14,5 +14,5 @@
 }
 
 .gray {
-  background-color: borderGray;
+  background-color: lighterGray;
 }

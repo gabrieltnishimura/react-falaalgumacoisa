@@ -2,7 +2,7 @@
 
 @value someBlack: rgb(47, 47, 47);
 @value someGray: rgb(95, 95, 95);
-@value someOtherGray: rgb(240, 240, 240);
+@value darkestGray: rgb(240, 240, 240);
 @value separatorColor: rgb(213, 213, 213);
 @value blueIsh: rgb(8, 190, 225);
 
@@ -29,7 +29,7 @@
   width: 5rem;
   border-radius: 50%;
   display: flex;
-  background-color: someOtherGray;
+  background-color: darkestGray;
   align-items: center;
   justify-content: center;
   margin-right: 0.9rem;

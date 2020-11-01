@@ -1,4 +1,4 @@
-@value cobalt, recordingTextGrey from "../../colors.css";
+@value cobalt, mediumGray from "../../colors.css";
 @value highlightDepth from "../../sizes.css";
 
 .wrapper {
@@ -37,7 +37,7 @@
 
 .lightWord {
   composes: word;
-  color: recordingTextGrey;
+  color: mediumGray;
 }
 
 .normalWord {

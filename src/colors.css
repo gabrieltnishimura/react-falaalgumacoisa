@@ -6,20 +6,11 @@
 @value nostalgicAquamarine: #08BEE1;
 @value facebookBlue: rgb(59, 89, 151);
 @value defaultWhite: rgb(255, 255, 255);
-@value basicGrey: rgb(75, 75, 75);
-@value darkerGrey: rgb(33, 33, 33);
-@value disabledGrey: rgb(172, 172, 172);
-@value disabledGreyText: rgb(87, 87, 87);
-@value collapsibleGrey: rgb(130, 130, 130);
-@value recordingTextGrey: rgb(148, 148, 148);
-@value infoGrey: rgb(44, 44, 44);
 @value successGreen: rgb(102, 212, 97);
-/* use this */
-
-@value graphiteGray: rgb(33, 33, 33);
 @value deepBlue: rgb(13, 59, 102);
-@value descriptionGray: rgb(148, 148, 148);
-@value borderGray: rgb(218, 218, 218);
 @value comemorativeYellow: rgb(244, 211, 94);
-@value someOtherGray: rgb(62, 62, 62);
 @value googleBorder: rgba(168, 168, 168, 0.5);
+@value darkestGray: rgb(33, 33, 33);
+@value mediumGray: rgb(148, 148, 148);
+@value lighterGray: rgb(218, 218, 218);
+@value lightestGray: rgb(247, 247, 247);

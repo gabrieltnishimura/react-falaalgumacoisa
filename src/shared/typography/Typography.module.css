@@ -1,0 +1,70 @@
+@value darkestGray, mediumGray from "../../colors.css";
+
+.titleWrapper {
+  margin-bottom: 3.2rem;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 4.2rem;
+  letter-spacing: -0.08rem;
+  margin: 0;
+}
+
+.sectionWrapper {
+  margin: 3.2rem 0 0.8rem 0;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 4.2rem;
+  letter-spacing: -0.036rem;
+  margin: 0;
+}
+
+.sectionTextWrapper {
+  margin-bottom: 2rem;
+}
+
+.sectionText {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 2.4rem;
+  letter-spacing: -0.04rem;
+  margin: 0;
+}
+
+.itemizedList {
+  list-style: none;
+  padding: 0;
+}
+
+.itemizedItem {
+  margin-bottom: 0.8rem;
+}
+
+.itemizedItem::before {
+  content: "\25A0";
+  font-weight: bold;
+  display: inline-block;
+  color: mediumGray;
+  width: 0.8rem;
+  font-size: 2.4rem;
+  padding-right: 2.3rem;
+}
+
+.itemizedTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.04rem;
+}
+
+.itemizedDescription {
+  composes: itemizedTitle;
+  display: block;
+  font-weight: 400;
+  line-height: 2.4rem;
+  margin: 1.3rem 0 1.3rem 0;
+}

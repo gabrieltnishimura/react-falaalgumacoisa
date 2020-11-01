@@ -53,7 +53,7 @@
   width: 100%;
 
   opacity: 0;
-  animation: appearFromRight secondStepDuration forwards;
+  animation: appearFromRight secondStepDuration ease-out forwards;
   animation-delay: comeFromLeftDelay;
 }
 
@@ -63,10 +63,29 @@
   background-color: defaultWhite;
   opacity: 0;
   width: 100%;
-  min-height: calc(100vh - bannerHeight);
+  overflow: hidden;
+  max-height: calc(100vh - bannerHeight);
+  min-height: 0;
 
-  animation: appearFromRight secondStepDuration forwards;
+  animation: appearFromRightWithoutOverflow secondStepDuration ease-out forwards;
   animation-delay: comeFromLeftDelay;
+}
+
+@keyframes appearFromRightWithoutOverflow {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+    overflow: hidden;
+    min-height: 0;
+    max-height: calc(100vh - bannerHeight);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+    overflow: unset;
+    max-height: unset;
+    min-height: calc(100vh - bannerHeight);
+  }
 }
 
 @keyframes appearFromRight {

@@ -1,4 +1,4 @@
-@value recordingTextGrey, graphiteGrey, comemorativeYellow from "../colors.css";
+@value mediumGray, darkestGrey, comemorativeYellow from "../colors.css";
 .logo {
   font-family: "Coolvetica";
   letter-spacing: 0.0853rem;
@@ -14,11 +14,11 @@
 }
 
 .grey {
-  color: recordingTextGrey;
+  color: mediumGray;
 }
 
 .black {
-  color: graphiteGrey;
+  color: darkestGrey;
 }
 
 .yellow {

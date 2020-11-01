@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import redirectToRecording from '../home/RecordingRedirectionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import CardPageWrapper from '../shell/CardPageWrapper';
 import DashboardHeader from '../shell/DashboardHeader';
@@ -32,7 +33,7 @@ function DashboardPage() {
     if (action.type === 'RECORDING') {
       const [, theme] = (action.id || '').split('_');
       if (theme) {
-        navigate(`/fale/${theme}`);
+        redirectToRecording(theme, navigate);
       } else {
         console.error('Invalid action', action);
       }

@@ -1,4 +1,5 @@
 @value highlightDepth from "../sizes.css";
+@value darkestGray, mediumGray, lighterGray, lightestGray from "../colors.css";
 @value firstToastyDelay from "../recording-constants.css";
 
 .box {
@@ -10,15 +11,15 @@
   text-align: center;
 
   height: 5rem;
-  background-color: rgb(247, 247, 247);
-  border: 1px solid rgb(151, 151, 151);
+  background-color: lightestGray;
+  border: 1px solid mediumGray;
   border-radius: 1px;
 }
 
 .text {
   font-size: 1.6rem;
   letter-spacing: -0.032rem;
-  color: rgb(117, 117, 117);
+  color: mediumGray;
 }
 
 .hide {

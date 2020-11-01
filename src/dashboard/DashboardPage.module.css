@@ -1,4 +1,4 @@
-@value defaultWhite, borderGray, descriptionGray from "../colors.css";
+@value defaultWhite, lighterGray, descriptionGray from "../colors.css";
 
 .background {
   background-size: cover;
@@ -68,8 +68,8 @@
 .separator {
   height: 0.1rem;
   border-width: 0;
-  color: borderGray;
-  background-color: borderGray;
+  color: lighterGray;
+  background-color: lighterGray;
   margin-top: 1.68rem;
   margin-bottom: 2.18rem;
 }

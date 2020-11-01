@@ -1,4 +1,4 @@
-@value cobalt, defaultWhite, darkerGrey from "../colors.css";
+@value cobalt, defaultWhite, darkestGray from "../colors.css";
 @value sidePadding from "../sizes.css";
 
 .pageWrapper {
@@ -15,5 +15,5 @@
 
 .whiteBackground {
   background-color: defaultWhite;
-  color: darkerGrey;
+  color: darkestGray;
 }
