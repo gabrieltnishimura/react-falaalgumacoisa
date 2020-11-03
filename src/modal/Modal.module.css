@@ -1,5 +1,5 @@
 @value headerSize, sidePadding, modalOverlayDepth, modalWindowDepth from "../sizes.css";
-@value darkestGray, darkestGray, defaultWhite, comemorativeYellow, cozyOrange from "../colors.css";
+@value darkestGray, defaultWhite, comemorativeYellow, cozyOrange from "../colors.css";
 
 @value modalSideSpacing: 2.6rem;
 @value modalInnerPadding: 1.6rem;
@@ -68,9 +68,9 @@
   animation: appearFromTop 300ms forwards;
 }
 
-.header > * {
-  height: 6rem;
-  width: 6rem;
+.header > svg {
+  height: 5rem;
+  width: 5rem;
 }
 
 .scoreChange {

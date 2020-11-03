@@ -1,11 +1,11 @@
-@value defaultWhite, darkestGray, lighterGray, descriptionGray, deepBlue from "../colors.css";
+@value defaultWhite, darkestGray, lighterGray, mediumGray, deepBlue from "../colors.css";
 @value sidePadding, headerPaddingTop, headerPaddingBottom, headerInnerSize from "../sizes.css";
 
 .accessVia {
   font-size: 1.8rem;
   line-height: 2.8rem;
   letter-spacing: -0.036rem;
-  color: descriptionGray;
+  color: mediumGray;
   font-weight: 300;
 }
 

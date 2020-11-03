@@ -1,5 +1,5 @@
 @value headerSize from "../sizes.css";
-@value descriptionGray, defaultWhite from "../colors.css";
+@value mediumGray, defaultWhite from "../colors.css";
 
 @value footerSize: 9.6rem;
 
@@ -22,7 +22,7 @@
   line-height: 2.8rem;
   letter-spacing: -0.048rem;
   margin: 0;
-  color: descriptionGray;
+  color: mediumGray;
   margin-bottom: 5.5rem;
 }
 

@@ -1,4 +1,4 @@
-@value descriptionGray from "../colors.css";
+@value mediumGray from "../colors.css";
 @value sidePadding, headerSize, doubleButtonHeight, buttonSpacing from "../sizes.css";
 
 .title {
@@ -17,7 +17,7 @@
   font-weight: 300;
   line-height: 2.8rem;
   letter-spacing: -0.048rem;
-  color: descriptionGray;
+  color: mediumGray;
 }
 
 .formLabel {
