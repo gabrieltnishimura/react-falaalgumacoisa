@@ -35,12 +35,12 @@ function AnimatedRecordedContent(props: {
           <div className={transitions.actionButtons}>
             <div>
               <CircleButtonWrapper click={props.trash}>
-                <TrashIcon />
+                <TrashIcon className={transitions.trashIcon} />
               </CircleButtonWrapper>
             </div>
             <div>
               <CircleButtonWrapper click={props.confirm} success>
-                <CheckIcon />
+                <CheckIcon className={transitions.checkIcon} />
               </CircleButtonWrapper>
             </div>
           </div>

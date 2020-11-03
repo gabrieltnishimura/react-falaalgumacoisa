@@ -68,9 +68,7 @@ function RecordingStep(props: {
     setBlob(null);
   }
 
-  const overlay = recordingState === RecordingState.NOT_RECORDED || recordingState === RecordingState.RECORDED ?
-    styles.notDimmed : styles.dimmed;
-  // const overlay = styles.dimmed;
+  const overlay = recordingState === RecordingState.RECORDING ? styles.dimmed : '';
 
   return (
     <div className={overlay}>

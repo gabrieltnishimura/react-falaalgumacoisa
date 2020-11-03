@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TermsOfServiceModal from '../modal/TermsOfServiceModal';
 import * as wordSuggestionService from '../recording/suggestions/WordSuggestionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import useProgressiveImage from '../shared/useProgressiveImage';
-import { checkMicPermissions } from '../shared/utils';
 import Header from '../shell/Header';
 import HomeContent from './HomeContent';
 import styles from './HomePage.module.css';
+import redirectToRecording from './RecordingRedirectionService';
 import SplashContent from './SplashContent';
 
 function HomePage() {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const navigate = useNavigate();
   const [animate, setAnimate] = useState(false);
-  const [tos, setToS] = useState(false);
-  const imageLoaded = useProgressiveImage('/splash-cover.jpg')
+  const imageLoaded = useProgressiveImage('/backgrounds/dog.jpg')
   const [randomizedTheme, setRandomizedTheme] = useState<string>('');
 
   useEffect(() => {
@@ -35,32 +33,11 @@ function HomePage() {
   }, []);
 
   const redirectRecordingFn = () => {
-    if (localStorage.getItem('tos')) {
-      const grantedFn = () => {
-        navigate(`/fale/${randomizedTheme}`);
-      }
-
-      const notGrantedFn = () => {
-        navigate(`/habilitar-microfone`, { state: { theme: randomizedTheme } });
-      }
-
-      checkMicPermissions(grantedFn, notGrantedFn);
-    } else {
-      setToS(true);
-    }
+    redirectToRecording(randomizedTheme, navigate);
   }
 
   const redirectLoginFn = () => {
     navigate('/login')
-  }
-
-  const agree = () => {
-    localStorage.setItem('tos', 'agreed');
-    redirectRecordingFn();
-  }
-
-  const disagree = () => {
-    setToS(false);
   }
 
   return (
@@ -85,7 +62,6 @@ function HomePage() {
           <HomeContent redirectRecordingFn={redirectRecordingFn} />
         </div>
       </div> : null}
-      {tos ? <TermsOfServiceModal onAgree={agree} onDisagree={disagree} /> : null}
     </>
   );
 }

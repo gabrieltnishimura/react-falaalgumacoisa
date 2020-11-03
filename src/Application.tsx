@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PrivacyPolicyPage from './about-us/PrivacyPolicyPage';
+import TermsOfServicePage from './about-us/TermsOfServicePage';
 import AutoAuthenticationRoute from './authentication/AutoAuthenticationRoute';
 import ProtectedRoute from './authentication/ProtectedRoute';
 import UnauthenticatedRoute from './authentication/UnauthenticatedRoute';
@@ -18,6 +20,7 @@ import LoginPage from './login/LoginPage';
 import RecordingPage from './recording/RecordingPage';
 import RegistrationPage from './registration/RegistrationPage';
 
+
 function App() {
   const authenticationState = useContext(UserContext);
   const isAuth = authenticationState.user && Boolean(authenticationState.user);
@@ -28,6 +31,8 @@ function App() {
       <Routes>
         <UnauthenticatedRoute path="/" component={<HomePage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/login" component={<LoginPage />} isAuth={isAuth}></UnauthenticatedRoute>
+        <UnauthenticatedRoute path="/termos-de-servico" component={<TermsOfServicePage />} isAuth={isAuth}></UnauthenticatedRoute>
+        <UnauthenticatedRoute path="/politica-de-privacidade" component={<PrivacyPolicyPage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/error" component={<ErrorPage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/habilitar-microfone" component={<EnableMicrophonePage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/erro-mic-desabilitado" component={<DisabledMicrophonePage />} isAuth={isAuth}></UnauthenticatedRoute>

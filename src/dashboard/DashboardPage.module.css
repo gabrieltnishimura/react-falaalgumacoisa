@@ -1,4 +1,4 @@
-@value defaultWhite, borderGray, descriptionGray from "../colors.css";
+@value defaultWhite, lighterGray, mediumGray from "../colors.css";
 
 .background {
   background-size: cover;
@@ -53,7 +53,7 @@
   line-height: 2.8rem;
   letter-spacing: -0.048rem;
   margin: 2.2rem 0 5.9rem 0;
-  color: descriptionGray;
+  color: mediumGray;
 }
 
 .loaderIcon {
@@ -68,8 +68,8 @@
 .separator {
   height: 0.1rem;
   border-width: 0;
-  color: borderGray;
-  background-color: borderGray;
+  color: lighterGray;
+  background-color: lighterGray;
   margin-top: 1.68rem;
   margin-bottom: 2.18rem;
 }

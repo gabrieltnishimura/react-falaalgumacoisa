@@ -42,8 +42,8 @@ function FirstRecordingModalContent(props: {
   onInvalid: () => void,
   onAnon?: () => void,
 }) {
-  const { value: namingChoice, bind: bindNamingOptions } = useInput<FirstRecordingModalNamingOptions>(null);
-  const { value: firstName, bind: bindFirstName } = useInput('');
+  const { value: namingChoice, bind: bindNamingOptions, setValue: setNamingOption } = useInput<FirstRecordingModalNamingOptions>(null);
+  const [firstName, setFirstName] = useState('');
   const [fieldValidationState, setFieldValidationState] = useState<FieldValidationState>(FieldValidationState.NON_TOUCHED);
   const [nameError, setNameError] = useState('');
   const [randomName, setRandomName] = useState('');
@@ -53,15 +53,14 @@ function FirstRecordingModalContent(props: {
     const getMetadata = async () => {
       try {
         const metadata = await registrationIntegrationService.getUserMetadata();
-        bindNamingOptions.onChange({ target: { value: 'NAME' } });
-        bindFirstName.onChange({ target: { value: metadata.nickname } });
-      } catch (err) {
-        console.error(err);
-      }
+        if (metadata && metadata.nickname) {
+          setNamingOption('NAME');
+          setFirstName(metadata.nickname);
+        }
+      } catch (err) { }
     }
     getMetadata();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setNamingOption]);
 
   useEffect(() => {
     if (namingChoice === 'NAME' && fieldValidationState === FieldValidationState.VALID && !!firstName && firstName.length > 3) {
@@ -122,6 +121,10 @@ function FirstRecordingModalContent(props: {
         <TextSpinnerIcon className={styles.loaderIcon}></TextSpinnerIcon> :
         fieldValidationState === FieldValidationState.VALID ? null : null;
 
+  const onChangeFirstName = (event: any) => {
+    setFirstName(event.target.value);
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
@@ -129,7 +132,7 @@ function FirstRecordingModalContent(props: {
           <RadioGroup aria-label="gender" name="customized-radios" {...bindNamingOptions}>
             <FormControlLabel value="NAME" control={<Radio color="primary" />} label="Usar nome de guerra" />
             {namingChoice === 'NAME' ? <div>
-              <TextField fullWidth label="Nome de guerra" {...bindFirstName}
+              <TextField fullWidth label="Nome de guerra" value={firstName} onChange={onChangeFirstName}
                 error={!!nameError} helperText={nameError}
                 InputProps={{ endAdornment }} />
             </div> : null}

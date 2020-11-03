@@ -56,9 +56,9 @@ function Header(props: {
           <LinkItem title={props.link.title} onclick={props.link.onClick} color="cobalt" ></LinkItem> :
           null}
         {props.icon ?
-          <div className={styles.iconWrapper} onClick={props.icon.onClick}>
+          <button className={styles.iconWrapper} onClick={props.icon.onClick}>
             {props.icon.component}
-          </div> :
+          </button> :
           null}
       </div>
       {showConfirmModal ? <ConfirmExitModal onClose={closeModalFn} /> : null}

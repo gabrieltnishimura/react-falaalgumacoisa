@@ -1,11 +1,11 @@
-@value defaultWhite, graphiteGray, borderGray, descriptionGray, deepBlue from "../colors.css";
+@value defaultWhite, darkestGray, lighterGray, mediumGray, deepBlue from "../colors.css";
 @value sidePadding, headerPaddingTop, headerPaddingBottom, headerInnerSize from "../sizes.css";
 
 .accessVia {
   font-size: 1.8rem;
   line-height: 2.8rem;
   letter-spacing: -0.036rem;
-  color: descriptionGray;
+  color: mediumGray;
   font-weight: 300;
 }
 
@@ -24,7 +24,7 @@
   font-size: 4rem;
   line-height: 4.2rem;
   letter-spacing: -0.08rem;
-  color: graphiteGray;
+  color: darkestGray;
   font-weight: 700;
   margin: 0;
 }
@@ -58,8 +58,8 @@
 .separator {
   height: 0.1rem;
   border-width: 0;
-  color: borderGray;
-  background-color: borderGray;
+  color: lighterGray;
+  background-color: lighterGray;
   margin-top: 3.23rem;
   margin-bottom: 1.9rem;
 }
