@@ -11,6 +11,10 @@
 .logoWrapper {
   display: flex;
   align-items: center;
+  background-color: unset;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 .logoWrapper > img {

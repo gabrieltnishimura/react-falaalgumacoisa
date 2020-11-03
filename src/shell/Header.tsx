@@ -11,10 +11,7 @@ function Header(props: {
     title: string,
     onClick: () => void,
   },
-  icon?: {
-    component: any,
-    onClick: () => void,
-  },
+  icon?: any,
   logoColor?: 'black' | 'white',
   preventRedirect?: boolean,
 }) {
@@ -47,19 +44,15 @@ function Header(props: {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logoWrapper} onClick={redirectHome}>
+      <button className={styles.logoWrapper} onClick={redirectHome}>
         <img src="/logo_light.png" alt='Logo'></img>
         <AppLogo black={props.logoColor === 'black'}></AppLogo>
-      </div>
+      </button>
       <div>
         {props.link ?
           <LinkItem title={props.link.title} onclick={props.link.onClick} color="cobalt" ></LinkItem> :
           null}
-        {props.icon ?
-          <button className={styles.iconWrapper} onClick={props.icon.onClick}>
-            {props.icon.component}
-          </button> :
-          null}
+        {props.icon ? props.icon : null}
       </div>
       {showConfirmModal ? <ConfirmExitModal onClose={closeModalFn} /> : null}
     </header>

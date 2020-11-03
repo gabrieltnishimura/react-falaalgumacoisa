@@ -5,6 +5,13 @@
   justify-content: space-between;
 }
 
+.actionButtons > button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: unset;
+}
+
 .trashButton > svg {
   height: 5rem;
 }

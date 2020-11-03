@@ -1,0 +1,12 @@
+@value darkestGray from "../../colors.css";
+
+.iconWrapper {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.icon {
+  height: 3.5rem;
+  width: 3.5rem;
+  color: darkestGray;
+}
