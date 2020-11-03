@@ -53,7 +53,6 @@ function PrivacyPolicyPage() {
         <SectionText>Você pode impedir a configuração de cookies ajustando as configurações do seu navegador (consulte a Ajuda do navegador para saber como fazer isso). Esteja ciente de que a desativação de cookies afetará a funcionalidade deste e de muitos outros sites que você visita. A desativação de cookies geralmente resultará na desativação de determinadas funcionalidades e recursos deste site. Portanto, é recomendável que você não desative os cookies.</SectionText>
 
         <SectionTitle>Cookies que definimos</SectionTitle>
-
         <ItemizedList list={[
           { title: 'Cookies relacionados à conta', description: 'Se você criar uma conta conosco, usaremos cookies para o gerenciamento do processo de inscrição e administração geral. Esses cookies geralmente serão excluídos quando você sair do sistema, porém, em alguns casos, eles poderão permanecer posteriormente para lembrar as preferências do seu site ao sair.' },
           { title: 'Cookies relacionados ao login', description: 'Utilizamos cookies quando você está logado, para que possamos lembrar dessa ação. Isso evita que você precise fazer login sempre que visitar uma nova página. Esses cookies são normalmente removidos ou limpos quando você efetua logout para garantir que você possa acessar apenas a recursos e áreas restritas ao efetuar login.' },
@@ -65,16 +64,13 @@ function PrivacyPolicyPage() {
         ]} />
 
         <HeadingTitle>Cookies de Terceiros</HeadingTitle>
-
         <SectionText>Em alguns casos especiais, também usamos cookies fornecidos por terceiros confiáveis. A seção a seguir detalha quais cookies de terceiros você pode encontrar através deste site.</SectionText>
         <ItemizedList list={[
           { title: 'Este site usa o Google Analytics, que é uma das soluções de análise mais difundidas e confiáveis ​​da Web, para nos ajudar a entender como você usa o site e como podemos melhorar sua experiência. Esses cookies podem rastrear itens como quanto tempo você gasta no site e as páginas visitadas, para que possamos continuar produzindo conteúdo atraente.' },
         ]} />
         <SectionText>Para mais informações sobre cookies do Google Analytics, consulte a página oficial do Google Analytics.</SectionText>
 
-
         <SectionTitle>3. Isenção de responsabilidade</SectionTitle>
-
         <ItemizedList list={[
           { title: 'As análises de terceiros são usadas para rastrear e medir o uso deste site, para que possamos continuar produzindo conteúdo atrativo. Esses cookies podem rastrear itens como o tempo que você passa no site ou as páginas visitadas, o que nos ajuda a entender como podemos melhorar o site para você.' },
           { title: 'Periodicamente, testamos novos recursos e fazemos alterações subtis na maneira como o site se apresenta. Quando ainda estamos testando novos recursos, esses cookies podem ser usados ​​para garantir que você receba uma experiência consistente enquanto estiver no site, enquanto entendemos quais otimizações os nossos usuários mais apreciam.' },

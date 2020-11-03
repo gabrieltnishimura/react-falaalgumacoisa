@@ -2,8 +2,6 @@
 @value sidePadding from "../sizes.css";
 
 .pageWrapper {
-  display: flex;
-  flex-flow: column;
   padding-left: sidePadding;
   padding-right: sidePadding;
 }

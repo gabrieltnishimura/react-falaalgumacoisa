@@ -26,7 +26,6 @@ function TermsOfServicePage() {
       navigate('/');
     }
 
-    setLoading(false); // each page has to implement its own stop loading logic
     if (!localStorage.getItem('tos')) {
       setButtons({
         primary: {
@@ -41,7 +40,8 @@ function TermsOfServicePage() {
         }
       })
     }
-  }, []);
+    setLoading(false);
+  }, [location, navigate, setButtons, setLoading]);
 
   return (
     <>
@@ -65,7 +65,6 @@ function TermsOfServicePage() {
         <SectionText>Esta licença será automaticamente rescindida se você violar alguma dessas restrições e poderá ser rescindida por Fale Alguma Coisa a qualquer momento. Ao encerrar a visualização desses materiais ou após o término desta licença, você deve apagar todos os materiais baixados em sua posse, seja em formato eletrónico ou impresso.</SectionText>
 
         <SectionTitle>3. Isenção de responsabilidade</SectionTitle>
-
         <ItemizedList list={[
           { title: 'Os materiais no site da Fale Alguma Coisa são fornecidos \'como estão\'. Fale Alguma Coisa não oferece garantias, expressas ou implícitas, e, por este meio, isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização, adequação a um fim específico ou não violação de propriedade intelectual ou outra violação de direitos.' },
           { title: 'Além disso, o Fale Alguma Coisa não garante ou faz qualquer representação relativa à precisão, aos resultados prováveis ​​ou à confiabilidade do uso dos materiais em seu site ou de outra forma relacionado a esses materiais ou em sites vinculados a este site.' },
