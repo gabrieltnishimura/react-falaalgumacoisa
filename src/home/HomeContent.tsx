@@ -14,9 +14,9 @@ function HomeContent(props: { redirectRecordingFn: () => void }) {
       </button>
       <div className={styles.descriptionWrapper}>
         <span className={styles.description}>
-          O Fale Alguma Coisa é uma iniciativa colaborativa para criação de uma base de vozes em português brasileiro. Essa base será anônima e open-source para pesquisa e uso pessoal.<br /><br />
-          Contribuia para ciência doando a sua voz e utilizando o aplicativo. Compita com outros contribuidores e até adicione amigos.<br /><br />
-          O cadastro é opcional, mas pode nos ajudar a categorizar melhor a sua voz.
+          O Fale Alguma Coisa é uma iniciativa colaborativa para criação de uma base de vozes em português brasileiro. Contribua para ciência doando a sua voz! <br /><br />
+          Desafie seus amigos e jogue com outros contribuidores!  As vozes coletadas são anônimas e o acesso é gratuito para pesquisa e uso pessoal. <br /><br />
+          O cadastro é opcional, mas pode nos ajudará a categorizar melhor a sua voz.
         </span>
       </div>
     </>

@@ -24,7 +24,7 @@ import RegistrationPage from './registration/RegistrationPage';
 function App() {
   const authenticationState = useContext(UserContext);
   const isAuth = authenticationState.user && Boolean(authenticationState.user);
-  console.log('Rerendering app with', authenticationState.user);
+  console.log('Rerendering app with', authenticationState.user, authenticationState.metadata);
 
   return (
     <Router>

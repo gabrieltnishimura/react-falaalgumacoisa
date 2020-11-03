@@ -20,10 +20,7 @@ function PrivacyPolicyPage() {
       <WhitePageWrapper>
         <HeadingTitle>Política de Privacidade</HeadingTitle>
         <SectionText>
-          A sua privacidade é importante para nós. É política do Fale Alguma Coisa respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site Fale Alguma Coisa, e outros sites que possuímos e operamos.
-        </SectionText>
-        <SectionText>
-          A sua privacidade é importante para nós. É política do Fale Alguma Coisa respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site Fale Alguma Coisa, e outros sites que possuímos e operamos.
+          A sua privacidade é importante para nós. É política do Fale Alguma Coisa respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no aplicativo Fale Alguma Coisa, e outros sites que possuímos e operamos.
         </SectionText>
         <SectionText>
           Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.

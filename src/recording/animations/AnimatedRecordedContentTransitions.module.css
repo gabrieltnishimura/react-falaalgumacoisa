@@ -5,13 +5,6 @@
   justify-content: space-between;
 }
 
-.actionButtons > button {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background-color: unset;
-}
-
 .trashButton > svg {
   height: 5rem;
 }
@@ -23,32 +16,6 @@
 .animations {
   transition: opacity 300ms, transform 300ms;
 }
-/* 
-.enter .toasty {
-  transition: opacity 300ms, transform 300ms;
-  opacity: 0;
-  transform: translateY(-100%);
-}
-
-.enterActive .toasty {
-  transition: opacity 300ms, transform 300ms;
-  opacity: 1;
-  transform: translateY(0%);
-}
-
-.exit {
-  animation: none;
-  composes: animations;
-  opacity: 1;
-  transform: translateY(0%);
-}
-
-.exitActive {
-  animation: none;
-  composes: animations;
-  opacity: 0;
-  transform: translateY(100%);
-} */
 
 .toasty {
   opacity: 0;

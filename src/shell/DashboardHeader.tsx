@@ -31,7 +31,7 @@ function DashboardHeader(props: { notifications?: number }) {
               <ProfileIcon />
             </button>
           </div>} ></Header>
-      {showMenu ? <DashboardMenu close={toggleMenu} /> : null}
+      <DashboardMenu show={showMenu} close={toggleMenu} />
     </>
   );
 }
