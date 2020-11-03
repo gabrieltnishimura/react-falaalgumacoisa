@@ -33,14 +33,14 @@ function AnimatedRecordedContent(props: {
             <AudioPlayer data={props.blob}></AudioPlayer>
           </div>
           <div className={transitions.actionButtons}>
-            <div>
+            <div className={transitions.trashButton}>
               <CircleButtonWrapper click={props.trash}>
-                <TrashIcon className={transitions.trashIcon} />
+                <TrashIcon />
               </CircleButtonWrapper>
             </div>
-            <div>
+            <div className={transitions.checkButton}>
               <CircleButtonWrapper click={props.confirm} success>
-                <CheckIcon className={transitions.checkIcon} />
+                <CheckIcon />
               </CircleButtonWrapper>
             </div>
           </div>
