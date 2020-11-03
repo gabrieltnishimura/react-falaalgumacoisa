@@ -48,18 +48,20 @@
 
 .recorded .background {
   height: finalBackgroundHeight;
-  transition: height 200ms ease-in;
+  transition: height 400ms ease-in;
 }
 
 /* RECORDED: 1 - expand content */
 .recorded .content {
   min-height: calc(100vh - pageFooterSizeRecorded - headerSize);
-  transition: min-height 200ms ease-in;
-  transition-delay: 100ms; /* prevents flick of leaving mic */
+  transition: min-height 100ms ease-in;
+  transition-delay: 200ms;
 }
 
 .recorded .footer {
   height: pageFooterSizeRecorded;
+  transition: height 100ms ease-in;
+  transition-delay: 200ms;
 }
 
 @keyframes appearFromBottom {

@@ -1,23 +1,22 @@
+.actionButtons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trashButton > svg {
+  height: 5rem;
+}
+
+.checkButton > svg {
+  height: 3.4rem;
+}
+
 .animations {
   transition: opacity 300ms, transform 300ms;
 }
-
-.initial {
-  opacity: 0;
-  animation: appearFromTop 500ms forwards;
-}
-
-@keyframes appearFromTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-
+/* 
 .enter .toasty {
   transition: opacity 300ms, transform 300ms;
   opacity: 0;
@@ -42,24 +41,41 @@
   composes: animations;
   opacity: 0;
   transform: translateY(100%);
+} */
+
+.toasty {
+  opacity: 0;
+  animation: appearFromTop 600ms forwards;
+  animation-delay: 900ms;
 }
 
 .player {
   margin-top: 2.1rem;
   margin-bottom: 4.3rem;
+  opacity: 0;
+  animation: appearFromTop 300ms forwards;
+  animation-delay: 300ms;
 }
 
-.actionButtons {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.trashButton {
+  opacity: 0;
+  animation: appearFromTop 250ms forwards;
+  animation-delay: 700ms;
 }
 
-.trashIcon {
-  height: 5rem;
+.checkButton {
+  opacity: 0;
+  animation: appearFromTop 250ms forwards;
+  animation-delay: 800ms;
 }
 
-.checkIcon {
-  height: 3.4rem;
+@keyframes appearFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
