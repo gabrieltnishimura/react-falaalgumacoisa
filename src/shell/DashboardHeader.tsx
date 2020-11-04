@@ -6,7 +6,7 @@ import ProfileIcon from '../shared/icons/ProfileIcon';
 import styles from './DashboardHeader.module.css';
 import Header from './Header';
 
-function DashboardHeader(props: { notifications?: number }) {
+function DashboardHeader(props: { notifications?: number, hideNotications?: boolean }) {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -22,11 +22,12 @@ function DashboardHeader(props: { notifications?: number }) {
       <Header logoColor="black"
         icon={
           <div className={styles.actions}>
-            <button className={styles.button} onClick={gotoNotifications}>
-              {props.notifications ?
-                <NumberedCircleIcon number={props.notifications} color="orange" /> :
-                <NotificationIcon />}
-            </button>
+            {props.hideNotications ? null :
+              <button className={styles.button} onClick={gotoNotifications}>
+                {props.notifications ?
+                  <NumberedCircleIcon number={props.notifications} color="orange" /> :
+                  <NotificationIcon />}
+              </button>}
             <button className={styles.button} onClick={toggleMenu} >
               <ProfileIcon />
             </button>

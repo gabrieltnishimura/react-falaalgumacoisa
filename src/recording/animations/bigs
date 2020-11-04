@@ -2,35 +2,22 @@ Bugs de Layout
 
 HOMEPAGE
 
-1) Bug splash screen com conteúdo maior que a tela
-- fazer height crescer com a animação (obecendo os delays)
-- usar overflow hidden no body sincronizado
-
 2) Colocar algum tipo de cubic bezier na animação do splash screen para deixar mais natural
 - referencias https://cubic-bezier.com/
 
 3) repensar na imagem (pessoas falando? animais? biblioteca? tecnologia?)
 
-4) logo e espaçamentos ok
-
 MODAIS
 
-1) trocar o modal para página no caso de ToS
-
 2) no mac da pra scrollar a página toda quando os modais tá aberto
- - colocar overflow: hidden no body (apenas quando modal estiver abert
-
-3) icones do modal estão grandes (precisam ser 5rem)
+ - colocar overflow: hidden no body (apenas quando modal estiver aberto)
 
 4) animacao de randomizador de nomes
 
 
 GRAVACAO
 
-1) Revisar todas as cores
- - a caixa de dicas poderia ficar mais suave (borda)
-
-2) animacao
+OK 2) animacao
  - 1) audio player
  - 2) botao de lixo
  - 3) botao de certo (pouco delay)
@@ -39,35 +26,35 @@ GRAVACAO
 
 3) não mostrar mais toasty após primeiro tema
 
-4) play button não centralizado
+OK 4) play button não centralizado
 
-4) tamanho do logo zuado
+OK 4) tamanho do logo zuado
 
 5) depois de fazer cadastro e clicar em voltar na gravação, voltar direto para dashboard
 
 DASHBOARD
 
-1) diminuir o column gap para 1rem
+OK 1) diminuir o column gap para 1rem
 
-2) logo do header descentralizado, usar button para deixar mais semantico (removendo iconWrapper), colocar tamanho, background e border radius 100% no próprio svg para resolver centralização
+ok 2) logo do header descentralizado, usar button para deixar mais semantico (removendo iconWrapper), colocar tamanho, background e border radius 100% no próprio svg para resolver centralização
 
-3) 1.5rem do border radius do card 
+ok 3) 1.5rem do border radius do card 
 
 4) modal aviso de quando o cara passar de nível
 
 5) alinhar o label da badge no centro (padding e display flex) com imagem no background
 
-6) tirar o overlay das imagens
+ok 6) tirar o overlay das imagens
 
 7) imagem para dashboard, placares, notificacoes, buscar amigo, indique amigo
 
 MENU
 
-1) animação para abrir o menu, e overlay na lateral
+ok 1) animação para abrir o menu, e overlay na lateral
 
-2) após clicar e estar na mesma rota, apenas fechar o menu
+ok 2) após clicar e estar na mesma rota, apenas fechar o menu
 
-3) arrumar a sambada no título do texto quando abre o menu
+ok 3) arrumar a sambada no título do texto quando abre o menu
 
 FORMS
 

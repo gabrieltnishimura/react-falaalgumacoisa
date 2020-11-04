@@ -17,6 +17,7 @@ import ErrorPage from './error/ErrorPage';
 import NotFoundPage from './error/NotFoundPage';
 import HomePage from './home/HomePage';
 import LoginPage from './login/LoginPage';
+import NotificationsPage from './notifications/NotificationsPage';
 import RecordingPage from './recording/RecordingPage';
 import RegistrationPage from './registration/RegistrationPage';
 
@@ -41,6 +42,7 @@ function App() {
         <ProtectedRoute path="/placar-dos-lideres" component={<LeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/placar-dos-amigos" component={<FriendsLeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/buscar-amigos" component={<SearchFriendsPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
+        <ProtectedRoute path="/notificacoes" component={<NotificationsPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/excluir" component={<DeleteUserPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <AutoAuthenticationRoute path="/fale/:theme" component={<RecordingPage />} isAuth={isAuth}></AutoAuthenticationRoute>
         <Route path="*" element={<NotFoundPage />} />
