@@ -21,6 +21,7 @@ const config = {
     skipRecording: process.env.REACT_APP_SKIP_RECORDING_URL || 'NOT_SET',
     assignName: process.env.REACT_APP_ASSIGN_NAME_URL || 'NOT_SET',
     registration: process.env.REACT_APP_REGISTRATION_URL || 'NOT_SET',
+    mergeUserData: process.env.REACT_APP_MERGE_USER_DATA_URL || 'NOT_SET',
     validateNickname: process.env.REACT_APP_VALIDATE_NICKNAME_URL || 'NOT_SET',
     deleteUser: process.env.REACT_APP_DELETE_USER_URL || 'NOT_SET',
     userMetadata: process.env.REACT_APP_USER_METADATA_URL || 'NOT_SET',

@@ -1,10 +1,15 @@
 import { get, post } from '../apis/api';
+import { authenticationService } from '../authentication/AuthenticationService';
 import config from '../config';
 import { RegistrationDataModel } from './RegistrationDataModel';
 
 const sendRegistrationData = (data: RegistrationDataModel) => {
   const url = config.endpoints.registration;
-  return post<void>(url, data).toPromise();
+  const oldToken = authenticationService.getOldToken();
+  return post<void>(url, {
+    ...data,
+    oldToken,
+  }).toPromise();
 }
 
 const assignName = (name: string): Promise<void> => {
@@ -27,10 +32,18 @@ const getUserMetadata = (): Promise<{ nickname: string }> => {
   return get<any>(url).toPromise();
 }
 
+const mergeUserData = async () => {
+  const url = config.endpoints.mergeUserData;
+  const oldToken = authenticationService.getOldToken();
+  await post(url, { oldToken }).toPromise();
+  authenticationService.removeOldToken();
+}
+
 export {
   sendRegistrationData,
   assignName,
   validateNickname,
   deleteUser,
   getUserMetadata,
+  mergeUserData,
 };
