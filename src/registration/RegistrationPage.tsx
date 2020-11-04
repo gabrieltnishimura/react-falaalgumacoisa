@@ -6,7 +6,7 @@ import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderCo
 import BasicDataStep from './BasicDataStep';
 import NicknameRegistrationStep from './NicknameRegistrationStep';
 import { RegistrationDataModel } from './RegistrationDataModel';
-import { sendRegistrationData } from './RegistrationIntegrationService';
+import * as registrationIntegrationService from './RegistrationIntegrationService';
 import UsernameStep from './UsernameStep';
 
 export enum RegistrationSteps {
@@ -25,7 +25,7 @@ function RegistrationPage() {
 
   const sendData = async (data: RegistrationDataModel) => {
     setLoading(true);
-    await sendRegistrationData(data); // needs toasty
+    await registrationIntegrationService.sendRegistrationData(data); // needs toasty
     navigation('/dashboard');
   }
 
@@ -59,8 +59,6 @@ function RegistrationPage() {
     await firebaseRegistration(data.username, data.password);
     const newRegistrationData = {
       ...registrationData,
-      username: data.username,
-      password: data.password,
     };
     setRegistrationData(newRegistrationData);
     sendData(newRegistrationData);
@@ -69,6 +67,7 @@ function RegistrationPage() {
   const firebaseRegistration = async (username: string, password: string) => {
     try {
       await authenticationService.createUserWithEmailAndPassword(username, password);
+      await registrationIntegrationService.mergeUserData();
     } catch (err) {
       console.error(err);
       if (err.code === 'auth/email-already-in-use') {

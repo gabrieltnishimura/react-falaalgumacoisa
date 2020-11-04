@@ -83,8 +83,9 @@ function LoginPage() {
   useEffect(() => {
     const redirectFromSocialMedia = async () => {
       const user = await authenticationService.getRedirect();
-      if (user?.user) { // not redirected
+      if (user?.user) { // redirected
         try { // check if has registration within site if has, dashboard
+          await registrationIntegrationService.mergeUserData();
           await registrationIntegrationService.getUserMetadata();
           navigate('/dashboard');
         } catch (err) { // if not, registration

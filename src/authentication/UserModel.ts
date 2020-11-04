@@ -8,7 +8,6 @@ export default class UserModel {
   public uid: string = '';
   private user: firebase.User | null = null;
 
-
   constructor(user: firebase.User | null) {
     if (!user) {
       return;

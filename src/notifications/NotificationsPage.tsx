@@ -15,7 +15,7 @@ function NotificationsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await notificationService.getNotifications();
+        await notificationService.getNotifications();
         setNotifications([]);
         setLoading(false);
       } catch (err) {
