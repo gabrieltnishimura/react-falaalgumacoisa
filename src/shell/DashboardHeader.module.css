@@ -1,0 +1,12 @@
+.actions {
+  display: flex;
+}
+
+.actions > .button:first-child {
+  margin-right: 1.6rem;
+}
+
+.button {
+  background-color: white;
+  border-radius: 50%;
+}

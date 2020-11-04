@@ -29,6 +29,7 @@ const config = {
     friendsLeaderboard: process.env.REACT_APP_FRIENDS_LEADERBOARD_URL || 'NOT_SET',
     searchFriends: process.env.REACT_APP_SEARCH_FRIENDS_URL || 'NOT_SET',
     friendsActions: process.env.REACT_APP_FRIENDS_ACTIONS_URL || 'NOT_SET',
+    notifications: process.env.REACT_APP_NOTIFICATIONS_URL || 'NOT_SET',
   },
 };
 

@@ -1,3 +1,5 @@
+import { UserContextInput } from "../authentication/UserProvider";
+
 const getAudioFormat = (() => {
   const preferredFormat = 'audio/ogg; codecs=opus';
   const audio = document.createElement('audio');
@@ -50,9 +52,19 @@ const checkMicPermissions = (ok: () => void, nok: () => void) => {
     });
 }
 
+const goHome = (authenticationState: UserContextInput, navigate: any) => {
+  const user = authenticationState.user;
+  if (user && (authenticationState?.metadata?.nickname || !user.isAnonymous)) {
+    navigate('/dashboard');
+  } else {
+    navigate('/');
+  }
+}
+
 export {
   getAudioFormat,
   timeToDuration,
   isEmail,
   checkMicPermissions,
+  goHome,
 };

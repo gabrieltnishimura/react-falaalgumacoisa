@@ -30,6 +30,10 @@ body {
 
 button {
   font-family: "Inter" !important;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: unset;
 }
 
 @font-face {

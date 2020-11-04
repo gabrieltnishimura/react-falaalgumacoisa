@@ -4,8 +4,8 @@
 .cardPageWrapper {
   display: flex;
   flex-flow: column;
-  border-top-left-radius: 1.2rem;
-  border-top-right-radius: 1.2rem;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
 }
 
 .useAllHeight {

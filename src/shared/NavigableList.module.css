@@ -1,0 +1,35 @@
+@value darkestGray, mediumGray from "../colors.css";
+
+.wrapper {
+  margin-bottom: 4rem;
+}
+
+.titleWrapper {
+  margin-bottom: 1.6rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.028rem;
+  color: mediumGray;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  margin-bottom: 2.1rem;
+}
+
+.item > a {
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: -0.036rem;
+  color: darkestGray;
+  text-decoration: none;
+  cursor: pointer;
+}

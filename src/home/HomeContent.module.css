@@ -42,6 +42,10 @@
   display: flex;
   align-items: center;
   height: 11.2rem;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  background-color: unset;
   border-bottom: 1px solid lighterGray;
   border-top: 1px solid lighterGray;
   padding-left: sidePadding;

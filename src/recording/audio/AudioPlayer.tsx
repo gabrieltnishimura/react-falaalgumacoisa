@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { fromEvent } from "rxjs";
+import { debounceTime } from "rxjs/operators";
 import { ReactComponent as PauseIcon } from '../../assets/icons/pause.svg';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
 import { getAudioFormat } from '../../shared/utils';
 import styles from './AudioPlayer.module.css';
-import { fromEvent } from "rxjs";
-import { debounceTime } from "rxjs/operators";
 
 function AudioPlayer(props: { data: Blob | null }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -22,11 +22,11 @@ function AudioPlayer(props: { data: Blob | null }) {
     const audioProgressStream = fromEvent(audioRef.current, 'timeupdate')
       .pipe(debounceTime(100))
       .subscribe((_event: any) => {
-        if (time !== Math.round(_event.target.currentTime)){
+        if (time !== Math.round(_event.target.currentTime)) {
           setTime(Math.round(_event.target.currentTime))
-          setPercent(Math.round((Math.round(_event.target.currentTime)/duration) * 100));
+          setPercent(Math.round((Math.round(_event.target.currentTime) / duration) * 100));
         }
-    });
+      });
 
     audioRef.current.addEventListener("durationchange", (event: any) => {
       setDuration(Math.round(event.target.duration))
@@ -67,9 +67,9 @@ function AudioPlayer(props: { data: Blob | null }) {
       <div className={styles.timeProgress}>
         <span>{new Date(time * 1000).toISOString().substr(14, 5)}</span>
       </div>
-      <div onClick={toggleIsPlaying} className={styles.button}>
+      <button onClick={toggleIsPlaying} className={styles.button}>
         {isPlaying ? <PauseIcon /> : <PlayIcon />}
-      </div>
+      </button>
       <audio className={styles.hide} preload="auto" ref={audioRef} onEnded={toggleIsPlaying} >
         <source src={url} type={getAudioFormat()} />
       </audio>

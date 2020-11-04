@@ -1,0 +1,23 @@
+.animations {
+  transition: transform 300ms ease-out;
+}
+
+.enter {
+  composes: animations;
+  transform: translateX(100%);
+}
+
+.enterActive {
+  composes: animations;
+  transform: translateX(0%);
+}
+
+.exit {
+  composes: animations;
+  transform: translateX(0%);
+}
+
+.exitActive {
+  composes: animations;
+  transform: translateX(100%);
+}

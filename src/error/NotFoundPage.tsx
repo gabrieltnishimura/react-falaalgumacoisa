@@ -4,6 +4,7 @@ import { UserContext } from '../authentication/UserProvider';
 import RectangularButton from '../shared/buttons/RectangularButton';
 import AttentionIcon from '../shared/icons/AttentionIcon';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
+import { goHome } from '../shared/utils';
 import Header from '../shell/Header';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import styles from './ErrorPage.module.css';
@@ -18,12 +19,8 @@ function NotFoundPage() {
   });
 
   const back = () => {
-    const user = authenticationState.user;
-    if (user && !user.isAnonymous) {
-      navigate('/dashboard');
-    } else {
-      navigate('/');
-    }
+    setLoading(true);
+    goHome(authenticationState, navigate);
   }
 
   return (
