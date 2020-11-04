@@ -81,12 +81,13 @@ function DashboardPage() {
       <CardPageWrapper>
         <div className={styles.card}>
           <section>
-            <div className={styles.badge}>
-              <img src="/icons/medal.svg" alt="level badge"></img>
-              <span>1</span>
+            <div className={styles.badgeWrapper}>
+              <div className={styles.badge}>
+                <span className={styles.badgeNumber}>1</span>
+              </div>
             </div>
             <div className={styles.titleWrapper}>
-              <h1 className={styles.title}>{data.user.name}, você tem {data.score.total} pontos</h1>
+              <h1 className={styles.title}>{data.user.name || 'Olá'}, você tem {data.score.total} pontos</h1>
             </div>
             <div className={styles.progressWrapper}>
               <div className={styles.bar}>
