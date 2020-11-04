@@ -49,6 +49,9 @@ const checkMicPermissions = (ok: () => void, nok: () => void) => {
       } else {
         nok();
       }
+    })
+    .catch(err => {
+      nok();
     });
 }
 
