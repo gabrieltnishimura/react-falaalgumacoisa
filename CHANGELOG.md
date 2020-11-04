@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/gabrieltnishimura/react-falaalgumacoisa/compare/v0.1.2...v0.1.3) (2020-11-04)
+
+
+### Features
+
+* **404:** fallback route ([4a8f75f](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/4a8f75f99d2688906c587a69304480166a2d1139))
+* **anon-registration:** error boundary, error page; anon login, sign off and registration; email and password validation ([b8aa8b7](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/b8aa8b75259fe1b946569ac213b8309d46ed8ef0))
+* **confirm-exit:** modal on recording page, content needs revision ([0b12a1d](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/0b12a1d086d52767d4ae3373dc91d8a81ccc192d))
+* **dashboard-menu:** pending redirections ([b900ef1](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/b900ef1a17a1a81a854ea86113c2f9926879b66f))
+* **dashboard-nav:** updated menu and header nav also ([ec911fa](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/ec911fa74172680d2efc98042af33557e1d12fc3))
+* **delete-integration:** contract update ([a42cf13](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/a42cf137af2bcd5ca80cd9431d7a160fe98ac91d))
+* **dynamic-themes:** parameterized url; randomizes theme at homepage; todo cache to improve perf ([e3b7504](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/e3b7504ae2a04d12a414a4d45cdf0fa6de0af74c))
+* **empty-friend-leaderboard:** added sadface and button ([686c62a](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/686c62a63f207e89e97171a88768307ee8ef4f17))
+* **enable-mic:** two new pages prompting and verifying permissions ([3bfbdbc](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/3bfbdbc2c37d87e6df76ecc7e2265d5599ac3901))
+* **exclude-user:** new flow, pending backend implementation ([20a79f9](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/20a79f9b4b3081e933b368574499b31d5c78c976))
+* **leaderboard:** integration and layout ([e708987](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/e708987f430942ed51baea71bf4f59e1ee10c69a))
+* **modal-animations:** fixed modal for transitions; skip working; max-skip implemented; content ([de19a76](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/de19a7683049865b6f6d80e3c0dab0026c491dd5))
+* **new-splash:** animation and cleanup ([3f47549](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/3f47549755a5c0e7e0a47b801b4c085754ab1f99))
+* **notifications:** new route ([4087a39](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/4087a399fda7354317abd351761d5f95bb543922))
+* **permissions-api:** to skip steps when available; rxjs removed from some files; error page now isolated from navigation and working; voice recording service global; passive evt listeners ([88bcce8](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/88bcce879df50c251fdc606b0cf0408f4f0962b9))
+* **registration:** layout mostly done; navigation ok; integration pending; removed basic-data folder; auth model provided to whole application ([2a96e80](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/2a96e80683b9cf12750d0e1f82bcf0afa99b1a90))
+* **registration:** loads name if registered ([9234b0f](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/9234b0f9da53800e9a5695f2ef7dbdf6e1b01b8f))
+* **registration-integration:** properly posting ([a542186](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/a542186ed69f68258885f359e6b3ca48ac52e98c))
+* **registration-integration:** properly posting; also fixed position absolute of register buttons ([f1568c9](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/f1568c91838b887ada834210fbb427b84c24de05))
+* **registration-nav:** redirects to dashboard after finished ([40d98c1](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/40d98c131618832efdd167f9b02a20f13f597be4))
+* **search-friends:** new page and user list adapted ([61c7905](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/61c79056acba3fbbb86b7a9e73ddbfbfa1228baf))
+* **tos-modal:** also updated homepage content ([6afe3f3](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/6afe3f364001b19e474628ee2499d63ace1cf256))
+* **validate-nickname:** loader on text change; react component icons; simplified first recording modal; added error handling to apis ([07c646e](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/07c646e5db6ec3aae88fef964dbd4858c5290a13))
+
+
+### Bug Fixes
+
+* **authentication:** blank screen when auth user model was incorrectly cast to boolean ([c3b2bd6](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/c3b2bd6de19295f68694cb95bbd98b445bc2d84a))
+* **dropdown-content:** age interval ([46fe93a](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/46fe93a0fa8f1cc76a696ea8c08e7638b482bbb0))
+* **firefox-recording:** weird permissions api ([ce01c5b](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/ce01c5b1e074114239ee3bb310c2e24b9f4bae71))
+* **homepage-animation:** removed setTimeout, using transitions and keyframes ([7b68882](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/7b68882ca07b11c8cfdd5b3013da28e3d2df84d9))
+* **name-selection:** loads name when available ([3f0b562](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/3f0b5627b6c75441714daec807d094bdb41dba4d))
+* **recording-min-height:** updated font-size for screen heights ([8de05ee](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/8de05eeb31544d5c4c7a4b7a5234ec26cbc4e89c))
+* **recording-skipped-steps:** consider only non-skipped steps, added customReason to skipping ([f1b734f](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/f1b734f857ac499a662e862e49899d73c30552ec))
+
 ### [0.1.2](https://github.com/gabrieltnishimura/react-falaalgumacoisa/compare/v0.1.1...v0.1.2) (2020-10-12)
 
 
