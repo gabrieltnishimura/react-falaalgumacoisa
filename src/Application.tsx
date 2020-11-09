@@ -9,6 +9,7 @@ import { UserContext } from './authentication/UserProvider';
 import DashboardPage from './dashboard/DashboardPage';
 import FriendsLeaderboardPage from './dashboard/FriendsLeaderboardPage';
 import LeaderboardPage from './dashboard/LeaderboardPage';
+import ReferAFriendPage from './dashboard/ReferAFriendPage';
 import SearchFriendsPage from './dashboard/SearchFriendsPage';
 import DeleteUserPage from './delete-user/DeleteUserPage';
 import DisabledMicrophonePage from './enable-mic/DisabledMicrophonePage';
@@ -41,6 +42,7 @@ function App() {
         <AutoAuthenticationRoute path="/cadastro" component={<RegistrationPage />} isAuth={isAuth}></AutoAuthenticationRoute>
         <ProtectedRoute path="/dashboard" component={<DashboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/alterar-perfil" component={<EditProfilePage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
+        <ProtectedRoute path="/indique-um-amigo" component={<ReferAFriendPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/placar-dos-lideres" component={<LeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/placar-dos-amigos" component={<FriendsLeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/buscar-amigos" component={<SearchFriendsPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>

@@ -1,0 +1,17 @@
+@value mediumGray from "../colors.css";
+
+.refferalWrapper {
+  display: flex;
+  align-items: center;
+  height: 7rem;
+  width: 100%;
+  border: 0.1rem solid mediumGray;
+}
+
+.referCode {
+  padding-left: 1.6rem;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.06rem;
+  color: mediumGray;
+}

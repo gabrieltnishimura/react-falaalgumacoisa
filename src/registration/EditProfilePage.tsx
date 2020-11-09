@@ -25,7 +25,7 @@ function EditProfilePage() {
 
   useEffect(() => {
     setLoading(false);
-  }, []);
+  }, [setLoading]);
 
   useEffect(() => {
     if (!registrationData) {
