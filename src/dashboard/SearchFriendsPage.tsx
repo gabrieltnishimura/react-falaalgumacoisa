@@ -1,4 +1,4 @@
-import { FormControl, TextField, ThemeProvider } from '@material-ui/core';
+import { FormControl, TextField } from '@material-ui/core';
 import { throttle } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import * as friendsService from '../apis/FriendsService';
@@ -11,7 +11,6 @@ import UserListItemModel from '../shared/UserListItemModel';
 import UserListModel from '../shared/UserListModel';
 import CardPageWrapper from '../shell/CardPageWrapper';
 import DashboardHeader from '../shell/DashboardHeader';
-import theme from '../shell/theme';
 import styles from './DashboardPage.module.css';
 
 function SearchFriendsPage() {
@@ -67,31 +66,29 @@ function SearchFriendsPage() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <div>
-        <div className={styles.background}></div>
-        <DashboardHeader />
-        <CardPageWrapper>
-          <div className={styles.card}>
-            <section>
-              <div className={styles.titleWrapper}>
-                <h1 className={styles.title}>Buscar amigos</h1>
-                <h2 className={styles.description}>Estar próximo dos amigos deixa a experiência do Fale Alguma Coisa muito mais interessante (:</h2>
-              </div>
-            </section>
-            <section>
-              <form noValidate autoComplete="off" onSubmit={handleSubmit} className={styles.searchForm}>
-                <FormControl fullWidth component="fieldset">
-                  <TextField fullWidth label="Nome de guerra" {...bindSearchTerm}
-                    InputProps={{ endAdornment }} />
-                </FormControl>
-              </form>
-              {leaderboard ? <UserList list={leaderboard} onFollow={followFn} onUnfollow={unfollowFn} /> : null}
-            </section>
-          </div>
-        </CardPageWrapper>
-      </div>
-    </ThemeProvider >
+    <div>
+      <div className={styles.background}></div>
+      <DashboardHeader />
+      <CardPageWrapper>
+        <div className={styles.card}>
+          <section>
+            <div className={styles.titleWrapper}>
+              <h1 className={styles.title}>Buscar amigos</h1>
+              <h2 className={styles.description}>Estar próximo dos amigos deixa a experiência do Fale Alguma Coisa muito mais interessante (:</h2>
+            </div>
+          </section>
+          <section>
+            <form noValidate autoComplete="off" onSubmit={handleSubmit} className={styles.searchForm}>
+              <FormControl fullWidth component="fieldset">
+                <TextField fullWidth label="Nome de guerra" {...bindSearchTerm}
+                  InputProps={{ endAdornment }} />
+              </FormControl>
+            </form>
+            {leaderboard ? <UserList list={leaderboard} onFollow={followFn} onUnfollow={unfollowFn} /> : null}
+          </section>
+        </div>
+      </CardPageWrapper>
+    </div>
   );
 }
 

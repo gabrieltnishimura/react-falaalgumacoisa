@@ -1,4 +1,3 @@
-import { createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -7,24 +6,14 @@ import * as registrationIntegrationService from '../registration/RegistrationInt
 import FacebookLoginButton from '../shared/buttons/FacebookLoginButton';
 import GoogleLoginButton from '../shared/buttons/GoogleLoginButton';
 import RectangularButton from '../shared/buttons/RectangularButton';
+import { useStyles } from '../shared/forms/material-typography';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import { useInput } from '../shared/useInput';
 import { isEmail } from '../shared/utils';
 import Header from '../shell/Header';
 import LinkItem from '../shell/LinkItem';
-import theme from '../shell/theme';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import styles from './LoginPage.module.css';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiFormControl-fullWidth': {
-        marginBottom: theme.spacing(2),
-      },
-    },
-  }),
-);
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -101,7 +90,7 @@ function LoginPage() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Header />
       <WhitePageWrapper>
         <div className={styles.enterTextWrapper}>
@@ -139,7 +128,7 @@ function LoginPage() {
           <GoogleLoginButton click={googleClick}></GoogleLoginButton>
         </div>
       </WhitePageWrapper>
-    </ThemeProvider>
+    </>
   );
 }
 
