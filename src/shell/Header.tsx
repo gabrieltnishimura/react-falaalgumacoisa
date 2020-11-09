@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../authentication/UserProvider';
 import ConfirmExitModal from '../modal/ConfirmExitModal';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
@@ -19,14 +19,15 @@ function Header(props: {
 }) {
   const authenticationState = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const redirectHome = () => {
     if (props.preventRedirect) {
       setShowConfirmModal(true);
     } else {
-      setLoading(true);
-      goHome(authenticationState, navigate);
+      goHome(authenticationState, navigate, location, setLoading);
     }
   }
 
@@ -34,7 +35,7 @@ function Header(props: {
     setShowConfirmModal(false);
     if (confirmedExit) {
       setLoading(true);
-      goHome(authenticationState, navigate);
+      goHome(authenticationState, navigate, location, setLoading);
     }
   }
 

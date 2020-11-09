@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getReferralCode } from '../registration/RegistrationIntegrationService';
 import RectangularButton from '../shared/buttons/RectangularButton';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import DescriptionText from '../shared/typography/DescriptionText';
@@ -14,8 +15,13 @@ function ReferAFriendPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setReferCode('F834POK290ZA8322')
-      setLoading(false);
+      try {
+        const referral: any = await getReferralCode();
+        setReferCode(referral?.code);
+        setLoading(false);
+      } catch (err) {
+        console.error('Could not get referral code', err);
+      }
     };
     fetchData();
   }, [setLoading]);

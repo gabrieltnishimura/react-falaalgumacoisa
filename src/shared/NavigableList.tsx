@@ -14,7 +14,7 @@ export interface NavigableListInput {
 }
 
 function NavigableList(props: NavigableListInput) {
-  let location = useLocation();
+  const location = useLocation();
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
 
   const checkSameRoute = (url: string) => {
