@@ -14,3 +14,5 @@
 @value mediumGray: rgb(148, 148, 148);
 @value lighterGray: rgb(218, 218, 218);
 @value lightestGray: rgb(247, 247, 247);
+@value disabledGrey: rgb(172, 172, 172);
+@value disabledGreyText: rgb(87, 87, 87);

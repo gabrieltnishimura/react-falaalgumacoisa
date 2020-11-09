@@ -87,11 +87,11 @@ function DashboardMenu(props: { show: boolean, close: () => void }) {
     <NavigableList title="CONTA" list={[
       {
         title: 'Alterar dados da conta',
-        url: '/alterar-dados-conta',
+        url: '/alterar-conta',
       },
       {
         title: 'Alterar dados do perfil',
-        url: '/alterar-dados-perfil',
+        url: '/alterar-perfil',
       },
     ]}
       onSameRoute={() => props.close()}

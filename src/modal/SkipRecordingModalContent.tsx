@@ -1,23 +1,8 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from '@material-ui/core';
-import { createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import React, { useEffect } from 'react';
+import { useStyles } from '../shared/forms/material-typography';
 import { useInput } from '../shared/useInput';
-import theme from '../shell/theme';
 import styles from './SkipRecordingModalContent.module.css';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiFormControl-fullWidth': {
-        marginBottom: theme.spacing(2),
-      },
-      '& .PrivateSwitchBase-checked-3 + span.MuiTypography-root': {
-        fontWeight: 600,
-        letterSpacing: '-0.036rem',
-      }
-    },
-  }),
-);
 
 export type SkipRecordingTypes = 'UNABLE_TO_READ' | 'NON_PORTUGUESE_WORD' | 'OTHER' | null;
 export interface SkipRecordingOutput {
@@ -40,25 +25,23 @@ function SkipRecordingModalContent(props: { onChange: (data: SkipRecordingOutput
   }, [reason, customReason, onChange]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={styles.form}>
-        <form noValidate autoComplete="off" className={`${classes.root} ${styles.fullHeight}`}>
-          <FormControl fullWidth component="fieldset">
-            <RadioGroup aria-label="gender" name="customized-radios" {...bindReason}>
-              <FormControlLabel value="UNABLE_TO_READ" control={<Radio color="primary" />}
-                label="Não consigo ler a frase" />
-              <FormControlLabel value="NON_PORTUGUESE_WORD" control={<Radio />}
-                label="Possui palavras que não fazem parte da língua portuguesa" />
-              <FormControlLabel value="OTHER" control={<Radio />}
-                label="Outro motivo" />
-              {reason === 'OTHER' ? <div>
-                <TextField fullWidth label="Motivo" {...bindCustomReason} />
-              </div> : null}
-            </RadioGroup>
-          </FormControl>
-        </form>
-      </div>
-    </ThemeProvider >
+    <div className={styles.form}>
+      <form noValidate autoComplete="off" className={`${classes.root} ${styles.fullHeight}`}>
+        <FormControl fullWidth component="fieldset">
+          <RadioGroup aria-label="gender" name="customized-radios" {...bindReason}>
+            <FormControlLabel value="UNABLE_TO_READ" control={<Radio color="primary" />}
+              label="Não consigo ler a frase" />
+            <FormControlLabel value="NON_PORTUGUESE_WORD" control={<Radio />}
+              label="Possui palavras que não fazem parte da língua portuguesa" />
+            <FormControlLabel value="OTHER" control={<Radio />}
+              label="Outro motivo" />
+            {reason === 'OTHER' ? <div>
+              <TextField fullWidth label="Motivo" {...bindCustomReason} />
+            </div> : null}
+          </RadioGroup>
+        </FormControl>
+      </form>
+    </div>
   );
 }
 

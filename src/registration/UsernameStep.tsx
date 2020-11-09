@@ -1,23 +1,13 @@
-import { createStyles, makeStyles, TextField, Theme, ThemeProvider } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import RectangularButton from '../shared/buttons/RectangularButton';
+import { useStyles } from '../shared/forms/material-typography';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import { useInput } from '../shared/useInput';
 import Header from '../shell/Header';
-import theme from '../shell/theme';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import { RegistrationDataModel } from './RegistrationDataModel';
 import styles from './RegistrationSteps.module.css';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiFormControl-fullWidth': {
-        marginBottom: theme.spacing(2)
-      },
-    },
-  }),
-);
 
 function BasicDataStep(props: {
   onComplete: (data: RegistrationDataModel) => void,
@@ -45,7 +35,7 @@ function BasicDataStep(props: {
     props.onComplete({ username, password });
   }
 
-  return (<ThemeProvider theme={theme}>
+  return (<>
     <Header></Header>
     <WhitePageWrapper>
       <div className={styles.content}>
@@ -58,8 +48,8 @@ function BasicDataStep(props: {
         <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
           <TextField fullWidth label="Email" name="username" {...bindUsername}
             error={!!props.showError.username} helperText={props.showError.username} />
-          <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword} />
-          <TextField type="password" fullWidth label="Confirmar senha" name="confirm-password" {...bindConfirmPassword} />
+          <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword} autoComplete="password" />
+          <TextField type="password" fullWidth label="Confirmar senha" name="confirm-password" {...bindConfirmPassword} autoComplete="confirm-password" />
         </form>
       </div>
       <div className={styles.actions}>
@@ -76,7 +66,7 @@ function BasicDataStep(props: {
         ></RectangularButton>
       </div>
     </WhitePageWrapper>
-  </ThemeProvider >)
+  </>)
 }
 
 export default BasicDataStep;

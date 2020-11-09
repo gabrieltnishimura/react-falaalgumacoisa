@@ -1,28 +1,14 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from '@material-ui/core';
-import { createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import { throttle } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as TextSpinnerIcon } from '../assets/icons/text_spinner.svg';
 import * as registrationIntegrationService from '../registration/RegistrationIntegrationService';
 import { validateNickname } from '../registration/RegistrationIntegrationService';
+import { useStyles } from '../shared/forms/material-typography';
 import { useInput } from '../shared/useInput';
-import theme from '../shell/theme';
 import styles from './FirstRecordingModalContent.module.css';
 import NameRandomizer from './randomizer/NameRandomizer';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiFormControl-fullWidth': {
-        marginBottom: theme.spacing(2),
-      },
-      '& .PrivateSwitchBase-checked-3 + span.MuiTypography-root': {
-        fontWeight: 600,
-        letterSpacing: '-0.036rem',
-      }
-    },
-  }),
-);
 export type FirstRecordingModalNamingOptions = 'NAME' | 'RANDOM_NICKNAME' | 'ANON' | null;
 export interface FirstRecordingModalInnerOutput {
   namingChoice: FirstRecordingModalNamingOptions;
@@ -126,25 +112,23 @@ function FirstRecordingModalContent(props: {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
-        <FormControl fullWidth component="fieldset">
-          <RadioGroup aria-label="gender" name="customized-radios" {...bindNamingOptions}>
-            <FormControlLabel value="NAME" control={<Radio color="primary" />} label="Usar nome de guerra" />
-            {namingChoice === 'NAME' ? <div>
-              <TextField fullWidth label="Nome de guerra" value={firstName} onChange={onChangeFirstName}
-                error={!!nameError} helperText={nameError}
-                InputProps={{ endAdornment }} />
-            </div> : null}
-            <FormControlLabel value="RANDOM_NICKNAME" control={<Radio />} label="Escolher nome fictício" />
-            {namingChoice === 'RANDOM_NICKNAME' ? <div className={styles.randomNameWrapper}>
-              <NameRandomizer onRandomized={setRandomName}></NameRandomizer>
-            </div> : null}
-            {props.onAnon ? <FormControlLabel value="ANON" control={<Radio />} label="Não quero me identificar" /> : null}
-          </RadioGroup>
-        </FormControl>
-      </form>
-    </ThemeProvider >
+    <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
+      <FormControl fullWidth component="fieldset">
+        <RadioGroup aria-label="gender" name="customized-radios" {...bindNamingOptions}>
+          <FormControlLabel value="NAME" control={<Radio color="primary" />} label="Usar nome de guerra" />
+          {namingChoice === 'NAME' ? <div>
+            <TextField fullWidth label="Nome de guerra" value={firstName} onChange={onChangeFirstName}
+              error={!!nameError} helperText={nameError}
+              InputProps={{ endAdornment }} />
+          </div> : null}
+          <FormControlLabel value="RANDOM_NICKNAME" control={<Radio />} label="Escolher nome fictício" />
+          {namingChoice === 'RANDOM_NICKNAME' ? <div className={styles.randomNameWrapper}>
+            <NameRandomizer onRandomized={setRandomName}></NameRandomizer>
+          </div> : null}
+          {props.onAnon ? <FormControlLabel value="ANON" control={<Radio />} label="Não quero me identificar" /> : null}
+        </RadioGroup>
+      </FormControl>
+    </form>
   );
 }
 

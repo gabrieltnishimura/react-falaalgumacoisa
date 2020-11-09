@@ -1,57 +1,35 @@
-import { createStyles, FormControl, InputLabel, makeStyles, Select, Theme, ThemeProvider } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import RectangularButton from '../shared/buttons/RectangularButton';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
-import { useInput } from '../shared/useInput';
 import Header from '../shell/Header';
-import theme from '../shell/theme';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
-import { DialectSelectorModel, getRegionDropdown } from './RegionSelectorService';
+import BasicDataForm from './components/BasicDataForm';
 import { RegistrationDataModel } from './RegistrationDataModel';
 import styles from './RegistrationSteps.module.css';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiFormControl-fullWidth': {
-        marginBottom: theme.spacing(2)
-      },
-    },
-  }),
-);
-
 function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => void, onBack: () => void }) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const { value: gender, bind: bindGender } = useInput<'M' | 'F' | 'O' | undefined>(undefined);
-  const { value: age, bind: bindAgeInterval } = useInput<string>('');
-  const { value: region, bind: bindRegion } = useInput<string>('');
-  const { value: dialect, bind: bindDialect } = useInput<string>('');
-  const [dialectsList, setDialectsList] = useState<DialectSelectorModel[]>([]);
-  const [valid, setValid] = useState(false);
-  const classes = useStyles();
+  const [data, setData] = useState<RegistrationDataModel | null>(null);
 
   useEffect(() => {
     setLoading(false);
   });
 
-  useEffect(() => {
-    // validate region
-    if (region) {
-      const dialects = getRegionDropdown().find((regionOption) => regionOption.value === region)?.dialects;
-      if (dialects) {
-        setDialectsList(dialects);
-      }
-    }
-
-    setValid(Boolean(gender && age && region && dialect));
-  }, [gender, age, region, dialect])
-
-  const handleSubmit = (evt?: any) => {
-    evt.preventDefault();
-    props.onComplete({ gender, age, region, dialect });
+  const onChange = (data: RegistrationDataModel) => {
+    setData(data);
   }
 
-  return (<ThemeProvider theme={theme}>
+  const disableContinueButton = () => {
+    setData(null);
+  }
+
+  const handleSubmit = () => {
+    if (data) {
+      props.onComplete(data);
+    }
+  }
+
+  return (<>
     <Header></Header>
     <WhitePageWrapper>
       <div className={styles.content}>
@@ -61,57 +39,14 @@ function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => voi
         <div className={styles.formLabel}>
           <span className={styles.label}>Dados pessoais</span>
         </div>
-        <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
-          <FormControl fullWidth>
-            <InputLabel htmlFor="gender-selector">Gênero</InputLabel>
-            <Select fullWidth native {...bindGender} inputProps={{ name: 'gender', id: 'gender-selector', }}>
-              <option aria-label="None" value="" />
-              <option value="F">Feminino</option>
-              <option value="M">Masculino</option>
-              <option value="O">Outro</option>
-            </Select>
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel htmlFor="age-interval-selector">Faixa etária</InputLabel>
-            <Select fullWidth native {...bindAgeInterval} inputProps={{ name: 'age', id: 'age-interval-selector', }}>
-              <option aria-label="None" value="" />
-              <option value={'25-'}>Até 25 anos</option>
-              <option value={'26-35'}>Entre 26 e 35 anos</option>
-              <option value={'36-45'}>Entre 36 e 45 anos</option>
-              <option value={'46-55'}>Entre 46 e 55 anos</option>
-              <option value={'56-65'}>Entre 56 e 65 anos</option>
-              <option value={'66-75'}>Entre 66 e 75 anos</option>
-              <option value={'75+'}>Mais que 75 anos</option>
-            </Select>
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel htmlFor="region-selector">Região de origem</InputLabel>
-            <Select fullWidth native {...bindRegion} inputProps={{ name: 'region', id: 'region-selector', }}>
-              <option aria-label="None" value="" />
-              {getRegionDropdown().map((regionOption) => {
-                return <option key={regionOption.value} value={regionOption.value}>{regionOption.label}</option>;
-              })}
-            </Select>
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel htmlFor="dialect-selector">Sotaque de identificação</InputLabel>
-            <Select fullWidth native {...bindDialect}
-              inputProps={{ name: 'dialect', id: 'dialect-selector', }}
-              disabled={!dialectsList.length}>
-              <option aria-label="None" value="" />
-              {dialectsList.map((dialectOption) => {
-                return <option key={dialectOption.value} value={dialectOption.value}>{dialectOption.label}</option>;
-              })}
-            </Select>
-          </FormControl>
-        </form>
+        <BasicDataForm onValid={onChange} onInvalid={disableContinueButton}></BasicDataForm>
       </div>
       <div className={styles.actions}>
         <RectangularButton
           title="Continuar"
           onClick={handleSubmit}
           primary
-          disabled={!valid}
+          disabled={!data}
         ></RectangularButton>
         <RectangularButton
           title="Voltar"
@@ -120,7 +55,7 @@ function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => voi
         ></RectangularButton>
       </div>
     </WhitePageWrapper>
-  </ThemeProvider>)
+  </>)
 }
 
 export default BasicDataStep;

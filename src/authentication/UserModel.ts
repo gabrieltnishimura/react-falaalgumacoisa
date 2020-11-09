@@ -2,7 +2,6 @@ import * as firebase from 'firebase/app';
 
 export default class UserModel {
   public name: string = '';
-  public age: number = 0;
   public email: string = '';
   public isAnonymous: boolean = false;
   public uid: string = '';
