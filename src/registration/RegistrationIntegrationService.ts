@@ -5,10 +5,8 @@ import { RegistrationDataModel } from './RegistrationDataModel';
 
 const sendRegistrationData = (data: RegistrationDataModel) => {
   const url = config.endpoints.registration;
-  const oldToken = authenticationService.getOldToken();
   return post<void>(url, {
     ...data,
-    oldToken,
   }).toPromise();
 }
 

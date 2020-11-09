@@ -1,13 +1,12 @@
 import React, { Component, createContext } from "react";
 import * as registrationIntegrationService from '../registration/RegistrationIntegrationService';
 import { auth, authenticationService } from './AuthenticationService';
+import UserMetadataModel from "./UserMetadataModel";
 import UserModel from "./UserModel";
 
 export interface UserContextInput {
   user: UserModel | undefined,
-  metadata: {
-    nickname: string,
-  } | undefined,
+  metadata: UserMetadataModel | undefined,
 }
 
 const defaultState: UserContextInput = {

@@ -104,7 +104,7 @@ function LoginPage() {
             />
           </div>
           <div className={styles.password}>
-            <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword}
+            <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword} autoComplete="password"
               error={!!passwordErrorMessage} helperText={passwordErrorMessage} />
           </div>
           <div className={styles.continueButtonWrapper}>

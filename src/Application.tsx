@@ -19,6 +19,7 @@ import HomePage from './home/HomePage';
 import LoginPage from './login/LoginPage';
 import NotificationsPage from './notifications/NotificationsPage';
 import RecordingPage from './recording/RecordingPage';
+import EditProfilePage from './registration/EditProfilePage';
 import RegistrationPage from './registration/RegistrationPage';
 
 
@@ -39,6 +40,7 @@ function App() {
         <UnauthenticatedRoute path="/erro-mic-desabilitado" component={<DisabledMicrophonePage />} isAuth={isAuth}></UnauthenticatedRoute>
         <AutoAuthenticationRoute path="/cadastro" component={<RegistrationPage />} isAuth={isAuth}></AutoAuthenticationRoute>
         <ProtectedRoute path="/dashboard" component={<DashboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
+        <ProtectedRoute path="/alterar-perfil" component={<EditProfilePage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/placar-dos-lideres" component={<LeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/placar-dos-amigos" component={<FriendsLeaderboardPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>
         <ProtectedRoute path="/buscar-amigos" component={<SearchFriendsPage />} redirectTo="/login" isAuth={isAuth}></ProtectedRoute>

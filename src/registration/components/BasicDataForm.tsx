@@ -1,5 +1,6 @@
 import { FormControl, InputLabel, Select } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../authentication/UserProvider';
 import { useStyles } from '../../shared/forms/material-typography';
 import { useInput } from '../../shared/useInput';
 import { DialectSelectorModel, getRegionDropdown } from '../RegionSelectorService';
@@ -7,10 +8,11 @@ import { RegistrationDataModel } from '../RegistrationDataModel';
 import styles from '../RegistrationSteps.module.css';
 
 function BasicDataForm(props: { onValid: (data: RegistrationDataModel) => void, onInvalid: () => void }) {
-  const { value: gender, bind: bindGender } = useInput<'M' | 'F' | 'O' | undefined>(undefined);
-  const { value: age, bind: bindAgeInterval } = useInput<string>('');
-  const { value: region, bind: bindRegion } = useInput<string>('');
-  const { value: dialect, bind: bindDialect } = useInput<string>('');
+  const { metadata } = useContext(UserContext);
+  const { value: gender, bind: bindGender } = useInput<'M' | 'F' | 'O' | undefined>(metadata?.gender);
+  const { value: age, bind: bindAgeInterval } = useInput<string>(metadata?.ageInterval || '');
+  const { value: region, bind: bindRegion } = useInput<string>(metadata?.region || '');
+  const { value: dialect, setValue: setDialect, bind: bindDialect } = useInput<string>(metadata?.dialect || '');
   const [dialectsList, setDialectsList] = useState<DialectSelectorModel[]>([]);
   const [valid, setValid] = useState(false);
   const classes = useStyles();
@@ -21,6 +23,12 @@ function BasicDataForm(props: { onValid: (data: RegistrationDataModel) => void, 
       const dialects = getRegionDropdown().find((regionOption) => regionOption.value === region)?.dialects;
       if (dialects) {
         setDialectsList(dialects);
+        const found = dialects.find(item => item.value === dialect);
+        if (!found) {
+          setDialect('');
+          props.onInvalid();
+          return;
+        }
       }
     }
 
