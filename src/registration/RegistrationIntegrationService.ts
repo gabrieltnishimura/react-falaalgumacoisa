@@ -42,6 +42,14 @@ const getReferralCode = async () => {
   return await get(url).toPromise();
 }
 
+const getReferralFriendName = async (referCode: string): Promise<{ name: string }> => {
+  const url = `${config.endpoints.referralFriendName}/${referCode}`;
+  const response: any = await get(url).toPromise();
+  return {
+    name: response.name,
+  };
+}
+
 export {
   sendRegistrationData,
   assignName,
@@ -50,4 +58,5 @@ export {
   getUserMetadata,
   mergeUserData,
   getReferralCode,
+  getReferralFriendName,
 };

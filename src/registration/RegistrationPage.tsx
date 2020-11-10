@@ -19,7 +19,7 @@ function RegistrationPage() {
   const navigation = useNavigate();
   const authenticationState = useContext(UserContext);
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null); // fix any
+  const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null);
   const [step, setStep] = useState<RegistrationSteps>(RegistrationSteps.NICKNAME);
   const [usernameStepError, setUsernameStepError] = useState({ username: '', password: '' });
 
@@ -29,21 +29,18 @@ function RegistrationPage() {
     navigation('/dashboard');
   }
 
-  const completeNick = (data: any) => {
+  const completeNick = (data: RegistrationDataModel) => {
     setRegistrationData({
       ...registrationData,
-      name: data.name,
+      ...data,
     });
     setStep(RegistrationSteps.BASIC);
   }
 
-  const completeBasic = (data: any) => {
+  const completeBasic = (data: RegistrationDataModel) => {
     const newRegistrationData = {
       ...registrationData,
-      gender: data.gender,
-      age: data.age,
-      region: data.region,
-      dialect: data.dialect,
+      ...data,
     };
     setRegistrationData(newRegistrationData);
 

@@ -74,6 +74,7 @@ function EditProfilePage() {
   }
 
   const goBack = () => {
+    setLoading(true);
     navigate('/dashboard');
   }
 
