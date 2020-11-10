@@ -37,6 +37,11 @@ const mergeUserData = async () => {
   authenticationService.removeOldToken();
 }
 
+const getReferralCode = async () => {
+  const url = config.endpoints.referralCode;
+  return await get(url).toPromise();
+}
+
 export {
   sendRegistrationData,
   assignName,
@@ -44,4 +49,5 @@ export {
   deleteUser,
   getUserMetadata,
   mergeUserData,
+  getReferralCode,
 };

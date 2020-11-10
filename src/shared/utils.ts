@@ -1,3 +1,4 @@
+import { Location, State } from "history";
 import { UserContextInput } from "../authentication/UserProvider";
 
 const getAudioFormat = (() => {
@@ -55,12 +56,24 @@ const checkMicPermissions = (ok: () => void, nok: () => void) => {
     });
 }
 
-const goHome = (authenticationState: UserContextInput, navigate: any) => {
+const goHome = (
+  authenticationState: UserContextInput,
+  navigate: any,
+  location: Location<State>,
+  setLoading: any,
+) => {
   const user = authenticationState.user;
+
   if (user && (authenticationState?.metadata?.nickname || !user.isAnonymous)) {
-    navigate('/dashboard');
+    if (location.pathname !== '/dashboard') {
+      setLoading(true);
+      navigate('/dashboard');
+    }
   } else {
-    navigate('/');
+    if (location.pathname !== '/') {
+      setLoading(true);
+      navigate('/');
+    }
   }
 }
 

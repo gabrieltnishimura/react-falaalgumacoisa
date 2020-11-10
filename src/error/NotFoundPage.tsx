@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../authentication/UserProvider';
 import RectangularButton from '../shared/buttons/RectangularButton';
 import AttentionIcon from '../shared/icons/AttentionIcon';
@@ -12,6 +12,7 @@ import styles from './ErrorPage.module.css';
 function NotFoundPage() {
   const authenticationState = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
 
   useEffect(() => {
@@ -19,8 +20,7 @@ function NotFoundPage() {
   });
 
   const back = () => {
-    setLoading(true);
-    goHome(authenticationState, navigate);
+    goHome(authenticationState, navigate, location, setLoading);
   }
 
   return (

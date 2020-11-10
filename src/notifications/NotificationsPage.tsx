@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as notificationService from '../apis/NotificationService';
 import styles from '../dashboard/DashboardPage.module.css';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
+import DescriptionText from '../shared/typography/DescriptionText';
 import CardPageWrapper from '../shell/CardPageWrapper';
 import DashboardHeader from '../shell/DashboardHeader';
 import LinkItem from '../shell/LinkItem';
@@ -40,14 +41,16 @@ function NotificationsPage() {
             <div className={styles.titleWrapper}>
               <h1 className={styles.title}>Notificações</h1>
             </div>
-            <div className={styles.titleLink}>
-              <LinkItem title="Limpar tudo" onclick={cleanupNotifs} color="cobalt" />
-            </div>
+            {notifications?.length !== 0 ?
+              <div className={styles.titleLink}>
+                <LinkItem title="Limpar tudo" onclick={cleanupNotifs} color="cobalt" />
+              </div> :
+              null}
             <hr className={styles.separator} />
           </section>
           <section>
             {notifications?.length === 0 ?
-              <span>Você não possui novas notificações</span> :
+              <DescriptionText>Você não possui novas notificações</DescriptionText> :
               null}
           </section>
         </div>
