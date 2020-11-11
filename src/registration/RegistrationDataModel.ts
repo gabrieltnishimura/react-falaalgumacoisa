@@ -1,5 +1,6 @@
 export interface RegistrationDataModel {
   name?: string;
+  referCode?: string;
   gender?: 'F' | 'M' | 'O';
   age?: string;
   region?: string;

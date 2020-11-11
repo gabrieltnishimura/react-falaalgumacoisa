@@ -114,7 +114,7 @@ function FirstRecordingModalContent(props: {
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
       <FormControl fullWidth component="fieldset">
-        <RadioGroup aria-label="gender" name="customized-radios" {...bindNamingOptions}>
+        <RadioGroup aria-label="naming-option" name="naming-option" {...bindNamingOptions}>
           <FormControlLabel value="NAME" control={<Radio color="primary" />} label="Usar nome de guerra" />
           {namingChoice === 'NAME' ? <div>
             <TextField fullWidth label="Nome de guerra" value={firstName} onChange={onChangeFirstName}

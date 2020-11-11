@@ -7,19 +7,14 @@ import BasicDataStep from './BasicDataStep';
 import NicknameRegistrationStep from './NicknameRegistrationStep';
 import { RegistrationDataModel } from './RegistrationDataModel';
 import * as registrationIntegrationService from './RegistrationIntegrationService';
+import { RegistrationSteps } from './RegistrationPage';
 import UsernameStep from './UsernameStep';
-
-export enum RegistrationSteps {
-  NICKNAME = 'nickname',
-  BASIC = 'basic',
-  USERNAME = 'username'
-}
 
 function EditRegistrationPage() {
   const navigation = useNavigate();
   const authenticationState = useContext(UserContext);
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null); // fix any
+  const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null);
   const [step, setStep] = useState<RegistrationSteps>(RegistrationSteps.NICKNAME);
   const [usernameStepError, setUsernameStepError] = useState({ username: '', password: '' });
 

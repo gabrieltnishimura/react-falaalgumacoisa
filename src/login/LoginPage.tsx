@@ -75,8 +75,12 @@ function LoginPage() {
       if (user?.user) { // redirected
         try { // check if has registration within site if has, dashboard
           await registrationIntegrationService.mergeUserData();
-          await registrationIntegrationService.getUserMetadata();
-          navigate('/dashboard');
+          const recentMetadata = await registrationIntegrationService.getUserMetadata();
+          if (!recentMetadata.ageInterval) {
+            navigate('/cadastro');
+          } else {
+            navigate('/dashboard');
+          }
         } catch (err) { // if not, registration
           navigate('/cadastro');
         }

@@ -1,5 +1,6 @@
 import { get, post } from '../apis/api';
 import { authenticationService } from '../authentication/AuthenticationService';
+import UserMetadataModel from '../authentication/UserMetadataModel';
 import config from '../config';
 import { RegistrationDataModel } from './RegistrationDataModel';
 
@@ -25,9 +26,16 @@ const deleteUser = (keepUserData: boolean, reason: string): Promise<void> => {
   return post<void>(url, { keepUserData, reason }).toPromise();
 }
 
-const getUserMetadata = (): Promise<{ nickname: string }> => {
+const getUserMetadata = async (): Promise<UserMetadataModel> => {
   const url = config.endpoints.userMetadata;
-  return get<any>(url).toPromise();
+  const response = await get<any>(url).toPromise();
+  return {
+    nickname: response.nickname,
+    ageInterval: response.ageInterval,
+    dialect: response.dialect,
+    gender: response.gender,
+    region: response.region,
+  };
 }
 
 const mergeUserData = async () => {
@@ -42,6 +50,14 @@ const getReferralCode = async () => {
   return await get(url).toPromise();
 }
 
+const getReferralFriendName = async (referCode: string): Promise<{ name: string }> => {
+  const url = `${config.endpoints.referralFriendName}/${referCode}`;
+  const response: any = await get(url).toPromise();
+  return {
+    name: response.name,
+  };
+}
+
 export {
   sendRegistrationData,
   assignName,
@@ -50,4 +66,5 @@ export {
   getUserMetadata,
   mergeUserData,
   getReferralCode,
+  getReferralFriendName,
 };
