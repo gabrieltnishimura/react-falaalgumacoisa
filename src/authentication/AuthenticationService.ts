@@ -38,13 +38,24 @@ const createUserWithEmailAndPassword = async (username: string, password: string
   return auth.createUserWithEmailAndPassword(username, password);
 };
 
-const anonymousLogin = () => {
+const changeEmail = async (username: string, password: string, newUsername: string) => {
+  const userCredential = await auth.signInWithEmailAndPassword(username, password);
+  await userCredential?.user?.updateEmail(newUsername);
+};
+
+const changePassword = async (username: string, password: string, newPassword: string) => {
+  const userCredential = await auth.signInWithEmailAndPassword(username, password);
+  await userCredential?.user?.updatePassword(newPassword);
+};
+
+const anonymousLogin = async () => {
   console.log('logging in anonymously');
-  return auth.signInAnonymously()
-    .catch(err => {
-      console.error('could not login anonymously', err);
-      return Promise.reject(err);
-    });
+  try {
+    return auth.signInAnonymously();
+  } catch (err) {
+    console.error('could not login anonymously', err);
+    return Promise.reject(err);
+  }
 };
 
 const getOldToken = (): string | null => {
@@ -85,6 +96,8 @@ const authenticationService = {
   login,
   loginWithUsername,
   createUserWithEmailAndPassword,
+  changeEmail,
+  changePassword,
   anonymousLogin,
   getOldToken,
   removeOldToken,

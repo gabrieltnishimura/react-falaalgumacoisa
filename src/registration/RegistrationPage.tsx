@@ -97,8 +97,9 @@ function RegistrationPage() {
     return <BasicDataStep onComplete={completeBasic} onBack={rollbackBasic} />;
   } else if (step === RegistrationSteps.USERNAME) {
     return <UsernameStep onComplete={completeUser} onBack={rollbackUser} showError={usernameStepError} />;
+  } else {
+    return <></>;
   }
-  return null;
 }
 
 export default RegistrationPage;

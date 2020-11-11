@@ -11,16 +11,10 @@ import BasicDataForm from './components/BasicDataForm';
 import { RegistrationDataModel } from './RegistrationDataModel';
 import * as registrationIntegrationService from './RegistrationIntegrationService';
 
-export enum RegistrationSteps {
-  NICKNAME = 'nickname',
-  BASIC = 'basic',
-  USERNAME = 'username'
-}
-
 function EditProfilePage() {
   const navigate = useNavigate();
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
-  const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null); // fix any
+  const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null);
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
@@ -40,7 +34,6 @@ function EditProfilePage() {
     } else {
       setValid(false);
     }
-    console.log(registrationData);
   }, [registrationData]);
 
 

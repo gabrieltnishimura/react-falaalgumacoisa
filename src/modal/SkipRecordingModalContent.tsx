@@ -28,7 +28,7 @@ function SkipRecordingModalContent(props: { onChange: (data: SkipRecordingOutput
     <div className={styles.form}>
       <form noValidate autoComplete="off" className={`${classes.root} ${styles.fullHeight}`}>
         <FormControl fullWidth component="fieldset">
-          <RadioGroup aria-label="gender" name="customized-radios" {...bindReason}>
+          <RadioGroup aria-label="skip-reason" name="skip-reason" {...bindReason}>
             <FormControlLabel value="UNABLE_TO_READ" control={<Radio color="primary" />}
               label="Não consigo ler a frase" />
             <FormControlLabel value="NON_PORTUGUESE_WORD" control={<Radio />}

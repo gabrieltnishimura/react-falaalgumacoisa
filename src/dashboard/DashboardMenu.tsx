@@ -19,6 +19,7 @@ function DashboardMenu(props: { show: boolean, close: () => void }) {
   const ref = useRef<any>(null);
   const authenticationState = useContext(UserContext);
   const isAuthenticated = Boolean(authenticationState.user);
+  const isEmailLogin = Boolean(authenticationState.user?.isEmailLogin);
 
   const logout = async () => {
     setLoading(true);
@@ -32,6 +33,22 @@ function DashboardMenu(props: { show: boolean, close: () => void }) {
     navigate('/excluir');
     props.close();
   }
+
+  const accountOperations = isEmailLogin ? [
+    {
+      title: 'Alterar dados da conta',
+      url: '/alterar-conta',
+    },
+    {
+      title: 'Alterar dados do perfil',
+      url: '/alterar-perfil',
+    },
+  ] : [
+      {
+        title: 'Alterar dados do perfil',
+        url: '/alterar-perfil',
+      },
+    ]
 
   const aboutUs = <NavigableList title="SOBRE NÓS" list={[
     {
@@ -84,16 +101,7 @@ function DashboardMenu(props: { show: boolean, close: () => void }) {
     ]}
       onSameRoute={() => props.close()}
     ></NavigableList>
-    <NavigableList title="CONTA" list={[
-      {
-        title: 'Alterar dados da conta',
-        url: '/alterar-conta',
-      },
-      {
-        title: 'Alterar dados do perfil',
-        url: '/alterar-perfil',
-      },
-    ]}
+    <NavigableList title="CONTA" list={accountOperations}
       onSameRoute={() => props.close()}
     ></NavigableList>
     {aboutUs}

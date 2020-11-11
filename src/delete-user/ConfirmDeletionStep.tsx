@@ -38,7 +38,7 @@ function ConfirmDeletionStep(props: { onComplete: () => void, onBack: () => void
         </div>
         <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
           <FormControl fullWidth component="fieldset">
-            <RadioGroup aria-label="gender" name="customized-radios" {...bindConfirmDeletion}>
+            <RadioGroup aria-label="confirm-deletion" name="confirm-deletion" {...bindConfirmDeletion}>
               <FormControlLabel value="Y" control={<Radio />} label="Sim" />
               <FormControlLabel value="N" control={<Radio />} label="Não" />
             </RadioGroup>
