@@ -21,8 +21,6 @@ const login = async (type: 'facebook' | 'google'): Promise<void> => {
   const provider = type === 'google' ?
     new firebase.auth.GoogleAuthProvider() :
     new firebase.auth.FacebookAuthProvider();
-  provider.addScope('profile');
-  provider.addScope('email');
   auth.languageCode = 'pt';
 
   await setOldToken();
