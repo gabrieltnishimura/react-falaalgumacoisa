@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { use100vh } from 'react-div-100vh';
 import Header from '../shell/Header';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import AnimatedRecordedContent from './animations/AnimatedRecordedContent';
@@ -40,6 +41,11 @@ function RecordingStep(props: {
   const [blob, setBlob] = useState<Blob | null>(null);
   const [recordingState, setRecordingState] = useState<RecordingState>(RecordingState.NOT_RECORDED);
 
+  const height = use100vh();
+  const headerSize = '9.7rem';
+  const footerSize = recordingState === RecordingState.RECORDED ? '39rem' : '24.4rem';
+  const adaptableContainerSize = height ? `${height}px` : '100vh';
+
   useEffect(() => {
     // reset recordingState if word change
     setRecordingState(RecordingState.NOT_RECORDED);
@@ -74,7 +80,9 @@ function RecordingStep(props: {
     <div className={overlay}>
       <Header preventRedirect></Header>
       <div className={`${recordingStyle[recordingState]}`}>
-        <div className={styles.content}>
+        <div className={styles.content} style={{
+          minHeight: `calc(${adaptableContainerSize} - ${headerSize} - ${footerSize})`
+        }}>
           <WhitePageWrapper>
             <div className={styles.suggestion}>
               <WordSuggestion
@@ -107,7 +115,7 @@ function RecordingStep(props: {
           <img className={styles.background} src="/backgrounds/space.jpg" alt="cover" />
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

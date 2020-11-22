@@ -8,7 +8,6 @@
 @value finalBackgroundHeight: 4.3rem;
 
 .content {
-  min-height: calc(100vh - pageFooterSize - headerSize);
 }
 
 .microphone {
@@ -53,7 +52,6 @@
 
 /* RECORDED: 1 - expand content */
 .recorded .content {
-  min-height: calc(100vh - pageFooterSizeRecorded - headerSize);
   transition: min-height 100ms ease-in;
   transition-delay: 200ms;
 }

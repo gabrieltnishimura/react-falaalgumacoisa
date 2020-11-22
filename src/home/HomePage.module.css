@@ -1,5 +1,4 @@
 @value cobalt, defaultWhite from "../colors.css";
-@value headerSize from "../sizes.css";
 
 @value bannerHeight: 20rem;
 @value firstStepDelay: 1.9s;

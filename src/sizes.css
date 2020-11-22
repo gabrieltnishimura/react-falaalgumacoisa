@@ -15,3 +15,11 @@
 @value modalOverlayDepth: 4;
 @value modalWindowDepth: 5;
 @value loaderDepth: 6;
+
+/* MEDIA QUERY*/
+@value desktopBreakpoint: 960px;
+
+/* DESKTOP DEFINITIONS */
+@value desktopMaxWidth: 1600px;
+@value desktopSidePadding: 10vw;
+@value desktopWrapper: 80vw;
