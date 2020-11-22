@@ -1,3 +1,4 @@
+import DashboardNotificationModel from "../dashboard/DashboardNotificationModel";
 
 export default interface UserMetadataModel {
   nickname: string;
@@ -5,4 +6,5 @@ export default interface UserMetadataModel {
   ageInterval: string;
   region: string;
   dialect: string;
+  notifications: DashboardNotificationModel[];
 }

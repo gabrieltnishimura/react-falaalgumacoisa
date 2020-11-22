@@ -27,6 +27,7 @@ function NavigableList(props: NavigableListInput) {
 
   const items = props.list.map(item => <li className={styles.item} key={item.title}>
     <Link to={item.url} onClick={() => checkSameRoute(item.url)}>{item.title}</Link>
+    {item.rightIcon}
   </li>);
 
   return (

@@ -23,7 +23,6 @@ function NicknameRegistrationStep(props: { onComplete: (data: RegistrationDataMo
       if (location.search.indexOf('?refer=') >= 0) {
         const [, code] = location.search.split('?refer=');
         const response = code && await getReferralFriendName(code);
-        console.log(response);
         if (!response || !response.name) {
           return;
         }

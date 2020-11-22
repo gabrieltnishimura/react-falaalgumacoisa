@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.actions > .button:first-child {
+.notificationButton {
   margin-right: 1.6rem;
 }
 
