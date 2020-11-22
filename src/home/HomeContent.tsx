@@ -1,10 +1,11 @@
 import React from 'react';
 import { ReactComponent as MicrophoneIcon } from '../assets/icons/mic.svg';
+import WhitePageWrapper from '../shell/WhitePageWrapper';
 import styles from './HomeContent.module.css';
 
 function HomeContent(props: { redirectRecordingFn: () => void }) {
   return (
-    <>
+    <WhitePageWrapper>
       <div className={styles.titleWrapper}>
         <h1 className={styles.title}>Comece já a sua jornada na ciência!</h1>
       </div>
@@ -19,7 +20,7 @@ function HomeContent(props: { redirectRecordingFn: () => void }) {
           O cadastro é opcional, mas pode nos ajudará a categorizar melhor a sua voz.
         </span>
       </div>
-    </>
+    </WhitePageWrapper>
   );
 }
 

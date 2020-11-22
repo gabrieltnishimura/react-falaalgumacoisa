@@ -1,9 +1,17 @@
 @value cobalt, defaultWhite, darkestGray from "../colors.css";
 @value sidePadding from "../sizes.css";
+@value desktopBreakpoint, desktopSidePadding from "../sizes.css";
 
 .pageWrapper {
   padding-left: sidePadding;
   padding-right: sidePadding;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .pageWrapper {
+    padding-left: desktopSidePadding;
+    padding-right: desktopSidePadding;
+  }
 }
 
 .cobaltBackground {
