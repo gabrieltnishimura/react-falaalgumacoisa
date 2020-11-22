@@ -1,8 +1,12 @@
-@value defaultWhite, cozyOrange from "../../colors.css";
+@value defaultWhite, canaryMustard from "../../colors.css";
 
 .wrapper {
   height: 4rem;
   width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .number {
@@ -13,5 +17,5 @@
 }
 
 .orange {
-  color: cozyOrange;
+  background-color: canaryMustard;
 }

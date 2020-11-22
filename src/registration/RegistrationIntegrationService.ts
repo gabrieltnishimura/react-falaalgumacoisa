@@ -2,6 +2,7 @@ import { get, post } from '../apis/api';
 import { authenticationService } from '../authentication/AuthenticationService';
 import UserMetadataModel from '../authentication/UserMetadataModel';
 import config from '../config';
+import DashboardNotificationModel from '../dashboard/DashboardNotificationModel';
 import { RegistrationDataModel } from './RegistrationDataModel';
 
 const sendRegistrationData = (data: RegistrationDataModel) => {
@@ -29,12 +30,30 @@ const deleteUser = (keepUserData: boolean, reason: string): Promise<void> => {
 const getUserMetadata = async (): Promise<UserMetadataModel> => {
   const url = config.endpoints.userMetadata;
   const response = await get<any>(url).toPromise();
+
+  const notifications = (response?.notifications?.map((notification: any) => {
+    const baseNotification: DashboardNotificationModel = {
+      type: notification.type,
+    }
+    if (notification.type === 'FOLLOW') {
+      baseNotification.follow = notification.follow && {
+        id: notification.follow.id,
+        name: notification.follow.name,
+      }
+      return baseNotification;
+    } else {
+      return null;
+    }
+  }) || [])
+    .filter((notification: DashboardNotificationModel) => !!notification);
+
   return {
     nickname: response.nickname,
     ageInterval: response.ageInterval,
     dialect: response.dialect,
     gender: response.gender,
     region: response.region,
+    notifications,
   };
 }
 

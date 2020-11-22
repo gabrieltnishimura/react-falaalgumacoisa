@@ -1,5 +1,5 @@
 @value underHighlightDepth, highlightDepth from "../sizes.css";
-@value defaultWhite, lighterGray, lightestGray from "../colors.css";
+@value defaultWhite, lighterGray, lightestGray, canaryMustard from "../colors.css";
 
 @value menuWidth: 4.1rem;
 @value leftOverlayPadding: 2.6rem;
@@ -116,4 +116,21 @@
   color: lighterGray;
   background-color: lighterGray;
   margin: 4rem 0 4rem 0;
+}
+
+.notificationBubble {
+  height: 2.6rem;
+  width: 2.6rem;
+  background-color: canaryMustard;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.notificationBubble {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.032rem;
+  color: defaultWhite;
 }

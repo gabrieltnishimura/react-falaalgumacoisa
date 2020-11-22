@@ -13,7 +13,11 @@ import LinkItem from '../shell/LinkItem';
 import styles from './DashboardMenu.module.css';
 import transitions from './DashboardMenuAnimations.module.css';
 
-function DashboardMenu(props: { show: boolean, close: () => void }) {
+function DashboardMenu(props: {
+  show: boolean,
+  close: () => void,
+  notifications?: number,
+}) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const navigate = useNavigate();
   const ref = useRef<any>(null);
@@ -67,6 +71,9 @@ function DashboardMenu(props: { show: boolean, close: () => void }) {
     onSameRoute={() => props.close()}
   ></NavigableList>;
 
+  const notifCount = props.notifications && props.notifications !== 0 &&
+    <div className={styles.notificationBubble}><span>{props.notifications}</span></div>;
+
   const content = isAuthenticated ? <nav className={styles.navigation}>
     <NavigableList title="GERAL" list={[
       {
@@ -76,7 +83,7 @@ function DashboardMenu(props: { show: boolean, close: () => void }) {
       {
         title: 'Notificações',
         url: '/notificacoes',
-        rightIcon: undefined
+        rightIcon: notifCount,
       },
     ]}
       onSameRoute={() => props.close()}

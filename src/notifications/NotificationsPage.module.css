@@ -1,0 +1,9 @@
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.separatorSpacing {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
+}

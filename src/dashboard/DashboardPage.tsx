@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as dashboardService from '../apis/DashboardService';
 import redirectToRecording from '../home/RecordingRedirectionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import DashboardActionModel from './DashboardActionModel';
 import DashboardModel, { DashboardActionTypes } from './DashboardModel';
 import styles from './DashboardPage.module.css';
 import DashboardPageWrapper from './DashboardPageWrapper';
-import DashboardService from './DashboardService';
-
-const dashboardService = new DashboardService();
 
 function DashboardPage() {
   const navigate = useNavigate();

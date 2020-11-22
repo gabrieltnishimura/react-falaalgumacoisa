@@ -3,11 +3,15 @@ import CardPageWrapper from '../shell/CardPageWrapper';
 import DashboardHeader from '../shell/DashboardHeader';
 import styles from './DashboardPage.module.css';
 
-function DashboardPageWrapper(props: { children: any }) {
+function DashboardPageWrapper(props: {
+  hideNotifications?: boolean,
+  children: any
+}) {
   return (
     <>
       <div className={styles.background}></div>
-      <DashboardHeader />
+      <DashboardHeader
+        hideNotications={props.hideNotifications} />
       <CardPageWrapper>
         {props.children}
       </CardPageWrapper>

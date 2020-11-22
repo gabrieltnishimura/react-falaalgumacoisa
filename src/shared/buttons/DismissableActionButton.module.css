@@ -1,0 +1,59 @@
+@value mediumGray, lighterGray, darkestGray from "../../colors.css";
+
+.wrapper {
+  position: relative;
+}
+
+.bubble {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: lighterGray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.9rem;
+}
+
+.bubble > span {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.04rem;
+  color: darkestGray;
+}
+
+.content {
+  display: flex;
+}
+
+.textWrapper {
+  margin-top: 1.4rem;
+}
+
+.text {
+  font-size: 2rem;
+  letter-spacing: -0.04rem;
+  color: mediumGray;
+}
+
+.action {
+  margin-top: 1.4rem;
+}
+
+.action > button {
+  height: 3rem;
+  width: 14.2rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.028rem;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 0;
+}
+
+.closeIcon > svg {
+  height: 1.4rem;
+  width: 1.4rem;
+}
