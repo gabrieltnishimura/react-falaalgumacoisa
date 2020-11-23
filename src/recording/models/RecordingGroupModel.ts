@@ -2,6 +2,7 @@ import { RecordingModalTypes } from "./RecordingModalTypes";
 
 export class RecordingGroupModel {
   title: string;
+  cover: string;
   stepsCap: number;
   total: number;
   phrases: RecordingGroupItemModel[];
@@ -9,6 +10,7 @@ export class RecordingGroupModel {
 
   constructor(data: any) {
     this.title = data.title;
+    this.cover = data.cover;
     this.stepsCap = parseInt(data.stepsCap, 10);
     this.total = parseInt(data.total, 10);
     this.phrases = data.phrases && data.phrases.map((each: any) => new RecordingGroupItemModel(each));

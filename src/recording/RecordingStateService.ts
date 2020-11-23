@@ -21,6 +21,7 @@ const findNextStep = (group: RecordingGroupModel) => {
   return new RecordingStateModel({
     groupId: group.title,
     id: phrase.id,
+    cover: group.cover,
     text: phrase.text,
     currentStep: (found + 1),
     totalSteps: group.stepsCap,

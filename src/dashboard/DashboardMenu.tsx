@@ -104,6 +104,7 @@ function DashboardMenu(props: {
       {
         title: 'Indique um amigo',
         url: '/indique-um-amigo',
+        rightIcon: <div className={styles.points}><span>+100pts</span></div>
       },
     ]}
       onSameRoute={() => props.close()}

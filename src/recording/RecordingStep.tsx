@@ -112,7 +112,7 @@ function RecordingStep(props: {
               trash={scrapRecordingFn}
             />
           </WhitePageWrapper>
-          <img className={styles.background} src="/backgrounds/space.jpg" alt="cover" />
+          <img className={styles.background} src={props.data.cover} alt="cover" />
         </div>
       </div>
     </div>

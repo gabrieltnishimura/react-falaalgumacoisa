@@ -1,5 +1,5 @@
 @value underHighlightDepth, highlightDepth from "../sizes.css";
-@value defaultWhite, lighterGray, lightestGray, canaryMustard from "../colors.css";
+@value successGreen, defaultWhite, lighterGray, lightestGray, canaryMustard from "../colors.css";
 
 @value menuWidth: 4.1rem;
 @value leftOverlayPadding: 2.6rem;
@@ -133,4 +133,17 @@
   font-weight: 700;
   letter-spacing: -0.032rem;
   color: defaultWhite;
+}
+
+.points {
+  display: flex;
+  background-color: successGreen;
+}
+
+.points > span {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02rem;
+  color: defaultWhite;
+  padding: 0.4rem 0.4rem;
 }
