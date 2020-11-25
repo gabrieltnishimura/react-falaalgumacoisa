@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import OurMissionPage from './about-us/OurMissionPage';
 import PrivacyPolicyPage from './about-us/PrivacyPolicyPage';
 import TermsOfServicePage from './about-us/TermsOfServicePage';
 import AutoAuthenticationRoute from './authentication/AutoAuthenticationRoute';
@@ -36,6 +37,7 @@ function App() {
         <UnauthenticatedRoute path="/login" component={<LoginPage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/termos-de-servico" component={<TermsOfServicePage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/politica-de-privacidade" component={<PrivacyPolicyPage />} isAuth={isAuth}></UnauthenticatedRoute>
+        <UnauthenticatedRoute path="/nossa-missao" component={<OurMissionPage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/error" component={<ErrorPage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/habilitar-microfone" component={<EnableMicrophonePage />} isAuth={isAuth}></UnauthenticatedRoute>
         <UnauthenticatedRoute path="/erro-mic-desabilitado" component={<DisabledMicrophonePage />} isAuth={isAuth}></UnauthenticatedRoute>
