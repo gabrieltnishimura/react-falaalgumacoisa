@@ -22,11 +22,10 @@ export default class DashboardModel {
     this.score = {
       total: data?.score?.total,
     };
-    this.actions = data?.actions?.map((action: any): DashboardActionModel => {
-      const bannerImg = action.type === DashboardActionTypes.REGISTER ?
-        '/icons/pencil.png' : action.type === DashboardActionTypes.EXTRA ? '/icons/people.svg' : action.banner?.src;
-      const bannerAlt = action.type === DashboardActionTypes.REGISTER ?
-        'lapis' : action.type === DashboardActionTypes.EXTRA ? 'pessoas' : action.banner?.alt;
+    this.actions = data?.actions?.map((action: any): DashboardActionModel | null => {
+      if (action.type === DashboardActionTypes.REGISTER || action.type === DashboardActionTypes.EXTRA) {
+        return null;
+      }
 
       return {
         id: action.id,
@@ -39,10 +38,8 @@ export default class DashboardModel {
         },
         banner: action.banner ? {
           title: action.banner.title,
-          src: bannerImg,
-          alt: bannerAlt,
         } : undefined,
       }
-    }) || [];
+    }).filter((action: any) => !!action) || [];
   }
 }

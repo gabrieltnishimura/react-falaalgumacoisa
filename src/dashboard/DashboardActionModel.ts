@@ -9,7 +9,5 @@ export default interface DashboardActionModel {
   }
   banner?: {
     title: string,
-    src: string,
-    alt: string,
   }
 }

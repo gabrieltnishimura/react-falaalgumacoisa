@@ -23,10 +23,6 @@ function DashboardPage() {
     getDashboard();
   }, [setLoading]);
 
-  const percentStyle = {
-    width: 50 + '%',
-  }
-
   const clickAction = (action: DashboardActionModel) => {
     if (action.type === 'RECORDING') {
       const [, theme] = (action.id || '').split('_');
@@ -52,22 +48,6 @@ function DashboardPage() {
         styles.extraBannerText;
   }
 
-  const footerBackground = (action: DashboardActionModel): string => {
-    return action.type === DashboardActionTypes.REGISTER ?
-      styles.registerFooterBackground :
-      action.type === DashboardActionTypes.RECORDING ?
-        styles.recordingFooterBackground :
-        styles.extraFooterBackground;
-  }
-
-  const footerTextStyle = (action: DashboardActionModel): string => {
-    return action.type === DashboardActionTypes.REGISTER ?
-      styles.registerFooterText :
-      action.type === DashboardActionTypes.RECORDING ?
-        styles.recordingFooterText :
-        styles.extraFooterText;
-  }
-
   return (
     <DashboardPageWrapper score={data?.score.total}>
       <div className={styles.card}>
@@ -91,20 +71,16 @@ function DashboardPage() {
         <section className={styles.actions}>
           {data?.actions.map((action) =>
             <div className={styles.action} key={action.id} onClick={() => clickAction(action)}>
+              <div className={`${styles.tag} ${styles.recordingFooterBackground}`}>
+                <span className={styles.recordingFooterText}>{`+ ${action.points}pts`}</span>
+              </div>
               <div className={styles.banner}>
                 <img src={action.background.src} alt={action.background.alt} />
                 {action.banner ?
                   <div className={styles.info}>
-                    <img src={action.banner.src} alt={action.banner.alt} />
-                    <span className={bannerTextStyle(action)}>{action.banner.title}</span>
+                    <span>{'catos'}</span>
                   </div> :
                   null}
-              </div>
-              <div className={`${styles.footer} ${footerBackground(action)}`}>
-                {action.isRecording ?
-                  <img className={styles.recordingIcon} src="/logo_light.png" alt="recording logo" /> :
-                  null}
-                <span className={footerTextStyle(action)}>{`+ ${action.points}pts`}</span>
               </div>
             </div>
           )}
