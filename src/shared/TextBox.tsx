@@ -23,7 +23,7 @@ function TextBox(props: { text: string }) {
           </div>
         </div>
       </CSSTransition>
-    </SwitchTransition >
+    </SwitchTransition>
   );
 }
 

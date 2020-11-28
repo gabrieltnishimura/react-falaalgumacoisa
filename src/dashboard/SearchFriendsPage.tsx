@@ -5,6 +5,7 @@ import * as friendsService from '../apis/FriendsService';
 import { ReactComponent as TextSpinnerIcon } from '../assets/icons/text_spinner.svg';
 import { FieldValidationState } from '../modal/FirstRecordingModalContent';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
+import Toasty, { ToastyInput } from '../shared/Toasty';
 import { useInput } from '../shared/useInput';
 import UserList from '../shared/UserList';
 import UserListItemModel from '../shared/UserListItemModel';
@@ -18,9 +19,18 @@ function SearchFriendsPage() {
   const [leaderboard, setLeaderboard] = useState<UserListModel | null>(null);
   const { value: searchTerm, bind: bindSearchTerm } = useInput('');
   const [fieldValidationState, setFieldValidationState] = useState<FieldValidationState>(FieldValidationState.NON_TOUCHED);
+  // const [toasty, setToasty] = useState<ToastyInput | null>(null);
+  const [toasty, setToasty] = useState<ToastyInput | null>({ text: `Você está seguindo o Plastico Bomba`, color: 'green' });
 
   useEffect(() => {
     setLoading(false);
+    setInterval(() => {
+      if (toasty) {
+        setToasty(null);
+      } else {
+        setToasty({ text: `Você está seguindo o asd`, color: 'green' });
+      }
+    }, 1000);
   }, [setLoading]);
 
   const handleSubmit = (evt: any) => {
@@ -58,11 +68,16 @@ function SearchFriendsPage() {
   const followFn = async (user: UserListItemModel) => {
     await friendsService.actOnFriend(user.id, { follow: true, unfollow: false });
     throttled.current(searchTerm);
+    setToasty({ text: `Você está seguindo o ${user.nickname.full}`, color: 'green' });
   }
 
   const unfollowFn = async (user: UserListItemModel) => {
     await friendsService.actOnFriend(user.id, { follow: false, unfollow: true });
     throttled.current(searchTerm);
+  }
+
+  const collapseToasty = () => {
+    // setToasty(null);
   }
 
   return (
@@ -87,6 +102,7 @@ function SearchFriendsPage() {
             {leaderboard ? <UserList list={leaderboard} onFollow={followFn} onUnfollow={unfollowFn} /> : null}
           </section>
         </div>
+        {toasty ? <Toasty text={toasty.text} color={toasty.color} done={collapseToasty}></Toasty> : null}
       </CardPageWrapper>
     </div>
   );
