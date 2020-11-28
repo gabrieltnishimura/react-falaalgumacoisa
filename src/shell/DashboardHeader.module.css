@@ -1,5 +1,8 @@
+@value desktopBreakpoint, desktopSidePadding from "../sizes.css";
+
 .actions {
   display: flex;
+  justify-self: center;
 }
 
 .notificationButton {
@@ -9,4 +12,22 @@
 .button {
   background-color: white;
   border-radius: 50%;
+}
+
+.progress {
+  display: none;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .profile {
+    display: none;
+  }
+  .notificationButton {
+    margin-right: 0px;
+  }
+  .progress {
+    display: block;
+    width: 38rem;
+    padding: 0.5rem 1.8rem 0 0;
+  }
 }

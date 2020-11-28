@@ -4,10 +4,9 @@ import * as leaderboardService from '../apis/LeaderboardService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import UserList from '../shared/UserList';
 import UserListModel from '../shared/UserListModel';
-import CardPageWrapper from '../shell/CardPageWrapper';
-import DashboardHeader from '../shell/DashboardHeader';
 import LinkItem from '../shell/LinkItem';
 import styles from './DashboardPage.module.css';
+import DashboardPageWrapper from './DashboardPageWrapper';
 
 function LeaderboardPage() {
   const navigate = useNavigate();
@@ -29,26 +28,22 @@ function LeaderboardPage() {
   }
 
   return (
-    <div>
-      <div className={styles.background}></div>
-      <DashboardHeader />
-      <CardPageWrapper>
-        <div className={styles.card}>
-          <section>
-            <div className={styles.titleWrapper}>
-              <h1 className={styles.title}>Placar dos líderes</h1>
-            </div>
-            <div className={styles.titleLink}>
-              <LinkItem title="Mostrar somente amigos" onclick={friendsRedirectFn} color="citron" />
-            </div>
-            <hr className={styles.separator} />
-          </section>
-          <section>
-            {leaderboard ? <UserList list={leaderboard} /> : null}
-          </section>
-        </div>
-      </CardPageWrapper>
-    </div>
+    <DashboardPageWrapper>
+      <div className={styles.card}>
+        <section>
+          <div className={styles.titleWrapper}>
+            <h1 className={styles.title}>Placar dos líderes</h1>
+          </div>
+          <div className={styles.titleLink}>
+            <LinkItem title="Mostrar somente amigos" onclick={friendsRedirectFn} color="citron" />
+          </div>
+          <hr className={styles.separator} />
+        </section>
+        <section>
+          {leaderboard ? <UserList list={leaderboard} /> : null}
+        </section>
+      </div>
+    </DashboardPageWrapper>
   );
 }
 

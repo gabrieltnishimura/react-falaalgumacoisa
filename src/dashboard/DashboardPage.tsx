@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as dashboardService from '../apis/DashboardService';
 import redirectToRecording from '../home/RecordingRedirectionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
+import ProgressBar from '../shared/ProgressBar';
 import DashboardActionModel from './DashboardActionModel';
 import DashboardModel, { DashboardActionTypes } from './DashboardModel';
 import styles from './DashboardPage.module.css';
@@ -68,7 +69,7 @@ function DashboardPage() {
   }
 
   return (
-    <DashboardPageWrapper>
+    <DashboardPageWrapper score={data?.score.total}>
       <div className={styles.card}>
         <section>
           <div className={styles.badgeWrapper}>
@@ -79,10 +80,8 @@ function DashboardPage() {
           <div className={styles.titleWrapper}>
             <h1 className={styles.title}>{data?.user.name || 'Olá'}, você tem {data?.score.total || 0} pontos</h1>
           </div>
-          <div className={styles.progressWrapper}>
-            <div className={styles.bar}>
-              <div className={styles.progress} style={percentStyle}></div>
-            </div>
+          <div className={styles.progress}>
+            {data?.score ? <ProgressBar points={data.score.total} /> : null}
           </div>
           <div className={styles.subtitleWrapper}>
             <span className={styles.subtitle}>Aumente sua pontuação e continue contribuindo para a ciência brasileira</span>

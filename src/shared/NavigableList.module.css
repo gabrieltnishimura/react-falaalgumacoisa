@@ -22,6 +22,7 @@
 }
 
 .item {
+  position: relative;
   margin-bottom: 2.1rem;
   height: 2.1rem;
   display: flex;
@@ -36,4 +37,18 @@
   text-decoration: none;
   cursor: pointer;
   padding-right: 0.5rem;
+}
+
+.item > a.highlight {
+  font-weight: 700;
+}
+
+.highlight::before {
+  content: "";
+  height: 2.4rem;
+  width: 0.4rem;
+  position: absolute;
+  left: -0.8rem;
+  color: rgb(8, 190, 225);
+  background-color: rgb(8, 190, 225);
 }

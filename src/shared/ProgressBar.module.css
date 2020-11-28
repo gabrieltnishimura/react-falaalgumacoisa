@@ -1,0 +1,42 @@
+@value darkestGray, mediumGray from "../colors.css";
+@value desktopBreakpoint, desktopSidePadding from "../sizes.css";
+
+.progressWrapper {
+  position: relative;
+  width: 100%;
+  height: 0.9rem;
+}
+
+.bar {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(235, 235, 235);
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+  background-color: rgb(238, 150, 74);
+}
+
+.total {
+  position: absolute;
+  right: 0rem;
+  padding-top: 0.5rem;
+}
+
+.total > span {
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: -0.028rem;
+  color: mediumGray;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .total > span {
+    font-size: 1.8rem;
+    letter-spacing: -0.028rem;
+    color: darkestGray;
+  }
+}
