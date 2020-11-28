@@ -1,5 +1,6 @@
 @value headerSize, sidePadding, modalOverlayDepth, modalWindowDepth from "../sizes.css";
 @value darkestGray, defaultWhite, comemorativeYellow, cozyOrange from "../colors.css";
+@value desktopBreakpoint from "../sizes.css";
 
 @value modalSideSpacing: 2.6rem;
 @value modalInnerPadding: 1.6rem;
@@ -14,7 +15,6 @@
   height: 100%;
   width: calc(100% - 2 * modalSideSpacing);
   padding: 0 modalSideSpacing;
-
   background: rgba(55, 55, 55, 0.85);
 }
 
@@ -128,5 +128,25 @@
   100% {
     opacity: 1;
     transform: translateY(0%);
+  }
+}
+
+@media (min-width: desktopBreakpoint) {
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .overlay {
+    width: calc(100% - 2 * 40rem);
+    padding: 0 40rem;
+  }
+
+  .body {
+    padding: modalWithHeaderSize 5rem 5rem;
+  }
+
+  .noHeader {
+    padding: modalWithoutHeaderSize 5rem 5rem;
   }
 }

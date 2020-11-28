@@ -1,4 +1,5 @@
 @value defaultWhite, cobalt, disabledGrey, disabledGreyText from "../../colors.css";
+@value desktopBreakpoint, desktopSidePadding from "../../sizes.css";
 
 .button {
   width: 100%;
@@ -24,4 +25,10 @@
 .disabled {
   background-color: disabledGrey;
   color: disabledGreyText;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .button {
+    width: 33rem;
+  }
 }

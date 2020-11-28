@@ -1,4 +1,4 @@
-@value sidePadding from "../../sizes.css";
+@value desktopBreakpoint, sidePadding from "../../sizes.css";
 
 .action {
   margin: 3.2rem 0 sidePadding 0;
@@ -6,4 +6,11 @@
 
 .action > button:first-child {
   margin-bottom: 0.8rem;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .action {
+    display: flex;
+    justify-content: space-between;
+  }
 }
