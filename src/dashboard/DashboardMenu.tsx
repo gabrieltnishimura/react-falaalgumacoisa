@@ -16,7 +16,7 @@ function DashboardMenu(props: {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const navigate = useNavigate();
   const authenticationState = useContext(UserContext);
-  const isAuthenticated = Boolean(authenticationState.user);
+  const isAuthenticated = !Boolean(authenticationState.user?.isAnonymous);
   const isEmailLogin = Boolean(authenticationState.user?.isEmailLogin);
 
   const logout = async () => {
