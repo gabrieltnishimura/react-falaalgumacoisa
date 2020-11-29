@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import FirstRecordingModalContent from '../modal/FirstRecordingModalContent';
-import RectangularButton from '../shared/buttons/RectangularButton';
+import ActionButtons from '../shared/buttons/ActionButtons';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import Header from '../shell/Header';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
@@ -52,33 +52,35 @@ function NicknameRegistrationStep(props: { onComplete: (data: RegistrationDataMo
     <Header></Header>
     <WhitePageWrapper>
       <div className={styles.content}>
-        <div>
+        <div className={styles.form}>
           <h1 className={styles.title}>Cadastro</h1>
           {referralFriend ? <span className={styles.referral}>
             Você foi indicado pelo seu amigo <b className={styles.friend}>{referralFriend}</b>!
           </span> : null}
           <h2 className={styles.subtitle}>Com poucos dados você estará pronto para contribuir com a ciência brasileira e desfrutar de todas as funcionalidades desse aplicativo</h2>
+          <div className={styles.formLabel}>
+            <span className={styles.label}>Identificação</span>
+          </div>
+          <FirstRecordingModalContent
+            onValid={onChangeNameFn}
+            onInvalid={onInvalidFn}></FirstRecordingModalContent>
         </div>
-        <div className={styles.formLabel}>
-          <span className={styles.label}>Identificação</span>
+        <div className={styles.image}>
+          <img src="/covers/register-vertical.jpg" alt="notebook e folha de papel"></img>
         </div>
-        <FirstRecordingModalContent
-          onValid={onChangeNameFn}
-          onInvalid={onInvalidFn}></FirstRecordingModalContent>
       </div>
-      <div className={styles.actions}>
-        <RectangularButton
-          title="Continuar"
-          onClick={handleSubmit}
-          primary
-          disabled={!valid}
-        ></RectangularButton>
-        <RectangularButton
-          title="Voltar"
-          onClick={props.onBack}
-          disabled={false}
-        ></RectangularButton>
-      </div>
+      <ActionButtons
+        primary={{
+          title: 'Continuar',
+          enabled: valid,
+          onClick: handleSubmit,
+        }}
+        secondary={{
+          title: 'Voltar',
+          disabled: false,
+          onClick: props.onBack,
+        }}
+      ></ActionButtons>
     </WhitePageWrapper>
   </>)
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { use100vh } from 'react-div-100vh';
+import { isDesktop } from '../shared/utils';
 import Header from '../shell/Header';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
 import AnimatedRecordedContent from './animations/AnimatedRecordedContent';
@@ -40,11 +41,22 @@ function RecordingStep(props: {
 }) {
   const [blob, setBlob] = useState<Blob | null>(null);
   const [recordingState, setRecordingState] = useState<RecordingState>(RecordingState.NOT_RECORDED);
-
   const height = use100vh();
-  const headerSize = '9.7rem';
-  const footerSize = recordingState === RecordingState.RECORDED ? '39rem' : '24.4rem';
-  const adaptableContainerSize = height ? `${height}px` : '100vh';
+
+  const getContentMinHeight = () => {
+    let footerSize: string = '';
+    if (isDesktop()) {
+      footerSize = recordingState === RecordingState.RECORDED ? '39rem' : '35.6rem';
+    } else {
+      footerSize = recordingState === RecordingState.RECORDED ? '39rem' : '24.4rem';
+    }
+    const headerSize = '9.7rem';
+
+    const adaptableContainerSize = height ? `${height}px` : '100vh';
+    return {
+      minHeight: `calc(${adaptableContainerSize} - ${headerSize} - ${footerSize})`
+    };
+  }
 
   useEffect(() => {
     // reset recordingState if word change
@@ -80,9 +92,7 @@ function RecordingStep(props: {
     <div className={overlay}>
       <Header preventRedirect></Header>
       <div className={`${recordingStyle[recordingState]}`}>
-        <div className={styles.content} style={{
-          minHeight: `calc(${adaptableContainerSize} - ${headerSize} - ${footerSize})`
-        }}>
+        <div className={styles.content} style={getContentMinHeight()}>
           <WhitePageWrapper>
             <div className={styles.suggestion}>
               <WordSuggestion

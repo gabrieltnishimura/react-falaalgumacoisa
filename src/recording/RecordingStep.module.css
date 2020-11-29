@@ -1,4 +1,4 @@
-@value headerSize, sidePadding, overlayDepth, underHighlightDepth, highlightDepth from "../sizes.css";
+@value headerSize, sidePadding, overlayDepth, underHighlightDepth, highlightDepth, desktopBreakpoint from "../sizes.css";
 @value firstToastyDelay, firstButtonDelay, firstBackgroundDelay from "../recording-constants.css";
 /* 50 (toasty) + 19 (toasty spacing) + 55 (half button) + 120 (background image) */
 @value pageFooterSize: 24.4rem;
@@ -7,8 +7,11 @@
 @value initialBackgroundHeight: 12rem;
 @value finalBackgroundHeight: 4.3rem;
 
-.content {
-}
+/* desktop */
+@value desktopPageFooterSize: 35.6rem;
+@value desktopPageFooterSizeRecorded: 39rem;
+@value desktopInitialBackgroundHeight: 23.2rem;
+@value desktopFinalBackgroundHeight: 5.3rem;
 
 .microphone {
   position: relative;
@@ -89,4 +92,26 @@
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: desktopBreakpoint) {
+  .suggestion {
+    padding: 2rem 20rem 0 20rem;
+  }
+  .background {
+    height: desktopInitialBackgroundHeight;
+  }
+  .toasty {
+    padding: 0 12rem;
+  }
+  .footer {
+    padding: 0 20rem 0 20rem;
+    height: desktopPageFooterSize;
+  }
+  .recorded .background {
+    height: desktopFinalBackgroundHeight;
+  }
+  .recorded .footer {
+    height: desktopPageFooterSizeRecorded;
+  }
 }

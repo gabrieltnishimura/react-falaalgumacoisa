@@ -1,5 +1,5 @@
 @value cobalt, mediumGray from "../../colors.css";
-@value highlightDepth from "../../sizes.css";
+@value highlightDepth, desktopBreakpoint from "../../sizes.css";
 
 .wrapper {
   position: relative;
@@ -51,4 +51,11 @@
   composes: word;
   font-weight: 700;
   color: rgb(24, 24, 24);
+}
+
+@media (min-width: desktopBreakpoint) {
+  .wrapper {
+    padding: 10rem 8.1rem 10rem 8.1rem;
+    margin-bottom: 1.4rem;
+  }
 }

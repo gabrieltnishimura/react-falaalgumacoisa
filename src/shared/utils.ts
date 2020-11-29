@@ -77,10 +77,15 @@ const goHome = (
   }
 }
 
+const isDesktop = (): boolean => {
+  return window.innerWidth >= 1200;
+}
+
 export {
   getAudioFormat,
   timeToDuration,
   isEmail,
   checkMicPermissions,
   goHome,
+  isDesktop,
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import RectangularButton from '../shared/buttons/RectangularButton';
+import ActionButtons from '../shared/buttons/ActionButtons';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import Header from '../shell/Header';
 import WhitePageWrapper from '../shell/WhitePageWrapper';
@@ -33,27 +33,31 @@ function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => voi
     <Header></Header>
     <WhitePageWrapper>
       <div className={styles.content}>
-        <div>
-          <h1 className={styles.title}>Cadastro</h1>
+        <div className={styles.form}>
+          <div>
+            <h1 className={styles.title}>Cadastro</h1>
+          </div>
+          <div className={styles.formLabel}>
+            <span className={styles.label}>Dados pessoais</span>
+          </div>
+          <BasicDataForm onValid={onChange} onInvalid={disableContinueButton}></BasicDataForm>
         </div>
-        <div className={styles.formLabel}>
-          <span className={styles.label}>Dados pessoais</span>
+        <div className={styles.image}>
+          <img src="/covers/register-vertical.jpg" alt="notebook e folha de papel"></img>
         </div>
-        <BasicDataForm onValid={onChange} onInvalid={disableContinueButton}></BasicDataForm>
       </div>
-      <div className={styles.actions}>
-        <RectangularButton
-          title="Continuar"
-          onClick={handleSubmit}
-          primary
-          disabled={!data}
-        ></RectangularButton>
-        <RectangularButton
-          title="Voltar"
-          onClick={props.onBack}
-          disabled={false}
-        ></RectangularButton>
-      </div>
+      <ActionButtons
+        primary={{
+          title: 'Continuar',
+          enabled: !!data,
+          onClick: handleSubmit,
+        }}
+        secondary={{
+          title: 'Voltar',
+          disabled: false,
+          onClick: props.onBack,
+        }}
+      ></ActionButtons>
     </WhitePageWrapper>
   </>)
 }

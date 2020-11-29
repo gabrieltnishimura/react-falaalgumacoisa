@@ -1,7 +1,7 @@
 @value desktopBreakpoint, sidePadding from "../../sizes.css";
 
 .action {
-  margin: 3.2rem 0 sidePadding 0;
+  margin: 0 0 sidePadding 0;
 }
 
 .action > button:first-child {
@@ -12,5 +12,6 @@
   .action {
     display: flex;
     justify-content: space-between;
+    flex-direction: row-reverse;
   }
 }

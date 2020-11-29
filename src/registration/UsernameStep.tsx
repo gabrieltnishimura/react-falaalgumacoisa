@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import RectangularButton from '../shared/buttons/RectangularButton';
+import ActionButtons from '../shared/buttons/ActionButtons';
 import { useStyles } from '../shared/forms/material-typography';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import { useInput } from '../shared/useInput';
@@ -39,32 +39,36 @@ function BasicDataStep(props: {
     <Header></Header>
     <WhitePageWrapper>
       <div className={styles.content}>
-        <div>
-          <h1 className={styles.title}>Cadastro</h1>
+        <div className={styles.form}>
+          <div>
+            <h1 className={styles.title}>Cadastro</h1>
+          </div>
+          <div className={styles.formLabel}>
+            <span className={styles.label}>Dados da conta</span>
+          </div>
+          <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
+            <TextField fullWidth label="Email" name="username" {...bindUsername}
+              error={!!props.showError.username} helperText={props.showError.username} />
+            <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword} autoComplete="password" />
+            <TextField type="password" fullWidth label="Confirmar senha" name="confirm-password" {...bindConfirmPassword} autoComplete="confirm-password" />
+          </form>
         </div>
-        <div className={styles.formLabel}>
-          <span className={styles.label}>Dados da conta</span>
+        <div className={styles.image}>
+          <img src="/covers/register-vertical.jpg" alt="notebook e folha de papel"></img>
         </div>
-        <form noValidate autoComplete="off" onSubmit={handleSubmit} className={`${classes.root} ${styles.fullHeight}`}>
-          <TextField fullWidth label="Email" name="username" {...bindUsername}
-            error={!!props.showError.username} helperText={props.showError.username} />
-          <TextField type="password" fullWidth label="Senha" name="password" {...bindPassword} autoComplete="password" />
-          <TextField type="password" fullWidth label="Confirmar senha" name="confirm-password" {...bindConfirmPassword} autoComplete="confirm-password" />
-        </form>
       </div>
-      <div className={styles.actions}>
-        <RectangularButton
-          title="Continuar"
-          onClick={handleSubmit}
-          primary
-          disabled={!valid}
-        ></RectangularButton>
-        <RectangularButton
-          title="Voltar"
-          onClick={props.onBack}
-          disabled={false}
-        ></RectangularButton>
-      </div>
+      <ActionButtons
+        primary={{
+          title: 'Continuar',
+          enabled: valid,
+          onClick: handleSubmit,
+        }}
+        secondary={{
+          title: 'Voltar',
+          disabled: false,
+          onClick: props.onBack,
+        }}
+      ></ActionButtons>
     </WhitePageWrapper>
   </>)
 }

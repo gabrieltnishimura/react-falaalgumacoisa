@@ -137,6 +137,10 @@
     justify-content: space-between;
   }
 
+  .actions > :first-child {
+    margin-right: 1.1rem;
+  }
+
   .overlay {
     width: calc(100% - 2 * 40rem);
     padding: 0 40rem;

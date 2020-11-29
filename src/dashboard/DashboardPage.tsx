@@ -5,7 +5,7 @@ import redirectToRecording from '../home/RecordingRedirectionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import ProgressBar from '../shared/ProgressBar';
 import DashboardActionModel from './DashboardActionModel';
-import DashboardModel, { DashboardActionTypes } from './DashboardModel';
+import DashboardModel from './DashboardModel';
 import styles from './DashboardPage.module.css';
 import DashboardPageWrapper from './DashboardPageWrapper';
 
@@ -38,14 +38,6 @@ function DashboardPage() {
     } else {
       console.log('fallback unknown', action);
     }
-  }
-
-  const bannerTextStyle = (action: DashboardActionModel): string => {
-    return action.type === DashboardActionTypes.REGISTER ?
-      styles.registerBannerText :
-      action.type === DashboardActionTypes.RECORDING ?
-        '' :
-        styles.extraBannerText;
   }
 
   return (

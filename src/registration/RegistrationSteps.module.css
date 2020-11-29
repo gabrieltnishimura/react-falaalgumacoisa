@@ -1,5 +1,5 @@
 @value mediumGray from "../colors.css";
-@value sidePadding, headerSize, doubleButtonHeight, buttonSpacing from "../sizes.css";
+@value sidePadding, headerSize, doubleButtonHeight, buttonSpacing, desktopBreakpoint from "../sizes.css";
 
 .title {
   margin: 0;
@@ -35,6 +35,10 @@
   min-height: calc(100vh - headerSize - doubleButtonHeight);
 }
 
+.image {
+  display: none;
+}
+
 .actions > button {
   margin-bottom: buttonSpacing;
 }
@@ -50,4 +54,25 @@
 
 .referral > b {
   font-weight: 600;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .form {
+    width: 50%;
+  }
+
+  .image {
+    display: block;
+  }
+
+  .image > img {
+    width: 33rem;
+    height: 63rem;
+    object-fit: cover;
+  }
 }
