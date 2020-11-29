@@ -3,15 +3,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authenticationService } from '../authentication/AuthenticationService';
 import { UserContext } from '../authentication/UserProvider';
-import ActionButtons from '../shared/buttons/ActionButtons';
 import { useStyles } from '../shared/forms/material-typography';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import HeadingTitle from '../shared/typography/HeadingTitle';
 import SectionTitle from '../shared/typography/SectionTitle';
 import { useInput } from '../shared/useInput';
 import { isEmail } from '../shared/utils';
+import FormPageWrapper from '../shell/FormPageWrapper';
 import Header from '../shell/Header';
-import WhitePageWrapper from '../shell/WhitePageWrapper';
 
 
 export type AccountOperationTypes = 'EMAIL' | 'PASSWORD' | null;
@@ -67,6 +66,8 @@ function EditAccountPage() {
   const submitHandler = async (event?: any) => {
     event?.preventDefault();
     if (!oldEmail) {
+      console.error('Could not fetch old email with current authenticationState', authenticationState);
+      navigate('/error');
       return;
     }
 
@@ -92,7 +93,23 @@ function EditAccountPage() {
 
   return <>
     <Header></Header>
-    <WhitePageWrapper>
+    <FormPageWrapper
+      image={{
+        src: '/covers/register-vertical.jpg',
+        alt: 'notebook e folha de papel',
+      }}
+      buttons={{
+        primary: {
+          title: 'Continuar',
+          enabled: valid,
+          onClick: () => submitHandler(),
+        },
+        secondary: {
+          title: 'Voltar',
+          disabled: false,
+          onClick: goBack,
+        }
+      }}>
       <HeadingTitle>Alterar perfil</HeadingTitle>
       <SectionTitle>Identificação</SectionTitle>
       <form noValidate autoComplete="off" onSubmit={submitHandler} className={`${classes.root}`}>
@@ -116,19 +133,7 @@ function EditAccountPage() {
         </FormControl>
         <button type="submit" style={hidden}>Submit</button>
       </form>
-      <ActionButtons
-        primary={{
-          title: 'Continuar',
-          enabled: valid,
-          onClick: () => submitHandler(),
-        }}
-        secondary={{
-          title: 'Voltar',
-          disabled: false,
-          onClick: goBack,
-        }}
-      ></ActionButtons>
-    </WhitePageWrapper>
+    </FormPageWrapper>
   </>;
 }
 

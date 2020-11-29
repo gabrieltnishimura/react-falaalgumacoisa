@@ -4,6 +4,7 @@ import * as dashboardService from '../apis/DashboardService';
 import redirectToRecording from '../home/RecordingRedirectionService';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import ProgressBar from '../shared/ProgressBar';
+import { getLevelByPoints } from '../shared/ProgressBarService';
 import DashboardActionModel from './DashboardActionModel';
 import DashboardModel from './DashboardModel';
 import styles from './DashboardPage.module.css';
@@ -46,7 +47,7 @@ function DashboardPage() {
         <section>
           <div className={styles.badgeWrapper}>
             <div className={styles.badge}>
-              <span className={styles.badgeNumber}>1</span>
+              <span className={styles.badgeNumber}>{getLevelByPoints(data?.score.total || 0)}</span>
             </div>
           </div>
           <div className={styles.titleWrapper}>

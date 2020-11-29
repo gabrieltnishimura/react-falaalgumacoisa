@@ -30,7 +30,7 @@ function NavigableList(props: NavigableListInput) {
       <Link to={item.url} onClick={() => checkSameRoute(item.url)}
         className={styles.highlight}>{item.title}</Link> :
       <Link to={item.url} onClick={() => checkSameRoute(item.url)}>{item.title}</Link>}
-    {item.rightIcon}
+    {item.rightIcon ? item.rightIcon : null}
   </li>);
 
   return (

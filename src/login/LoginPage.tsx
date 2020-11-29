@@ -10,9 +10,9 @@ import { useStyles } from '../shared/forms/material-typography';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import { useInput } from '../shared/useInput';
 import { isEmail } from '../shared/utils';
+import FormPageWrapper from '../shell/FormPageWrapper';
 import Header from '../shell/Header';
 import LinkItem from '../shell/LinkItem';
-import WhitePageWrapper from '../shell/WhitePageWrapper';
 import styles from './LoginPage.module.css';
 
 function LoginPage() {
@@ -96,7 +96,12 @@ function LoginPage() {
   return (
     <>
       <Header />
-      <WhitePageWrapper>
+      <FormPageWrapper
+        image={{
+          src: '/covers/register-vertical.jpg',
+          alt: 'notebook e folha de papel',
+        }}
+      >
         <div className={styles.enterTextWrapper}>
           <h1 className={styles.enterText}>Entrar</h1>
         </div>
@@ -131,7 +136,7 @@ function LoginPage() {
         <div>
           <GoogleLoginButton click={googleClick}></GoogleLoginButton>
         </div>
-      </WhitePageWrapper>
+      </FormPageWrapper>
     </>
   );
 }

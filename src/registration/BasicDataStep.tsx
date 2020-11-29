@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import ActionButtons from '../shared/buttons/ActionButtons';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
+import FormPageWrapper from '../shell/FormPageWrapper';
 import Header from '../shell/Header';
-import WhitePageWrapper from '../shell/WhitePageWrapper';
 import BasicDataForm from './components/BasicDataForm';
 import { RegistrationDataModel } from './RegistrationDataModel';
 import styles from './RegistrationSteps.module.css';
@@ -31,34 +30,31 @@ function BasicDataStep(props: { onComplete: (data: RegistrationDataModel) => voi
 
   return (<>
     <Header></Header>
-    <WhitePageWrapper>
-      <div className={styles.content}>
-        <div className={styles.form}>
-          <div>
-            <h1 className={styles.title}>Cadastro</h1>
-          </div>
-          <div className={styles.formLabel}>
-            <span className={styles.label}>Dados pessoais</span>
-          </div>
-          <BasicDataForm onValid={onChange} onInvalid={disableContinueButton}></BasicDataForm>
-        </div>
-        <div className={styles.image}>
-          <img src="/covers/register-vertical.jpg" alt="notebook e folha de papel"></img>
-        </div>
-      </div>
-      <ActionButtons
-        primary={{
+    <FormPageWrapper
+      image={{
+        src: '/covers/register-vertical.jpg',
+        alt: 'notebook e folha de papel',
+      }}
+      buttons={{
+        primary: {
           title: 'Continuar',
           enabled: !!data,
           onClick: handleSubmit,
-        }}
-        secondary={{
+        },
+        secondary: {
           title: 'Voltar',
           disabled: false,
           onClick: props.onBack,
-        }}
-      ></ActionButtons>
-    </WhitePageWrapper>
+        }
+      }}>
+      <div>
+        <h1 className={styles.title}>Cadastro</h1>
+      </div>
+      <div className={styles.formLabel}>
+        <span className={styles.label}>Dados pessoais</span>
+      </div>
+      <BasicDataForm onValid={onChange} onInvalid={disableContinueButton}></BasicDataForm>
+    </FormPageWrapper>
   </>)
 }
 

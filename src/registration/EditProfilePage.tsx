@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FirstRecordingModalContent from '../modal/FirstRecordingModalContent';
-import ActionButtons from '../shared/buttons/ActionButtons';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
 import HeadingTitle from '../shared/typography/HeadingTitle';
 import SectionTitle from '../shared/typography/SectionTitle';
+import FormPageWrapper from '../shell/FormPageWrapper';
 import Header from '../shell/Header';
-import WhitePageWrapper from '../shell/WhitePageWrapper';
 import BasicDataForm from './components/BasicDataForm';
 import { RegistrationDataModel } from './RegistrationDataModel';
 import * as registrationIntegrationService from './RegistrationIntegrationService';
@@ -73,7 +72,23 @@ function EditProfilePage() {
 
   return <>
     <Header></Header>
-    <WhitePageWrapper>
+    <FormPageWrapper
+      image={{
+        src: '/covers/register-vertical.jpg',
+        alt: 'notebook e folha de papel',
+      }}
+      buttons={{
+        primary: {
+          title: 'Continuar',
+          enabled: valid,
+          onClick: submitForm,
+        },
+        secondary: {
+          title: 'Voltar',
+          disabled: false,
+          onClick: goBack,
+        }
+      }}>
       <HeadingTitle>Alterar perfil</HeadingTitle>
       <SectionTitle>Identificação</SectionTitle>
       <FirstRecordingModalContent
@@ -81,19 +96,7 @@ function EditProfilePage() {
         onInvalid={invalidNick}></FirstRecordingModalContent>
       <SectionTitle>Dados pessoais</SectionTitle>
       <BasicDataForm onValid={validProfile} onInvalid={invalidProfile} />
-      <ActionButtons
-        primary={{
-          title: 'Continuar',
-          enabled: valid,
-          onClick: submitForm,
-        }}
-        secondary={{
-          title: 'Voltar',
-          disabled: false,
-          onClick: goBack,
-        }}
-      ></ActionButtons>
-    </WhitePageWrapper>
+    </FormPageWrapper>
   </>;
 }
 

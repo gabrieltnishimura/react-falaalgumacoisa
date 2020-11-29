@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import FirstRecordingModalContent from '../modal/FirstRecordingModalContent';
-import ActionButtons from '../shared/buttons/ActionButtons';
 import { LoaderContext, LoaderContextInterface } from '../shared/loader/LoaderContext';
+import FormPageWrapper from '../shell/FormPageWrapper';
 import Header from '../shell/Header';
-import WhitePageWrapper from '../shell/WhitePageWrapper';
 import { RegistrationDataModel } from './RegistrationDataModel';
 import { getReferralFriendName } from './RegistrationIntegrationService';
 import styles from './RegistrationSteps.module.css';
@@ -50,38 +49,35 @@ function NicknameRegistrationStep(props: { onComplete: (data: RegistrationDataMo
 
   return (<>
     <Header></Header>
-    <WhitePageWrapper>
-      <div className={styles.content}>
-        <div className={styles.form}>
-          <h1 className={styles.title}>Cadastro</h1>
-          {referralFriend ? <span className={styles.referral}>
-            Você foi indicado pelo seu amigo <b className={styles.friend}>{referralFriend}</b>!
-          </span> : null}
-          <h2 className={styles.subtitle}>Com poucos dados você estará pronto para contribuir com a ciência brasileira e desfrutar de todas as funcionalidades desse aplicativo</h2>
-          <div className={styles.formLabel}>
-            <span className={styles.label}>Identificação</span>
-          </div>
-          <FirstRecordingModalContent
-            onValid={onChangeNameFn}
-            onInvalid={onInvalidFn}></FirstRecordingModalContent>
-        </div>
-        <div className={styles.image}>
-          <img src="/covers/register-vertical.jpg" alt="notebook e folha de papel"></img>
-        </div>
-      </div>
-      <ActionButtons
-        primary={{
+    <FormPageWrapper
+      image={{
+        src: '/covers/register-vertical.jpg',
+        alt: 'notebook e folha de papel',
+      }}
+      buttons={{
+        primary: {
           title: 'Continuar',
           enabled: valid,
           onClick: handleSubmit,
-        }}
-        secondary={{
+        },
+        secondary: {
           title: 'Voltar',
           disabled: false,
           onClick: props.onBack,
-        }}
-      ></ActionButtons>
-    </WhitePageWrapper>
+        }
+      }}>
+      <h1 className={styles.title}>Cadastro</h1>
+      {referralFriend ? <span className={styles.referral}>
+        Você foi indicado pelo seu amigo <b className={styles.friend}>{referralFriend}</b>!
+          </span> : <></>}
+      <h2 className={styles.subtitle}>Com poucos dados você estará pronto para contribuir com a ciência brasileira e desfrutar de todas as funcionalidades desse aplicativo</h2>
+      <div className={styles.formLabel}>
+        <span className={styles.label}>Identificação</span>
+      </div>
+      <FirstRecordingModalContent
+        onValid={onChangeNameFn}
+        onInvalid={onInvalidFn}></FirstRecordingModalContent>
+    </FormPageWrapper>
   </>)
 }
 

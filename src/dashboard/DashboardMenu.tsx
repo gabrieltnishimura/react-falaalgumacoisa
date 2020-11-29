@@ -71,8 +71,9 @@ function DashboardMenu(props: {
     onSameRoute={() => close()}
   ></NavigableList>;
 
-  const notifCount = props.notifications && props.notifications !== 0 &&
-    <div className={styles.notificationBubble}><span>{props.notifications}</span></div>;
+  const notifCount = (props.notifications && props.notifications !== 0) ?
+    <div className={styles.notificationBubble}><span>{props.notifications}</span></div> :
+    null;
 
   return (
     <>
