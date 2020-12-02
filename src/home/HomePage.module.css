@@ -1,6 +1,8 @@
 @value cobalt, defaultWhite from "../colors.css";
+@value headerSize from "../sizes.css";
 
-@value bannerHeight: 20rem;
+@value imageSpacingSize: 11rem;
+@value bannerHeight: 100vh;
 @value firstStepDelay: 1.9s;
 @value firstStepDuration: 0.8s;
 @value secondStepDuration: 0.3s;
@@ -8,112 +10,65 @@
 @value comeFromLeftDelay: 2s;
 
 .banner {
-  height: bannerHeight;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: cobalt;
+  z-index: 0;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bannerImage {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: bannerHeight;
   width: 100%;
   object-fit: cover;
-}
-
-.carossel {
-  height: calc(100vh - bannerHeight);
-  background-color: cobalt;
+  background: cobalt;
+  opacity: 0.6;
 }
 
 .logo {
-  height: 67%;
+  padding-top: imageSpacingSize;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  opacity: 1;
-  animation: dissapear firstStepDuration forwards;
-  animation-delay: firstStepDelay;
 }
 
-.splash {
-  background-color: cobalt;
-  position: absolute;
-  top: bannerHeight;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - bannerHeight);
-
-  animation: disappearToLeft secondStepDuration forwards;
-  animation-delay: secondStepDelay;
+.fadeIn {
+  opacity: 0;
+  height: 100vh;
+  overflow: hidden;
+  animation: fadeIn secondStepDuration ease-out forwards;
+  animation-delay: comeFromLeftDelay;
 }
 
 .header {
-  position: absolute;
-  top: 0;
   background-color: defaultWhite;
-  width: 100%;
-
-  opacity: 0;
-  animation: appearFromRight secondStepDuration ease-out forwards;
-  animation-delay: comeFromLeftDelay;
 }
 
 .content {
-  position: absolute;
-  top: bannerHeight;
+  min-height: calc(100vh - imageSpacingSize - headerSize);
+  margin-top: imageSpacingSize;
   background-color: defaultWhite;
-  opacity: 0;
-  width: 100%;
-  overflow: hidden;
-  max-height: calc(100vh - bannerHeight);
-  min-height: 0;
-
-  animation: appearFromRightWithoutOverflow secondStepDuration ease-out forwards;
-  animation-delay: comeFromLeftDelay;
 }
 
-@keyframes appearFromRightWithoutOverflow {
+@keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateX(100%);
+    height: 100vh;
     overflow: hidden;
-    min-height: 0;
-    max-height: calc(100vh - bannerHeight);
   }
   100% {
     opacity: 1;
-    transform: translateX(0%);
+    height: unset;
     overflow: unset;
-    max-height: unset;
-    min-height: calc(100vh - bannerHeight);
-  }
-}
-
-@keyframes appearFromRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-}
-
-@keyframes dissapear {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes disappearToLeft {
-  0% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-100%);
   }
 }

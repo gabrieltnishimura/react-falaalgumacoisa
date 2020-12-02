@@ -32,3 +32,8 @@
     width: 33rem;
   }
 }
+
+/* order is important */
+.fullWidth {
+  width: 100%;
+}

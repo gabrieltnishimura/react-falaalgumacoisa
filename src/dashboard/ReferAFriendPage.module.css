@@ -1,4 +1,5 @@
 @value mediumGray from "../colors.css";
+@value desktopBreakpoint from "../sizes.css";
 
 .refferalWrapper {
   display: flex;
@@ -14,4 +15,23 @@
   font-weight: 700;
   letter-spacing: -0.06rem;
   color: mediumGray;
+}
+
+.copyButton {
+  display: none;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .refferalWrapper {
+    justify-content: space-between;
+  }
+
+  .copyButton {
+    display: block;
+    padding-right: 1.6rem;
+  }
+
+  .shareButton {
+    display: none;
+  }
 }

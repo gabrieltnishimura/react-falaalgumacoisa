@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { cleanNotifications } from '../apis/NotificationService';
 import { UserContext } from '../authentication/UserProvider';
 import DashboardNotificationModel from '../dashboard/DashboardNotificationModel';
 import styles from '../dashboard/DashboardPage.module.css';
@@ -20,8 +21,9 @@ function NotificationsPage() {
     setLoading(false);
   }, [setLoading]);
 
-  const cleanupNotifs = () => {
+  const cleanupNotifs = async () => {
     setLoading(true);
+    await cleanNotifications();
     navigate('/placar-dos-lideres');
   }
 

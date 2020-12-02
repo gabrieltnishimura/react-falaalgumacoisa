@@ -13,7 +13,7 @@ function HomePage() {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
   const navigate = useNavigate();
   const [animate, setAnimate] = useState(false);
-  const imageLoaded = useProgressiveImage('/backgrounds/dog.jpg')
+  const imageLoaded = useProgressiveImage('/covers/homepage.jpeg')
   const [randomizedTheme, setRandomizedTheme] = useState<string>('');
 
   useEffect(() => {
@@ -46,15 +46,11 @@ function HomePage() {
         {imageLoaded ?
           <img className={styles.bannerImage} src={imageLoaded} alt='Banner'></img> :
           null}
-      </div>
-      <div className={styles.carossel}>
-        <div className={styles.splash}>
-          <div className={styles.logo}>
-            <SplashContent />
-          </div>
+        <div className={styles.logo}>
+          <SplashContent />
         </div>
       </div>
-      {animate ? <div>
+      {animate ? <div className={styles.fadeIn}>
         <div className={styles.header}>
           <Header link={{ title: 'Entrar', onClick: redirectLoginFn }} />
         </div>

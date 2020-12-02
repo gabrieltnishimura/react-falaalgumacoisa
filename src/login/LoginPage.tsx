@@ -117,7 +117,7 @@ function LoginPage() {
               error={!!passwordErrorMessage} helperText={passwordErrorMessage} />
           </div>
           <div className={styles.continueButtonWrapper}>
-            <RectangularButton title="Continuar" primary submit
+            <RectangularButton title="Continuar" primary submit fullWidth
               onClick={loginWithUsernameFn} disabled={!valid} ></RectangularButton>
           </div>
         </form>
