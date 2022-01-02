@@ -1,13 +1,12 @@
 import React from 'react';
-import { Navigate, Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = (props: { component: any, redirectTo: string, isAuth: boolean | undefined, path: string }) => {
+const ProtectedRoute = (props: { isAuth: boolean | undefined, children: JSX.Element }) => {
   if (props.isAuth === null) {
-    return <Navigate to={props.redirectTo} />;
+    return <Navigate to="/login" />;
   }
 
-  return props.isAuth !== undefined ?
-    <Route path={props.path} element={props.component} /> : <></>
+  return props.isAuth !== undefined ? props.children : <></>
 };
 
 export default ProtectedRoute;

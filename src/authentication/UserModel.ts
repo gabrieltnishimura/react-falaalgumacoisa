@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import { User, UserInfo } from '@firebase/auth';
 
 export default class UserModel {
   public name: string = '';
@@ -6,9 +6,9 @@ export default class UserModel {
   public isAnonymous: boolean = false;
   public uid: string = '';
   public isEmailLogin: boolean = false;
-  private user: firebase.User | null = null;
+  private user: User | null = null;
 
-  constructor(user: firebase.User | null) {
+  constructor(user: User | null) {
     if (!user) {
       return;
     }
@@ -19,14 +19,15 @@ export default class UserModel {
     this.isAnonymous = user.isAnonymous;
     this.uid = user.uid || '';
 
-    const socialMediaProvidersFn = (provider: firebase.UserInfo | null): boolean => {
+    const socialMediaProvidersFn = (provider: UserInfo | null): boolean => {
       if (!provider || !provider.providerId) {
         return false;
       }
 
-      return provider?.providerId.indexOf('google') >= 0 ||
-        provider?.providerId.indexOf('facebook') >= 0;
-    }
+      return (
+        provider?.providerId.indexOf('google') >= 0 || provider?.providerId.indexOf('facebook') >= 0
+      );
+    };
     this.isEmailLogin = user.providerData && !user.providerData.find(socialMediaProvidersFn);
 
     return this;

@@ -39,5 +39,5 @@ button {
 
 @font-face {
   font-family: "Coolvetica";
-  src: url("/fonts/coolvetica-rg.ttf");
+  src: url("./assets/fonts/coolvetica-rg.ttf");
 }

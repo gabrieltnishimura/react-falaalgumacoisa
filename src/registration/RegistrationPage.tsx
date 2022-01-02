@@ -1,3 +1,4 @@
+import { FirebaseError } from 'firebase/app';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authenticationService } from '../authentication/AuthenticationService';
@@ -22,6 +23,24 @@ function RegistrationPage() {
   const [registrationData, setRegistrationData] = useState<RegistrationDataModel | null>(null);
   const [step, setStep] = useState<RegistrationSteps>(RegistrationSteps.NICKNAME);
   const [usernameStepError, setUsernameStepError] = useState({ username: '', password: '' });
+
+  const firebaseRegistration = async (username: string, password: string) => {
+    try {
+      await authenticationService.createUser(username, password);
+      await registrationIntegrationService.mergeUserData();
+    } catch (err) {
+      console.error(err);
+      if (err instanceof FirebaseError && err.code === 'auth/email-already-in-use') {
+        setLoading(false);
+        setUsernameStepError({
+          username: 'Email em uso',
+          password: '',
+        });
+      } else {
+        navigation('/error');
+      }
+    }
+  }
 
   const sendData = async (data: RegistrationDataModel) => {
     setLoading(true);
@@ -51,6 +70,7 @@ function RegistrationPage() {
     }
   }
 
+
   const completeUser = async (data: any) => {
     setLoading(true);
     await firebaseRegistration(data.username, data.password);
@@ -61,23 +81,6 @@ function RegistrationPage() {
     sendData(newRegistrationData);
   }
 
-  const firebaseRegistration = async (username: string, password: string) => {
-    try {
-      await authenticationService.createUserWithEmailAndPassword(username, password);
-      await registrationIntegrationService.mergeUserData();
-    } catch (err) {
-      console.error(err);
-      if (err.code === 'auth/email-already-in-use') {
-        setLoading(false);
-        setUsernameStepError({
-          username: 'Email em uso',
-          password: '',
-        });
-      } else {
-        navigation('/error');
-      }
-    }
-  }
 
   const rollbackNick = () => {
     navigation('/login');
