@@ -32,7 +32,7 @@ function DashboardAnimatedMenu(props: {
               <CloseIcon />
             </button>
           </div>
-          <DashboardMenu close={props.close} notifications={props.notifications}></DashboardMenu>
+          <DashboardMenu closeMenu={props.close} notifications={props.notifications}></DashboardMenu>
         </div>
       </CSSTransition>
     </>

@@ -69,7 +69,7 @@ function NicknameRegistrationStep(props: { onComplete: (data: RegistrationDataMo
       <h1 className={styles.title}>Cadastro</h1>
       {referralFriend ? <span className={styles.referral}>
         Você foi indicado pelo seu amigo <b className={styles.friend}>{referralFriend}</b>!
-          </span> : <></>}
+      </span> : <></>}
       <h2 className={styles.subtitle}>Com poucos dados você estará pronto para contribuir com a ciência brasileira e desfrutar de todas as funcionalidades desse aplicativo</h2>
       <div className={styles.formLabel}>
         <span className={styles.label}>Identificação</span>

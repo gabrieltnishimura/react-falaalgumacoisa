@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { authenticationService } from './AuthenticationService';
 
-const AutoAuthenticationRoute = (props: { component: any, path: string, redirectIfLogged?: string, isAuth?: boolean }) => {
+const AutoAuthenticationRoute = (props: { isAuth?: boolean, children: JSX.Element }) => {
   useEffect(() => {
     if (props.isAuth === null) {
       authenticationService.anonymousLogin();
     }
   }, [props.isAuth])
 
-  return !!props.isAuth ?
-    <Route path={props.path} element={props.component} /> : <></>
+  console.log(props.isAuth);
+
+  return !!props.isAuth ? props.children : <></>
 };
 
 export default AutoAuthenticationRoute;

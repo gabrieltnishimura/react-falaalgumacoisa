@@ -79,7 +79,7 @@ function FirstRecordingModalContent(props: {
       await validateNickname(newName);
       setFieldValidationState(FieldValidationState.VALID);
       setNameError('');
-    } catch (error) {
+    } catch (error: any) {
       setFieldValidationState(FieldValidationState.INVALID);
       if (error.message === 'BAD_WORD') {
         setNameError('Ops, tente outro nome de guerra');

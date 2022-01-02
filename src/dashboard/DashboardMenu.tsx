@@ -10,7 +10,7 @@ import LinkItem from '../shell/LinkItem';
 import styles from './DashboardMenu.module.css';
 
 function DashboardMenu(props: {
-  close?: () => void,
+  closeMenu?: () => void,
   notifications?: number,
 }) {
   const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
@@ -19,23 +19,23 @@ function DashboardMenu(props: {
   const isAuthenticated = !Boolean(authenticationState.user?.isAnonymous);
   const isEmailLogin = Boolean(authenticationState.user?.isEmailLogin);
 
+  const closeFn = () => {
+    if (props.closeMenu) {
+      props.closeMenu();
+    }
+  }
+
   const logout = async () => {
     setLoading(true);
     await authenticationService.logout();
     navigate('/');
-    close();
+    closeFn();
   }
 
   const deleteUser = () => {
     setLoading(true);
     navigate('/excluir');
-    close();
-  }
-
-  const close = () => {
-    if (props.close) {
-      props.close();
-    }
+    closeFn();
   }
 
   const accountOperations = isEmailLogin ? [
@@ -48,11 +48,11 @@ function DashboardMenu(props: {
       url: '/alterar-perfil',
     },
   ] : [
-      {
-        title: 'Alterar dados do perfil',
-        url: '/alterar-perfil',
-      },
-    ]
+    {
+      title: 'Alterar dados do perfil',
+      url: '/alterar-perfil',
+    },
+  ]
 
   const aboutUs = <NavigableList title="SOBRE NÓS" list={[
     {
@@ -68,7 +68,7 @@ function DashboardMenu(props: {
       url: '/termos-de-servico',
     },
   ]}
-    onSameRoute={() => close()}
+    onSameRoute={() => closeFn()}
   ></NavigableList>;
 
   const notifCount = (props.notifications && props.notifications !== 0) ?
@@ -89,7 +89,7 @@ function DashboardMenu(props: {
             rightIcon: notifCount,
           },
         ]}
-          onSameRoute={() => close()}
+          onSameRoute={() => closeFn()}
         ></NavigableList>
         <NavigableList title="SOCIAL" list={[
           {
@@ -110,10 +110,10 @@ function DashboardMenu(props: {
             rightIcon: <div className={styles.points}><span>+100pts</span></div>
           },
         ]}
-          onSameRoute={() => close()}
+          onSameRoute={() => closeFn()}
         ></NavigableList>
         <NavigableList title="CONTA" list={accountOperations}
-          onSameRoute={() => close()}
+          onSameRoute={() => closeFn()}
         ></NavigableList>
         {aboutUs}
         <hr className={styles.separator} />

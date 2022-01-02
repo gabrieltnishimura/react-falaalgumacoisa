@@ -1,3 +1,4 @@
+import { lastValueFrom } from 'rxjs';
 import { post } from '../apis/api';
 import config from '../config';
 import { getAudioFormat } from '../shared/utils';
@@ -13,23 +14,6 @@ export interface RecordingMetadata {
   };
 }
 
-const sendRecording = async (recordingMetadata: RecordingMetadata, blob: Blob): Promise<RecordingConfirmation> => {
-  const formData = parseFormData(recordingMetadata, blob);
-  const url = config.endpoints.sendRecording;
-  const response = await post<string>(url, formData).toPromise();
-  return new RecordingConfirmation(response);
-}
-
-const skipPhrase = (
-  phrase: RecordingTextModel,
-  groupId: string,
-  reason: string,
-  customReason?: string,
-): Promise<void> => {
-  const url = config.endpoints.skipRecording;
-  return post<void>(url, { themeId: groupId, phraseId: phrase.id, reason, customReason }).toPromise();
-}
-
 const parseFormData = (data: RecordingMetadata, blob: Blob): FormData => {
   const formData = new FormData();
   const filename = getAudioFormat().indexOf('wav') ? 'file.webm' : 'file.wav';
@@ -41,9 +25,33 @@ const parseFormData = (data: RecordingMetadata, blob: Blob): FormData => {
     formData.set('additionalMetadata.userAgent', data.additionalMetadata.userAgent);
   }
   return formData;
-}
-
-export {
-  sendRecording,
-  skipPhrase,
 };
+
+const sendRecording = async (
+  recordingMetadata: RecordingMetadata,
+  blob: Blob,
+): Promise<RecordingConfirmation> => {
+  const formData = parseFormData(recordingMetadata, blob);
+  const url = config.endpoints.sendRecording;
+  const response = await lastValueFrom(post<string>(url, formData));
+  return new RecordingConfirmation(response);
+};
+
+const skipPhrase = (
+  phrase: RecordingTextModel,
+  groupId: string,
+  reason: string,
+  customReason?: string,
+): Promise<void> => {
+  const url = config.endpoints.skipRecording;
+  return lastValueFrom(
+    post<void>(url, {
+      themeId: groupId,
+      phraseId: phrase.id,
+      reason,
+      customReason,
+    }),
+  );
+};
+
+export { sendRecording, skipPhrase };

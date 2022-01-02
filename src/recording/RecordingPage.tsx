@@ -25,6 +25,9 @@ function RecordingPage() {
   useEffect(() => {
     setLoading(true);
     const fetchState = async () => {
+      if (!theme) {
+        return;
+      }
       try {
         const group = await wordSuggestionService.getGroup(theme);
         setRecordingGroup(group);
