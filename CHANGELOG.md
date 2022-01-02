@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/gabrieltnishimura/react-falaalgumacoisa/compare/v0.1.3...v0.2.0) (2022-01-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dependencies:** react-router-dom routes upgraded, firebase imports changed, css imports within src
+
+### Features
+
+* **change-account:** new page ([13e58e8](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/13e58e8c19434165a10fe3e2d426dd077cdcbd6b))
+* **dashboard-tag:** updated ([47c7cc5](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/47c7cc5cc4ee6ddef8511fa19316fce71f6f48e3))
+* **dashboard:** progress bar, menu, header ([3d88d09](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/3d88d0942b0406cdb916b20450f2753df1d202e2))
+* **desktop:** responsive container, specific pages not implemented ([cfd75e8](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/cfd75e875f4011dddb20a438aa57eadf71252a33))
+* **dockerfile:** nginx prod server ([c3e425f](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/c3e425fe44ef2be39078d4de0b575bfb9023cfdb))
+* **edit-profile:** new page and updated form loading ([7b9324e](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/7b9324e7db7e0d2d02a8db080a656d9f039b9c94))
+* **forms-desktop:** added cool image on the side ([e7ef2a4](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/e7ef2a4c06047a8afd2caad46c2916370b2f1ef2))
+* **mission:** new page ([68c3bd5](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/68c3bd577bf89e3c389d10bc5a5729210e4d17d0))
+* **modal-desktop:** using breakpoints ([80c5501](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/80c55016e41ce08203c4ebe46698ca0fddfbc125))
+* **new-home:** cool image and simpler animations, refer a friend on desktop, full width on login page ([d4aaf95](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/d4aaf95120faee20aa28296f13ce73c1598c0d35))
+* **notifications:** shows on user follow retrieved on metadata ([b71191f](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/b71191fe99c0d1732f70b8a5d18bbbd76d28fe8d))
+* **phrases:** dynamic covers ([2f4fdd7](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/2f4fdd724679735ed3247116f01ced568c466b7d))
+* **refer-a-friend:** get name ([a7cb0ce](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/a7cb0cecc921d858ecff964b434377a2a25b0bb3))
+* **refer-a-friend:** new page, web share api for mobile devices ([0c71306](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/0c713062acb6f5cefbd1190fbdf951e505a5d0a1))
+* **refer-a-friend:** service and some bug fixes ([06ecdb9](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/06ecdb937c4842ba372b48e80e741dab3b00dfc5))
+* **server-anon-merge:** api merge ([f5e4239](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/f5e4239c3c1f070c5a1f193308580d9cebf80c7b))
+
+
+### Bug Fixes
+
+* **anonymous:** menu when not logged ([34be2ba](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/34be2ba0566e0720f79028f84397e227c7427ceb))
+* **desktop-forms:** created new form wrapper to reduce boilerplate ([3d903f3](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/3d903f319e7119f79b5a0a25aad7c424ae2a4905))
+* **facebook-login:** removed default scopes ([54aae4d](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/54aae4d101cb491064624a9663522429b338470c))
+
+
+* **dependencies:** react, react-router-dom, typescript, rxjs, axios, firebase, sentry, yarn.lock file instead ([a0ec5b9](https://github.com/gabrieltnishimura/react-falaalgumacoisa/commit/a0ec5b9abe54d41d28e68c18d152b459f962e6cf))
+
 ### [0.1.3](https://github.com/gabrieltnishimura/react-falaalgumacoisa/compare/v0.1.2...v0.1.3) (2020-11-04)
 
 
