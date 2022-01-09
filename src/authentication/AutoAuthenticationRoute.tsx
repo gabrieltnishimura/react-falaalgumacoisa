@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
 import { authenticationService } from './AuthenticationService';
 
 const AutoAuthenticationRoute = (props: { isAuth?: boolean, children: JSX.Element }) => {

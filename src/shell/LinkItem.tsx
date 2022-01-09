@@ -4,9 +4,9 @@ import styles from './LinkItem.module.css';
 function LinkItem(props: {
   title: string,
   onclick: any,
-  color: 'cobalt' | 'citron'
+  color: 'cobalt' | 'citron' | 'white'
 }) {
-  const classS = styles.cobaltLink;
+  const classS = styles[props.color];
 
   return (
     <div className={styles.wrapper}>

@@ -1,5 +1,5 @@
 @value cobalt, defaultWhite from "../colors.css";
-@value headerSize from "../sizes.css";
+@value headerSize, desktopBreakpoint, desktopFooterHeight from "../sizes.css";
 
 @value imageSpacingSize: 11rem;
 @value bannerHeight: 100vh;
@@ -8,6 +8,10 @@
 @value secondStepDuration: 0.3s;
 @value secondStepDelay: 2.4s;
 @value comeFromLeftDelay: 2s;
+
+@media (min-width: desktopBreakpoint) {
+  @value imageSpacingSize: 22rem;
+}
 
 .banner {
   position: absolute;
@@ -60,6 +64,18 @@
   background-color: defaultWhite;
 }
 
+@media (min-width: desktopBreakpoint) {
+  .content {
+    min-height: calc(100vh - imageSpacingSize - headerSize - desktopFooterHeight);
+  }
+}
+
+.bannerFadeIn > img {
+  height: 100vh;
+  animation: bannerFadeIn secondStepDuration ease-out forwards;
+  animation-delay: comeFromLeftDelay;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -71,4 +87,17 @@
     height: unset;
     overflow: unset;
   }
+}
+
+@keyframes bannerFadeIn {
+  0% {
+    height: 100vh;
+  }
+  100% {
+    height: 80vh;
+  }
+}
+
+.footer {
+  height: 4rem;
 }
