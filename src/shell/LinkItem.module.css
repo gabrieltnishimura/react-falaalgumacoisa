@@ -1,4 +1,4 @@
-@value cobalt, cozyOrange from "../colors.css";
+@value cobalt, cozyOrange, defaultWhite from "../colors.css";
 
 .wrapper {
   display: flex;
@@ -15,12 +15,17 @@
   padding-bottom: 0.3rem;
 }
 
-.orangeLink {
+.orange {
   color: cozyOrange;
   border-bottom: 1px solid cozyOrange;
 }
 
-.cobaltLink {
+.cobalt {
   color: cobalt;
   border-bottom: 1px solid cobalt;
+}
+
+.white {
+  color: defaultWhite;
+  border-bottom: 1px solid defaultWhite;
 }
