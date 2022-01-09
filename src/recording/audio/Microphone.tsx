@@ -4,7 +4,7 @@ import * as recordingService from './VoiceRecordingService';
 
 export interface MicrophoneInput {
   started: () => void;
-  finished: (e: Blob) => void;
+  finished: (e: Blob, durationMs: number) => void;
 }
 
 function Microphone(props: MicrophoneInput) {
@@ -22,7 +22,7 @@ function Microphone(props: MicrophoneInput) {
     if (!data) {
       return;
     }
-    props.finished(data.blob);
+    props.finished(data.blob, data.durationMs);
   }
 
   return (<LongPressButton pressed={start} unpressed={stop} ></LongPressButton>)

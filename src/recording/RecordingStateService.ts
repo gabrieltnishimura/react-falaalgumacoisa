@@ -23,27 +23,31 @@ const findNextStep = (group: RecordingGroupModel) => {
     id: phrase.id,
     cover: group.cover,
     text: phrase.text,
-    currentStep: (found + 1),
+    currentStep: found + 1,
     totalSteps: group.stepsCap,
   });
-}
+};
 
-const confirmStep = async (state: RecordingStateModel, data: Blob): Promise<RecordingConfirmation> => {
-  return await sendRecording({
-    groupId: state.groupId,
-    phraseId: state.phrase.id,
-    sampleRate: 16000,
-    additionalMetadata: {
-      userAgent: navigator.userAgent,
-    }
-  }, data);
-}
+const confirmStep = async (
+  state: RecordingStateModel,
+  data: Blob,
+  durationMs: number,
+): Promise<RecordingConfirmation> => {
+  return await sendRecording(
+    {
+      groupId: state.groupId,
+      phraseId: state.phrase.id,
+      sampleRate: 16000,
+      duration: durationMs,
+      additionalMetadata: {
+        userAgent: navigator.userAgent,
+      },
+    },
+    data,
+  );
+};
 const assignName = async (name: string): Promise<void> => {
   return await registrationIntegrationService.assignName(name);
-}
-
-export {
-  findNextStep,
-  confirmStep,
-  assignName,
 };
+
+export { findNextStep, confirmStep, assignName };
