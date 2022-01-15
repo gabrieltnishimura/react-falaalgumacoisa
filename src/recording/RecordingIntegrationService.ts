@@ -9,6 +9,7 @@ export interface RecordingMetadata {
   groupId: string;
   phraseId: string;
   sampleRate: number;
+  duration: number;
   additionalMetadata?: {
     userAgent: string;
   };
@@ -18,6 +19,7 @@ const parseFormData = (data: RecordingMetadata, blob: Blob): FormData => {
   const formData = new FormData();
   const filename = getAudioFormat().indexOf('wav') ? 'file.webm' : 'file.wav';
   formData.set('file', blob, filename);
+  formData.set('duration', String(data.duration));
   formData.set('themeId', data.groupId);
   formData.set('phraseId', data.phraseId);
   formData.set('sampleRate', data.sampleRate?.toString());

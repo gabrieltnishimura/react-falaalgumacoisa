@@ -37,9 +37,10 @@ const toastyTextMap = {
 function RecordingStep(props: {
   data: RecordingStateModel,
   skip: () => void,
-  finished: (data: Blob) => void,
+  finished: (data: Blob, durationMs: number) => void,
 }) {
   const [blob, setBlob] = useState<Blob | null>(null);
+  const [durationMs, setDurationMs] = useState<number>(0);
   const [recordingState, setRecordingState] = useState<RecordingState>(RecordingState.NOT_RECORDED);
   const height = use100vh();
 
@@ -67,9 +68,10 @@ function RecordingStep(props: {
     setRecordingState(RecordingState.RECORDING);
   };
 
-  const recordedFn = (data: Blob) => {
+  const recordedFn = (data: Blob, durationMs: number) => {
     if (data) {
       setBlob(data);
+      setDurationMs(durationMs);
     }
     setRecordingState(RecordingState.RECORDED);
   };
@@ -78,7 +80,7 @@ function RecordingStep(props: {
     if (!blob) {
       return;
     }
-    props.finished(blob);
+    props.finished(blob, durationMs);
   }
 
   const scrapRecordingFn = () => {

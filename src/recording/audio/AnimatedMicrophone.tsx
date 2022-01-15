@@ -6,7 +6,7 @@ import Microphone from './Microphone';
 export interface AnimatedMicrophoneInput {
   mount: boolean,
   started: () => void;
-  finished: (e: Blob) => void;
+  finished: (e: Blob, durationMs: number) => void;
 }
 
 function AnimatedMicrophone(props: AnimatedMicrophoneInput) {

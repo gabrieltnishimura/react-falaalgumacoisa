@@ -52,14 +52,14 @@ function RecordingPage() {
     setRecordingState(step);
   }, [recordingGroup])
 
-  const confirmRecordingFn = async (blob: Blob) => {
+  const confirmRecordingFn = async (blob: Blob, durationMs: number) => {
     if (!blob || !recordingState || !recordingGroup) {
       return;
     }
 
     if (recordingState.currentStep === recordingState.totalSteps) {
       setLoading(true);
-      const result = await stateService.confirmStep(recordingState, blob); // add queue
+      const result = await stateService.confirmStep(recordingState, blob, durationMs); // add queue
       const type = result.modal?.type;
       if (type) {
         setLoading(false);
@@ -82,7 +82,7 @@ function RecordingPage() {
         return phrase;
       });
 
-      stateService.confirmStep(recordingState, blob); // add queue
+      stateService.confirmStep(recordingState, blob, durationMs); // add queue
       setRecordingGroup({
         ...recordingGroup,
         phrases,
