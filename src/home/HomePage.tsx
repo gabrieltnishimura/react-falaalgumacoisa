@@ -38,6 +38,10 @@ function HomePage() {
     redirectToRecording(randomizedTheme, navigate);
   }
 
+  const redirectRegisterFn = () => {
+    navigate('/cadastro')
+  }
+
   const redirectLoginFn = () => {
     navigate('/login')
   }
@@ -54,7 +58,11 @@ function HomePage() {
       </div>
       {animate ? <div className={styles.fadeIn}>
         <div className={styles.header}>
-          <Header link={{ title: 'Entrar', onClick: redirectLoginFn }} />
+          <Header links={[
+            { title: 'Gravar anonimamente', onClick: redirectRecordingFn },
+            { title: 'Cadastre-se', onClick: redirectRegisterFn },
+            { title: 'Entrar', onClick: redirectLoginFn }
+          ]} />
         </div>
         <div className={styles.content}>
           <HomeContent redirectRecordingFn={redirectRecordingFn} />

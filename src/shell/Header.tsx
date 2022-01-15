@@ -9,10 +9,10 @@ import styles from './Header.module.css';
 import LinkItem from './LinkItem';
 
 function Header(props: {
-  link?: {
+  links?: {
     title: string,
     onClick: () => void,
-  },
+  }[],
   icon?: any,
   logoColor?: 'black' | 'white',
   preventRedirect?: boolean,
@@ -45,10 +45,10 @@ function Header(props: {
         <img src="/logo_light.png" alt='Logo'></img>
         <AppLogo black={props.logoColor === 'black'}></AppLogo>
       </button>
-      <div>
-        {props.link ?
-          <LinkItem title={props.link.title} onclick={props.link.onClick} color="cobalt" ></LinkItem> :
-          null}
+      <div className={styles.links}>
+        {props.links?.map(link => (
+          <LinkItem title={link.title} onclick={link.onClick} color="cobalt" ></LinkItem>
+        ))}
         {props.icon ? props.icon : null}
       </div>
       {showConfirmModal ? <ConfirmExitModal onClose={closeModalFn} /> : null}
