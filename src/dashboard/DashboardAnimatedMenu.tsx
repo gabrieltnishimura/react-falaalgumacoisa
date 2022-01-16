@@ -15,7 +15,7 @@ function DashboardAnimatedMenu(props: {
 
   return (
     <>
-      {props.show ? <div className={styles.background}></div> : null}
+      {props.show ? <div className={styles.background} onClick={props.close}></div> : null}
       <CSSTransition
         in={props.show}
         unmountOnExit

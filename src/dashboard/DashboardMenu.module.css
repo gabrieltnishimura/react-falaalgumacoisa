@@ -18,11 +18,11 @@
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   z-index: highlightDepth;
   top: 0;
   left: menuWidth;
-  height: fit-content;
+  height: 100%;
   width: calc(100% - menuWidth - leftOverlayPadding - rightOverlayPadding);
   padding: topOverlayPadding rightOverlayPadding 0 leftOverlayPadding;
   background-color: defaultWhite;
