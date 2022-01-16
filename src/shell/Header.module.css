@@ -1,6 +1,6 @@
 @value defaultWhite from "../colors.css";
 @value sidePadding, headerPaddingTop, headerPaddingBottom, headerInnerSize from "../sizes.css";
-@value desktopBreakpoint, desktopMaxWidth, desktopSidePadding, desktopWrapper, desktopHeaderPaddingTop, desktopHeaderPaddingBottom from "../sizes.css";
+@value desktopBreakpoint, desktopMaxWidth, desktopSidePadding, desktopWrapper, desktopHeaderVerticalPadding from "../sizes.css";
 
 .header {
   display: flex;
@@ -14,7 +14,8 @@
     padding: 0;
     max-width: desktopMaxWidth;
     width: desktopWrapper;
-    padding: headerPaddingTop desktopSidePadding headerPaddingBottom desktopSidePadding;
+    padding: desktopHeaderVerticalPadding desktopSidePadding desktopHeaderVerticalPadding
+      desktopSidePadding;
   }
 }
 
@@ -47,4 +48,27 @@
 .iconWrapper > svg {
   height: 3.5rem;
   width: 3.5rem;
+}
+
+.links {
+  display: flex;
+}
+
+.links > div {
+  display: none;
+}
+
+.links > div:last-child {
+  display: block;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .links > div {
+    padding-right: 1rem;
+    display: block;
+  }
+
+  .links > div:last-child {
+    padding-right: 0rem;
+  }
 }

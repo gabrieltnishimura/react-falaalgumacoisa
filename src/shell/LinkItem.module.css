@@ -12,17 +12,16 @@
   background: none;
   padding: 0;
   border: none;
-  padding-bottom: 0.3rem;
+}
+
+.dark {
+  color: cobalt;
+  border-bottom: 1px solid cobalt;
 }
 
 .orange {
   color: cozyOrange;
   border-bottom: 1px solid cozyOrange;
-}
-
-.cobalt {
-  color: cobalt;
-  border-bottom: 1px solid cobalt;
 }
 
 .white {
