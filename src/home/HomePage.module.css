@@ -1,17 +1,14 @@
 @value cobalt, defaultWhite from "../colors.css";
-@value headerSize, desktopBreakpoint, desktopFooterHeight from "../sizes.css";
+@value headerSize, desktopBreakpoint, desktopFooterHeight, desktopSidePadding from "../sizes.css";
 
 @value imageSpacingSize: 11rem;
+@value desktopImageSpacingSize: 22rem;
 @value bannerHeight: 100vh;
 @value firstStepDelay: 1.9s;
 @value firstStepDuration: 0.8s;
 @value secondStepDuration: 0.3s;
 @value secondStepDelay: 2.4s;
 @value comeFromLeftDelay: 2s;
-
-@media (min-width: desktopBreakpoint) {
-  @value imageSpacingSize: 22rem;
-}
 
 .banner {
   position: absolute;
@@ -65,8 +62,15 @@
 }
 
 @media (min-width: desktopBreakpoint) {
+  .logo {
+    padding-top: desktopImageSpacingSize;
+  }
+
   .content {
-    min-height: calc(100vh - imageSpacingSize - headerSize - desktopFooterHeight);
+    min-height: calc(100vh - desktopImageSpacingSize - headerSize - desktopFooterHeight);
+    margin-top: desktopImageSpacingSize;
+    padding: 6rem 15.4rem 9.45rem 15.4rem;
+    display: flex;
   }
 }
 

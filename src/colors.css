@@ -16,3 +16,79 @@
 @value lightestGray: rgb(247, 247, 247);
 @value disabledGrey: rgb(172, 172, 172);
 @value disabledGreyText: rgb(87, 87, 87);
+
+:root {
+  --cobalt: #0c3a65;
+  --classicBeige: #faf0ca;
+  --citron: #f4d35e;
+  --cozyOrange: #ee964a;
+  --canaryMustard: #f95738;
+  --nostalgicAquamarine: #08bee1;
+  --facebookBlue: rgb(59, 89, 151);
+  --defaultWhite: rgb(255, 255, 255);
+  --successGreen: rgb(102, 212, 97);
+  --deepBlue: rgb(13, 59, 102);
+  --comemorativeYellow: rgb(244, 211, 94);
+  --googleBorder: rgba(168, 168, 168, 0.5);
+  --darkestGray: rgb(33, 33, 33);
+  --mediumGray: rgb(148, 148, 148);
+  --lighterGray: rgb(218, 218, 218);
+  --lightestGray: rgb(247, 247, 247);
+  --disabledGrey: rgb(172, 172, 172);
+  --disabledGreyText: rgb(87, 87, 87);
+}
+
+.ccobalt {
+  color: var(--cobalt);
+}
+.cclassicBeige {
+  color: var(--classicBeige);
+}
+.ccitron {
+  color: var(--citron);
+}
+.ccozyOrange {
+  color: var(--cozyOrange);
+}
+.ccanaryMustard {
+  color: var(--canaryMustard);
+}
+.cnostalgicAquamarine {
+  color: var(--nostalgicAquamarine);
+}
+.cfacebookBlue {
+  color: var(--facebookBlue);
+}
+.cdefaultWhite {
+  color: var(--defaultWhite);
+}
+.csuccessGreen {
+  color: var(--successGreen);
+}
+.cdeepBlue {
+  color: var(--deepBlue);
+}
+.ccomemorativeYellow {
+  color: var(--comemorativeYellow);
+}
+.cgoogleBorder {
+  color: var(--googleBorder);
+}
+.cdarkestGray {
+  color: var(--darkestGray);
+}
+.cmediumGray {
+  color: var(--mediumGray);
+}
+.clighterGray {
+  color: var(--lighterGray);
+}
+.clightestGray {
+  color: var(--lightestGray);
+}
+.cdisabledGrey {
+  color: var(--disabledGrey);
+}
+.cdisabledGreyText {
+  color: var(--disabledGreyText);
+}

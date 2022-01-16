@@ -1,0 +1,14 @@
+@value disabledGrey from "../../colors.css";
+@value desktopBreakpoint, sidePadding from "../../sizes.css";
+
+.wrapper {
+  padding: 3.5rem sidePadding 7.9rem sidePadding;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .wrapper {
+    width: 38%;
+    padding: 2rem;
+    border: 0.1rem solid disabledGrey;
+  }
+}

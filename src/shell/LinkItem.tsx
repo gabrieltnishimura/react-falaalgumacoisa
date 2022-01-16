@@ -10,6 +10,8 @@ function getColorStyle(color: string) {
       return styles.orange;
     case 'white':
       return styles.white;
+    case 'gray':
+      return styles.gray;
     default:
       return styles.cobalt;
   }
@@ -18,7 +20,7 @@ function getColorStyle(color: string) {
 function LinkItem(props: {
   title: string,
   onclick: any,
-  color: 'cobalt' | 'citron' | 'white'
+  color: 'cobalt' | 'citron' | 'white' | 'gray'
 }) {
   return (
     <div className={styles.wrapper}>

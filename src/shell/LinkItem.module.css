@@ -1,4 +1,4 @@
-@value cobalt, cozyOrange, defaultWhite from "../colors.css";
+@value cobalt, cozyOrange, defaultWhite, mediumGray from "../colors.css";
 
 .wrapper {
   display: flex;
@@ -27,4 +27,9 @@
 .white {
   color: defaultWhite;
   border-bottom: 1px solid defaultWhite;
+}
+
+.gray {
+  color: mediumGray;
+  border-bottom: 1px solid mediumGray;
 }
