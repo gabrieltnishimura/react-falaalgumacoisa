@@ -1,9 +1,8 @@
-
 let firebaseConfig: any;
 try {
-  const rawConfig = process.env.REACT_APP_FIREBASE_CONFIG
+  const rawConfig = process.env.REACT_APP_FIREBASE_CONFIG;
   if (rawConfig) {
-    firebaseConfig = JSON.parse(atob(rawConfig))
+    firebaseConfig = JSON.parse(atob(rawConfig));
   }
 } catch (error) {
   console.error('Could not load firebase config');
@@ -33,6 +32,7 @@ const config = {
     searchFriends: process.env.REACT_APP_SEARCH_FRIENDS_URL || 'NOT_SET',
     friendsActions: process.env.REACT_APP_FRIENDS_ACTIONS_URL || 'NOT_SET',
     cleanNotifications: process.env.REACT_APP_CLEAN_NOTIFICATIONS_URL || 'NOT_SET',
+    simpleStats: process.env.REACT_APP_SIMPLE_STATS_URL || 'NOT_SET',
   },
 };
 

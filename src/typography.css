@@ -1,0 +1,36 @@
+@import url('sizes.css');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 4.2rem;
+  letter-spacing: -0.048rem;
+}
+
+.body1 {
+  font-family: 'Inter';
+  font-weight: 300;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  letter-spacing: -0.032rem;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .body1 {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    letter-spacing: -0.048rem;
+  }
+}

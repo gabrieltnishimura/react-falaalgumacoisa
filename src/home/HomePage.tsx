@@ -7,6 +7,7 @@ import { isDesktop } from '../shared/utils';
 import Header from '../shell/Header';
 import Footer from '../shell/Footer';
 import HomeContent from './HomeContent';
+import HomeMission from './components/HomeMission';
 import styles from './HomePage.module.css';
 import redirectToRecording from './RecordingRedirectionService';
 import SplashContent from './SplashContent';
@@ -66,6 +67,7 @@ function HomePage() {
         </div>
         <div className={styles.content}>
           <HomeContent redirectRecordingFn={redirectRecordingFn} />
+          <HomeMission />
         </div>
         <div className={styles.footer}>
           <Footer />

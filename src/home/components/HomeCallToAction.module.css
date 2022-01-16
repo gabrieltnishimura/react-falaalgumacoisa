@@ -1,0 +1,66 @@
+@value cobalt, defaultWhite, deepBlue, darkestGray, mediumGray, lighterGray from "../../colors.css";
+@value sidePadding, desktopBreakpoint, desktopSidePadding from "../../sizes.css";
+
+@value commonSpacing: 3.4rem;
+
+.startRecordingImg {
+  position: absolute;
+  left: sidePadding;
+  height: 3rem;
+  width: 2rem;
+}
+
+.startRecordingImg > path {
+  fill: defaultWhite;
+}
+
+.startRecordingText {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.04rem;
+  color: defaultWhite;
+  text-align: center;
+}
+
+.startRecordingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6.75rem;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  background-color: cobalt;
+}
+
+.registerWrapper {
+  border: 0.1rem solid cobalt;
+  margin: 0 0 2.35rem 0;
+  background-color: white;
+}
+
+.registerText {
+  color: cobalt;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .startRecordingImg {
+    position: relative;
+    left: unset;
+    padding-right: 0.6rem;
+  }
+
+  .startRecordingText {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    letter-spacing: -0.048rem;
+  }
+
+  .startRecordingWrapper {
+    margin: 0;
+  }
+
+  .titleWrapper {
+    padding: 3.9rem 0 0 0;
+  }
+}

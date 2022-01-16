@@ -1,0 +1,53 @@
+@value defaultWhite, successGreen, cozyOrange from "../../colors.css";
+@value desktopBreakpoint, desktopSidePadding from "../../sizes.css";
+
+.wrapper {
+  display: flex;
+  position: relative;
+  margin-top: 5rem;
+}
+
+.square {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 6.4rem 0.6rem 3.4rem 0.6rem;
+}
+
+.green {
+  background-color: successGreen;
+}
+
+.orange {
+  background-color: cozyOrange;
+}
+
+.icon {
+  position: absolute;
+  top: -5rem;
+  height: 10rem;
+  width: 8.5rem;
+}
+
+.stat {
+  display: block;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.06rem;
+  color: defaultWhite;
+}
+
+.description {
+  display: block;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.032rem;
+  color: defaultWhite;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .wrapper {
+  }
+}

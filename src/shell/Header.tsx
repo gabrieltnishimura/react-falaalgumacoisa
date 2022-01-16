@@ -47,7 +47,7 @@ function Header(props: {
       </button>
       <div className={styles.links}>
         {props.links?.map(link => (
-          <LinkItem title={link.title} onclick={link.onClick} color="cobalt" ></LinkItem>
+          <LinkItem title={link.title} onclick={link.onClick} color="cobalt" key={link.title} ></LinkItem>
         ))}
         {props.icon ? props.icon : null}
       </div>

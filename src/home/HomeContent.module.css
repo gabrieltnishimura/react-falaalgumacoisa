@@ -1,54 +1,8 @@
-@value deepBlue, darkestGray, mediumGray, lighterGray from "../colors.css";
+@value deepBlue, mediumGray, darkestGray from "../colors.css";
+@value sidePadding, desktopBreakpoint from "../sizes.css";
 
-@value commonSpacing: 3.4rem;
-
-.description {
-  font-size: 2.4rem;
-  font-weight: 300;
-  line-height: 2.8rem;
-  letter-spacing: -0.048rem;
-  color: mediumGray;
-}
-
-.descriptionWrapper {
-  margin: 0 0 commonSpacing 0;
-}
-
-.existingUser {
-  font-size: 1.8rem;
-  font-weight: 400;
-  letter-spacing: -0.036rem;
-  color: deepBlue;
-  margin: 0 0 3.5rem 0;
-}
-
-.startRecordingImg {
-  height: 5rem;
-  width: 4.2rem;
-  fill: deepBlue;
-}
-
-.startRecordingText {
-  font-size: 2.4rem;
-  font-weight: 400;
-  line-height: 4.2rem;
-  letter-spacing: -0.048rem;
-  color: deepBlue;
-  padding-left: 1.6rem;
-}
-
-.startRecordingWrapper {
-  display: flex;
-  align-items: center;
-  height: 11.2rem;
-  border: 0;
-  padding: 0;
-  width: 100%;
-  background-color: unset;
-  border-bottom: 1px solid lighterGray;
-  border-top: 1px solid lighterGray;
-  padding-left: 0;
-  margin: commonSpacing 0 commonSpacing 0;
+.wrapper {
+  position: relative;
 }
 
 .title {
@@ -61,7 +15,35 @@
 }
 
 .titleWrapper {
-  padding-top: 3.9rem;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 3.9rem sidePadding 2rem sidePadding;
+}
+
+.descriptionWrapper {
+  padding-left: sidePadding;
+  padding-right: sidePadding;
+  margin: 0 0 7.9rem 0;
+}
+
+.existingUser {
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: -0.036rem;
+  color: deepBlue;
+  margin: 0 0 3.5rem 0;
+}
+
+@media (min-width: desktopBreakpoint) {
+  .wrapper {
+    width: 60%;
+    padding-right: 4.5rem;
+  }
+
+  .titleWrapper {
+    padding: 0;
+  }
+
+  .descriptionWrapper {
+    padding: 0;
+    padding-top: 2rem;
+  }
 }
