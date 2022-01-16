@@ -35,7 +35,7 @@ function LeaderboardPage() {
             <h1 className={styles.title}>Placar dos líderes</h1>
           </div>
           <div className={styles.titleLink}>
-            <LinkItem title="Mostrar somente amigos" onclick={friendsRedirectFn} color="citron" />
+            <LinkItem title="Mostrar somente amigos" onclick={friendsRedirectFn} color="cobalt" />
           </div>
           <hr className={styles.separator} />
         </section>

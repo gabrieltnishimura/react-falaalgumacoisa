@@ -51,7 +51,7 @@ function RecordingStep(props: {
     } else {
       footerSize = recordingState === RecordingState.RECORDED ? '39rem' : '24.4rem';
     }
-    const headerSize = '9.7rem';
+    const headerSize = '8rem';
 
     const adaptableContainerSize = height ? `${height}px` : '100vh';
     return {
