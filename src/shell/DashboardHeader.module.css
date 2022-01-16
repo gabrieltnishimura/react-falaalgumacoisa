@@ -1,7 +1,7 @@
 @value desktopBreakpoint, desktopSidePadding from "../sizes.css";
 
 .actions {
-  display: flex;
+  display: flex !important;
   justify-self: center;
 }
 
