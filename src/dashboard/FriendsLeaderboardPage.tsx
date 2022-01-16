@@ -35,7 +35,7 @@ function FriendsLeaderboardPage() {
             <h1 className={styles.title}>Placar dos amigos</h1>
           </div>
           <div className={styles.titleLink}>
-            <LinkItem title="Mostrar placar dos líderes" onclick={globalRedirectFn} color="citron" />
+            <LinkItem title="Mostrar placar dos líderes" onclick={globalRedirectFn} color="cobalt" />
           </div>
           <hr className={styles.separator} />
         </section>
