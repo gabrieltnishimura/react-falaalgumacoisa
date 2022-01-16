@@ -139,7 +139,7 @@ function DashboardMenu(props: {
                 <span className={styles.unregisteredMessage}>Você ainda não está cadastrado</span>
               </div>
               <div className={styles.registrationButton}>
-                <RectangularButton title="Fazer meu cadastro" primary onClick={() => navigate('/cadastrar')} />
+                <RectangularButton title="Fazer meu cadastro" primary onClick={() => navigate('/cadastro')} />
               </div>
             </div>
             <div className={styles.knowMore}>
