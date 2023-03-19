@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
-    "@sentry/react": "^6.16.1",
-    "@sentry/tracing": "^6.16.1",
+    "@sentry/react": "^7.43.0",
+    "@sentry/tracing": "^7.43.0",
     "audio-recorder-polyfill": "^0.4.1",
     "axios": "^0.24.0",
     "firebase": "^9.6.1",
@@ -23,7 +23,7 @@
     "typescript": "^4.5.4"
   },
   "devDependencies": {
-    "@sentry/types": "^6.16.1",
+    "@sentry/types": "^7.43.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",

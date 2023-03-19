@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react';
-import { Integrations } from "@sentry/tracing";
+import { BrowserTracing } from '@sentry/tracing';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -10,9 +10,10 @@ import './spacings.css';
 import * as serviceWorker from './serviceWorker';
 
 Sentry.init({
-  dsn: "https://88ecbb9d767c4289b32bc7b4548b88e7@o433447.ingest.sentry.io/5388631",
-  integrations: [new Integrations.BrowserTracing()],
-  release: "falealgumacoisa@" + process.env.npm_package_version,
+  dsn: 'https://88ecbb9d767c4289b32bc7b4548b88e7@o433447.ingest.sentry.io/5388631',
+  integrations: [new BrowserTracing()],
+  release: 'falealgumacoisa@' + process.env.npm_package_version,
+  tracesSampleRate: 1.0,
 });
 
 // Start the app when DOM is ready.
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     <React.StrictMode>
       <App />
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 });
 
