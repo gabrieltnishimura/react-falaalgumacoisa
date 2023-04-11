@@ -19,7 +19,7 @@ const findNextStep = (group: RecordingGroupModel) => {
   }
 
   return new RecordingStateModel({
-    groupId: group.title,
+    groupId: group.groupId,
     id: phrase.id,
     cover: group.cover,
     text: phrase.text,

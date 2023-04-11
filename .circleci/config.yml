@@ -1,9 +1,32 @@
 version: 2.1
 orbs:
-  node: circleci/node@5.0.0
+  node: circleci/node@5.1.0
+  docker: circleci/docker@2.2.0
+jobs:
+  build:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 .
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+            docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
 workflows:
-  test:
+  build-and-push:
     jobs:
       - node/test:
           pkg-manager: yarn
           run-command: test
+      # - node/run:
+      #     pkg-manager: yarn
+      #     yarn-run: build
+      - build:
+          requires:
+            - node/test
+            # - node/run
