@@ -12,7 +12,7 @@ const getGroup = async (groupId: string): Promise<RecordingGroupModel> => {
 const getRandomGroup = async (): Promise<string> => {
   const url = config.endpoints.randomPhraseGroup;
   const response = await lastValueFrom(get<any>(url));
-  return response?.title;
+  return response?.themeId;
 };
 
 export { getGroup, getRandomGroup };

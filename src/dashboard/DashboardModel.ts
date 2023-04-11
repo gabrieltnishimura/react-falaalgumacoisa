@@ -8,10 +8,10 @@ export enum DashboardActionTypes {
 
 export default class DashboardModel {
   user: {
-    name: string,
+    name: string;
   };
   score: {
-    total: number,
+    total: number;
   };
   actions: DashboardActionModel[];
 
@@ -22,24 +22,32 @@ export default class DashboardModel {
     this.score = {
       total: data?.score?.total,
     };
-    this.actions = data?.actions?.map((action: any): DashboardActionModel | null => {
-      if (action.type === DashboardActionTypes.REGISTER || action.type === DashboardActionTypes.EXTRA) {
-        return null;
-      }
+    this.actions =
+      data?.actions
+        ?.map((action: any): DashboardActionModel | null => {
+          if (
+            action.type === DashboardActionTypes.REGISTER ||
+            action.type === DashboardActionTypes.EXTRA
+          ) {
+            return null;
+          }
 
-      return {
-        id: action.id,
-        type: action.type,
-        points: action.points,
-        isRecording: Boolean(action.isRecording),
-        background: {
-          src: action.background.src,
-          alt: action.background.alt,
-        },
-        banner: action.banner ? {
-          title: action.banner.title,
-        } : undefined,
-      }
-    }).filter((action: any) => !!action) || [];
+          return {
+            id: action.themeId,
+            type: action.type,
+            points: action.points,
+            isRecording: Boolean(action.isRecording),
+            background: {
+              src: action.background.src,
+              alt: action.background.alt,
+            },
+            banner: action.title
+              ? {
+                  title: action.title,
+                }
+              : undefined,
+          };
+        })
+        .filter((action: any) => !!action) || [];
   }
 }

@@ -25,6 +25,7 @@ export class RecordingGroupModalEventModel {
   }
 }
 export class RecordingGroupModel {
+  groupId: string;
   title: string;
   cover: string;
   stepsCap: number;
@@ -33,6 +34,7 @@ export class RecordingGroupModel {
   modalEvents: RecordingGroupModalEventModel[];
 
   constructor(data: any) {
+    this.groupId = data.themeId;
     this.title = data.title;
     this.cover = data.cover;
     this.stepsCap = parseInt(data.stepsCap, 10);

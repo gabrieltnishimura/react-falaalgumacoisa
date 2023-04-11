@@ -10,11 +10,13 @@ import * as stateService from './RecordingStateService';
 import RecordingStep from './RecordingStep';
 import * as wordSuggestionService from './suggestions/WordSuggestionService';
 
+const SUPPORTED_MODALS = [RecordingModalTypes.FIRST_RECORDING, RecordingModalTypes.FIRST_THEME];
+
 function RecordingPage() {
   const navigate = useNavigate();
   const { theme } = useParams();
 
-  const { setLoading } = (React.useContext(LoaderContext) as LoaderContextInterface);
+  const { setLoading } = React.useContext(LoaderContext) as LoaderContextInterface;
   const [recordingState, setRecordingState] = useState<RecordingStateModel | null>(null);
   const [recordingGroup, setRecordingGroup] = useState<RecordingGroupModel | null>(null);
 
@@ -38,7 +40,7 @@ function RecordingPage() {
         navigate('/dashboard');
         // @todo send toasty that error occured
       }
-    }
+    };
     fetchState();
   }, [setLoading, theme, navigate, next]);
 
@@ -50,7 +52,7 @@ function RecordingPage() {
 
     const step = stateService.findNextStep(recordingGroup);
     setRecordingState(step);
-  }, [recordingGroup])
+  }, [recordingGroup]);
 
   const confirmRecordingFn = async (blob: Blob, durationMs: number) => {
     if (!blob || !recordingState || !recordingGroup) {
@@ -61,7 +63,7 @@ function RecordingPage() {
       setLoading(true);
       const result = await stateService.confirmStep(recordingState, blob, durationMs); // add queue
       const type = result.modal?.type;
-      if (type) {
+      if (type && SUPPORTED_MODALS.includes(type)) {
         setLoading(false);
         setModalToShow(type);
       } else if (result.hasNext) {
@@ -70,17 +72,21 @@ function RecordingPage() {
         navigate('/dashboard');
       }
     } else {
-      const phrases = (recordingGroup.phrases as RecordingGroupItemModel[]).map((phrase, index): RecordingGroupItemModel => {
-        if (phrase.id === recordingState?.phrase.id) {
-          phrase.spoken = true;
+      const phrases = (recordingGroup.phrases as RecordingGroupItemModel[]).map(
+        (phrase, index): RecordingGroupItemModel => {
+          if (phrase.id === recordingState?.phrase.id) {
+            phrase.spoken = true;
 
-          const modalEvent = recordingGroup.modalEvents.find(event => event.eventIndex === (index + 1));
-          if (modalEvent) {
-            setModalToShow(modalEvent.type);
+            const modalEvent = recordingGroup.modalEvents.find(
+              event => event.eventIndex === index + 1,
+            );
+            if (modalEvent) {
+              setModalToShow(modalEvent.type);
+            }
           }
-        }
-        return phrase;
-      });
+          return phrase;
+        },
+      );
 
       stateService.confirmStep(recordingState, blob, durationMs); // add queue
       setRecordingGroup({
@@ -88,30 +94,32 @@ function RecordingPage() {
         phrases,
       });
     }
-  }
+  };
 
   const skipPhraseFn = () => {
     setNext(next + 1);
-  }
+  };
 
   const onFirstRecordingModalClose = () => {
     setModalToShow(null);
-  }
+  };
 
   const closeThemeModalFn = () => {
     setModalToShow(null);
     setLoading(true);
     navigate('/dashboard');
-  }
+  };
 
   if (!recordingState || !recordingState.phrase) {
     return null;
   }
 
-  const modal = showModal === RecordingModalTypes.FIRST_RECORDING ?
-    <FirstRecordingModal onClose={onFirstRecordingModalClose} /> :
-    showModal === RecordingModalTypes.FIRST_THEME ?
-      <FirstThemeModal onClose={closeThemeModalFn} /> : null;
+  const modal =
+    showModal === RecordingModalTypes.FIRST_RECORDING ? (
+      <FirstRecordingModal onClose={onFirstRecordingModalClose} />
+    ) : showModal === RecordingModalTypes.FIRST_THEME ? (
+      <FirstThemeModal onClose={closeThemeModalFn} />
+    ) : null;
 
   return (
     <>
