@@ -51,7 +51,7 @@ function WordSuggestion(props: {
         <div className={styles.wrapper}>
           <div className={styles.step}>
             <span className={styles.stepText}>
-              {props.state.currentStep}/{props.state.totalSteps}
+              {props.state.currentStep}/{props.state.requiredSteps}
             </span>
           </div>
           <span className={`${contextStyles.disable} ${wordStyling}`} style={{ fontSize }}>
