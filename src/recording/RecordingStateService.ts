@@ -4,7 +4,7 @@ import { RecordingGroupModel } from './models/RecordingGroupModel';
 import RecordingStateModel from './models/RecordingStateModel';
 import { sendRecording } from './RecordingIntegrationService';
 
-const findNextStep = (group: RecordingGroupModel) => {
+const findNextStep = (group: RecordingGroupModel): RecordingStateModel => {
   let found = -1;
   const phrase = group.phrases
     .filter(phrase => !phrase.skipped)
@@ -18,14 +18,18 @@ const findNextStep = (group: RecordingGroupModel) => {
     throw Error('No phrases available');
   }
 
-  return new RecordingStateModel({
+  return {
     groupId: group.groupId,
-    id: phrase.id,
+    phrase: {
+      id: phrase.id,
+      text: phrase.text,
+    },
     cover: group.cover,
-    text: phrase.text,
     currentStep: found + 1,
-    totalSteps: group.stepsCap,
-  });
+    requiredSteps: group.stepsCap,
+    totalSteps: group.total,
+    skippedSteps: group.skippedSteps,
+  };
 };
 
 const confirmStep = async (

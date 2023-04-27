@@ -59,7 +59,7 @@ function RecordingPage() {
       return;
     }
 
-    if (recordingState.currentStep === recordingState.totalSteps) {
+    if (recordingState.currentStep === recordingState.requiredSteps) {
       setLoading(true);
       const result = await stateService.confirmStep(recordingState, blob, durationMs); // add queue
       const type = result.modal?.type;

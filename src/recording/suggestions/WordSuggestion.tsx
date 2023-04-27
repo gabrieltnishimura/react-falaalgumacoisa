@@ -13,35 +13,37 @@ export enum WordSuggestionStyling {
 }
 
 function WordSuggestion(props: {
-  state: RecordingStateModel,
-  highlight: WordSuggestionStyling,
-  hideSkip: boolean,
-  skip: () => void,
+  state: RecordingStateModel;
+  highlight: WordSuggestionStyling;
+  hideSkip: boolean;
+  skip: () => void;
 }) {
   const [showSkipModal, setShowSkipModal] = useState(false);
   const [showMaxSkipsModal, setShowMaxSkipsModal] = useState(false);
 
   const showSkipModalFn = () => {
-    if (props.state.currentStep === props.state.totalSteps) {
+    if (props.state.skippedSteps >= props.state.totalSteps - props.state.requiredSteps) {
       setShowMaxSkipsModal(true);
     } else {
       setShowSkipModal(true);
     }
-  }
+  };
 
   const onSkipPhraseModalClose = (skipped: boolean) => {
     setShowSkipModal(false);
     if (skipped) {
       props.skip();
     }
-  }
+  };
 
-  const wordStyling = props.highlight === WordSuggestionStyling.DARK ?
-    styles.darkWord : props.highlight === WordSuggestionStyling.NORMAL ?
-      styles.normalWord : styles.lightWord;
+  const wordStyling =
+    props.highlight === WordSuggestionStyling.DARK
+      ? styles.darkWord
+      : props.highlight === WordSuggestionStyling.NORMAL
+      ? styles.normalWord
+      : styles.lightWord;
 
-  const fontSize = props.state.phrase.text.length > 80 ?
-    '3.6rem' : '4rem';
+  const fontSize = props.state.phrase.text.length > 80 ? '3.6rem' : '4rem';
 
   return (
     <>
@@ -56,14 +58,16 @@ function WordSuggestion(props: {
             {props.state.phrase.text}
           </span>
         </div>
-        {props.hideSkip ? <div className={styles.skipPhrase}>
-          <LinkItem title="Pular frase" onclick={showSkipModalFn} color="cobalt"></LinkItem>
-        </div> : null}
+        {props.hideSkip ? (
+          <div className={styles.skipPhrase}>
+            <LinkItem title="Pular frase" onclick={showSkipModalFn} color="cobalt"></LinkItem>
+          </div>
+        ) : null}
       </div>
-      {showSkipModal ?
-        <SkipRecordingModal recordingState={props.state} onClose={onSkipPhraseModalClose} /> : null}
-      {showMaxSkipsModal ?
-        <MaxSkipsModal onClose={() => setShowMaxSkipsModal(false)} /> : null}
+      {showSkipModal ? (
+        <SkipRecordingModal recordingState={props.state} onClose={onSkipPhraseModalClose} />
+      ) : null}
+      {showMaxSkipsModal ? <MaxSkipsModal onClose={() => setShowMaxSkipsModal(false)} /> : null}
     </>
   );
 }

@@ -29,6 +29,7 @@ export class RecordingGroupModel {
   title: string;
   cover: string;
   stepsCap: number;
+  skippedSteps: number;
   total: number;
   phrases: RecordingGroupItemModel[];
   modalEvents: RecordingGroupModalEventModel[];
@@ -38,6 +39,7 @@ export class RecordingGroupModel {
     this.title = data.title;
     this.cover = data.cover;
     this.stepsCap = parseInt(data.stepsCap, 10);
+    this.skippedSteps = parseInt(data.skippedSteps, 10);
     this.total = parseInt(data.total, 10);
     this.phrases =
       data.phrases && data.phrases.map((each: any) => new RecordingGroupItemModel(each));
