@@ -37,6 +37,9 @@
     "@types/react-transition-group": "^4.4.0",
     "standard-version": "^9.0.0"
   },
+  "engines": {
+    "node": ">= 16.17.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
